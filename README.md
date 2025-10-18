@@ -10,7 +10,7 @@
 
 **A modern, responsive, and animated portfolio website built with React, Tailwind CSS, and Framer Motion**
 
-[🌐 Live Demo](https://arpanpramanik.vercel.app) • [📧 Contact](mailto:pramanikarpan089@gmail.com) • [💼 LinkedIn](https://linkedin.com/in/arpanpramanik)
+[🌐 Live Demo](https://arpanpramanik.vercel.app/) • [📧 Contact](mailto:pramanikarpan089@gmail.co) • [💼 LinkedIn](https://www.linkedin.com/in/arpan-pramanik-6a409228a/)
 
 </div>
 
