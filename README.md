@@ -16,23 +16,6 @@
 
 ---
 
-## 📋 Table of Contents
-
-- [✨ Features](#-features)
-- [🛠️ Technologies Used](#️-technologies-used)
-- [📂 Project Structure](#-project-structure)
-- [🚀 Getting Started](#-getting-started)
-- [📦 Installation](#-installation)
-- [🎨 Customization](#-customization)
-- [🌐 Deployment](#-deployment)
-- [📸 Screenshots](#-screenshots)
-- [👨‍💻 About Me](#-about-me)
-- [📄 License](#-license)
-- [🤝 Contributing](#-contributing)
-- [📞 Contact](#-contact)
-
----
-
 ## ✨ Features
 
 ### 🎯 Core Features
@@ -85,3 +68,27 @@
 - **PostCSS** - CSS transformations
 - **Autoprefixer** - Automatic vendor prefixing
 
+## 👨‍💻 About Me
+
+Hi! I'm **Arpan Pramanik**, a passionate Computer Science student specializing in **AI/ML** at The Neotia University, West Bengal. I'm a **Full-Stack Developer** and **AI/ML Enthusiast** with hands-on experience in building production-grade web applications and deep learning models.
+
+### 🎓 Education
+- **B.Tech in CSE (AIML)** - The Neotia University (2023-2027)
+- **CGPA:** 9.42/10
+
+### 💼 Experience
+- 10+ Production Deployments
+- 3 Internships Completed
+- 5+ Professional Certifications
+
+### 🔬 Research Interests
+- Deep Learning & Computer Vision
+- Agricultural AI Applications
+- Explainable AI (XAI)
+- Real-time Classification Systems
+
+---
+
+## 📄 License
+
+This project is **MIT Licensed** - feel free to use it for your own portfolio!
