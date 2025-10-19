@@ -10,16 +10,15 @@ import Certificates from './components/Certificates'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ThemeToggle from './components/ThemeToggle'
+import CustomCursor from './components/CustomCursor' // Import CustomCursor
 
 function App() {
-  // Initialize dark mode from localStorage or default to false
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('darkMode')
     return saved ? JSON.parse(saved) : false
   })
 
   useEffect(() => {
-    // Apply dark mode class to html element
     if (darkMode) {
       document.documentElement.classList.add('dark')
       localStorage.setItem('darkMode', 'true')
@@ -31,6 +30,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+      <CustomCursor /> {/* Add CustomCursor component */}
       <Navbar darkMode={darkMode} />
       <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
       <Hero />
