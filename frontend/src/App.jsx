@@ -32,7 +32,7 @@ function App() {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
       <CustomCursor /> {/* Add CustomCursor component */}
       <Navbar darkMode={darkMode} />
-      <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
+      {/* <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} /> */}
       <Hero />
       <About />
       <Skills />
