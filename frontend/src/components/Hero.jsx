@@ -276,7 +276,7 @@ const Hero = () => {
         >
           {[
             { label: 'CGPA', value: '9.42', icon: '🎓' },
-            { label: 'Projects', value: '10+', icon: '💻' },
+            { label: 'Projects', value: '20+', icon: '💻' },
             { label: 'Internships', value: '3', icon: '🚀' },
             { label: 'Certificates', value: '5+', icon: '🏆' }
           ].map((stat, index) => (

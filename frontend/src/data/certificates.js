@@ -1,12 +1,12 @@
 export const certificatesData = [
-  {
+   {
     id: 1,
-    title: 'Revolutionizing Signal Processing: The Impact of AI and ML',
-    issuer: 'DIT-IEEE-SPS',
-    date: 'March 2025',
-    type: 'One Week STTP',
-    description: 'Short-term training program on AI and ML applications in signal processing',
-    icon: '🎓'
+    title: 'Cyber Security Training Certificate',
+    issuer: 'DataSpace Academy & The Neotia University',
+    date: 'July 2024',
+    type: 'One Month Internship',
+    description: 'Completed one month summer training and internship program in cyber security fundamentals',
+    icon: '🔒'
   },
   {
     id: 2,
@@ -19,13 +19,14 @@ export const certificatesData = [
   },
   {
     id: 3,
-    title: 'Cyber Security Training Certificate',
-    issuer: 'DataSpace Academy & The Neotia University',
-    date: 'July 2024',
-    type: 'One Month Internship',
-    description: 'Completed one month summer training and internship program in cyber security fundamentals',
-    icon: '🔒'
+    title: 'Revolutionizing Signal Processing: The Impact of AI and ML',
+    issuer: 'DIT-IEEE-SPS',
+    date: 'March 2025',
+    type: 'One Week STTP',
+    description: 'Short-term training program on AI and ML applications in signal processing',
+    icon: '🎓'
   },
+ 
   {
     id: 4,
     title: 'Cyber Security Advanced Training',

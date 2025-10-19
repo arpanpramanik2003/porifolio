@@ -25,7 +25,7 @@ export const aboutData = {
       title: 'Location',
       primary: 'West Bengal, India',
       secondary: 'Kakdwip, South 24 Parganas',
-      tertiary: null,
+      tertiary: 743347,
       duration: null
     },
     {

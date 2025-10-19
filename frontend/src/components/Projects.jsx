@@ -14,13 +14,13 @@ const Projects = () => {
   const categories = ['All', 'Machine Learning', 'Deep Learning', 'Computer Vision', 'Web Development']
 
   // Filter projects
-  const filteredProjects = filter === 'All' 
-    ? projectsData 
+  const filteredProjects = filter === 'All'
+    ? projectsData
     : projectsData.filter(project => project.category === filter)
 
   // Show only featured or all based on state
-  const displayedProjects = showAll 
-    ? filteredProjects 
+  const displayedProjects = showAll
+    ? filteredProjects
     : filteredProjects.filter(project => project.featured)
 
   const hasMoreProjects = filteredProjects.length > displayedProjects.length
@@ -46,7 +46,7 @@ const Projects = () => {
       >
         <div className="w-64 h-64 bg-gradient-to-br from-blue-400 to-purple-500 rounded-3xl blur-3xl" />
       </motion.div>
-      
+
       <motion.div
         animate={{ ...floatingAnimation, transition: { ...floatingAnimation.transition, delay: 2 } }}
         className="absolute bottom-20 right-10 opacity-5 dark:opacity-10"
@@ -112,11 +112,10 @@ const Projects = () => {
                   setFilter(category)
                   setShowAll(false)
                 }}
-                className={`px-6 py-3 rounded-full font-semibold transition-all ${
-                  filter === category
+                className={`px-6 py-3 rounded-full font-semibold transition-all ${filter === category
                     ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
                     : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
-                }`}
+                  }`}
               >
                 {category}
               </motion.button>
@@ -136,7 +135,7 @@ const Projects = () => {
 
           {/* Projects Grid */}
           <AnimatePresence mode="wait">
-            <motion.div 
+            <motion.div
               layout
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
             >
@@ -159,7 +158,7 @@ const Projects = () => {
                     >
                       {project.icon}
                     </motion.div>
-                    
+
                     {/* Year and Status Badges - Fixed positioning */}
                     <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
                       {/* Year Badge - Left */}
@@ -169,11 +168,10 @@ const Projects = () => {
 
                       {/* Status Badge - Right */}
                       {project.status && (
-                        <span className={`px-3 py-1.5 text-xs font-bold rounded-full shadow-lg ${
-                          project.status === 'Completed' 
-                            ? 'bg-green-500 text-white' 
+                        <span className={`px-3 py-1.5 text-xs font-bold rounded-full shadow-lg ${project.status === 'Completed'
+                            ? 'bg-green-500 text-white'
                             : 'bg-yellow-500 text-white'
-                        }`}>
+                          }`}>
                           {project.status}
                         </span>
                       )}
@@ -188,7 +186,7 @@ const Projects = () => {
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors mb-2">
                       {project.title}
                     </h3>
-                    
+
                     <span className="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs rounded-full mb-3 font-semibold">
                       {project.category}
                     </span>
@@ -215,67 +213,67 @@ const Projects = () => {
                     </div>
 
                     {/* Three Action Buttons - Updated styles */}
-<div className="grid grid-cols-3 gap-2">
-  {/* GitHub Button */}
-  {project.github ? (
-    <motion.a
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      href={project.github}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-slate-900 dark:bg-slate-700 text-white rounded-lg hover:bg-slate-800 dark:hover:bg-slate-600 transition-colors"
-      title="View Source Code"
-    >
-      <Github size={18} />
-      <span className="text-xs font-semibold">Code</span>
-    </motion.a>
-  ) : (
-    <div
-      className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-lg cursor-not-allowed opacity-50"
-      title="Source code not available"
-    >
-      <Github size={18} />
-      <span className="text-xs font-semibold">Code</span>
-    </div>
-  )}
-  
-  {/* Live Demo Button - Updated to match theme */}
-  {project.live ? (
-    <motion.a
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      href={project.live}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-blue-600 dark:bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-700 transition-colors"
-      title="View Live Demo"
-    >
-      <ExternalLink size={18} />
-      <span className="text-xs font-semibold">Live</span>
-    </motion.a>
-  ) : (
-    <div
-      className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-lg cursor-not-allowed opacity-50"
-      title="Live demo not available"
-    >
-      <ExternalLink size={18} />
-      <span className="text-xs font-semibold">N/A</span>
-    </div>
-  )}
+                    <div className="grid grid-cols-3 gap-2">
+                      {/* GitHub Button */}
+                      {project.github ? (
+                        <motion.a
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-slate-900 dark:bg-slate-700 text-white rounded-lg hover:bg-slate-800 dark:hover:bg-slate-600 transition-colors"
+                          title="View Source Code"
+                        >
+                          <Github size={18} />
+                          <span className="text-xs font-semibold">Code</span>
+                        </motion.a>
+                      ) : (
+                        <div
+                          className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-lg cursor-not-allowed opacity-50"
+                          title="Source code not available"
+                        >
+                          <Github size={18} />
+                          <span className="text-xs font-semibold">Code</span>
+                        </div>
+                      )}
 
-  {/* Details Button - Updated to match theme */}
-  <motion.button
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    onClick={() => setSelectedProject(project)}
-    className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-purple-600 dark:bg-purple-600 text-white rounded-lg hover:bg-purple-700 dark:hover:bg-purple-700 transition-colors"
-    title="View Project Details"
-  >
-    <Info size={18} />
-    <span className="text-xs font-semibold">Info</span>
-  </motion.button>
-</div>
+                      {/* Live Demo Button - Updated to match theme */}
+                      {project.live ? (
+                        <motion.a
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-blue-600 dark:bg-pink-400 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-green-700 transition-colors"
+                          title="View Live Demo"
+                        >
+                          <ExternalLink size={18} />
+                          <span className="text-xs font-semibold">Live</span>
+                        </motion.a>
+                      ) : (
+                        <div
+                          className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-lg cursor-not-allowed opacity-50"
+                          title="Live demo not available"
+                        >
+                          <ExternalLink size={18} />
+                          <span className="text-xs font-semibold">N/A</span>
+                        </div>
+                      )}
+
+                      {/* Details Button - Updated to match theme */}
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setSelectedProject(project)}
+                        className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-purple-600 dark:bg-purple-600 text-white rounded-lg hover:bg-purple-700 dark:hover:bg-purple-700 transition-colors"
+                        title="View Project Details"
+                      >
+                        <Info size={18} />
+                        <span className="text-xs font-semibold">Info</span>
+                      </motion.button>
+                    </div>
 
                   </div>
                 </motion.div>
@@ -348,11 +346,10 @@ const Projects = () => {
                       <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-sm rounded-full font-semibold">
                         {selectedProject.category}
                       </span>
-                      <span className={`px-3 py-1 text-sm rounded-full font-bold ${
-                        selectedProject.status === 'Completed' 
-                          ? 'bg-green-500 text-white' 
+                      <span className={`px-3 py-1 text-sm rounded-full font-bold ${selectedProject.status === 'Completed'
+                          ? 'bg-green-500 text-white'
                           : 'bg-yellow-500 text-white'
-                      }`}>
+                        }`}>
                         {selectedProject.status}
                       </span>
                     </div>
@@ -414,62 +411,62 @@ const Projects = () => {
                 </div>
 
                 {/* Action Buttons in Modal - Updated */}
-<div className="grid grid-cols-3 gap-4">
-  {/* GitHub Button */}
-  {selectedProject.github ? (
-    <motion.a
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      href={selectedProject.github}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-slate-900 dark:bg-slate-700 text-white rounded-xl hover:bg-slate-800 dark:hover:bg-slate-600 transition-colors font-semibold"
-    >
-      <Github size={28} />
-      <span>View Code</span>
-    </motion.a>
-  ) : (
-    <div className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-xl cursor-not-allowed opacity-50">
-      <Github size={28} />
-      <span>Not Available</span>
-    </div>
-  )}
+                <div className="grid grid-cols-3 gap-4">
+                  {/* GitHub Button */}
+                  {selectedProject.github ? (
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      href={selectedProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-slate-900 dark:bg-slate-700 text-white rounded-xl hover:bg-slate-800 dark:hover:bg-slate-600 transition-colors font-semibold"
+                    >
+                      <Github size={28} />
+                      <span>View Code</span>
+                    </motion.a>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-xl cursor-not-allowed opacity-50">
+                      <Github size={28} />
+                      <span>Not Available</span>
+                    </div>
+                  )}
 
-  {/* Live Demo Button - Updated */}
-  {selectedProject.live ? (
-    <motion.a
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      href={selectedProject.live}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-blue-600 dark:bg-blue-600 text-white rounded-xl hover:bg-blue-700 dark:hover:bg-blue-700 transition-colors font-semibold"
-    >
-      <ExternalLink size={28} />
-      <span>Live Demo</span>
-    </motion.a>
-  ) : (
-    <div className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-xl cursor-not-allowed opacity-50">
-      <ExternalLink size={28} />
-      <span>Not Available</span>
-    </div>
-  )}
+                  {/* Live Demo Button - Updated */}
+                  {selectedProject.live ? (
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      href={selectedProject.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-blue-400 dark:bg-pink-400 text-white rounded-xl hover:bg-blue-700 dark:hover:bg-green-700 transition-colors font-semibold"
+                    >
+                      <ExternalLink size={28} />
+                      <span>Live Demo</span>
+                    </motion.a>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-xl cursor-not-allowed opacity-50">
+                      <ExternalLink size={28} />
+                      <span>Not Available</span>
+                    </div>
+                  )}
 
-  {/* Info Button - Updated */}
-  <motion.button
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    onClick={() => {
-      navigator.clipboard.writeText(window.location.href)
-      alert('Link copied to clipboard!')
-    }}
-    className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-purple-600 dark:bg-purple-600 text-white rounded-xl hover:bg-purple-700 dark:hover:bg-purple-700 transition-colors font-semibold"
-  >
-    <Info size={28} />
-    <span>Share</span>
-  </motion.button>
-</div>
-    
+                  {/* Info Button - Updated */}
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      navigator.clipboard.writeText(window.location.href)
+                      alert('Link copied to clipboard!')
+                    }}
+                    className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-purple-600 dark:bg-purple-600 text-white rounded-xl hover:bg-purple-700 dark:hover:bg-purple-700 transition-colors font-semibold"
+                  >
+                    <Info size={28} />
+                    <span>Share</span>
+                  </motion.button>
+                </div>
+
               </div>
             </motion.div>
           </motion.div>

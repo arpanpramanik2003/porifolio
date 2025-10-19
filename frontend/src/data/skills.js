@@ -29,9 +29,10 @@ export const skillsData = [
     color: 'from-green-500 to-teal-500',
     bgGradient: 'from-green-50 to-teal-50 dark:from-slate-800 dark:to-slate-700',
     skills: [
-      { name: 'Node.js', level: 80, icon: '🟢' },
-      { name: 'Express', level: 80, icon: '🚂' },
+      { name: 'Node.js', level: 90, icon: '🟢' },
+      { name: 'Express', level: 85, icon: '🚂' },
       { name: 'Flask', level: 85, icon: '🐍' },
+      { name: 'FastAPI', level: 85, icon: '⚡' },
       { name: 'RESTful APIs', level: 85, icon: '🔌' }
     ]
   },
@@ -41,10 +42,10 @@ export const skillsData = [
     color: 'from-orange-500 to-red-500',
     bgGradient: 'from-orange-50 to-red-50 dark:from-slate-800 dark:to-slate-700',
     skills: [
-      { name: 'TensorFlow', level: 85, icon: '🧠' },
+      { name: 'TensorFlow', level: 90, icon: '🧠' },
       { name: 'Keras', level: 85, icon: '🔥' },
       { name: 'PyTorch', level: 75, icon: '🔦' },
-      { name: 'Scikit-learn', level: 80, icon: '📊' },
+      { name: 'Scikit-learn', level: 90, icon: '📊' },
       { name: 'OpenCV', level: 80, icon: '👁️' }
     ]
   },
@@ -56,7 +57,7 @@ export const skillsData = [
     skills: [
       { name: 'MongoDB', level: 85, icon: '🍃' },
       { name: 'PostgreSQL', level: 80, icon: '🐘' },
-      { name: 'MySQL', level: 75, icon: '🐬' }
+      { name: 'MySQL', level: 90, icon: '🐬' }
     ]
   },
   {
@@ -68,8 +69,8 @@ export const skillsData = [
       { name: 'AWS', level: 75, icon: '☁️' },
       { name: 'Railway', level: 80, icon: '🚂' },
       { name: 'Render', level: 80, icon: '🚀' },
-      { name: 'Vercel', level: 85, icon: '▲' },
-      { name: 'GitHub', level: 85, icon: '🐙' }
+      { name: 'Vercel', level: 90, icon: '▲' },
+      { name: 'GitHub', level: 90, icon: '🐙' }
     ]
   },
   {
