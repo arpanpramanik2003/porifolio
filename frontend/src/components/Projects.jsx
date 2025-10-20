@@ -13,19 +13,16 @@ const Projects = () => {
 
   const categories = ['All', 'Machine Learning', 'Deep Learning', 'Computer Vision', 'Web Development']
 
-  // Filter projects
   const filteredProjects = filter === 'All'
     ? projectsData
     : projectsData.filter(project => project.category === filter)
 
-  // Show only featured or all based on state
   const displayedProjects = showAll
     ? filteredProjects
     : filteredProjects.filter(project => project.featured)
 
   const hasMoreProjects = filteredProjects.length > displayedProjects.length
 
-  // Floating animation for background elements
   const floatingAnimation = {
     y: [-20, 20, -20],
     x: [-10, 10, -10],
@@ -322,31 +319,32 @@ const Projects = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedProject(null)}
-            className="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-0 sm:p-4"
           >
             <motion.div
               initial={{ scale: 0.9, y: 50 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 50 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+              // mobile: full width, desktop: max-w-4xl
+              className="bg-white dark:bg-slate-800 rounded-none sm:rounded-2xl w-full sm:max-w-4xl max-h-[100vh] sm:max-h-[90vh] overflow-y-auto shadow-xl"
             >
               {/* Modal Header */}
-              <div className="sticky top-0 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 p-8 flex justify-between items-start z-10">
-                <div className="flex items-center gap-4">
-                  <span className="text-7xl">{selectedProject.icon}</span>
-                  <div>
-                    <h3 className="text-3xl font-bold text-white mb-2">
+              <div className="sticky top-0 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 px-4 py-6 sm:p-8 flex flex-col sm:flex-row justify-between items-start sm:items-center z-10">
+                <div className="flex items-center gap-3 sm:gap-4 w-full">
+                  <span className="text-5xl sm:text-7xl">{selectedProject.icon}</span>
+                  <div className="flex-1">
+                    <h3 className="text-xl sm:text-3xl font-bold text-white mb-2">
                       {selectedProject.title}
                     </h3>
                     <div className="flex flex-wrap gap-2 items-center">
-                      <span className="px-3 py-1 bg-white/90 text-slate-700 text-sm rounded-full font-bold">
+                      <span className="px-2 py-1 bg-white/90 text-slate-700 text-xs sm:text-sm rounded-full font-bold">
                         {selectedProject.year}
                       </span>
-                      <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-sm rounded-full font-semibold">
+                      <span className="px-2 py-1 bg-white/20 backdrop-blur-sm text-white text-xs sm:text-sm rounded-full font-semibold">
                         {selectedProject.category}
                       </span>
-                      <span className={`px-3 py-1 text-sm rounded-full font-bold ${selectedProject.status === 'Completed'
+                      <span className={`px-2 py-1 text-xs sm:text-sm rounded-full font-bold ${selectedProject.status === 'Completed'
                           ? 'bg-green-500 text-white'
                           : 'bg-yellow-500 text-white'
                         }`}>
@@ -357,62 +355,52 @@ const Projects = () => {
                 </div>
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="text-white hover:bg-white/20 p-2 rounded-full transition-colors"
+                  className="text-white mt-4 sm:mt-0 sm:ml-4 bg-black/30 hover:bg-black/50 p-2 rounded-full transition-colors"
                 >
                   <X size={28} />
                 </button>
               </div>
 
               {/* Modal Content */}
-              <div className="p-8">
-                <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+              <div className="px-4 py-4 sm:p-8">
+                <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
                   {selectedProject.fullDescription}
                 </p>
-
-                {/* Key Features */}
                 <div className="mb-6">
-                  <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                    <Sparkles className="text-yellow-500" size={24} />
+                  <h4 className="text-lg sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                    <Sparkles className="text-yellow-500" size={20} />
                     Key Features
                   </h4>
-                  <ul className="space-y-3">
+                  <ul className="space-y-2">
                     {selectedProject.features.map((feature, index) => (
-                      <motion.li
+                      <li
                         key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="flex items-start gap-3 text-slate-600 dark:text-slate-300"
+                        className="flex items-start gap-2 text-slate-600 dark:text-slate-300 text-sm sm:text-base"
                       >
-                        <span className="text-blue-500 mt-1 font-bold text-lg">✓</span>
+                        <span className="text-blue-500 mt-1 font-bold text-base">✓</span>
                         <span>{feature}</span>
-                      </motion.li>
+                      </li>
                     ))}
                   </ul>
                 </div>
-
-                {/* Technologies */}
                 <div className="mb-8">
-                  <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                    <Code2 className="text-purple-500" size={24} />
+                  <h4 className="text-lg sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                    <Code2 className="text-purple-500" size={20} />
                     Technologies Used
                   </h4>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-2">
                     {selectedProject.tech.map((tech) => (
-                      <motion.span
+                      <span
                         key={tech}
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        className="px-4 py-2 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-slate-700 dark:to-slate-600 text-slate-700 dark:text-slate-300 rounded-lg font-semibold border border-slate-200 dark:border-slate-600"
+                        className="px-2 py-1 sm:px-4 sm:py-2 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-slate-700 dark:to-slate-600 text-slate-700 dark:text-slate-300 rounded-md sm:rounded-lg font-normal border border-slate-200 dark:border-slate-600 text-xs sm:text-base"
                       >
                         {tech}
-                      </motion.span>
+                      </span>
                     ))}
                   </div>
                 </div>
-
-                {/* Action Buttons in Modal - Updated */}
-                <div className="grid grid-cols-3 gap-4">
-                  {/* GitHub Button */}
+                {/* Buttons grid is stacked on mobile, horizontal on desktop */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
                   {selectedProject.github ? (
                     <motion.a
                       whileHover={{ scale: 1.05 }}
@@ -420,19 +408,18 @@ const Projects = () => {
                       href={selectedProject.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-slate-900 dark:bg-slate-700 text-white rounded-xl hover:bg-slate-800 dark:hover:bg-slate-600 transition-colors font-semibold"
+                      className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-slate-900 dark:bg-slate-700 text-white rounded-md sm:rounded-xl hover:bg-slate-800 dark:hover:bg-slate-600 transition-colors font-semibold"
                     >
-                      <Github size={28} />
-                      <span>View Code</span>
+                      <Github size={24} />
+                      <span className="text-xs sm:text-sm">View Code</span>
                     </motion.a>
                   ) : (
-                    <div className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-xl cursor-not-allowed opacity-50">
-                      <Github size={28} />
-                      <span>Not Available</span>
+                    <div className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-md sm:rounded-xl cursor-not-allowed opacity-50">
+                      <Github size={24} />
+                      <span className="text-xs sm:text-sm">Not Available</span>
                     </div>
                   )}
 
-                  {/* Live Demo Button - Updated */}
                   {selectedProject.live ? (
                     <motion.a
                       whileHover={{ scale: 1.05 }}
@@ -440,19 +427,18 @@ const Projects = () => {
                       href={selectedProject.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-blue-400 dark:bg-pink-400 text-white rounded-xl hover:bg-blue-700 dark:hover:bg-green-700 transition-colors font-semibold"
+                      className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-blue-600 dark:bg-pink-400 text-white rounded-md sm:rounded-xl hover:bg-blue-700 dark:hover:bg-green-700 transition-colors font-semibold"
                     >
-                      <ExternalLink size={28} />
-                      <span>Live Demo</span>
+                      <ExternalLink size={24} />
+                      <span className="text-xs sm:text-sm">Live Demo</span>
                     </motion.a>
                   ) : (
-                    <div className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-xl cursor-not-allowed opacity-50">
-                      <ExternalLink size={28} />
-                      <span>Not Available</span>
+                    <div className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-md sm:rounded-xl cursor-not-allowed opacity-50">
+                      <ExternalLink size={24} />
+                      <span className="text-xs sm:text-sm">Not Available</span>
                     </div>
                   )}
 
-                  {/* Info Button - Updated */}
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -460,13 +446,12 @@ const Projects = () => {
                       navigator.clipboard.writeText(window.location.href)
                       alert('Link copied to clipboard!')
                     }}
-                    className="flex flex-col items-center justify-center gap-2 px-6 py-4 bg-purple-600 dark:bg-purple-600 text-white rounded-xl hover:bg-purple-700 dark:hover:bg-purple-700 transition-colors font-semibold"
+                    className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-purple-600 dark:bg-purple-600 text-white rounded-md sm:rounded-xl hover:bg-purple-700 dark:hover:bg-purple-700 transition-colors font-semibold"
                   >
-                    <Info size={28} />
-                    <span>Share</span>
+                    <Info size={24} />
+                    <span className="text-xs sm:text-sm">Share</span>
                   </motion.button>
                 </div>
-
               </div>
             </motion.div>
           </motion.div>

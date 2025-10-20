@@ -53,7 +53,11 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 pb-20"
+      className="min-h-screen w-full flex flex-col items-center justify-center
+    relative
+    bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 
+    dark:from-slate-950 dark:via-slate-900 dark:to-slate-950
+    pb-20"
     >
       {/* Particle Background */}
       <ParticleBackground />
