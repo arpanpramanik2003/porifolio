@@ -223,9 +223,9 @@ export const projectsData = [
     category: 'Web Development',
     icon: '🎉',
     featured: false,
-    description: 'Event management website with Flask backend, dynamic galleries, sponsor management, and admin panel.',
-    fullDescription: 'Created a comprehensive college freshers event website with Flask backend and React frontend. Implemented dynamic image galleries, event scheduling system, sponsor management sections, team member displays, contact forms with message handling, and administrative controls for complete content management.',
-    tech: ['Flask', 'React', 'PostgreSQL', 'Python', 'SQLAlchemy', 'HTML', 'CSS'],
+    description: 'Event management website with Express.js backend, dynamic galleries, sponsor management, and admin panel.',
+    fullDescription: 'Created a comprehensive college freshers event website with Express.js backend and React frontend. Implemented dynamic image galleries, event scheduling system, sponsor management sections, team member displays, contact forms with message handling, and administrative controls for complete content management.',
+    tech: ['Express.js','Node.js', 'React', 'PostgreSQL', 'JWT', 'bycrypt', 'Tailwind CSS'],
     features: [
       'Event management system with scheduling',
       'Dynamic image galleries for event photos',

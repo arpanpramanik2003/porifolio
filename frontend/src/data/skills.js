@@ -5,10 +5,10 @@ export const skillsData = [
     color: 'from-blue-500 to-cyan-500',
     bgGradient: 'from-blue-50 to-cyan-50 dark:from-slate-800 dark:to-slate-700',
     skills: [
-      { name: 'Python', level: 90, icon: '🐍' },
-      { name: 'JavaScript', level: 85, icon: '⚡' },
-      { name: 'HTML/CSS', level: 90, icon: '🎨' },
-      { name: 'SQL', level: 75, icon: '🗄️' }
+      { name: 'C / C++', level: 85, icon: '🅲' },
+      { name: 'Python', level: 95, icon: '🐍' },
+      { name: 'Java', level: 78, icon: '☕' },
+      { name: 'R', level: 72, icon: '📈' }
     ]
   },
   {
@@ -17,10 +17,10 @@ export const skillsData = [
     color: 'from-purple-500 to-pink-500',
     bgGradient: 'from-purple-50 to-pink-50 dark:from-slate-800 dark:to-slate-700',
     skills: [
-      { name: 'React', level: 85, icon: '⚛️' },
-      { name: 'Vite', level: 80, icon: '⚡' },
-      { name: 'Tailwind CSS', level: 85, icon: '🎨' },
-      { name: 'Framer Motion', level: 75, icon: '✨' }
+      { name: 'HTML / CSS / JavaScript', level: 90, icon: '🧩' },
+      { name: 'React.js / Vite', level: 88, icon: '⚛️' },
+      { name: 'Tailwind CSS / Bootstrap', level: 85, icon: '🎨' },
+      { name: 'Framer Motion', level: 80, icon: '✨' }
     ]
   },
   {
@@ -29,24 +29,22 @@ export const skillsData = [
     color: 'from-green-500 to-teal-500',
     bgGradient: 'from-green-50 to-teal-50 dark:from-slate-800 dark:to-slate-700',
     skills: [
-      { name: 'Node.js', level: 90, icon: '🟢' },
-      { name: 'Express', level: 85, icon: '🚂' },
-      { name: 'Flask', level: 85, icon: '🐍' },
-      { name: 'FastAPI', level: 85, icon: '⚡' },
-      { name: 'RESTful APIs', level: 85, icon: '🔌' }
+      { name: 'Node.js / Express.js', level: 90, icon: '🟢' },
+      { name: 'Flask / FastAPI', level: 88, icon: '🐍' },
+      { name: 'Authentication (JWT, Google Auth, bcrypt)', level: 85, icon: '🔐' },
+      { name: 'RESTful API Design', level: 87, icon: '🔌' }
     ]
   },
   {
-    category: 'AI/ML & Deep Learning',
+    category: 'AI / ML & Deep Learning',
     icon: '🤖',
     color: 'from-orange-500 to-red-500',
     bgGradient: 'from-orange-50 to-red-50 dark:from-slate-800 dark:to-slate-700',
     skills: [
-      { name: 'TensorFlow', level: 90, icon: '🧠' },
-      { name: 'Keras', level: 85, icon: '🔥' },
-      { name: 'PyTorch', level: 75, icon: '🔦' },
-      { name: 'Scikit-learn', level: 90, icon: '📊' },
-      { name: 'OpenCV', level: 80, icon: '👁️' }
+      { name: 'TensorFlow / Keras', level: 90, icon: '🧠' },
+      { name: 'PyTorch / Lightning', level: 85, icon: '🔥' },
+      { name: 'Scikit-learn / Transfer Learning', level: 88, icon: '📊' },
+      { name: 'OpenCV / Mediapipe', level: 83, icon: '👁️' }
     ]
   },
   {
@@ -55,9 +53,10 @@ export const skillsData = [
     color: 'from-indigo-500 to-purple-500',
     bgGradient: 'from-indigo-50 to-purple-50 dark:from-slate-800 dark:to-slate-700',
     skills: [
-      { name: 'MongoDB', level: 85, icon: '🍃' },
-      { name: 'PostgreSQL', level: 80, icon: '🐘' },
-      { name: 'MySQL', level: 90, icon: '🐬' }
+      { name: 'MongoDB / MySQL', level: 88, icon: '🍃' },
+      { name: 'PostgreSQL / OracleDB', level: 80, icon: '🐘' },
+      { name: 'Supabase / Firebase', level: 85, icon: '🔥' },
+      { name: 'SQLite (Local Testing)', level: 78, icon: '💾' }
     ]
   },
   {
@@ -66,24 +65,22 @@ export const skillsData = [
     color: 'from-sky-500 to-blue-500',
     bgGradient: 'from-sky-50 to-blue-50 dark:from-slate-800 dark:to-slate-700',
     skills: [
-      { name: 'AWS', level: 75, icon: '☁️' },
-      { name: 'Railway', level: 80, icon: '🚂' },
-      { name: 'Render', level: 80, icon: '🚀' },
-      { name: 'Vercel', level: 90, icon: '▲' },
-      { name: 'GitHub', level: 90, icon: '🐙' }
+      { name: 'AWS (EC2, S3)', level: 82, icon: '☁️' },
+      { name: 'Railway / Render', level: 85, icon: '🚂' },
+      { name: 'Vercel / Streamlit', level: 90, icon: '🚀' },
+      { name: 'GitHub / Docker', level: 88, icon: '🐙' }
     ]
   },
   {
-    category: 'Tools & Others',
+    category: 'Tools & Productivity',
     icon: '🛠️',
     color: 'from-yellow-500 to-orange-500',
     bgGradient: 'from-yellow-50 to-orange-50 dark:from-slate-800 dark:to-slate-700',
     skills: [
-      { name: 'Git', level: 85, icon: '🔀' },
-      { name: 'VS Code', level: 90, icon: '💙' },
-      { name: 'Postman', level: 80, icon: '📮' },
-      { name: 'Jupyter', level: 85, icon: '📓' },
-      { name: 'Streamlit', level: 85, icon: '🎈' }
+      { name: 'VS Code / Cursor', level: 92, icon: '💻' },
+      { name: 'Jupyter / Google Colab / Kaggle', level: 88, icon: '📓' },
+      { name: 'Hugging Face / Ollama', level: 86, icon: '🤗' },
+      { name: 'Postman / Thunder Client', level: 82, icon: '📮' }
     ]
   },
   {
@@ -92,10 +89,10 @@ export const skillsData = [
     color: 'from-pink-500 to-rose-500',
     bgGradient: 'from-pink-50 to-rose-50 dark:from-slate-800 dark:to-slate-700',
     skills: [
-      { name: 'Computer Vision', level: 85, icon: '👁️' },
-      { name: 'NLP', level: 70, icon: '💬' },
-      { name: 'Image Classification', level: 85, icon: '🖼️' },
-      { name: 'Model Deployment', level: 80, icon: '🚀' }
+      { name: 'Research Paper Writing (Overleaf / LaTeX)', level: 90, icon: '📜' },
+      { name: 'CI/CD & Deployment Automation', level: 82, icon: '⚡' },
+      { name: 'Cross-Dataset Validation & Model Evaluation', level: 85, icon: '📈' },
+      { name: 'Team Collaboration & Hackathons', level: 88, icon: '🤝' }
     ]
   }
-]
+];
