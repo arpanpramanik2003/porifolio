@@ -201,7 +201,7 @@ export const projectsData = [
     featured: false,
     description: 'Full-stack student management platform with authentication, portfolios, file uploads, and admin dashboard.',
     fullDescription: 'Comprehensive student management application with React frontend and Node.js backend. Features include JWT authentication, student portfolio management, file upload with Multer, PDF portfolio generation, and admin dashboards for CRUD operations. Built with MongoDB for data persistence and responsive design for all devices.',
-    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'Multer', 'REST API'],
+    tech: ['React', 'Node.js', 'Tailwind', 'Express', 'MongoDB', 'JWT', 'Multer', 'REST API'],
     features: [
       'User authentication with JWT tokens',
       'Student portfolio creation and management',

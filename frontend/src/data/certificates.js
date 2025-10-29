@@ -41,7 +41,7 @@ export const certificatesData = [
     title: 'Flask Development Certification',
     issuer: 'Xetalabs',
     date: 'July-September 2025',
-    type: 'Two Months Internship',
+    type: 'Three Months Internship',
     description: 'Intensive two months training in Flask web development, RESTful APIs, and backend systems',
     icon: '🐍'
   }

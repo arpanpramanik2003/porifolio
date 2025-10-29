@@ -44,7 +44,7 @@ export const researchData = [
     },
     doi: null,
     arxiv: null,
-    github: 'https://github.com/arpanpramanik2003/hyperspectral-classification',
+    github: 'https://github.com/arpanpramanik2003/fruit-veg-classification.git',
     color: 'from-blue-500 to-purple-500'
   },
   {
@@ -79,7 +79,7 @@ export const getPublishedPapers = () => {
 }
 
 export const getUnderReviewPapers = () => {
-  return researchData.filter(paper => paper.status === 'Under Review')
+  return researchData.filter(paper => paper.status === 'Under Progress')
 }
 
 export const getResearchByCategory = (category) => {
