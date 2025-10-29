@@ -8,7 +8,7 @@ export const skillsData = [
       { name: 'C / C++', level: 85, icon: '🅲' },
       { name: 'Python', level: 95, icon: '🐍' },
       { name: 'Java', level: 78, icon: '☕' },
-      { name: 'R', level: 72, icon: '📈' }
+      { name: 'R', level: 70, icon: '📈' }
     ]
   },
   {
