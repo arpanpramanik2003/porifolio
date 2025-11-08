@@ -151,13 +151,13 @@ const Hero = () => {
         <motion.div variants={itemVariants} className="mb-8">
           <TypeAnimation
             sequence={[
-              'Full-Stack Developer 💻',
+              'Full-Stack Developer',
               2000,
-              'AI/ML Enthusiast 🤖',
+              'AI/ML Enthusiast',
               2000,
-              'CSE Student 🎓',
+              'CSE Student',
               2000,
-              'Problem Solver 🚀',
+              'Problem Solver',
               2000,
             ]}
             wrapper="h2"
