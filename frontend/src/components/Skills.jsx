@@ -1,8 +1,98 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Sparkles, TrendingUp, ChevronDown, ChevronUp } from 'lucide-react'
 import { skillsData } from '../data/skills'
+
+const AnimatedStatCard = ({ stat, index, isInView }) => {
+  const [count, setCount] = useState(0)
+  const statRef = useRef(null)
+  const statInView = useInView(statRef, { once: true, amount: 0.5 })
+  
+  // Extract numeric value from stat.value (handles both numbers and strings like "85%")
+  const targetValue = typeof stat.value === 'string' 
+    ? parseInt(stat.value.replace(/\D/g, '')) 
+    : stat.value
+  
+  useEffect(() => {
+    if (statInView) {
+      let start = 0
+      const end = targetValue
+      const duration = 2000
+      const startTime = Date.now() + (index * 100)
+      
+      const timer = setInterval(() => {
+        const elapsed = Date.now() - startTime
+        if (elapsed < 0) return
+        
+        const progress = Math.min(elapsed / duration, 1)
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4)
+        const current = Math.floor(start + (end - start) * easeOutQuart)
+        
+        setCount(current)
+        
+        if (progress === 1) {
+          clearInterval(timer)
+          setCount(end)
+        }
+      }, 16)
+      
+      return () => clearInterval(timer)
+    }
+  }, [statInView, targetValue, index])
+
+  return (
+    <motion.div
+      ref={statRef}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+      transition={{ delay: 0.7 + index * 0.1 }}
+      whileHover={{ scale: 1.05, y: -5 }}
+      className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg text-center border border-slate-200 dark:border-slate-700"
+    >
+      <motion.div 
+        className="text-4xl mb-3"
+        animate={{ rotate: statInView ? [0, 10, -10, 0] : 0 }}
+        transition={{ delay: 0.7 + index * 0.1, duration: 0.5 }}
+      >
+        {stat.icon}
+      </motion.div>
+      <div className={`text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2 tabular-nums`}>
+        {statInView ? count : 0}{typeof stat.value === 'string' && stat.value.includes('%') ? '%' : ''}
+      </div>
+      <div className="text-sm text-slate-600 dark:text-slate-400 font-medium">
+        {stat.label}
+      </div>
+    </motion.div>
+  )
+}
+
+const OverallStats = ({ isInView, skillsData }) => {
+  const stats = [
+    { label: 'Total Skills', value: skillsData.reduce((acc, cat) => acc + cat.skills.length, 0), icon: '🎯', color: 'from-blue-500 to-cyan-500' },
+    { label: 'Categories', value: skillsData.length, icon: '📂', color: 'from-purple-500 to-pink-500' },
+    { label: 'Avg Proficiency', value: `${Math.round(skillsData.reduce((acc, cat) => acc + cat.skills.reduce((a, s) => a + s.level, 0) / cat.skills.length, 0) / skillsData.length)}%`, icon: '📊', color: 'from-green-500 to-teal-500' },
+    { label: 'Expert Level', value: skillsData.reduce((acc, cat) => acc + cat.skills.filter(s => s.level >= 85).length, 0), icon: '⭐', color: 'from-orange-500 to-red-500' }
+  ]
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: 0.5 }}
+      className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
+    >
+      {stats.map((stat, index) => (
+        <AnimatedStatCard 
+          key={stat.label} 
+          stat={stat} 
+          index={index} 
+          isInView={isInView}
+        />
+      ))}
+    </motion.div>
+  )
+}
 
 const Skills = () => {
   const ref = useRef(null)
@@ -33,22 +123,59 @@ const Skills = () => {
   }
 
   const ProgressBar = ({ skill, delay }) => {
+    const counterRef = useRef(null)
+    const counterInView = useInView(counterRef, { once: true, amount: 0.5 })
+    const [count, setCount] = useState(0)
+
+    // Animate counter from 0 to skill.level
+    useEffect(() => {
+      if (counterInView) {
+        let start = 0
+        const end = skill.level
+        const duration = 1500 // 1.5 seconds
+        const startTime = Date.now() + (delay * 1000) // Add delay
+        
+        const timer = setInterval(() => {
+          const elapsed = Date.now() - startTime
+          if (elapsed < 0) return // Wait for delay
+          
+          const progress = Math.min(elapsed / duration, 1)
+          const easeOutQuart = 1 - Math.pow(1 - progress, 4)
+          const current = Math.floor(start + (end - start) * easeOutQuart)
+          
+          setCount(current)
+          
+          if (progress === 1) {
+            clearInterval(timer)
+            setCount(end) // Ensure we end at exact value
+          }
+        }, 16) // ~60fps
+        
+        return () => clearInterval(timer)
+      }
+    }, [counterInView, skill.level, delay])
+
     return (
-      <div className="mb-4 last:mb-0">
+      <div ref={counterRef} className="mb-4 last:mb-0">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
             <span>{skill.icon}</span>
             {skill.name}
           </span>
-          <span className="text-sm font-bold text-slate-600 dark:text-slate-400">
-            {skill.level}%
-          </span>
+          <motion.span 
+            key={count}
+            initial={{ scale: 1.2, color: '#3b82f6' }}
+            animate={{ scale: 1, color: undefined }}
+            className="text-sm font-bold text-slate-600 dark:text-slate-400 tabular-nums"
+          >
+            {counterInView ? count : 0}%
+          </motion.span>
         </div>
         <div className="relative h-2 bg-slate-200 dark:bg-slate-600 rounded-full overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
             animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-            transition={{ duration: 1, delay: delay, ease: 'easeOut' }}
+            transition={{ duration: 1.5, delay: delay, ease: [0.16, 1, 0.3, 1] }}
             className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
           >
             <motion.div
@@ -227,36 +354,7 @@ const Skills = () => {
           )}
 
           {/* Overall Stats Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
-            {[
-              { label: 'Total Skills', value: skillsData.reduce((acc, cat) => acc + cat.skills.length, 0), icon: '🎯', color: 'from-blue-500 to-cyan-500' },
-              { label: 'Categories', value: skillsData.length, icon: '📂', color: 'from-purple-500 to-pink-500' },
-              { label: 'Avg Proficiency', value: `${Math.round(skillsData.reduce((acc, cat) => acc + cat.skills.reduce((a, s) => a + s.level, 0) / cat.skills.length, 0) / skillsData.length)}%`, icon: '📊', color: 'from-green-500 to-teal-500' },
-              { label: 'Expert Level', value: skillsData.reduce((acc, cat) => acc + cat.skills.filter(s => s.level >= 85).length, 0), icon: '⭐', color: 'from-orange-500 to-red-500' }
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.7 + index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg text-center border border-slate-200 dark:border-slate-700"
-              >
-                <div className="text-4xl mb-3">{stat.icon}</div>
-                <div className={`text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
-                  {stat.value}
-                </div>
-                <div className="text-sm text-slate-600 dark:text-slate-400 font-medium">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+          <OverallStats isInView={isInView} skillsData={skillsData} />
 
           {/* Call to Action */}
           <motion.div

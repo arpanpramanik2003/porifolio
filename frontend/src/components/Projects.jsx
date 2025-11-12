@@ -19,7 +19,9 @@ const Projects = () => {
 
   const displayedProjects = showAll
     ? filteredProjects
-    : filteredProjects.filter(project => project.featured)
+    : filter === 'All'
+      ? filteredProjects.filter(project => project.featured).slice(0, 3)
+      : filteredProjects.slice(0, 3)
 
   const hasMoreProjects = filteredProjects.length > displayedProjects.length
 
@@ -134,6 +136,9 @@ const Projects = () => {
           <AnimatePresence mode="wait">
             <motion.div
               layout
+              initial={{ minHeight: '600px' }}
+              animate={{ minHeight: 'auto' }}
+              transition={{ duration: 0.3 }}
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
             >
               {displayedProjects.map((project, index) => (
@@ -219,11 +224,11 @@ const Projects = () => {
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-slate-900 dark:bg-slate-700 text-white rounded-lg hover:bg-slate-800 dark:hover:bg-slate-600 transition-colors"
+                          className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-gradient-to-r from-slate-700 to-slate-900 dark:from-slate-700 dark:to-slate-900 rounded-lg hover:from-slate-800 hover:to-black dark:hover:from-slate-800 dark:hover:to-black transition-all"
                           title="View Source Code"
                         >
-                          <Github size={18} />
-                          <span className="text-xs font-semibold">Code</span>
+                          <Github size={18} className="text-white" />
+                          <span className="text-xs font-bold text-white">Code</span>
                         </motion.a>
                       ) : (
                         <div
@@ -243,11 +248,11 @@ const Projects = () => {
                           href={project.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-blue-600 dark:bg-pink-400 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-green-700 transition-colors"
+                          className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-purple-600 rounded-lg hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-700 dark:hover:to-purple-700 transition-all"
                           title="View Live Demo"
                         >
-                          <ExternalLink size={18} />
-                          <span className="text-xs font-semibold">Live</span>
+                          <ExternalLink size={18} className="text-white" />
+                          <span className="text-xs font-bold text-white">Live</span>
                         </motion.a>
                       ) : (
                         <div
@@ -279,7 +284,7 @@ const Projects = () => {
           </AnimatePresence>
 
           {/* View More / View Less Button */}
-          {hasMoreProjects && (
+          {filteredProjects.length > 3 && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -408,10 +413,10 @@ const Projects = () => {
                       href={selectedProject.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-slate-900 dark:bg-slate-700 text-white rounded-md sm:rounded-xl hover:bg-slate-800 dark:hover:bg-slate-600 transition-colors font-semibold"
+                      className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-slate-700 to-slate-900 dark:from-slate-700 dark:to-slate-900 rounded-md sm:rounded-xl hover:from-slate-800 hover:to-black dark:hover:from-slate-800 dark:hover:to-black transition-all"
                     >
-                      <Github size={24} />
-                      <span className="text-xs sm:text-sm">View Code</span>
+                      <Github size={24} className="text-white" />
+                      <span className="text-xs sm:text-sm font-bold text-white">View Code</span>
                     </motion.a>
                   ) : (
                     <div className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-md sm:rounded-xl cursor-not-allowed opacity-50">
@@ -427,10 +432,10 @@ const Projects = () => {
                       href={selectedProject.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-blue-600 dark:bg-pink-400 text-white rounded-md sm:rounded-xl hover:bg-blue-700 dark:hover:bg-green-700 transition-colors font-semibold"
+                      className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-purple-600 rounded-md sm:rounded-xl hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-700 dark:hover:to-purple-700 transition-all"
                     >
-                      <ExternalLink size={24} />
-                      <span className="text-xs sm:text-sm">Live Demo</span>
+                      <ExternalLink size={24} className="text-white" />
+                      <span className="text-xs sm:text-sm font-bold text-white">Live Demo</span>
                     </motion.a>
                   ) : (
                     <div className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-md sm:rounded-xl cursor-not-allowed opacity-50">

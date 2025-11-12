@@ -60,55 +60,91 @@ const Research = () => {
           {/* Section Header */}
           <div className="text-center mb-12 sm:mb-16">
             <motion.div
-              initial={{ scale: 0 }}
-              animate={isInView ? { scale: 1 } : {}}
-              transition={{ duration: 0.5 }}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={isInView ? { scale: 1, opacity: 1 } : {}}
+              transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="inline-block mb-4"
             >
-              <span className="px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-sm font-semibold">
+              <span className="px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold shadow-lg">
                 Academic Contributions
               </span>
             </motion.div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4"
+            >
               Research & Publications
-            </h2>
+            </motion.h2>
             <motion.div
               initial={{ width: 0 }}
               animate={isInView ? { width: '100px' } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="h-1 bg-gradient-to-r from-green-500 to-teal-500 mx-auto rounded-full mb-4"
+              transition={{ duration: 0.6, delay: 0.3, ease: "easeInOut" }}
+              className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto rounded-full mb-4 shadow-lg"
             />
-            <p className="text-slate-600 dark:text-slate-400 max-w-md sm:max-w-2xl mx-auto text-base sm:text-lg px-2">
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+              className="text-slate-600 dark:text-slate-400 max-w-md sm:max-w-2xl mx-auto text-base sm:text-lg px-2"
+            >
               Exploring the intersection of AI/ML and agriculture through cutting-edge research
-            </p>
+            </motion.p>
           </div>
 
           {/* Research Stats */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6 mb-12 sm:mb-16"
           >
             {[
-              { label: 'Publications', value: researchData.length, icon: '📄', color: 'from-blue-500 to-cyan-500' },
-              { label: 'Under Review', value: researchData.filter(p => p.status === 'Under Review').length, icon: '⏳', color: 'from-yellow-500 to-orange-500' },
-              { label: 'Co-authors', value: '3', icon: '👥', color: 'from-purple-500 to-pink-500' },
-              { label: 'Research Areas', value: '3', icon: '🎯', color: 'from-green-500 to-teal-500' }
+              { label: 'Publications', value: researchData.length, icon: '📄', color: 'from-blue-500 to-cyan-500', bg: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20' },
+              { label: 'Under Review', value: researchData.filter(p => p.status === 'Under Review').length, icon: '⏳', color: 'from-yellow-500 to-orange-500', bg: 'from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20' },
+              { label: 'Co-authors', value: '3', icon: '👥', color: 'from-purple-500 to-pink-500', bg: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20' },
+              { label: 'Research Areas', value: '3', icon: '🎯', color: 'from-green-500 to-teal-500', bg: 'from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20' }
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.4 + index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-lg text-center border border-slate-200 dark:border-slate-600"
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{ 
+                  delay: 0.6 + index * 0.1,
+                  duration: 0.5,
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+                whileHover={{ 
+                  scale: 1.08, 
+                  y: -8,
+                  transition: { duration: 0.2, ease: "easeOut" }
+                }}
+                className={`bg-gradient-to-br ${stat.bg} backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-xl hover:shadow-2xl text-center border-2 border-white/50 dark:border-slate-700/50 cursor-pointer relative overflow-hidden group`}
               >
-                <div className="text-2xl sm:text-4xl mb-2 sm:mb-3">{stat.icon}</div>
-                <div className={`text-2xl sm:text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-1 sm:mb-2`}>
+                {/* Shine effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100"
+                  animate={{ x: ['-200%', '200%'] }}
+                  transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                />
+                
+                <motion.div 
+                  className="text-2xl sm:text-4xl mb-2 sm:mb-3 relative z-10"
+                  animate={{ 
+                    rotate: isInView ? [0, 10, -10, 0] : 0
+                  }}
+                  transition={{ 
+                    delay: 0.8 + index * 0.1,
+                    duration: 0.5
+                  }}
+                >
+                  {stat.icon}
+                </motion.div>
+                <div className={`text-2xl sm:text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-1 sm:mb-2 relative z-10`}>
                   {stat.value}
                 </div>
-                <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">
+                <div className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-semibold relative z-10">
                   {stat.label}
                 </div>
               </motion.div>
@@ -120,13 +156,27 @@ const Research = () => {
             {researchData.map((paper, index) => (
               <motion.div
                 key={paper.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                whileHover={{ scale: 1.02, y: -5 }}
-                className="bg-white/90 dark:bg-slate-700/90 backdrop-blur-sm p-4 sm:p-8 rounded-xl sm:rounded-2xl shadow-xl border border-slate-200 dark:border-slate-600 cursor-pointer"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60, y: 40 }}
+                animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 0.8 + index * 0.15,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
+                whileHover={{ 
+                  scale: 1.02, 
+                  y: -8,
+                  transition: { duration: 0.2, ease: "easeOut" }
+                }}
+                className="bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-700 backdrop-blur-sm p-4 sm:p-8 rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl border-2 border-slate-200/50 dark:border-slate-600/50 cursor-pointer relative overflow-hidden group"
                 onClick={() => setSelectedPaper(paper)}
               >
+                {/* Animated shine effect on hover */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent opacity-0 group-hover:opacity-100"
+                  animate={{ x: ['-200%', '200%'] }}
+                  transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                />
                 <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                   {/* Paper Icon */}
                   <motion.div
@@ -203,7 +253,7 @@ const Research = () => {
                       ))}
                     </div>
                     {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full">
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full relative z-10">
                       {paper.github && (
                         <motion.a
                           whileHover={{ scale: 1.05 }}
@@ -212,7 +262,7 @@ const Research = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="flex items-center justify-center gap-2 px-4 py-2 bg-slate-900 dark:bg-slate-700 text-white rounded-lg hover:bg-slate-800 transition-colors text-xs sm:text-sm font-semibold"
+                          className="flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-slate-700 to-slate-900 dark:from-slate-700 dark:to-slate-900 text-white rounded-lg hover:from-slate-800 hover:to-black transition-all shadow-md text-xs sm:text-sm font-semibold"
                         >
                           <Code2 size={16} />
                           Code
@@ -222,7 +272,7 @@ const Research = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => setSelectedPaper(paper)}
-                        className="flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-lg hover:from-green-600 hover:to-teal-600 transition-colors text-xs sm:text-sm font-semibold"
+                        className="flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:via-purple-600 hover:to-blue-700 transition-all shadow-md text-xs sm:text-sm font-semibold"
                       >
                         <FileText size={16} />
                         Details
@@ -372,7 +422,7 @@ const Research = () => {
                       href={selectedPaper.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 px-5 py-3 bg-slate-900 dark:bg-slate-700 text-white rounded-lg hover:bg-slate-800 transition-colors font-semibold text-xs sm:text-base"
+                      className="flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-slate-700 to-slate-900 text-white rounded-lg hover:from-slate-800 hover:to-black transition-all font-semibold text-xs sm:text-base shadow-lg"
                     >
                       <Code2 size={20} />
                       View Code
@@ -382,7 +432,7 @@ const Research = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setSelectedPaper(null)}
-                    className="flex items-center justify-center gap-2 px-5 py-3 bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-500 transition-colors font-semibold text-xs sm:text-base"
+                    className="flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all font-semibold text-xs sm:text-base shadow-lg"
                   >
                     Close
                   </motion.button>

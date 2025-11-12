@@ -97,18 +97,47 @@ const About = () => {
                 className="pt-6"
               >
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                  <Heart className="text-red-500" size={24} />
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                    }}
+                    transition={{ 
+                      duration: 1.5,
+                      repeat: Infinity,
+                      repeatDelay: 2
+                    }}
+                  >
+                    <Heart className="text-red-500" size={24} />
+                  </motion.div>
                   Interests & Hobbies
                 </h3>
                 <div className="flex flex-wrap gap-3">
                   {aboutData.interests.map((interest, index) => (
                     <motion.span
                       key={interest}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ delay: 0.5 + index * 0.1 }}
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      className="px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-slate-700 dark:text-slate-300 rounded-full text-sm font-medium shadow-sm"
+                      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                      animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                      transition={{ 
+                        delay: 0.5 + index * 0.1,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 15
+                      }}
+                      whileHover={{ 
+                        scale: 1.15,
+                        rotate: [0, -5, 5, -5, 0],
+                        y: -5,
+                        boxShadow: "0 10px 30px rgba(59, 130, 246, 0.3)",
+                        transition: { 
+                          duration: 0.3,
+                          rotate: {
+                            duration: 0.5,
+                            ease: "easeInOut"
+                          }
+                        }
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-slate-700 dark:text-slate-300 rounded-full text-sm font-medium shadow-md hover:shadow-xl cursor-pointer border border-blue-200/50 dark:border-purple-500/30 transition-all"
                     >
                       {interest}
                     </motion.span>
@@ -131,27 +160,43 @@ const About = () => {
                     key={card.id}
                     variants={itemVariants}
                     whileHover={{
-                      scale: 1.05,
-                      rotate: index % 2 === 0 ? 2 : -2,
-                      transition: { duration: 0.3 }
+                      scale: 1.08,
+                      rotate: index % 2 === 0 ? 3 : -3,
+                      y: -8,
+                      transition: { 
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 20
+                      }
                     }}
-                    className={`p-6 bg-gradient-to-br ${card.gradient} rounded-xl shadow-lg hover:shadow-2xl transition-shadow relative overflow-hidden group`}
+                    whileTap={{ scale: 0.98 }}
+                    className={`p-6 bg-gradient-to-br ${card.gradient} rounded-xl shadow-lg hover:shadow-2xl transition-all relative overflow-hidden group cursor-pointer border border-white/20 dark:border-slate-700/50`}
                   >
-                    {/* Animated Background */}
+                    {/* Animated Background Shine */}
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="absolute inset-0 bg-gradient-to-br from-white/60 via-white/30 to-transparent opacity-0 group-hover:opacity-100"
                       initial={false}
+                      whileHover={{
+                        scale: [1, 1.2, 1],
+                        rotate: [0, 180, 360],
+                        transition: { duration: 0.8 }
+                      }}
                     />
 
-                    {/* Icon with Glow Effect */}
+                    {/* Icon with Advanced Animations */}
                     <motion.div
-                      whileHover={{ rotate: 360, scale: 1.2 }}
-                      transition={{ duration: 0.6 }}
                       className="relative z-10 mb-4"
                     >
-                      <div className={`inline-flex p-3 ${card.iconColor} bg-white dark:bg-slate-800 rounded-lg shadow-md`}>
+                      <motion.div
+                        whileHover={{ 
+                          rotate: 360,
+                          scale: 1.2,
+                          transition: { duration: 0.6, ease: "easeInOut" }
+                        }}
+                        className={`inline-flex p-3 ${card.iconColor} bg-white dark:bg-slate-800 rounded-lg shadow-md group-hover:shadow-xl transition-all`}
+                      >
                         <IconComponent size={28} />
-                      </div>
+                      </motion.div>
                     </motion.div>
 
                     {/* Content */}

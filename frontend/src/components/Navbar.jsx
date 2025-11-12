@@ -40,15 +40,17 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="hero" smooth duration={500} className="cursor-pointer">
             <motion.span 
-              whileHover={{ scale: 1.05 }}
-              className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
+              whileHover={{ scale: 1.05, rotate: [0, -2, 2, 0] }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-purple-600 bg-clip-text text-transparent"
             >
-              Arpan.dev
+              arpanpramanik.dev
             </motion.span>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-1">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -56,10 +58,16 @@ const Navbar = () => {
                 smooth
                 duration={500}
                 spy
-                activeClass="text-blue-500"
-                className="text-slate-700 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 cursor-pointer transition-colors font-medium"
+                activeClass="!text-blue-500 dark:!text-blue-400"
               >
-                {link.name}
+                <motion.div
+                  whileHover={{ y: -2, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="px-4 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 cursor-pointer font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 transition-all"
+                >
+                  {link.name}
+                </motion.div>
               </Link>
             ))}
           </div>
@@ -79,19 +87,27 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-white dark:bg-slate-800 shadow-lg"
+          className="md:hidden bg-white/95 dark:bg-slate-800/95 backdrop-blur-md shadow-lg"
         >
-          <div className="px-4 pt-2 pb-4 space-y-2">
-            {navLinks.map((link) => (
+          <div className="px-4 pt-2 pb-4 space-y-1">
+            {navLinks.map((link, index) => (
               <Link
                 key={link.name}
                 to={link.to}
                 smooth
                 duration={500}
                 onClick={() => setIsOpen(false)}
-                className="block py-2 text-slate-700 dark:text-slate-300 hover:text-blue-500 cursor-pointer"
               >
-                {link.name}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  whileHover={{ x: 10, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="block py-3 px-4 text-slate-700 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 cursor-pointer font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700 transition-all"
+                >
+                  {link.name}
+                </motion.div>
               </Link>
             ))}
           </div>
