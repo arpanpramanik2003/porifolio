@@ -35,6 +35,7 @@ const About = () => {
       transition: { duration: 0.5 }
     }
   }
+  
 
   return (
     <section id="about" className="py-20 bg-white dark:bg-slate-800 relative overflow-hidden">
