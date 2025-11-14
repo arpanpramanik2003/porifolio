@@ -4,7 +4,7 @@ export const experienceData = [
     title: 'Flask Development Intern',
     company: 'Xetalabs',
     location: 'Guwahati, Assam',
-    duration: 'July 2025 -',
+    duration: 'July 2025',
     type: 'Summer Training & Internship',
     description: 'Summer training & internship focused on Flask web development, building RESTful APIs and backend systems.',
     skills: ['Flask', 'Python', 'RESTful APIs', 'Backend Development']
