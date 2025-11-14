@@ -4,6 +4,149 @@ import { useRef, useState } from 'react'
 import { Github, ExternalLink, X, Code2, Sparkles, ChevronDown, ChevronUp, Info } from 'lucide-react'
 import { projectsData } from '../data/projects'
 
+// Individual Project Card Component with scroll animation
+const ProjectCard = ({ project, index, setSelectedProject }) => {
+  const cardRef = useRef(null)
+  const cardInView = useInView(cardRef, { once: true, amount: 0.2 })
+
+  return (
+    <motion.div
+      ref={cardRef}
+      key={project.id}
+      layout
+      initial={{ opacity: 0, y: 50, scale: 0.9 }}
+      animate={cardInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ 
+        duration: 0.6, 
+        delay: index * 0.1,
+        ease: [0.16, 1, 0.3, 1]
+      }}
+      whileHover={{ y: -10, scale: 1.02 }}
+      className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden group border border-slate-200 dark:border-slate-700 transition-all"
+    >
+      {/* Project Image/Icon with Gradient */}
+      <div className="relative h-48 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 flex items-center justify-center text-7xl overflow-hidden">
+        <motion.div
+          whileHover={{ scale: 1.2, rotate: 10 }}
+          transition={{ duration: 0.3 }}
+        >
+          {project.icon}
+        </motion.div>
+
+        {/* Year and Status Badges */}
+        <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
+          <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-slate-700 text-xs font-bold rounded-full shadow-lg">
+            {project.year}
+          </span>
+
+          {project.status && (
+            <span className={`px-3 py-1.5 text-xs font-bold rounded-full shadow-lg ${
+              project.status === 'Completed' ? 'bg-green-500 text-white' : 'bg-yellow-500 text-white'
+            }`}>
+              {project.status}
+            </span>
+          )}
+        </div>
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+      </div>
+
+      {/* Project Info */}
+      <div className="p-6">
+        <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors mb-2">
+          {project.title}
+        </h3>
+
+        <span className="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs rounded-full mb-3 font-semibold">
+          {project.category}
+        </span>
+
+        <p className="text-slate-600 dark:text-slate-300 mb-4 line-clamp-2 leading-relaxed text-sm">
+          {project.description}
+        </p>
+
+        {/* Tech Stack Tags */}
+        <div className="flex flex-wrap gap-2 mb-5">
+          {project.tech.slice(0, 3).map((tech) => (
+            <span
+              key={tech}
+              className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs rounded-md font-medium"
+            >
+              {tech}
+            </span>
+          ))}
+          {project.tech.length > 3 && (
+            <span className="px-2 py-1 text-slate-500 text-xs font-medium">
+              +{project.tech.length - 3}
+            </span>
+          )}
+        </div>
+
+        {/* Action Buttons */}
+        <div className="grid grid-cols-3 gap-2">
+          {project.github ? (
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-gradient-to-r from-slate-700 to-slate-900 dark:from-slate-700 dark:to-slate-900 rounded-lg hover:from-slate-800 hover:to-black dark:hover:from-slate-800 dark:hover:to-black transition-all"
+              title="View Source Code"
+            >
+              <Github size={18} className="text-white" />
+              <span className="text-xs font-bold text-white">Code</span>
+            </motion.a>
+          ) : (
+            <div
+              className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-lg cursor-not-allowed opacity-50"
+              title="Source code not available"
+            >
+              <Github size={18} />
+              <span className="text-xs font-semibold">Code</span>
+            </div>
+          )}
+
+          {project.live ? (
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-purple-600 rounded-lg hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-700 dark:hover:to-purple-700 transition-all"
+              title="View Live Demo"
+            >
+              <ExternalLink size={18} className="text-white" />
+              <span className="text-xs font-bold text-white">Live</span>
+            </motion.a>
+          ) : (
+            <div
+              className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-lg cursor-not-allowed opacity-50"
+              title="Live demo not available"
+            >
+              <ExternalLink size={18} />
+              <span className="text-xs font-semibold">N/A</span>
+            </div>
+          )}
+
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setSelectedProject(project)}
+            className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-purple-600 dark:bg-purple-600 text-white rounded-lg hover:bg-purple-700 dark:hover:bg-purple-700 transition-colors"
+            title="View Project Details"
+          >
+            <Info size={18} />
+            <span className="text-xs font-semibold">Info</span>
+          </motion.button>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
 const Projects = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
@@ -142,143 +285,12 @@ const Projects = () => {
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
             >
               {displayedProjects.map((project, index) => (
-                <motion.div
+                <ProjectCard
                   key={project.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden group border border-slate-200 dark:border-slate-700 transition-all"
-                >
-                  {/* Project Image/Icon with Gradient */}
-                  <div className="relative h-48 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 flex items-center justify-center text-7xl overflow-hidden">
-                    <motion.div
-                      whileHover={{ scale: 1.2, rotate: 10 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {project.icon}
-                    </motion.div>
-
-                    {/* Year and Status Badges - Fixed positioning */}
-                    <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
-                      {/* Year Badge - Left */}
-                      <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-slate-700 text-xs font-bold rounded-full shadow-lg">
-                        {project.year}
-                      </span>
-
-                      {/* Status Badge - Right */}
-                      {project.status && (
-                        <span className={`px-3 py-1.5 text-xs font-bold rounded-full shadow-lg ${project.status === 'Completed'
-                            ? 'bg-green-500 text-white'
-                            : 'bg-yellow-500 text-white'
-                          }`}>
-                          {project.status}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Gradient Overlay on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
-
-                  {/* Project Info */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors mb-2">
-                      {project.title}
-                    </h3>
-
-                    <span className="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs rounded-full mb-3 font-semibold">
-                      {project.category}
-                    </span>
-
-                    <p className="text-slate-600 dark:text-slate-300 mb-4 line-clamp-2 leading-relaxed text-sm">
-                      {project.description}
-                    </p>
-
-                    {/* Tech Stack Tags */}
-                    <div className="flex flex-wrap gap-2 mb-5">
-                      {project.tech.slice(0, 3).map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs rounded-md font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {project.tech.length > 3 && (
-                        <span className="px-2 py-1 text-slate-500 text-xs font-medium">
-                          +{project.tech.length - 3}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Three Action Buttons - Updated styles */}
-                    <div className="grid grid-cols-3 gap-2">
-                      {/* GitHub Button */}
-                      {project.github ? (
-                        <motion.a
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-gradient-to-r from-slate-700 to-slate-900 dark:from-slate-700 dark:to-slate-900 rounded-lg hover:from-slate-800 hover:to-black dark:hover:from-slate-800 dark:hover:to-black transition-all"
-                          title="View Source Code"
-                        >
-                          <Github size={18} className="text-white" />
-                          <span className="text-xs font-bold text-white">Code</span>
-                        </motion.a>
-                      ) : (
-                        <div
-                          className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-lg cursor-not-allowed opacity-50"
-                          title="Source code not available"
-                        >
-                          <Github size={18} />
-                          <span className="text-xs font-semibold">Code</span>
-                        </div>
-                      )}
-
-                      {/* Live Demo Button - Updated to match theme */}
-                      {project.live ? (
-                        <motion.a
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-purple-600 rounded-lg hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-700 dark:hover:to-purple-700 transition-all"
-                          title="View Live Demo"
-                        >
-                          <ExternalLink size={18} className="text-white" />
-                          <span className="text-xs font-bold text-white">Live</span>
-                        </motion.a>
-                      ) : (
-                        <div
-                          className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-lg cursor-not-allowed opacity-50"
-                          title="Live demo not available"
-                        >
-                          <ExternalLink size={18} />
-                          <span className="text-xs font-semibold">N/A</span>
-                        </div>
-                      )}
-
-                      {/* Details Button - Updated to match theme */}
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => setSelectedProject(project)}
-                        className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-purple-600 dark:bg-purple-600 text-white rounded-lg hover:bg-purple-700 dark:hover:bg-purple-700 transition-colors"
-                        title="View Project Details"
-                      >
-                        <Info size={18} />
-                        <span className="text-xs font-semibold">Info</span>
-                      </motion.button>
-                    </div>
-
-                  </div>
-                </motion.div>
+                  project={project}
+                  index={index}
+                  setSelectedProject={setSelectedProject}
+                />
               ))}
             </motion.div>
           </AnimatePresence>

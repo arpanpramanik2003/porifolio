@@ -35,18 +35,19 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     setStatus('sending')
-    // EmailJS configuration - replace with your credentials
+    
+    // EmailJS configuration from environment variables
     emailjs
       .send(
-        'YOUR_SERVICE_ID',      // Get from EmailJS dashboard
-        'YOUR_TEMPLATE_ID',     // Get from EmailJS dashboard
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
-          from_name: formData.name,
-          from_email: formData.email,
+          name: formData.name,
+          email: formData.email,
           message: formData.message,
-          to_name: 'Arpan Pramanik'
+          title: 'Portfolio Contact Form'
         },
-        'YOUR_PUBLIC_KEY'       // Get from EmailJS dashboard
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
       .then(
         () => {
