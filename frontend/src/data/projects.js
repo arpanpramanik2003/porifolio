@@ -238,7 +238,7 @@ export const projectsData = [
     ],
     github: 'https://github.com/arpanpramanik2003/freshers-website.git',
     live: 'https://abhigraha2k25.vercel.app/',
-    status: 'In Progress',
+    status: 'Completed',
     year: '2025'
   }
 ]
