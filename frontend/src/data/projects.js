@@ -212,9 +212,9 @@ export const projectsData = [
       'RESTful API architecture',
       'MongoDB database with Mongoose ODM'
     ],
-    github: null,
-    live: null,
-    status: 'In Progress',
+    github: 'https://github.com/arpanpramanik2003/smart-student-hub',
+    live: 'https://smart-student-hub-inky.vercel.app/',
+    status: 'Completed',
     year: '2025'
   },
   {
