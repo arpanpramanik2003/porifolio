@@ -11,11 +11,13 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ThemeToggle from './components/ThemeToggle'
 import CustomCursor from './components/CustomCursor' // Import CustomCursor
+import ParticleBackground from './components/ParticleBackground' // Import ParticleBackground
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('darkMode')
-    return saved ? JSON.parse(saved) : false
+    // Default to true (dark mode) if no saved preference
+    return saved !== null ? JSON.parse(saved) : true
   })
 
   useEffect(() => {
@@ -29,11 +31,13 @@ function App() {
   }, [darkMode])
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-500 relative">
       <CustomCursor /> {/* Add CustomCursor component */}
-      <Navbar darkMode={darkMode} />
-      {/* <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} /> */}
-      <Hero />
+      <ParticleBackground /> {/* Single animated background for entire page */}
+      <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
+      <div className="relative z-10">
+        <Navbar darkMode={darkMode} />
+        <Hero />
       <About />
       <Skills />
       <Experience />
@@ -42,6 +46,7 @@ function App() {
       <Certificates />
       <Contact />
       <Footer />
+      </div>
     </div>
   )
 }

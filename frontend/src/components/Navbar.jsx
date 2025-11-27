@@ -31,8 +31,8 @@ const Navbar = () => {
       animate={{ y: 0 }}
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-lg' 
-          : 'bg-transparent'
+          ? 'bg-slate-900/70 dark:bg-slate-900/70 backdrop-blur-lg shadow-lg' 
+          : 'bg-transparent backdrop-blur-sm'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,7 +64,7 @@ const Navbar = () => {
                   whileHover={{ y: -2, scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.2 }}
-                  className="px-4 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 cursor-pointer font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 transition-all"
+                  className="px-4 py-2 text-white hover:text-blue-400 cursor-pointer font-medium rounded-lg hover:bg-white/10 transition-all"
                 >
                   {link.name}
                 </motion.div>
@@ -75,7 +75,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-slate-700 dark:text-slate-300"
+            className="md:hidden text-white"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -87,7 +87,7 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-white/95 dark:bg-slate-800/95 backdrop-blur-md shadow-lg"
+          className="md:hidden bg-slate-900/80 backdrop-blur-lg shadow-lg"
         >
           <div className="px-4 pt-2 pb-4 space-y-1">
             {navLinks.map((link, index) => (
@@ -104,7 +104,7 @@ const Navbar = () => {
                   transition={{ delay: index * 0.05 }}
                   whileHover={{ x: 10, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="block py-3 px-4 text-slate-700 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 cursor-pointer font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700 transition-all"
+                  className="block py-3 px-4 text-white hover:text-blue-400 cursor-pointer font-medium rounded-lg hover:bg-white/10 transition-all"
                 >
                   {link.name}
                 </motion.div>

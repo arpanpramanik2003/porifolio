@@ -64,7 +64,7 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="py-16 sm:py-20 bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-20 relative overflow-hidden">
       {/* Floating Backgrounds */}
       <motion.div
         animate={floatingAnimation}
@@ -111,7 +111,7 @@ const Contact = () => {
                 Let's Connect
               </span>
             </motion.div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
               Get In Touch
             </h2>
             <motion.div
@@ -120,7 +120,7 @@ const Contact = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full mb-4"
             />
-            <p className="text-slate-600 dark:text-slate-400 max-w-md sm:max-w-2xl mx-auto text-base sm:text-lg">
+            <p className="text-slate-300 dark:text-slate-400 max-w-md sm:max-w-2xl mx-auto text-base sm:text-lg">
               Have a project in mind or want to collaborate? Feel free to reach out!
             </p>
           </div>
@@ -133,7 +133,7 @@ const Contact = () => {
               transition={{ duration: 0.6 }}
               className="mb-12 lg:mb-0"
             >
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-5 sm:mb-8">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-5 sm:mb-8">
                 Contact Information
               </h3>
 
@@ -200,7 +200,7 @@ const Contact = () => {
 
               {/* Social Links */}
               <div className="mt-8 sm:mt-10">
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 flex items-center gap-2">
+                <h4 className="text-base sm:text-lg font-bold text-white mb-4 sm:mb-6 flex items-center gap-2">
                   <Sparkles className="text-yellow-500" size={16} sm:size={20} />
                   Connect on Social Media
                 </h4>

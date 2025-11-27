@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
 import { Github, Linkedin, Mail, Download, ArrowDown, Code2, Sparkles } from 'lucide-react'
 import { Link } from 'react-scroll'
-import ParticleBackground from './ParticleBackground'
 import { personalInfo } from '../data/personalInfo'
 
 const Hero = () => {
@@ -53,18 +52,10 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen w-full flex flex-col items-center justify-center
-    relative
-    bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 
-    dark:from-slate-950 dark:via-slate-900 dark:to-slate-950
-    pb-20"
+      className="min-h-screen w-full flex flex-col items-center justify-center relative pb-20"
     >
-      {/* Particle Background */}
-      <ParticleBackground />
-
-      {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent z-0" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent z-0" />
+      {/* Gradient Overlays - Removed to eliminate border mismatch */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent z-0" />
 
       {/* Floating Elements */}
       <motion.div
@@ -290,11 +281,11 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 + index * 0.1 }}
-              className="p-4 bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700 hover:border-blue-500 transition-colors"
+              className="p-4 bg-slate-800/70 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-600 dark:border-slate-700 hover:border-blue-500 transition-colors"
             >
               <div className="text-3xl mb-2">{stat.icon}</div>
               <div className="text-2xl font-bold text-blue-400">{stat.value}</div>
-              <div className="text-sm text-slate-400">{stat.label}</div>
+              <div className="text-sm text-slate-300 dark:text-slate-400">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>

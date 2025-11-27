@@ -1,8 +1,31 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Particles from 'react-tsparticles'
 import { loadStarsPreset } from 'tsparticles-preset-stars'
 
 const ParticleBackground = () => {
+  const [isDark, setIsDark] = useState(true)
+
+  useEffect(() => {
+    // Check initial theme
+    setIsDark(document.documentElement.classList.contains('dark'))
+    
+    // Watch for theme changes
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          setIsDark(document.documentElement.classList.contains('dark'))
+        }
+      })
+    })
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    })
+    
+    return () => observer.disconnect()
+  }, [])
+
   const particlesInit = useCallback(async (engine) => {
     await loadStarsPreset(engine)
   }, [])
@@ -27,13 +50,13 @@ const ParticleBackground = () => {
             },
           },
           color: {
-            value: ['#3b82f6', '#8b5cf6', '#06b6d4'],
+            value: isDark ? ['#3b82f6', '#8b5cf6', '#06b6d4'] : ['#60a5fa', '#a78bfa', '#22d3ee'],
           },
           shape: {
             type: 'circle',
           },
           opacity: {
-            value: 0.6,
+            value: isDark ? 0.6 : 0.4,
             random: true,
             anim: {
               enable: true,
@@ -55,8 +78,8 @@ const ParticleBackground = () => {
           line_linked: {
             enable: true,
             distance: 150,
-            color: '#3b82f6',
-            opacity: 0.2,
+            color: isDark ? '#3b82f6' : '#60a5fa',
+            opacity: isDark ? 0.2 : 0.15,
             width: 1,
           },
           move: {
@@ -96,7 +119,7 @@ const ParticleBackground = () => {
         },
         retina_detect: true,
       }}
-      className="absolute inset-0"
+      className="fixed inset-0 z-0"
     />
   )
 }

@@ -21,7 +21,7 @@ const Experience = () => {
   }
 
   return (
-    <section id="experience" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden">
+    <section id="experience" className="py-20 relative overflow-hidden">
       {/* Animated Floating Background Elements */}
       <motion.div
         animate={floatingAnimation}
@@ -74,7 +74,7 @@ const Experience = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
-              className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4"
+              className="text-4xl md:text-5xl font-bold text-white mb-4"
             >
               Experience & Training
             </motion.h2>
@@ -88,7 +88,7 @@ const Experience = () => {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-              className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg"
+              className="text-slate-300 dark:text-slate-400 max-w-2xl mx-auto text-lg"
             >
               Hands-on experience through internships and intensive training programs
             </motion.p>

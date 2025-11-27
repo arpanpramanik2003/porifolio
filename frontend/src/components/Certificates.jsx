@@ -67,7 +67,7 @@ const Certificates = () => {
   }
 
   return (
-    <section id="certificates" className="py-20 bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
+    <section id="certificates" className="py-20 relative overflow-hidden">
       {/* Animated Floating Background Elements - Transparent */}
       <motion.div
         animate={floatingAnimation}
@@ -116,7 +116,7 @@ const Certificates = () => {
                 Professional Development
               </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Certificates & Training
             </h2>
             <motion.div
@@ -125,7 +125,7 @@ const Certificates = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="h-1 bg-gradient-to-r from-yellow-500 to-orange-500 mx-auto rounded-full mb-4"
             />
-            <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            <p className="text-slate-300 dark:text-slate-400 max-w-2xl mx-auto">
               Professional certifications and intensive training programs in cutting-edge technologies
             </p>
           </div>

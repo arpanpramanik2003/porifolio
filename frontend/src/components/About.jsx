@@ -38,7 +38,7 @@ const About = () => {
   
 
   return (
-    <section id="about" className="py-20 bg-white dark:bg-slate-800 relative overflow-hidden">
+    <section id="about" className="py-20 relative overflow-hidden">
       {/* Background Decoration */}
       <div className="absolute top-10 right-10 text-blue-500/5 dark:text-blue-500/10">
         <Code2 size={300} />
@@ -63,7 +63,7 @@ const About = () => {
                 Get to know me
               </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               About Me
             </h2>
             <motion.div
@@ -86,7 +86,7 @@ const About = () => {
                 <motion.p
                   key={index}
                   variants={itemVariants}
-                  className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed"
+                  className="text-lg text-slate-200 dark:text-slate-300 leading-relaxed text-justify"
                 >
                   {paragraph}
                 </motion.p>
@@ -97,7 +97,7 @@ const About = () => {
                 variants={itemVariants}
                 className="pt-6"
               >
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                   <motion.div
                     animate={{ 
                       scale: [1, 1.2, 1],

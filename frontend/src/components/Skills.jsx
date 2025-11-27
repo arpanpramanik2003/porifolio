@@ -196,7 +196,7 @@ const Skills = () => {
   }
 
   return (
-    <section id="skills" className="py-20 bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
+    <section id="skills" className="py-20 relative overflow-hidden">
       {/* Background Decoration */}
       <div className="absolute top-20 left-10 text-purple-500/5 dark:text-purple-500/10">
         <TrendingUp size={200} />
@@ -224,7 +224,7 @@ const Skills = () => {
                 Technical Expertise
               </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Skills & Technologies
             </h2>
             <motion.div
@@ -233,7 +233,7 @@ const Skills = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"
             />
-            <p className="text-slate-600 dark:text-slate-400 mt-6 max-w-2xl mx-auto">
+            <p className="text-slate-300 dark:text-slate-400 mt-6 max-w-2xl mx-auto">
               A comprehensive toolkit spanning full-stack development, AI/ML, and cloud technologies
             </p>
           </div>
@@ -363,7 +363,7 @@ const Skills = () => {
             transition={{ delay: 1 }}
             className="mt-12 text-center"
           >
-            <p className="text-slate-600 dark:text-slate-400 mb-6">
+            <p className="text-slate-300 dark:text-slate-400 mb-6">
               Constantly learning and expanding my skill set to stay ahead in tech
             </p>
             <motion.div

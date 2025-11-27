@@ -180,7 +180,7 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="py-20 bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
+    <section id="projects" className="py-20 relative overflow-hidden">
       {/* Animated Floating Background Elements */}
       <motion.div
         animate={floatingAnimation}
@@ -229,7 +229,7 @@ const Projects = () => {
                 My Work
               </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Featured Projects
             </h2>
             <motion.div
@@ -238,7 +238,7 @@ const Projects = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full mb-4"
             />
-            <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            <p className="text-slate-300 dark:text-slate-400 max-w-2xl mx-auto">
               A showcase of my AI/ML projects featuring deep learning, computer vision, and full-stack web applications
             </p>
           </div>
@@ -270,8 +270,8 @@ const Projects = () => {
             animate={isInView ? { opacity: 1 } : {}}
             className="text-center mb-8"
           >
-            <span className="text-slate-600 dark:text-slate-400">
-              Showing <strong className="text-blue-600 dark:text-blue-400">{displayedProjects.length}</strong> of <strong className="text-purple-600 dark:text-purple-400">{filteredProjects.length}</strong> projects
+            <span className="text-slate-300 dark:text-slate-400">
+              Showing <strong className="text-blue-400">{displayedProjects.length}</strong> of <strong className="text-purple-400">{filteredProjects.length}</strong> projects
             </span>
           </motion.div>
 
