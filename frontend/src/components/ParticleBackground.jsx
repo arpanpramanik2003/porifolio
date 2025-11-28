@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import Particles from 'react-tsparticles'
-import { loadStarsPreset } from 'tsparticles-preset-stars'
+import { loadSlim } from 'tsparticles-slim'
 
 const ParticleBackground = () => {
   const [isDark, setIsDark] = useState(true)
@@ -27,7 +27,7 @@ const ParticleBackground = () => {
   }, [])
 
   const particlesInit = useCallback(async (engine) => {
-    await loadStarsPreset(engine)
+    await loadSlim(engine)
   }, [])
 
   return (
@@ -35,18 +35,18 @@ const ParticleBackground = () => {
       id="tsparticles"
       init={particlesInit}
       options={{
-        preset: 'stars',
         background: {
           color: {
             value: 'transparent',
           },
         },
+        fpsLimit: 120,
         particles: {
           number: {
             value: 100,
             density: {
               enable: true,
-              value_area: 800,
+              area: 800,
             },
           },
           color: {
@@ -57,25 +57,31 @@ const ParticleBackground = () => {
           },
           opacity: {
             value: isDark ? 0.6 : 0.4,
-            random: true,
-            anim: {
+            random: {
+              enable: true,
+              minimumValue: 0.1,
+            },
+            animation: {
               enable: true,
               speed: 1,
-              opacity_min: 0.1,
+              minimumValue: 0.1,
               sync: false,
             },
           },
           size: {
-            value: 3,
-            random: true,
-            anim: {
+            value: { min: 1, max: 3 },
+            random: {
+              enable: true,
+              minimumValue: 1,
+            },
+            animation: {
               enable: true,
               speed: 2,
-              size_min: 0.1,
+              minimumValue: 0.1,
               sync: false,
             },
           },
-          line_linked: {
+          links: {
             enable: true,
             distance: 150,
             color: isDark ? '#3b82f6' : '#60a5fa',
@@ -88,38 +94,44 @@ const ParticleBackground = () => {
             direction: 'none',
             random: false,
             straight: false,
-            out_mode: 'out',
-            bounce: false,
+            outModes: 'out',
+            attract: {
+              enable: true,
+              rotate: {
+                x: 600,
+                y: 1200,
+              },
+            },
           },
         },
         interactivity: {
-          detect_on: 'canvas',
+          detectsOn: 'window',
           events: {
-            onhover: {
+            onHover: {
               enable: true,
-              mode: 'grab',
+              mode: 'slow',
+              parallax: {
+                enable: true,
+                force: 30,
+                smooth: 20,
+              },
             },
-            onclick: {
-              enable: true,
-              mode: 'push',
+            onClick: {
+              enable: false,
             },
             resize: true,
           },
           modes: {
-            grab: {
-              distance: 140,
-              line_linked: {
-                opacity: 0.5,
-              },
-            },
-            push: {
-              particles_nb: 4,
+            slow: {
+              factor: 3,
+              radius: 200,
             },
           },
         },
-        retina_detect: true,
+        detectRetina: true,
       }}
-      className="fixed inset-0 z-0"
+      className="fixed inset-0 z-0 pointer-events-none"
+      style={{ pointerEvents: 'auto' }}
     />
   )
 }
