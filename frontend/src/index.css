@@ -28,13 +28,17 @@ a:hover {
 
 body {
   margin: 0;
-  /* Removed display:flex; place-items:center; to prevent breaking layout */
   min-width: 320px;
   min-height: 100vh;
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8fafc;
-  transition: background-color 0.3s ease;
-  cursor: none !important; /* Hide default cursor for custom cursor implementation */
+  background-color: #1e3a8a;
+  cursor: none !important;
+  overflow-x: hidden;
+}
+
+html {
+  background-color: #1e3a8a;
+  scroll-behavior: smooth;
 }
 
 body.dark {

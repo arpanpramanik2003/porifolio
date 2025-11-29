@@ -43,10 +43,10 @@ const ParticleBackground = () => {
         fpsLimit: 120,
         particles: {
           number: {
-            value: 100,
+            value: 80,
             density: {
               enable: true,
-              area: 800,
+              area: 1000,
             },
           },
           color: {
@@ -83,24 +83,23 @@ const ParticleBackground = () => {
           },
           links: {
             enable: true,
-            distance: 150,
+            distance: 120,
             color: isDark ? '#3b82f6' : '#60a5fa',
             opacity: isDark ? 0.2 : 0.15,
             width: 1,
+            triangles: {
+              enable: false,
+            },
           },
           move: {
             enable: true,
-            speed: 1,
+            speed: 0.8,
             direction: 'none',
             random: false,
             straight: false,
             outModes: 'out',
             attract: {
-              enable: true,
-              rotate: {
-                x: 600,
-                y: 1200,
-              },
+              enable: false,
             },
           },
         },
@@ -109,11 +108,11 @@ const ParticleBackground = () => {
           events: {
             onHover: {
               enable: true,
-              mode: 'slow',
+              mode: [],
               parallax: {
                 enable: true,
-                force: 30,
-                smooth: 20,
+                force: 20,
+                smooth: 30,
               },
             },
             onClick: {
@@ -121,13 +120,8 @@ const ParticleBackground = () => {
             },
             resize: true,
           },
-          modes: {
-            slow: {
-              factor: 3,
-              radius: 200,
-            },
-          },
         },
+        smooth: true,
         detectRetina: true,
       }}
       className="fixed inset-0 z-0 pointer-events-none"
