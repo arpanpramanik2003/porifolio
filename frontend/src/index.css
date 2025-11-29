@@ -31,17 +31,21 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #1e3a8a;
+  background: linear-gradient(to bottom right, #0f172a, #1e3a8a, #581c87);
+  background-attachment: fixed;
   cursor: none !important;
   overflow-x: hidden;
 }
 
 html {
-  background-color: #1e3a8a;
+  background: linear-gradient(to bottom right, #0f172a, #1e3a8a, #581c87);
+  background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 body.dark {
-  background-color: #0f172a;
+  background: linear-gradient(to bottom right, #020617, #0f172a, #1e1b4b);
+  background-attachment: fixed;
 }
 
 /* Headings */

@@ -18,25 +18,24 @@ const ProjectCard = ({ project, index, setSelectedProject }) => {
       animate={cardInView ? { opacity: 1, y: 0, scale: 1 } : {}}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ 
-        duration: 0.6, 
+        duration: 0.4, 
         delay: index * 0.1,
         ease: [0.16, 1, 0.3, 1]
       }}
-      whileHover={{ y: -10, scale: 1.02 }}
+      whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3 } }}
       className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden group border border-slate-200 dark:border-slate-700 transition-all"
     >
-      {/* Project Image/Icon with Gradient */}
-      <div className="relative h-48 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 flex items-center justify-center text-7xl overflow-hidden">
-        <motion.div
-          whileHover={{ scale: 1.2, rotate: 10 }}
-          transition={{ duration: 0.3 }}
-        >
-          {project.icon}
-        </motion.div>
+      {/* Project Image */}
+      <div className="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-110"
+        />
 
         {/* Year and Status Badges */}
         <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
-          <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-slate-700 text-xs font-bold rounded-full shadow-lg">
+          <span className="px-3 py-1.5 bg-gradient-to-r from-blue-500 to-purple-600 backdrop-blur-sm text-white text-xs font-bold rounded-full shadow-lg">
             {project.year}
           </span>
 
@@ -346,10 +345,17 @@ const Projects = () => {
               // mobile: full width, desktop: max-w-4xl
               className="bg-white dark:bg-slate-800 rounded-none sm:rounded-2xl w-full sm:max-w-4xl max-h-[100vh] sm:max-h-[90vh] overflow-y-auto shadow-xl"
             >
-              {/* Modal Header */}
-              <div className="sticky top-0 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 px-4 py-6 sm:p-8 flex flex-col sm:flex-row justify-between items-start sm:items-center z-10">
-                <div className="flex items-center gap-3 sm:gap-4 w-full">
-                  <span className="text-5xl sm:text-7xl">{selectedProject.icon}</span>
+              {/* Modal Header with Image */}
+              <div className="sticky top-0 bg-slate-900 dark:bg-slate-950 z-10">
+                <div className="relative h-48 sm:h-64 overflow-hidden">
+                  <img 
+                    src={selectedProject.image} 
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
+                </div>
+                <div className="px-4 py-6 sm:px-8 sm:py-6 -mt-16 relative">
                   <div className="flex-1">
                     <h3 className="text-xl sm:text-3xl font-bold text-white mb-2">
                       {selectedProject.title}
@@ -369,13 +375,13 @@ const Projects = () => {
                       </span>
                     </div>
                   </div>
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className="text-white bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors ml-auto"
+                  >
+                    <X size={28} />
+                  </button>
                 </div>
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="text-white mt-4 sm:mt-0 sm:ml-4 bg-black/30 hover:bg-black/50 p-2 rounded-full transition-colors"
-                >
-                  <X size={28} />
-                </button>
               </div>
 
               {/* Modal Content */}
