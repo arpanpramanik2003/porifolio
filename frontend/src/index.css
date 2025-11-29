@@ -38,7 +38,6 @@ body {
 
 html {
   background-color: #1e3a8a;
-  scroll-behavior: smooth;
 }
 
 body.dark {

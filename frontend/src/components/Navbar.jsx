@@ -55,9 +55,10 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.to}
-                smooth
-                duration={500}
-                spy
+                smooth={true}
+                duration={800}
+                spy={true}
+                offset={-80}
                 activeClass="!text-blue-500 dark:!text-blue-400"
               >
                 <motion.div
@@ -102,8 +103,10 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.to}
-                smooth
-                duration={500}
+                smooth={true}
+                duration={800}
+                spy={true}
+                offset={-80}
                 onClick={() => setIsOpen(false)}
               >
                 <motion.div
