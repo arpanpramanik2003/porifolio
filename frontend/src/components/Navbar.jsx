@@ -59,20 +59,19 @@ const Navbar = () => {
                 duration={800}
                 spy={true}
                 offset={-80}
-                activeClass="!text-blue-500 dark:!text-blue-400"
+                activeClass="active-nav-link"
               >
-                <motion.div
-                  whileHover={{ y: -2, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  className={`px-4 py-2 cursor-pointer font-semibold rounded-lg transition-all ${
+                <div className="relative px-4 py-2 cursor-pointer font-semibold transition-colors group nav-link-container">
+                  <span className={`relative z-10 ${
                     scrolled
-                      ? 'text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-200/50 dark:hover:bg-white/10'
-                      : 'text-white hover:text-blue-300 hover:bg-white/10'
-                  }`}
-                >
-                  {link.name}
-                </motion.div>
+                      ? 'text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400'
+                      : 'text-white group-hover:text-blue-300'
+                  }`}>
+                    {link.name}
+                  </span>
+                  {/* Animated gradient underline */}
+                  <span className="absolute bottom-0 left-1/2 h-[2px] w-0 -translate-x-1/2 transition-all duration-300 ease-out group-hover:w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></span>
+                </div>
               </Link>
             ))}
           </div>

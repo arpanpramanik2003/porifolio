@@ -106,3 +106,13 @@ button {
   scrollbar-width: thin;
   scrollbar-color: #8b5cf6 #1e293b;
 }
+
+/* Active Navbar Link Style with Gradient */
+.active-nav-link .nav-link-container span:last-child {
+  width: 100% !important;
+}
+
+/* Ensure gradient is visible on active state */
+.active-nav-link .nav-link-container {
+  position: relative;
+}
