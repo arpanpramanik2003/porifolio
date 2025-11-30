@@ -156,13 +156,18 @@ const Research = () => {
             {researchData.map((paper, index) => (
               <motion.div
                 key={paper.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60, y: 40 }}
-                animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: 0.8 + index * 0.15,
-                  ease: [0.16, 1, 0.3, 1]
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                whileInView={{ 
+                  opacity: 1, 
+                  y: 0, 
+                  scale: 1,
+                  transition: { 
+                    duration: 0.5, 
+                    ease: [0.34, 1.56, 0.64, 1],
+                    delay: 0
+                  }
                 }}
+                viewport={{ once: true, amount: 0.3 }}
                 whileHover={{ 
                   scale: 1.02, 
                   y: -8,

@@ -124,7 +124,7 @@ const Skills = () => {
 
   const ProgressBar = ({ skill, delay }) => {
     const counterRef = useRef(null)
-    const counterInView = useInView(counterRef, { once: true, amount: 0.5 })
+    const counterInView = useInView(counterRef, { once: true, amount: 0.8 })
     const [count, setCount] = useState(0)
 
     // Animate counter from 0 to skill.level
@@ -132,12 +132,11 @@ const Skills = () => {
       if (counterInView) {
         let start = 0
         const end = skill.level
-        const duration = 1500 // 1.5 seconds
-        const startTime = Date.now() + (delay * 1000) // Add delay
+        const duration = 1200 // 1.2 seconds to match bar animation
+        const startTime = Date.now()
         
         const timer = setInterval(() => {
           const elapsed = Date.now() - startTime
-          if (elapsed < 0) return // Wait for delay
           
           const progress = Math.min(elapsed / duration, 1)
           const easeOutQuart = 1 - Math.pow(1 - progress, 4)
@@ -153,7 +152,7 @@ const Skills = () => {
         
         return () => clearInterval(timer)
       }
-    }, [counterInView, skill.level, delay])
+    }, [counterInView, skill.level])
 
     return (
       <div ref={counterRef} className="mb-4 last:mb-0">
@@ -174,8 +173,8 @@ const Skills = () => {
         <div className="relative h-2 bg-slate-200 dark:bg-slate-600 rounded-full overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
-            animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-            transition={{ duration: 1.5, delay: delay, ease: [0.16, 1, 0.3, 1] }}
+            animate={counterInView ? { width: `${skill.level}%` } : { width: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
           >
             <motion.div

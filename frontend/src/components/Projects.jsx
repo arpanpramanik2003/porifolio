@@ -6,22 +6,22 @@ import { projectsData } from '../data/projects'
 
 // Individual Project Card Component with scroll animation
 const ProjectCard = ({ project, index, setSelectedProject }) => {
-  const cardRef = useRef(null)
-  const cardInView = useInView(cardRef, { once: true, amount: 0.2 })
-
   return (
     <motion.div
-      ref={cardRef}
       key={project.id}
       layout
-      initial={{ opacity: 0, y: 50, scale: 0.9 }}
-      animate={cardInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ 
-        duration: 0.4, 
-        delay: index * 0.1,
-        ease: [0.16, 1, 0.3, 1]
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      whileInView={{ 
+        opacity: 1, 
+        y: 0, 
+        scale: 1,
+        transition: { 
+          duration: 0.5, 
+          ease: [0.34, 1.56, 0.64, 1]
+        }
       }}
+      viewport={{ once: true, amount: 0.3 }}
+      exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.3 } }}
       whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3 } }}
       className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden group border border-slate-200 dark:border-slate-700 transition-all"
     >
@@ -299,14 +299,21 @@ const Projects = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.3 }}
               className="text-center"
             >
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setShowAll(!showAll)}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
+                onClick={() => {
+                  setShowAll(!showAll)
+                  if (showAll) {
+                    setTimeout(() => {
+                      document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    }, 300)
+                  }
+                }}
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all hover:from-blue-700 hover:to-purple-700"
               >
                 {showAll ? (
                   <>
