@@ -6,7 +6,7 @@ export const researchData = [
     conference: 'Presented',
     journal: 'IEEE/Conference Publication',
     year: '2025',
-    status: 'Under Progress',
+    status: 'Completed',
     category: 'Deep Learning',
     icon: '🍎',
     abstract: 'This paper presents a novel multi-task deep learning framework for simultaneous fruit classification and quality assessment using a multi-headed Convolutional Neural Network (CNN). The proposed model achieves state-of-the-art performance on a curated dataset of four Indian fruits (apple, banana, guava, and orange) with two quality classes (good and bad), achieving 98% accuracy in fruit classification and 99% accuracy in quality detection.',
@@ -18,7 +18,7 @@ export const researchData = [
       dataset: '4 fruits, 2 quality classes',
       deployment: 'Streamlit interface'
     },
-    doi: null,
+    doi: '10.1109/ICRITO66076.2025.11241706',
     arxiv: null,
     github: 'https://github.com/arpanpramanik2003/fruitq-gradex',
     color: 'from-green-500 to-teal-500'
@@ -54,7 +54,7 @@ export const researchData = [
     conference: 'Presented',
     journal: 'IEEE/Conference Publication',
     year: '2025',
-    status: 'Under Progress',
+    status: 'Completed',
     category: 'Agricultural AI',
     icon: '🥔',
     abstract: 'This paper presents a novel multi-headed convolutional neural network (CNN) architecture for simultaneous classification of potato and tomato crops and their quality assessment (healthy vs. diseased). The model achieves 99.9% accuracy in crop classification and 98.5% accuracy in quality assessment, with Grad-CAM visualizations providing interpretability for model decisions.',
@@ -66,7 +66,7 @@ export const researchData = [
       dataset: 'Potato & Tomato (10,000 images)',
       deployment: 'Streamlit interface'
     },
-    doi: null,
+    doi: '10.1109/ICRITO66076.2025.11241535',
     arxiv: null,
     github: 'https://github.com/arpanpramanik2003/cropsense',
     color: 'from-orange-500 to-red-500'

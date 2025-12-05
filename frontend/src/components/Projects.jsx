@@ -278,8 +278,6 @@ const Projects = () => {
           <AnimatePresence mode="wait">
             <motion.div
               layout
-              initial={{ minHeight: '600px' }}
-              animate={{ minHeight: 'auto' }}
               transition={{ duration: 0.3 }}
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
             >
@@ -349,12 +347,20 @@ const Projects = () => {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 50 }}
               onClick={(e) => e.stopPropagation()}
-              // mobile: full width, desktop: max-w-4xl
-              className="bg-white dark:bg-slate-800 rounded-none sm:rounded-2xl w-full sm:max-w-4xl max-h-[100vh] sm:max-h-[90vh] overflow-y-auto shadow-xl"
+              // mobile: rounded top corners only, desktop: all corners
+              className="bg-white dark:bg-slate-800 rounded-t-3xl sm:rounded-2xl w-full sm:max-w-4xl max-h-[100vh] sm:max-h-[90vh] overflow-y-auto shadow-xl"
             >
               {/* Modal Header with Image */}
-              <div className="sticky top-0 bg-slate-900 dark:bg-slate-950 z-10">
-                <div className="relative h-48 sm:h-64 overflow-hidden">
+              <div className="sticky top-0 bg-slate-900 dark:bg-slate-950 z-10 rounded-t-3xl sm:rounded-t-2xl overflow-hidden">
+                {/* Close button - Fixed position */}
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-4 right-4 text-white bg-slate-900/80 hover:bg-slate-800/80 backdrop-blur-sm p-2.5 rounded-full transition-all hover:scale-110 z-30 shadow-lg"
+                >
+                  <X size={24} />
+                </button>
+                
+                <div className="relative h-48 sm:h-64">
                   <img 
                     src={selectedProject.image} 
                     alt={selectedProject.title}
@@ -362,19 +368,21 @@ const Projects = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
                 </div>
-                <div className="px-4 py-6 sm:px-8 sm:py-6 -mt-16 relative">
-                  <div className="flex-1">
-                    <h3 className="text-xl sm:text-3xl font-bold text-white mb-2">
+                <div className="px-4 py-4 sm:px-8 sm:py-6 -mt-20 sm:-mt-16 relative">
+                  <div className="flex-1 min-w-0 pr-12">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 leading-tight break-words">
                       {selectedProject.title}
                     </h3>
-                    <div className="flex flex-wrap gap-2 items-center">
-                      <span className="px-2 py-1 bg-white/90 text-slate-700 text-xs sm:text-sm rounded-full font-bold">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 items-center">
+                      <span className="px-2.5 py-1 sm:px-3 sm:py-1 bg-white/90 text-slate-900 rounded-md font-semibold text-xs sm:text-sm whitespace-nowrap">
                         {selectedProject.year}
                       </span>
-                      <span className="px-2 py-1 bg-white/20 backdrop-blur-sm text-white text-xs sm:text-sm rounded-full font-semibold">
+                      <span className="text-white/50 text-xs sm:text-sm">•</span>
+                      <span className="px-2.5 py-1 sm:px-3 sm:py-1 bg-purple-500 text-white rounded-md font-semibold text-xs sm:text-sm whitespace-nowrap">
                         {selectedProject.category}
                       </span>
-                      <span className={`px-2 py-1 text-xs sm:text-sm rounded-full font-bold ${selectedProject.status === 'Completed'
+                      <span className="text-white/50 text-xs sm:text-sm">•</span>
+                      <span className={`px-2.5 py-1 sm:px-3 sm:py-1 rounded-md font-semibold text-xs sm:text-sm whitespace-nowrap ${selectedProject.status === 'Completed'
                           ? 'bg-green-500 text-white'
                           : 'bg-yellow-500 text-white'
                         }`}>
@@ -382,12 +390,6 @@ const Projects = () => {
                       </span>
                     </div>
                   </div>
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    className="text-white bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors ml-auto"
-                  >
-                    <X size={28} />
-                  </button>
                 </div>
               </div>
 
@@ -433,18 +435,18 @@ const Projects = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
                   {selectedProject.github ? (
                     <motion.a
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                       href={selectedProject.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-slate-700 to-slate-900 dark:from-slate-700 dark:to-slate-900 rounded-md sm:rounded-xl hover:from-slate-800 hover:to-black dark:hover:from-slate-800 dark:hover:to-black transition-all"
+                      className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 rounded-xl sm:rounded-2xl hover:from-slate-600 hover:via-slate-700 hover:to-slate-800 transition-all shadow-lg hover:shadow-xl"
                     >
                       <Github size={24} className="text-white" />
                       <span className="text-xs sm:text-sm font-bold text-white">View Code</span>
                     </motion.a>
                   ) : (
-                    <div className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-md sm:rounded-xl cursor-not-allowed opacity-50">
+                    <div className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-xl sm:rounded-2xl cursor-not-allowed opacity-50">
                       <Github size={24} />
                       <span className="text-xs sm:text-sm">Not Available</span>
                     </div>
@@ -452,31 +454,31 @@ const Projects = () => {
 
                   {selectedProject.live ? (
                     <motion.a
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                       href={selectedProject.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-purple-600 rounded-md sm:rounded-xl hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-700 dark:hover:to-purple-700 transition-all"
+                      className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 rounded-xl sm:rounded-2xl hover:from-blue-600 hover:via-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
                     >
                       <ExternalLink size={24} className="text-white" />
                       <span className="text-xs sm:text-sm font-bold text-white">Live Demo</span>
                     </motion.a>
                   ) : (
-                    <div className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-md sm:rounded-xl cursor-not-allowed opacity-50">
+                    <div className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-xl sm:rounded-2xl cursor-not-allowed opacity-50">
                       <ExternalLink size={24} />
                       <span className="text-xs sm:text-sm">Not Available</span>
                     </div>
                   )}
 
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => {
                       navigator.clipboard.writeText(window.location.href)
                       alert('Link copied to clipboard!')
                     }}
-                    className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-purple-600 dark:bg-purple-600 text-white rounded-md sm:rounded-xl hover:bg-purple-700 dark:hover:bg-purple-700 transition-colors font-semibold"
+                    className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 text-white rounded-xl sm:rounded-2xl hover:from-purple-600 hover:via-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl font-semibold"
                   >
                     <Info size={24} />
                     <span className="text-xs sm:text-sm">Share</span>

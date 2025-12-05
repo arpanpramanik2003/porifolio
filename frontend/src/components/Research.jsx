@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { FileText, ExternalLink, Award, Users, Calendar, Code2, Sparkles, BookOpen, Target } from 'lucide-react'
+import { FileText, ExternalLink, Award, Users, Calendar, Code2, Sparkles, BookOpen, Target, X } from 'lucide-react'
 import { researchData } from '../data/research'
 
 const Research = () => {
@@ -102,7 +102,7 @@ const Research = () => {
           >
             {[
               { label: 'Publications', value: researchData.length, icon: '📄', color: 'from-blue-500 to-cyan-500', bg: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20' },
-              { label: 'Under Review', value: researchData.filter(p => p.status === 'Under Review').length, icon: '⏳', color: 'from-yellow-500 to-orange-500', bg: 'from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20' },
+              { label: 'Under Progress', value: researchData.filter(p => p.status === 'Under Progress').length, icon: '⏳', color: 'from-yellow-500 to-orange-500', bg: 'from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20' },
               { label: 'Co-authors', value: '3', icon: '👥', color: 'from-purple-500 to-pink-500', bg: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20' },
               { label: 'Research Areas', value: '3', icon: '🎯', color: 'from-green-500 to-teal-500', bg: 'from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20' }
             ].map((stat, index) => (
@@ -193,27 +193,15 @@ const Research = () => {
                   </motion.div>
                   {/* Paper Details */}
                   <div className="flex-1">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3">
-                      <h3 className="text-lg sm:text-2xl font-bold text-slate-900 dark:text-white pr-0 sm:pr-4 leading-tight hover:text-blue-500 transition-colors">
-                        {paper.title}
-                      </h3>
-                      <div className="flex gap-2 flex-shrink-0 mt-2 sm:mt-0">
-                        <span className={`px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-base font-bold rounded-full ${
-                          paper.status === 'Published' 
-                            ? 'bg-green-500 text-white' 
-                            : 'bg-yellow-500 text-white'
-                        }`}>
-                          {paper.status}
-                        </span>
-                        <span className="px-2 py-1 sm:px-3 sm:py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs sm:text-base rounded-full font-bold">
-                          {paper.year}
-                        </span>
-                      </div>
-                    </div>
+                    {/* Title */}
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 leading-tight hover:text-blue-500 transition-colors">
+                      {paper.title}
+                    </h3>
+                    
                     {/* Authors */}
-                    <div className="flex items-center gap-2 mb-2 sm:mb-3 flex-wrap">
-                      <Users size={16} className="text-slate-500" />
-                      <p className="text-slate-600 dark:text-slate-300 font-medium text-xs sm:text-base">
+                    <div className="flex items-start gap-2 mb-3 flex-wrap">
+                      <Users size={16} className="text-slate-500 flex-shrink-0 mt-0.5" />
+                      <p className="text-slate-600 dark:text-slate-300 font-medium text-xs sm:text-sm">
                         {paper.authors.map((author, i) => (
                           <span key={i} className={author === 'Arpan Pramanik' ? 'font-bold text-blue-600 dark:text-blue-400' : ''}>
                             {author}{i < paper.authors.length - 1 ? ', ' : ''}
@@ -221,12 +209,32 @@ const Research = () => {
                         ))}
                       </p>
                     </div>
-                    {/* Conference/Journal */}
-                    <div className="flex items-center gap-2 mb-3 sm:mb-4 text-xs sm:text-base">
-                      <BookOpen size={14} className="text-slate-500" />
-                      <p className="text-slate-600 dark:text-slate-400 font-semibold">
-                        {paper.conference} • {paper.journal}
-                      </p>
+                    
+                    {/* Conference/Journal & Metadata */}
+                    <div className="flex flex-wrap items-center gap-2 mb-3 text-xs sm:text-sm">
+                      <div className="flex items-center gap-2">
+                        <BookOpen size={14} className="text-slate-500 flex-shrink-0" />
+                        <span className="text-slate-600 dark:text-slate-400 font-semibold">
+                          {paper.journal}
+                        </span>
+                      </div>
+                      <span className="text-slate-400">•</span>
+                      <span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md font-semibold">
+                        {paper.year}
+                      </span>
+                      <span className="text-slate-400">•</span>
+                      <span className="px-2 py-0.5 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-md font-semibold">
+                        {paper.category}
+                      </span>
+                      <span className={`px-2 py-0.5 text-xs font-bold rounded-md ${
+                        paper.status === 'Published' 
+                          ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' 
+                          : paper.status === 'Completed'
+                          ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                          : 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400'
+                      }`}>
+                        {paper.status}
+                      </span>
                     </div>
                     {/* Abstract */}
                     <p className="text-slate-600 dark:text-slate-300 mb-3 sm:mb-4 leading-relaxed line-clamp-3 text-xs sm:text-base">
@@ -257,6 +265,26 @@ const Research = () => {
                         </div>
                       ))}
                     </div>
+                    {/* DOI Number */}
+                    {paper.doi && (
+                      <div className="mb-3 sm:mb-4 p-2 sm:p-3 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <div className="flex items-center gap-2">
+                          <Award size={14} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                          <div className="flex-1 min-w-0">
+                            <div className="text-[10px] sm:text-xs text-slate-600 dark:text-slate-400 font-medium mb-0.5">DOI Number</div>
+                            <a
+                              href={`https://doi.org/${paper.doi}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="text-[11px] sm:text-sm font-mono text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors break-all"
+                            >
+                              {paper.doi}
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full relative z-10">
                       {paper.github && (
@@ -306,29 +334,41 @@ const Research = () => {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 50 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white dark:bg-slate-800 max-w-full w-full sm:max-w-2xl rounded-none sm:rounded-2xl max-h-[100vh] sm:max-h-[90vh] overflow-y-auto shadow-2xl"
+              className="bg-white dark:bg-slate-800 max-w-full w-full sm:max-w-2xl rounded-t-3xl sm:rounded-2xl max-h-[100vh] sm:max-h-[90vh] overflow-y-auto shadow-2xl"
             >
+              {/* Close button - Fixed position */}
+              <button
+                onClick={() => setSelectedPaper(null)}
+                className="absolute top-4 right-4 text-white bg-slate-900/80 hover:bg-slate-800/80 backdrop-blur-sm p-2.5 rounded-full transition-all hover:scale-110 z-30 shadow-lg"
+              >
+                <X size={24} />
+              </button>
+
               {/* Modal Header */}
-              <div className={`sticky top-0 bg-gradient-to-br ${selectedPaper.color} px-4 py-5 sm:p-8 z-10`}>
-                <div className="flex items-start gap-3 sm:gap-4">
+              <div className={`sticky top-0 bg-gradient-to-br ${selectedPaper.color} px-4 py-5 sm:p-8 z-10 rounded-t-3xl sm:rounded-t-2xl`}>
+                <div className="flex items-start gap-3 sm:gap-4 pr-12">
                   <span className="text-4xl sm:text-7xl">{selectedPaper.icon}</span>
-                  <div className="flex-1">
-                    <h3 className="text-lg sm:text-3xl font-bold text-white mb-1 sm:mb-3">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-3 leading-tight break-words">
                       {selectedPaper.title}
                     </h3>
-                    <div className="flex flex-wrap gap-1 sm:gap-2 items-center mb-2">
-                      <span className="px-2 py-1 sm:px-3 sm:py-1 bg-white/90 text-slate-700 text-xs sm:text-sm rounded-full font-bold">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 items-center">
+                      <span className="px-2.5 py-1 sm:px-3 sm:py-1 bg-white/90 text-slate-900 text-xs sm:text-sm rounded-md font-semibold whitespace-nowrap">
                         {selectedPaper.year}
                       </span>
-                      <span className={`px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm rounded-full font-bold ${
+                      <span className="text-white/50 text-xs sm:text-sm">•</span>
+                      <span className="px-2.5 py-1 sm:px-3 sm:py-1 bg-purple-500 text-white text-xs sm:text-sm rounded-md font-semibold whitespace-nowrap">
+                        {selectedPaper.category}
+                      </span>
+                      <span className="text-white/50 text-xs sm:text-sm">•</span>
+                      <span className={`px-2.5 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm rounded-md font-semibold whitespace-nowrap ${
                         selectedPaper.status === 'Published' 
-                          ? 'bg-green-500 text-white' 
+                          ? 'bg-green-500 text-white'
+                          : selectedPaper.status === 'Completed'
+                          ? 'bg-blue-500 text-white'
                           : 'bg-yellow-500 text-white'
                       }`}>
                         {selectedPaper.status}
-                      </span>
-                      <span className="px-2 py-1 sm:px-3 sm:py-1 bg-white/20 backdrop-blur-sm text-white text-xs sm:text-sm rounded-full font-semibold">
-                        {selectedPaper.category}
                       </span>
                     </div>
                   </div>
@@ -417,6 +457,27 @@ const Research = () => {
                     ))}
                   </div>
                 </div>
+
+                {/* DOI Number */}
+                {selectedPaper.doi && (
+                  <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl border-2 border-blue-200 dark:border-blue-800">
+                    <div className="flex items-start gap-3">
+                      <Award size={20} className="text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" />
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-semibold mb-2">Digital Object Identifier (DOI)</div>
+                        <a
+                          href={`https://doi.org/${selectedPaper.doi}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm sm:text-base font-mono text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors break-all block"
+                        >
+                          {selectedPaper.doi}
+                        </a>
+                        <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">Click to view on publisher's website</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 {/* Action Buttons */}
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4">

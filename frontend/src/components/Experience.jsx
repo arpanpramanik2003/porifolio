@@ -232,12 +232,12 @@ const Experience = () => {
                         >
                           {exp.title}
                         </motion.h3>
-                        <p className="text-xl text-blue-600 dark:text-blue-400 font-bold flex items-center gap-2">
-                          <motion.div whileHover={{ rotate: 360, scale: 1.2 }} transition={{ duration: 0.5 }}>
+                        <div className="text-xl text-blue-600 dark:text-blue-400 font-bold flex items-center gap-2">
+                          <motion.span whileHover={{ rotate: 360, scale: 1.2 }} transition={{ duration: 0.5 }} className="inline-flex">
                             <Briefcase size={20} />
-                          </motion.div>
+                          </motion.span>
                           {exp.company}
-                        </p>
+                        </div>
                       </div>
                       <motion.span 
                         whileHover={{ scale: 1.1, rotate: 5 }}
