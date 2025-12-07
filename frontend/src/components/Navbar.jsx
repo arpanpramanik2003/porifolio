@@ -58,7 +58,7 @@ const Navbar = () => {
                 smooth={true}
                 duration={800}
                 spy={true}
-                offset={-80}
+                offset={-75}
                 activeClass="active-nav-link"
               >
                 <div className="relative px-4 py-2 cursor-pointer font-semibold transition-colors group nav-link-container">
@@ -105,7 +105,7 @@ const Navbar = () => {
                 smooth={true}
                 duration={800}
                 spy={true}
-                offset={-80}
+                offset={-75}
                 onClick={() => setIsOpen(false)}
               >
                 <motion.div

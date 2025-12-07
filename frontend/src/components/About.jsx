@@ -38,7 +38,7 @@ const About = () => {
   
 
   return (
-    <section id="about" className="py-20 relative overflow-hidden">
+    <section id="about" className="pt-12 pb-20 relative overflow-hidden">
       {/* Background Decoration */}
       <div className="absolute top-10 right-10 text-blue-500/5 dark:text-blue-500/10">
         <Code2 size={300} />

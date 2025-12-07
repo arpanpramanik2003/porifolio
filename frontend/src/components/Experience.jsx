@@ -21,7 +21,7 @@ const Experience = () => {
   }
 
   return (
-    <section id="experience" className="py-20 relative overflow-hidden">
+    <section id="experience" className="pt-12 pb-20 relative overflow-hidden">
       {/* Animated Floating Background Elements */}
       <motion.div
         animate={floatingAnimation}

@@ -67,7 +67,7 @@ const Certificates = () => {
   }
 
   return (
-    <section id="certificates" className="py-20 relative overflow-hidden">
+    <section id="certificates" className="pt-12 pb-20 relative overflow-hidden">
       {/* Animated Floating Background Elements - Transparent */}
       <motion.div
         animate={floatingAnimation}

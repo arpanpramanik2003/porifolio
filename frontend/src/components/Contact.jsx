@@ -64,7 +64,7 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="py-16 sm:py-20 relative overflow-hidden">
+    <section id="contact" className="pt-12 pb-16 sm:pb-20 relative overflow-hidden">
       {/* Floating Backgrounds */}
       <motion.div
         animate={floatingAnimation}

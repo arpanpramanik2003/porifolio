@@ -195,7 +195,7 @@ const Skills = () => {
   }
 
   return (
-    <section id="skills" className="py-20 relative overflow-hidden">
+    <section id="skills" className="pt-12 pb-20 relative overflow-hidden">
       {/* Background Decoration */}
       <div className="absolute top-20 left-10 text-purple-500/5 dark:text-purple-500/10">
         <TrendingUp size={200} />

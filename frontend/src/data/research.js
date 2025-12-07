@@ -1,7 +1,7 @@
 export const researchData = [
   {
     id: 1,
-    title: 'FruitQ-GradeX: Explainable Deep Learning for Produce Quality Grading',
+    title: 'FruitQ-GradeX: Determining Fruit Quality and Grading with Explainable Deep Learning',
     authors: ['Shibdas Dutta', 'Diya Chanda', 'Arpan Pramanik'],
     conference: 'Presented',
     journal: 'IEEE/Conference Publication',
@@ -49,7 +49,7 @@ export const researchData = [
   },
   {
     id: 3,
-    title: 'CropSense: Quality Detection in Solanaceous Crops Using Explainable Deep Learning',
+    title: 'Cropsense: Explainable Deep Learning Framework for Accurate Quality Detection in Solanaceous Crops',
     authors: ['Shibdas Dutta', 'Arpan Pramanik', 'Diya Chanda'],
     conference: 'Presented',
     journal: 'IEEE/Conference Publication',

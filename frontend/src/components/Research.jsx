@@ -22,7 +22,7 @@ const Research = () => {
   }
 
   return (
-    <section id="research" className="py-20 relative overflow-hidden">
+    <section id="research" className="pt-12 pb-20 relative overflow-hidden">
       {/* Animated Floating Background Elements */}
       <motion.div
         animate={floatingAnimation}
