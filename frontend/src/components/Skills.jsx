@@ -47,21 +47,33 @@ const AnimatedStatCard = ({ stat, index, isInView }) => {
       initial={{ opacity: 0, scale: 0.8 }}
       animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ delay: 0.7 + index * 0.1 }}
-      whileHover={{ scale: 1.05, y: -5 }}
-      className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg text-center border border-slate-200 dark:border-slate-700"
+      whileHover={{ 
+        scale: 1.05, 
+        y: -5,
+        boxShadow: '0 0 30px rgba(59, 130, 246, 0.5)',
+        transition: { duration: 0.2 }
+      }}
+      whileTap={{ scale: 0.98 }}
+      className="group relative bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg text-center border border-slate-200 dark:border-slate-700 hover:border-blue-400 transition-all duration-200 overflow-hidden cursor-pointer"
     >
-      <motion.div 
-        className="text-4xl mb-3"
-        animate={{ rotate: statInView ? [0, 10, -10, 0] : 0 }}
-        transition={{ delay: 0.7 + index * 0.1, duration: 0.5 }}
-      >
-        {stat.icon}
-      </motion.div>
-      <div className={`text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2 tabular-nums`}>
-        {statInView ? count : 0}{typeof stat.value === 'string' && stat.value.includes('%') ? '%' : ''}
-      </div>
-      <div className="text-sm text-slate-600 dark:text-slate-400 font-medium">
-        {stat.label}
+      {/* Neon glow background on hover */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl`} />
+      
+      {/* Content */}
+      <div className="relative z-10">
+        <motion.div 
+          className="text-4xl mb-3"
+          animate={{ rotate: statInView ? [0, 10, -10, 0] : 0 }}
+          transition={{ delay: 0.7 + index * 0.1, duration: 0.5 }}
+        >
+          {stat.icon}
+        </motion.div>
+        <div className={`text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2 tabular-nums group-hover:scale-110 transition-transform`}>
+          {statInView ? count : 0}{typeof stat.value === 'string' && stat.value.includes('%') ? '%' : ''}
+        </div>
+        <div className="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-500 dark:group-hover:text-slate-300 font-medium transition-colors">
+          {stat.label}
+        </div>
       </div>
     </motion.div>
   )
@@ -248,12 +260,14 @@ const Skills = () => {
               {displayedSkills.map((category, categoryIndex) => (
                 <motion.div
                   key={category.category}
+                  layout
                   variants={itemVariants}
                   initial="hidden"
                   animate="visible"
                   exit={{ opacity: 0, scale: 0.9 }}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  className={`bg-gradient-to-br ${category.bgGradient} p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700`}
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.2 }}
+                  className={`bg-gradient-to-br ${category.bgGradient} p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-200 border border-slate-200 dark:border-slate-700`}
                 >
                   {/* Category Header */}
                   <div className="flex items-center gap-4 mb-6 pb-4 border-b border-slate-200 dark:border-slate-600">

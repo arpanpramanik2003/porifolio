@@ -6,6 +6,19 @@ import { projectsData } from '../data/projects'
 
 // Individual Project Card Component with scroll animation
 const ProjectCard = ({ project, index, setSelectedProject }) => {
+  // Determine neon color based on category
+  const getNeonColor = (category) => {
+    const colorMap = {
+      'Deep Learning': 'from-blue-500 via-cyan-500 to-blue-600',
+      'Computer Vision': 'from-purple-500 via-pink-500 to-purple-600',
+      'Agricultural AI': 'from-green-500 via-emerald-500 to-green-600',
+      'NLP': 'from-yellow-500 via-orange-500 to-yellow-600',
+      'Web Development': 'from-indigo-500 via-blue-500 to-indigo-600',
+      'Full Stack': 'from-rose-500 via-pink-500 to-rose-600',
+    }
+    return colorMap[category] || 'from-blue-500 via-purple-500 to-blue-600'
+  }
+
   return (
     <motion.div
       key={project.id}
@@ -22,9 +35,19 @@ const ProjectCard = ({ project, index, setSelectedProject }) => {
       }}
       viewport={{ once: true, amount: 0.3 }}
       exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.3 } }}
-      whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3 } }}
-      className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden group border border-slate-200 dark:border-slate-700 transition-all"
+      whileHover={{ 
+        y: -10, 
+        scale: 1.02,
+        boxShadow: '0 0 40px rgba(59, 130, 246, 0.6)',
+        transition: { duration: 0.2 }
+      }}
+      className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden group border border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 transition-all cursor-pointer"
     >
+      {/* Neon glow background on hover */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${getNeonColor(project.category)} opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none z-0`} />
+      
+      {/* Content wrapper */}
+      <div className="relative z-10">
       {/* Project Image */}
       <div className="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900">
         <img
@@ -141,6 +164,7 @@ const ProjectCard = ({ project, index, setSelectedProject }) => {
             <span className="text-xs font-semibold">Info</span>
           </motion.button>
         </div>
+      </div>
       </div>
     </motion.div>
   )

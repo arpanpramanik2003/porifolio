@@ -270,22 +270,34 @@ const Hero = () => {
           className="mt-16 mb-20 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto"
         >
           {[
-            { label: 'CGPA', value: '9.42', icon: '🎓' },
-            { label: 'Projects', value: '20+', icon: '💻' },
-            { label: 'Internships', value: '3', icon: '🚀' },
-            { label: 'Certificates', value: '5+', icon: '🏆' }
+            { label: 'CGPA', value: '9.42', icon: '🎓', color: 'from-blue-500 to-cyan-500' },
+            { label: 'Projects', value: '20+', icon: '💻', color: 'from-purple-500 to-pink-500' },
+            { label: 'Internships', value: '3', icon: '🚀', color: 'from-pink-500 to-rose-500' },
+            { label: 'Certificates', value: '5+', icon: '🏆', color: 'from-yellow-500 to-orange-500' }
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
-              whileHover={{ scale: 1.05, y: -5 }}
+              whileHover={{ 
+                scale: 1.05, 
+                y: -5,
+                boxShadow: '0 0 30px rgba(59, 130, 246, 0.5)',
+                transition: { duration: 0.2 }
+              }}
+              whileTap={{ scale: 0.98 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 + index * 0.1 }}
-              className="p-4 bg-slate-800/70 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-600 dark:border-slate-700 hover:border-blue-500 transition-colors"
+              transition={{ delay: 1 + index * 0.1, duration: 0.3 }}
+              className="group relative p-4 bg-slate-800/70 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-600 dark:border-slate-700 hover:border-blue-400 transition-all duration-200 overflow-hidden cursor-pointer"
             >
-              <div className="text-3xl mb-2">{stat.icon}</div>
-              <div className="text-2xl font-bold text-blue-400">{stat.value}</div>
-              <div className="text-sm text-slate-300 dark:text-slate-400">{stat.label}</div>
+              {/* Neon glow background on hover */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl`} />
+              
+              {/* Content */}
+              <div className="relative z-10">
+                <div className="text-3xl mb-2">{stat.icon}</div>
+                <div className="text-2xl font-bold text-blue-400 group-hover:text-blue-300 transition-colors">{stat.value}</div>
+                <div className="text-sm text-slate-300 dark:text-slate-400 group-hover:text-slate-200 transition-colors">{stat.label}</div>
+              </div>
             </motion.div>
           ))}
         </motion.div>
