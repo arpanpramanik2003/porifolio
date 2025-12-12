@@ -204,7 +204,7 @@ yarn preview
 
 ## 🌐 Demo
 
-**Live Website:** [https://arpanpramanik.vercel.app/](https://arpanpramanik.vercel.app/)
+**Live Website:** [https://arpanpramanik.vercel.app/](https://arpanpramanik.dev)
 
 Explore the live portfolio to see all features in action, including:
 - Smooth animations and transitions
@@ -239,7 +239,7 @@ All I ask is that you:
 
 - 📧 Email: [pramanikarpan089@gmail.com](mailto:pramanikarpan089@gmail.com)
 - 💼 LinkedIn: [linkedin.com/in/arpan-pramanik-6a409228a](https://www.linkedin.com/in/arpan-pramanik-6a409228a/)
-- 🌐 Portfolio: [arpanpramanik.vercel.app](https://arpanpramanik.vercel.app/)
+- 🌐 Portfolio: [arpanpramanik.vercel.app](https://arpanpramanik.dev)
 - 💻 GitHub: [@arpanpramanik2003](https://github.com/arpanpramanik2003)
 
 ### Let's Connect!
