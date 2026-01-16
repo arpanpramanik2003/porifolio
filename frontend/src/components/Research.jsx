@@ -103,7 +103,7 @@ const Research = () => {
             {[
               { label: 'Publications', value: researchData.length, icon: '📄', color: 'from-blue-500 to-cyan-500', bg: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20' },
               { label: 'Under Progress', value: researchData.filter(p => p.status === 'Under Progress').length, icon: '⏳', color: 'from-yellow-500 to-orange-500', bg: 'from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20' },
-              { label: 'Co-authors', value: '3', icon: '👥', color: 'from-purple-500 to-pink-500', bg: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20' },
+              { label: 'Co-authors', value: '6', icon: '👥', color: 'from-purple-500 to-pink-500', bg: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20' },
               { label: 'Research Areas', value: '3', icon: '🎯', color: 'from-green-500 to-teal-500', bg: 'from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20' }
             ].map((stat, index) => (
               <motion.div
