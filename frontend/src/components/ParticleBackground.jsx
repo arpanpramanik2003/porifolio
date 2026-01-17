@@ -6,23 +6,17 @@ const ParticleBackground = () => {
   const [isDark, setIsDark] = useState(true)
 
   useEffect(() => {
-    // Check initial theme
     setIsDark(document.documentElement.classList.contains('dark'))
-    
-    // Watch for theme changes
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'class') {
-          setIsDark(document.documentElement.classList.contains('dark'))
-        }
-      })
+
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'))
     })
-    
+
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class']
+      attributeFilter: ['class'],
     })
-    
+
     return () => observer.disconnect()
   }, [])
 
@@ -36,71 +30,62 @@ const ParticleBackground = () => {
       init={particlesInit}
       options={{
         background: {
-          color: {
-            value: 'transparent',
-          },
+          color: { value: 'transparent' },
         },
         fpsLimit: 120,
         particles: {
           number: {
-            value: 80,
+            value: 110,
             density: {
               enable: true,
-              area: 1000,
+              area: 900,
             },
           },
           color: {
-            value: isDark ? ['#3b82f6', '#8b5cf6', '#06b6d4'] : ['#60a5fa', '#a78bfa', '#22d3ee'],
+            value: isDark
+              ? ['#3b82f6', '#8b5cf6', '#06b6d4']
+              : ['#60a5fa', '#a78bfa', '#22d3ee'],
           },
           shape: {
             type: 'circle',
           },
           opacity: {
-            value: isDark ? 0.6 : 0.4,
+            value: isDark ? 0.75 : 0.55,
             random: {
               enable: true,
-              minimumValue: 0.1,
+              minimumValue: 0.25,
             },
             animation: {
               enable: true,
-              speed: 1,
-              minimumValue: 0.1,
+              speed: 1.2,
+              minimumValue: 0.2,
               sync: false,
             },
           },
           size: {
-            value: { min: 1, max: 3 },
-            random: {
-              enable: true,
-              minimumValue: 1,
-            },
+            value: { min: 1.2, max: 3.2 },
+            random: true,
             animation: {
               enable: true,
-              speed: 2,
-              minimumValue: 0.1,
+              speed: 2.5,
+              minimumValue: 0.3,
               sync: false,
             },
           },
           links: {
             enable: true,
-            distance: 120,
-            color: isDark ? '#3b82f6' : '#60a5fa',
-            opacity: isDark ? 0.2 : 0.15,
-            width: 1,
-            triangles: {
-              enable: false,
-            },
+            distance: 140,
+            color: isDark ? '#60a5fa' : '#3b82f6',
+            opacity: isDark ? 0.35 : 0.25,
+            width: 1.3,
           },
           move: {
             enable: true,
-            speed: 0.8,
+            speed: 1.1,
             direction: 'none',
             random: false,
             straight: false,
             outModes: 'out',
-            attract: {
-              enable: false,
-            },
           },
         },
         interactivity: {
@@ -111,21 +96,17 @@ const ParticleBackground = () => {
               mode: [],
               parallax: {
                 enable: true,
-                force: 20,
-                smooth: 30,
+                force: 30,
+                smooth: 20,
               },
-            },
-            onClick: {
-              enable: false,
             },
             resize: true,
           },
         },
-        smooth: true,
         detectRetina: true,
+        smooth: true,
       }}
       className="fixed inset-0 z-0 pointer-events-none"
-      style={{ pointerEvents: 'auto' }}
     />
   )
 }
