@@ -6,12 +6,12 @@ const ParticleBackground = () => {
   const [isDark, setIsDark] = useState(true)
 
   useEffect(() => {
-    setIsDark(document.documentElement.classList.contains('dark'))
-
-    const observer = new MutationObserver(() => {
+    const updateTheme = () =>
       setIsDark(document.documentElement.classList.contains('dark'))
-    })
 
+    updateTheme()
+
+    const observer = new MutationObserver(updateTheme)
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class'],
@@ -33,6 +33,7 @@ const ParticleBackground = () => {
           color: { value: 'transparent' },
         },
         fpsLimit: 120,
+
         particles: {
           number: {
             value: 110,
@@ -41,20 +42,18 @@ const ParticleBackground = () => {
               area: 900,
             },
           },
+
           color: {
             value: isDark
               ? ['#3b82f6', '#8b5cf6', '#06b6d4']
               : ['#60a5fa', '#a78bfa', '#22d3ee'],
           },
-          shape: {
-            type: 'circle',
-          },
+
+          shape: { type: 'circle' },
+
           opacity: {
             value: isDark ? 0.75 : 0.55,
-            random: {
-              enable: true,
-              minimumValue: 0.25,
-            },
+            random: { enable: true, minimumValue: 0.25 },
             animation: {
               enable: true,
               speed: 1.2,
@@ -62,6 +61,7 @@ const ParticleBackground = () => {
               sync: false,
             },
           },
+
           size: {
             value: { min: 1.2, max: 3.2 },
             random: true,
@@ -72,6 +72,7 @@ const ParticleBackground = () => {
               sync: false,
             },
           },
+
           links: {
             enable: true,
             distance: 140,
@@ -79,17 +80,18 @@ const ParticleBackground = () => {
             opacity: isDark ? 0.35 : 0.25,
             width: 1.3,
           },
+
           move: {
             enable: true,
             speed: 1.1,
             direction: 'none',
-            random: false,
             straight: false,
             outModes: 'out',
           },
         },
+
         interactivity: {
-          detectsOn: 'window',
+          detectsOn: 'window', // ✅ CRITICAL
           events: {
             onHover: {
               enable: true,
@@ -103,6 +105,7 @@ const ParticleBackground = () => {
             resize: true,
           },
         },
+
         detectRetina: true,
         smooth: true,
       }}

@@ -13,20 +13,24 @@ import ParticleBackground from './components/ParticleBackground'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-500 relative">
+    <div className="relative min-h-screen overflow-hidden bg-slate-950">
       <CustomCursor />
+
+      {/* FIXED PARTICLE BACKGROUND */}
       <ParticleBackground />
+
+      {/* MAIN CONTENT */}
       <div className="relative z-10">
         <Navbar />
         <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Research />
-      <Certificates />
-      <Contact />
-      <Footer />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Research />
+        <Certificates />
+        <Contact />
+        <Footer />
       </div>
     </div>
   )

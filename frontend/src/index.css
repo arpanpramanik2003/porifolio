@@ -1,51 +1,45 @@
 @import "tailwindcss";
 
+/* -----------------------------
+   GLOBAL RESET & BASE
+----------------------------- */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: #020617; /* solid fallback to avoid flicker */
+  overflow-x: hidden;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
+/* Disable mobile background repaint issues */
+@supports (-webkit-touch-callout: none) {
+  html,
+  body {
+    background-attachment: scroll !important;
+  }
+}
+
+/* Typography & rendering */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Removed fixed background color for buttons to allow Tailwind bg classes to work correctly */
-
+/* Links */
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
-
 a:hover {
   color: #535bf2;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to bottom right, #0f172a, #1e3a8a, #581c87);
-  background-attachment: fixed;
-  cursor: none !important;
-  overflow-x: hidden;
-}
-
-html {
-  background: linear-gradient(to bottom right, #0f172a, #1e3a8a, #581c87);
-  background-attachment: fixed;
-  overflow-x: hidden;
-}
-
-body.dark {
-  background: linear-gradient(to bottom right, #020617, #0f172a, #1e1b4b);
-  background-attachment: fixed;
 }
 
 /* Headings */
@@ -54,7 +48,13 @@ h1 {
   line-height: 1.1;
 }
 
-/* Buttons: Removed background-color from global style to prevent override */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Buttons */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -66,53 +66,46 @@ button {
   transition: border-color 0.25s;
 }
 
-/* Heading responsiveness for mobile */
-@media (max-width: 640px) {
-  h1 {
-    font-size: 2xl; /* better scaling for small screens */
-  }
-}
-
-/* Hide default cursor globally */
+/* -----------------------------
+   CUSTOM CURSOR
+----------------------------- */
 * {
   cursor: none !important;
 }
 
-/* Custom Scrollbar */
+/* -----------------------------
+   SCROLLBAR
+----------------------------- */
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: linear-gradient(to bottom, #1e293b, #0f172a);
-  border-radius: 10px;
+  background: #020617;
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #ec4899);
   border-radius: 10px;
-  border: 2px solid #0f172a;
-  transition: all 0.3s ease;
+  border: 2px solid #020617;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #60a5fa, #a78bfa, #f472b6);
-  border: 2px solid #1e293b;
 }
 
-/* For Firefox */
+/* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #8b5cf6 #1e293b;
+  scrollbar-color: #8b5cf6 #020617;
 }
 
-/* Active Navbar Link Style with Gradient */
+/* Active Navbar Link */
 .active-nav-link .nav-link-container span:last-child {
   width: 100% !important;
 }
 
-/* Ensure gradient is visible on active state */
 .active-nav-link .nav-link-container {
   position: relative;
 }
