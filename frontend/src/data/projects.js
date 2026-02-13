@@ -213,7 +213,7 @@ export const projectsData = [
       'MongoDB database with Mongoose ODM'
     ],
     github: 'https://github.com/arpanpramanik2003/smart-student-hub',
-    live: 'https://smart-student-hub-inky.vercel.app/',
+    live: 'https://ssh.arpanpramanik.dev/',
     status: 'Completed',
     year: '2025'
   },
