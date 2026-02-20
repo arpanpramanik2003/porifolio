@@ -44,5 +44,14 @@ export const certificatesData = [
     type: 'Three Months Internship',
     description: 'Intensive two months training in Flask web development, RESTful APIs, and backend systems',
     icon: '🐍'
+  },
+  {
+    id: 6,
+    title: 'Smart India Hackathon (SIH) 2025 — Internal Hackathon',
+    issuer: 'The Neotia University & Ministry of Education, Govt. of India',
+    date: 'September 2025',
+    type: 'Hackathon Participation',
+    description: 'Participated in the Internal Hackathon for Smart India Hackathon 2025 organized at The Neotia University on 19th September 2025, supported by AICTE, Institution\'s Innovation Council, and MoE\'s Innovation Cell',
+    icon: '🏆'
   }
 ]
