@@ -351,10 +351,12 @@ const Certificates = () => {
               </motion.h3>
 
             <div className="relative max-w-4xl mx-auto">
-              {/* Timeline line */}
+              {/* Timeline line - center on desktop */}
               <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-orange-500 hidden md:block" />
+              {/* Timeline line - left on mobile */}
+              <div className="absolute left-[9px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-orange-500 md:hidden" />
 
-              <div className="space-y-12">
+              <div className="space-y-8 md:space-y-12">
                 {certificatesData.map((cert, index) => (
                   <motion.div
                     key={`timeline-${cert.id}`}
@@ -365,18 +367,18 @@ const Certificates = () => {
                       delay: 0.3 + index * 0.15,
                       ease: [0.16, 1, 0.3, 1]
                     }}
-                    className={`flex items-center gap-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                    className={`flex flex-row-reverse items-center gap-4 md:gap-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                   >
                     {/* Content */}
                     <motion.div 
-                      className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}
+                      className={`flex-1 text-left ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}
                       whileHover={{ scale: 1.03 }}
                       transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
                     >
-                      <div className="inline-block bg-gradient-to-br from-white to-blue-50/50 dark:from-slate-800 dark:to-blue-900/20 backdrop-blur-sm p-5 rounded-xl shadow-lg hover:shadow-xl border border-blue-200 dark:border-slate-700 transition-all group">
-                        <h4 className="font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-500 transition-colors">{cert.title}</h4>
-                        <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 justify-center md:justify-start">
-                          <Calendar size={14} className="text-purple-500" />
+                      <div className="inline-block bg-gradient-to-br from-white to-blue-50/50 dark:from-slate-800 dark:to-blue-900/20 backdrop-blur-sm p-4 md:p-5 rounded-xl shadow-lg hover:shadow-xl border border-blue-200 dark:border-slate-700 transition-all group w-full md:w-auto">
+                        <h4 className="font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-500 transition-colors text-sm md:text-base">{cert.title}</h4>
+                        <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 justify-start">
+                          <Calendar size={14} className="text-purple-500 flex-shrink-0" />
                           <span>{cert.date}</span>
                         </div>
                       </div>
@@ -395,7 +397,7 @@ const Certificates = () => {
                         scale: 1.5,
                         transition: { duration: 0.2 }
                       }}
-                      className="relative z-10 w-5 h-5 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-full border-4 border-white dark:border-slate-900 shadow-lg cursor-pointer"
+                      className="relative z-10 flex-shrink-0 w-5 h-5 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-full border-4 border-white dark:border-slate-900 shadow-lg cursor-pointer"
                     />
 
                     {/* Spacer */}
