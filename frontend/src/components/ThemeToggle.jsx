@@ -1,7 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Moon, Sun } from 'lucide-react'
+import { useTheme } from '../contexts/ThemeContext'
 
-const ThemeToggle = ({ darkMode, setDarkMode }) => {
+const ThemeToggle = () => {
+  const { isDarkMode, toggleTheme } = useTheme()
+
   return (
     <motion.button
       initial={{ scale: 0, opacity: 0 }}
@@ -9,12 +12,12 @@ const ThemeToggle = ({ darkMode, setDarkMode }) => {
       transition={{ delay: 1, duration: 0.5, type: 'spring', stiffness: 200 }}
       whileHover={{ scale: 1.15, rotate: 180 }}
       whileTap={{ scale: 0.9 }}
-      onClick={() => setDarkMode(!darkMode)}
+      onClick={toggleTheme}
       className="fixed bottom-8 right-8 z-50 p-4 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 text-white rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 backdrop-blur-sm border-2 border-white/20"
-      title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+      title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
     >
       <AnimatePresence mode="wait">
-        {darkMode ? (
+        {isDarkMode ? (
           <motion.div
             key="sun"
             initial={{ rotate: -180, opacity: 0 }}

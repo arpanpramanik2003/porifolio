@@ -86,7 +86,7 @@ const Navbar = () => {
                             ? 'text-blue-600 dark:text-blue-400'
                             : scrolled
                               ? 'text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400'
-                              : 'text-white group-hover:text-blue-300'
+                              : 'text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-300'
                         }`}
                       >
                         {link.name}
@@ -110,7 +110,7 @@ const Navbar = () => {
               className={`md:hidden transition-colors ${
                 scrolled
                   ? 'text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400'
-                  : 'text-white hover:text-blue-300'
+                  : 'text-slate-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-300'
               }`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}

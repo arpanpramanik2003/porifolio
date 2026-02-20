@@ -63,7 +63,7 @@ const About = () => {
                 Get to know me
               </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
               About Me
             </h2>
             <motion.div
@@ -86,7 +86,7 @@ const About = () => {
                 <motion.p
                   key={index}
                   variants={itemVariants}
-                  className="text-lg text-slate-200 dark:text-slate-300 leading-relaxed text-justify"
+                  className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed text-justify"
                 >
                   {paragraph}
                 </motion.p>
@@ -97,7 +97,7 @@ const About = () => {
                 variants={itemVariants}
                 className="pt-6"
               >
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                   <motion.div
                     animate={{ 
                       scale: [1, 1.2, 1],

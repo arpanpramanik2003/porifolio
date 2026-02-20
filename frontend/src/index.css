@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Tailwind v4: Enable class-based dark mode (like v3's darkMode: 'class') */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* -----------------------------
    GLOBAL RESET & BASE
 ----------------------------- */
@@ -8,9 +11,17 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  background: #020617; /* solid fallback to avoid flicker */
   overflow-x: hidden;
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Theme-aware backgrounds */
+html {
+  background: #ffffff; /* light mode default */
+}
+
+html.dark {
+  background: #020617; /* dark mode */
 }
 
 /* Disable mobile background repaint issues */
@@ -26,10 +37,19 @@ body {
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Light mode text color */
+html {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/* Dark mode text color */
+html.dark {
+  color: rgba(255, 255, 255, 0.87);
 }
 
 /* Links */
@@ -76,28 +96,42 @@ button {
 /* -----------------------------
    SCROLLBAR
 ----------------------------- */
+/* Light mode scrollbar */
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #020617;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #ec4899);
   border-radius: 10px;
-  border: 2px solid #020617;
+  border: 2px solid #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #60a5fa, #a78bfa, #f472b6);
 }
 
+/* Dark mode scrollbar */
+html.dark ::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  border: 2px solid #020617;
+}
+
 /* Firefox */
 * {
   scrollbar-width: thin;
+  scrollbar-color: #8b5cf6 #f1f5f9;
+}
+
+html.dark * {
   scrollbar-color: #8b5cf6 #020617;
 }
 

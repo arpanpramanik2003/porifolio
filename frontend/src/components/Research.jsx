@@ -73,7 +73,7 @@ const Research = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4"
             >
               Research & Publications
             </motion.h2>
@@ -87,7 +87,7 @@ const Research = () => {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-              className="text-slate-300 dark:text-slate-400 max-w-md sm:max-w-2xl mx-auto text-base sm:text-lg px-2"
+              className="text-slate-600 dark:text-slate-400 max-w-md sm:max-w-2xl mx-auto text-base sm:text-lg px-2"
             >
               Exploring the intersection of AI/ML and agriculture through cutting-edge research
             </motion.p>

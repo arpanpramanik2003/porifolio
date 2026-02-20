@@ -153,7 +153,7 @@ const Hero = () => {
             ]}
             wrapper="h2"
             speed={50}
-            className="text-2xl sm:text-3xl md:text-4xl font-semibold text-slate-200"
+            className="text-2xl sm:text-3xl md:text-4xl font-semibold text-slate-800 dark:text-slate-200"
             repeat={Infinity}
           />
         </motion.div>
@@ -161,14 +161,14 @@ const Hero = () => {
         {/* Description */}
         <motion.p
           variants={itemVariants}
-          className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto mb-4 leading-relaxed"
+          className="text-lg sm:text-xl text-slate-700 dark:text-slate-300 max-w-3xl mx-auto mb-4 leading-relaxed"
         >
           {personalInfo.tagline}
         </motion.p>
 
         <motion.p
           variants={itemVariants}
-          className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto mb-10"
+          className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10"
         >
           {personalInfo.description}
         </motion.p>
@@ -220,7 +220,7 @@ const Hero = () => {
             href={personalInfo.social.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative p-4 bg-slate-800/50 backdrop-blur-sm rounded-full text-slate-300 hover:text-white transition-colors border border-slate-700 hover:border-blue-500"
+            className="group relative p-4 bg-slate-200/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-full text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors border border-slate-300 dark:border-slate-700 hover:border-blue-500"
           >
             <Github size={28} />
             <motion.div
@@ -237,7 +237,7 @@ const Hero = () => {
             href={personalInfo.social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative p-4 bg-slate-800/50 backdrop-blur-sm rounded-full text-slate-300 hover:text-white transition-colors border border-slate-700 hover:border-blue-500"
+            className="group relative p-4 bg-slate-200/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-full text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors border border-slate-300 dark:border-slate-700 hover:border-blue-500"
           >
             <Linkedin size={28} />
             <motion.div
@@ -252,7 +252,7 @@ const Hero = () => {
             whileHover={{ scale: 1.2, rotate: 5, y: -5 }}
             whileTap={{ scale: 0.9 }}
             href={personalInfo.social.email}
-            className="group relative p-4 bg-slate-800/50 backdrop-blur-sm rounded-full text-slate-300 hover:text-white transition-colors border border-slate-700 hover:border-purple-500"
+            className="group relative p-4 bg-slate-200/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-full text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors border border-slate-300 dark:border-slate-700 hover:border-purple-500"
           >
             <Mail size={28} />
             <motion.div
@@ -287,7 +287,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 + index * 0.1, duration: 0.3 }}
-              className="group relative p-4 bg-slate-800/70 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-600 dark:border-slate-700 hover:border-blue-400 transition-all duration-200 overflow-hidden cursor-pointer"
+              className="group relative p-4 bg-slate-100/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-300 dark:border-slate-700 hover:border-blue-400 transition-all duration-200 overflow-hidden cursor-pointer"
             >
               {/* Neon glow background on hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl`} />
@@ -295,8 +295,8 @@ const Hero = () => {
               {/* Content */}
               <div className="relative z-10">
                 <div className="text-3xl mb-2">{stat.icon}</div>
-                <div className="text-2xl font-bold text-blue-400 group-hover:text-blue-300 transition-colors">{stat.value}</div>
-                <div className="text-sm text-slate-300 dark:text-slate-400 group-hover:text-slate-200 transition-colors">{stat.label}</div>
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 group-hover:text-blue-500 dark:group-hover:text-blue-300 transition-colors">{stat.value}</div>
+                <div className="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">{stat.label}</div>
               </div>
             </motion.div>
           ))}
@@ -311,7 +311,7 @@ const Hero = () => {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
       >
         <Link to="about" smooth duration={500} className="cursor-pointer">
-          <div className="flex flex-col items-center gap-2 text-slate-400 hover:text-blue-400 transition-colors">
+          <div className="flex flex-col items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
             <span className="text-sm font-medium">Scroll Down</span>
             <ArrowDown size={32} />
           </div>
