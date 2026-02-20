@@ -15,12 +15,12 @@ const SkillTag = ({ skill, categoryColor, delay }) => (
       scale: 1.06,
       transition: { duration: 0.15 }
     }}
-    className="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 shadow-sm hover:shadow-lg transition-all duration-200 cursor-default"
+    className="group relative flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 shadow-sm hover:shadow-lg transition-all duration-200 cursor-default max-w-full overflow-hidden"
   >
     {/* Glow on hover */}
     <div className={`absolute inset-0 rounded-xl bg-gradient-to-r ${categoryColor} opacity-0 group-hover:opacity-10 transition-opacity duration-200 pointer-events-none`} />
-    <span className="text-lg relative z-10">{skill.icon}</span>
-    <span className="text-sm font-semibold text-slate-700 dark:text-slate-300 relative z-10 whitespace-nowrap">
+    <span className="text-lg relative z-10 flex-shrink-0">{skill.icon}</span>
+    <span className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 relative z-10 truncate">
       {skill.name}
     </span>
   </motion.div>

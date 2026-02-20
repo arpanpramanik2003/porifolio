@@ -75,7 +75,8 @@ const Navbar = () => {
                     key={link.name}
                     to={link.to}
                     smooth
-                    duration={800}
+                    duration={500}
+                    easing="easeInOutQuart"
                     spy
                     offset={-75}
                     onSetActive={() => setActiveSection(link.to)}
@@ -133,7 +134,8 @@ const Navbar = () => {
                 key={link.name}
                 to={link.to}
                 smooth
-                duration={800}
+                duration={500}
+                easing="easeInOutQuart"
                 spy
                 offset={-75}
                 onClick={() => {

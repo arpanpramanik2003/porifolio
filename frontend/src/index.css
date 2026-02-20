@@ -146,18 +146,6 @@ html.dark * {
 
 /* ── MOBILE PERFORMANCE ── */
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* GPU compositing hint for animated sections */
-section {
-  will-change: auto;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
 /* Disable expensive CSS blur on mobile */
 @media (max-width: 768px) {
   .blur-3xl,

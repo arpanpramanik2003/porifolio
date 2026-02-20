@@ -53,35 +53,35 @@ const ExperienceCard = ({ exp, index, shouldReduceMotion }) => {
         {/* Top accent */}
         <div className="h-1 w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
 
-        <div className="p-6 sm:p-7">
+        <div className="p-4 sm:p-6 md:p-7">
           {/* Header row */}
-          <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-start sm:justify-between gap-2 sm:gap-3 mb-4">
             <div className="flex-1 min-w-0">
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-tight mb-1.5">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 dark:text-white leading-tight mb-1.5">
                 {exp.title}
               </h3>
-              <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold text-base">
+              <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold text-sm sm:text-base">
                 <Briefcase size={16} className="flex-shrink-0" />
-                <span className="truncate">{exp.company}</span>
+                <span className="break-words">{exp.company}</span>
               </div>
             </div>
-            <span className="flex-shrink-0 px-3.5 py-1.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs font-bold rounded-full shadow-sm whitespace-nowrap">
+            <span className="self-start flex-shrink-0 px-3 py-1 sm:px-3.5 sm:py-1.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-[10px] sm:text-xs font-bold rounded-full shadow-sm whitespace-nowrap">
               {exp.type}
             </span>
           </div>
 
           {/* Meta pills */}
-          <div className="flex flex-wrap gap-2 mb-5">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold">
-              <Calendar size={13} className="text-blue-500" />
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-5">
+            <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-300 rounded-lg text-[10px] sm:text-xs font-semibold">
+              <Calendar size={12} className="text-blue-500 flex-shrink-0" />
               {exp.duration}
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold">
-              <Clock size={13} className="text-purple-500" />
+            <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-300 rounded-lg text-[10px] sm:text-xs font-semibold">
+              <Clock size={12} className="text-purple-500 flex-shrink-0" />
               {exp.period}
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold">
-              <MapPin size={13} className="text-pink-500" />
+            <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-300 rounded-lg text-[10px] sm:text-xs font-semibold">
+              <MapPin size={12} className="text-pink-500 flex-shrink-0" />
               {exp.location}
             </span>
           </div>
@@ -110,7 +110,7 @@ const ExperienceCard = ({ exp, index, shouldReduceMotion }) => {
                     className="flex items-start gap-2.5"
                   >
                     <ChevronRight size={14} className="text-blue-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{item}</span>
+                    <span className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">{item}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -134,7 +134,7 @@ const ExperienceCard = ({ exp, index, shouldReduceMotion }) => {
                     animate={cardInView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ delay: 0.4 + si * 0.04 }}
                     whileHover={{ y: -3, scale: 1.05, transition: { duration: 0.15 } }}
-                    className="px-3 py-1.5 bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-600 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all cursor-default"
+                    className="px-2 sm:px-3 py-1 sm:py-1.5 bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-300 rounded-lg text-[10px] sm:text-xs font-semibold border border-slate-200 dark:border-slate-600 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all cursor-default"
                   >
                     {skill}
                   </motion.span>

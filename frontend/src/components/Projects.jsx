@@ -365,7 +365,7 @@ const Projects = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedProject(null)}
-            className="fixed inset-0 bg-black/75 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-6"
+            className="fixed inset-0 bg-black/75 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-6"
           >
             <motion.div
               initial={{ y: 60, opacity: 0, scale: 0.97 }}
@@ -373,7 +373,7 @@ const Projects = () => {
               exit={{ y: 60, opacity: 0, scale: 0.97 }}
               transition={{ type: 'spring', damping: 28, stiffness: 280 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-white dark:bg-slate-900 rounded-t-3xl sm:rounded-3xl w-full sm:max-w-5xl max-h-[92vh] sm:max-h-[88vh] flex flex-col shadow-2xl overflow-hidden"
+              className="relative bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl w-full sm:max-w-5xl max-h-[90vh] sm:max-h-[88vh] flex flex-col shadow-2xl overflow-hidden"
             >
               {/* Category accent bar at very top */}
               <div className={`h-1.5 w-full bg-gradient-to-r ${getNeonColor(selectedProject.category)} flex-shrink-0`} />
