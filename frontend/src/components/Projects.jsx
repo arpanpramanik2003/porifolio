@@ -4,21 +4,22 @@ import { useRef, useState } from 'react'
 import { Github, ExternalLink, X, Code2, Sparkles, ChevronDown, ChevronUp, Info } from 'lucide-react'
 import { projectsData } from '../data/projects'
 
+// Shared utility — maps category to a Tailwind gradient string
+const getNeonColor = (category) => {
+  const colorMap = {
+    'Deep Learning': 'from-blue-500 via-cyan-500 to-blue-600',
+    'Computer Vision': 'from-purple-500 via-pink-500 to-purple-600',
+    'Agricultural AI': 'from-green-500 via-emerald-500 to-green-600',
+    'NLP': 'from-yellow-500 via-orange-500 to-yellow-600',
+    'Web Development': 'from-indigo-500 via-blue-500 to-indigo-600',
+    'Full Stack': 'from-rose-500 via-pink-500 to-rose-600',
+    'Machine Learning': 'from-teal-500 via-cyan-500 to-teal-600',
+  }
+  return colorMap[category] || 'from-blue-500 via-purple-500 to-blue-600'
+}
+
 // Individual Project Card Component with scroll animation
 const ProjectCard = ({ project, index, setSelectedProject }) => {
-  // Determine neon color based on category
-  const getNeonColor = (category) => {
-    const colorMap = {
-      'Deep Learning': 'from-blue-500 via-cyan-500 to-blue-600',
-      'Computer Vision': 'from-purple-500 via-pink-500 to-purple-600',
-      'Agricultural AI': 'from-green-500 via-emerald-500 to-green-600',
-      'NLP': 'from-yellow-500 via-orange-500 to-yellow-600',
-      'Web Development': 'from-indigo-500 via-blue-500 to-indigo-600',
-      'Full Stack': 'from-rose-500 via-pink-500 to-rose-600',
-    }
-    return colorMap[category] || 'from-blue-500 via-purple-500 to-blue-600'
-  }
-
   return (
     <motion.div
       key={project.id}
@@ -356,7 +357,7 @@ const Projects = () => {
         </motion.div>
       </div>
 
-      {/* Project Modal */}
+      {/* ─── Project Detail Modal ─── */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -364,151 +365,167 @@ const Projects = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedProject(null)}
-            className="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-0 sm:p-4"
+            className="fixed inset-0 bg-black/75 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-6"
           >
             <motion.div
-              initial={{ scale: 0.9, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 50 }}
+              initial={{ y: 60, opacity: 0, scale: 0.97 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 60, opacity: 0, scale: 0.97 }}
+              transition={{ type: 'spring', damping: 28, stiffness: 280 }}
               onClick={(e) => e.stopPropagation()}
-              // mobile: rounded top corners only, desktop: all corners
-              className="bg-white dark:bg-slate-800 rounded-t-3xl sm:rounded-2xl w-full sm:max-w-4xl max-h-[100vh] sm:max-h-[90vh] overflow-y-auto shadow-xl"
+              className="relative bg-white dark:bg-slate-900 rounded-t-3xl sm:rounded-3xl w-full sm:max-w-5xl max-h-[92vh] sm:max-h-[88vh] flex flex-col shadow-2xl overflow-hidden"
             >
-              {/* Modal Header with Image */}
-              <div className="sticky top-0 bg-slate-900 dark:bg-slate-950 z-10 rounded-t-3xl sm:rounded-t-2xl overflow-hidden">
-                {/* Close button - Fixed position */}
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 text-white bg-slate-900/80 hover:bg-slate-800/80 backdrop-blur-sm p-2.5 rounded-full transition-all hover:scale-110 z-30 shadow-lg"
-                >
-                  <X size={24} />
-                </button>
-                
-                <div className="relative h-48 sm:h-64">
-                  <img 
-                    src={selectedProject.image} 
-                    alt={selectedProject.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
-                </div>
-                <div className="px-4 py-4 sm:px-8 sm:py-6 -mt-20 sm:-mt-16 relative">
-                  <div className="flex-1 min-w-0 pr-12">
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 leading-tight break-words">
-                      {selectedProject.title}
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2 items-center">
-                      <span className="px-2.5 py-1 sm:px-3 sm:py-1 bg-white/90 text-slate-900 rounded-md font-semibold text-xs sm:text-sm whitespace-nowrap">
-                        {selectedProject.year}
+              {/* Category accent bar at very top */}
+              <div className={`h-1.5 w-full bg-gradient-to-r ${getNeonColor(selectedProject.category)} flex-shrink-0`} />
+
+              {/* Scrollable content area */}
+              <div className="overflow-y-auto flex-1">
+
+                {/* ── Hero: image + title ── */}
+                <div className="sm:flex">
+
+                  {/* Left: project image */}
+                  <div className="relative sm:w-2/5 h-56 sm:h-auto flex-shrink-0">
+                    <img
+                      src={selectedProject.image}
+                      alt={selectedProject.title}
+                      className="w-full h-full object-cover"
+                    />
+                    {/* gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-black/65 via-black/20 to-transparent" />
+
+                    {/* Floating badges on image */}
+                    <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
+                      <span className="px-2.5 py-1 bg-white/95 dark:bg-slate-900/90 text-slate-900 dark:text-white rounded-full text-xs font-bold shadow-md backdrop-blur-sm">
+                        📅 {selectedProject.year}
                       </span>
-                      <span className="text-white/50 text-xs sm:text-sm">•</span>
-                      <span className="px-2.5 py-1 sm:px-3 sm:py-1 bg-purple-500 text-white rounded-md font-semibold text-xs sm:text-sm whitespace-nowrap">
-                        {selectedProject.category}
-                      </span>
-                      <span className="text-white/50 text-xs sm:text-sm">•</span>
-                      <span className={`px-2.5 py-1 sm:px-3 sm:py-1 rounded-md font-semibold text-xs sm:text-sm whitespace-nowrap ${selectedProject.status === 'Completed'
-                          ? 'bg-green-500 text-white'
-                          : 'bg-yellow-500 text-white'
-                        }`}>
-                        {selectedProject.status}
+                      <span className={`px-2.5 py-1 rounded-full text-xs font-bold text-white shadow-md ${
+                        selectedProject.status === 'Completed' ? 'bg-emerald-500' : 'bg-amber-500'
+                      }`}>
+                        {selectedProject.status === 'Completed' ? '✓' : '⏳'} {selectedProject.status}
                       </span>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Modal Content */}
-              <div className="px-4 py-4 sm:p-8">
-                <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
-                  {selectedProject.fullDescription}
-                </p>
-                <div className="mb-6">
-                  <h4 className="text-lg sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                    <Sparkles className="text-yellow-500" size={20} />
-                    Key Features
-                  </h4>
-                  <ul className="space-y-2">
-                    {selectedProject.features.map((feature, index) => (
-                      <li
-                        key={index}
-                        className="flex items-start gap-2 text-slate-600 dark:text-slate-300 text-sm sm:text-base"
-                      >
-                        <span className="text-blue-500 mt-1 font-bold text-base">✓</span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mb-8">
-                  <h4 className="text-lg sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                    <Code2 className="text-purple-500" size={20} />
-                    Technologies Used
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 sm:px-4 sm:py-2 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-slate-700 dark:to-slate-600 text-slate-700 dark:text-slate-300 rounded-md sm:rounded-lg font-normal border border-slate-200 dark:border-slate-600 text-xs sm:text-base"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  {/* Right: title + meta */}
+                  <div className="relative flex-1 px-6 py-6 sm:px-8 sm:py-8 bg-white dark:bg-slate-900">
+                    {/* Close button */}
+                    <button
+                      onClick={() => setSelectedProject(null)}
+                      className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-red-100 dark:hover:bg-red-900/40 text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-all duration-200 hover:rotate-90"
+                      title="Close"
+                    >
+                      <X size={18} />
+                    </button>
+
+                    {/* Category pill */}
+                    <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${getNeonColor(selectedProject.category)} mb-4 shadow-sm`}>
+                      <Code2 size={11} />
+                      {selectedProject.category}
+                    </span>
+
+                    <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight mb-4 pr-8">
+                      {selectedProject.title}
+                    </h3>
+
+                    <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+                      {selectedProject.fullDescription}
+                    </p>
                   </div>
                 </div>
-                {/* Buttons grid is stacked on mobile, horizontal on desktop */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
+
+                {/* ── Divider ── */}
+                <div className="mx-6 sm:mx-8 border-t border-slate-100 dark:border-slate-800" />
+
+                {/* ── Features + Tech in two-column grid ── */}
+                <div className="px-6 py-6 sm:px-8 sm:py-7 grid sm:grid-cols-2 gap-6 sm:gap-10">
+
+                  {/* Key Features */}
+                  <div>
+                    <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">
+                      <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-yellow-100 dark:bg-yellow-900/40 flex-shrink-0">
+                        <Sparkles size={13} className="text-yellow-500" />
+                      </span>
+                      Key Features
+                    </h4>
+                    <ul className="space-y-2.5">
+                      {selectedProject.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+                            <span className="text-blue-600 dark:text-blue-400 font-bold" style={{ fontSize: 10 }}>✓</span>
+                          </span>
+                          <span className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Technologies */}
+                  <div>
+                    <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">
+                      <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-purple-100 dark:bg-purple-900/40 flex-shrink-0">
+                        <Code2 size={13} className="text-purple-500" />
+                      </span>
+                      Tech Stack
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors cursor-default"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* ── Divider ── */}
+                <div className="mx-6 sm:mx-8 border-t border-slate-100 dark:border-slate-800" />
+
+                {/* ── Action Buttons ── */}
+                <div className="px-6 py-5 sm:px-8 sm:py-6 flex flex-col sm:flex-row gap-3">
                   {selectedProject.github ? (
                     <motion.a
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={{ y: -2, boxShadow: '0 8px 25px rgba(0,0,0,0.2)' }}
+                      whileTap={{ scale: 0.97 }}
                       href={selectedProject.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 rounded-xl sm:rounded-2xl hover:from-slate-600 hover:via-slate-700 hover:to-slate-800 transition-all shadow-lg hover:shadow-xl"
+                      className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-slate-900 dark:bg-slate-700 hover:bg-slate-800 dark:hover:bg-slate-600 text-white rounded-xl font-semibold text-sm transition-all shadow-md"
                     >
-                      <Github size={24} className="text-white" />
-                      <span className="text-xs sm:text-sm font-bold text-white">View Code</span>
+                      <Github size={18} />
+                      View Source Code
                     </motion.a>
                   ) : (
-                    <div className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-xl sm:rounded-2xl cursor-not-allowed opacity-50">
-                      <Github size={24} />
-                      <span className="text-xs sm:text-sm">Not Available</span>
+                    <div className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 rounded-xl font-semibold text-sm cursor-not-allowed opacity-60 border border-dashed border-slate-300 dark:border-slate-700">
+                      <Github size={18} />
+                      Code Not Available
                     </div>
                   )}
 
                   {selectedProject.live ? (
                     <motion.a
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={{ y: -2, boxShadow: '0 10px 30px rgba(79,70,229,0.5)' }}
+                      whileTap={{ scale: 0.97 }}
                       href={selectedProject.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 rounded-xl sm:rounded-2xl hover:from-blue-600 hover:via-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
+                      className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold text-sm transition-all shadow-md border border-indigo-500"
                     >
-                      <ExternalLink size={24} className="text-white" />
-                      <span className="text-xs sm:text-sm font-bold text-white">Live Demo</span>
+                      <ExternalLink size={18} className="text-white" />
+                      <span className="text-white">Live Demo</span>
                     </motion.a>
                   ) : (
-                    <div className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-xl sm:rounded-2xl cursor-not-allowed opacity-50">
-                      <ExternalLink size={24} />
-                      <span className="text-xs sm:text-sm">Not Available</span>
+                    <div className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-slate-200 dark:bg-slate-700/50 text-slate-400 dark:text-slate-600 rounded-xl font-semibold text-sm cursor-not-allowed border border-dashed border-slate-300 dark:border-slate-700">
+                      <ExternalLink size={18} />
+                      Demo Not Available
                     </div>
                   )}
-
-                  <motion.button
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => {
-                      navigator.clipboard.writeText(window.location.href)
-                      alert('Link copied to clipboard!')
-                    }}
-                    className="flex flex-col items-center justify-center gap-1 px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 text-white rounded-xl sm:rounded-2xl hover:from-purple-600 hover:via-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl font-semibold"
-                  >
-                    <Info size={24} />
-                    <span className="text-xs sm:text-sm">Share</span>
-                  </motion.button>
                 </div>
-              </div>
+
+              </div>{/* end scrollable */}
             </motion.div>
           </motion.div>
         )}

@@ -327,183 +327,228 @@ const Research = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedPaper(null)}
-            className="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-0 sm:p-4"
+            className="fixed inset-0 bg-black/75 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-6"
           >
             <motion.div
-              initial={{ scale: 0.9, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 50 }}
+              initial={{ y: 60, opacity: 0, scale: 0.97 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 60, opacity: 0, scale: 0.97 }}
+              transition={{ type: 'spring', damping: 28, stiffness: 280 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white dark:bg-slate-800 max-w-full w-full sm:max-w-2xl rounded-t-3xl sm:rounded-2xl max-h-[100vh] sm:max-h-[90vh] overflow-y-auto shadow-2xl"
+              className="relative bg-white dark:bg-slate-900 rounded-t-3xl sm:rounded-3xl w-full sm:max-w-4xl max-h-[92vh] sm:max-h-[88vh] flex flex-col shadow-2xl overflow-hidden"
             >
-              {/* Close button - Fixed position */}
-              <button
-                onClick={() => setSelectedPaper(null)}
-                className="absolute top-4 right-4 text-white bg-slate-900/80 hover:bg-slate-800/80 backdrop-blur-sm p-2.5 rounded-full transition-all hover:scale-110 z-30 shadow-lg"
-              >
-                <X size={24} />
-              </button>
+              {/* Category accent bar */}
+              <div className={`h-1.5 w-full bg-gradient-to-r ${selectedPaper.color} flex-shrink-0`} />
 
-              {/* Modal Header */}
-              <div className={`sticky top-0 bg-gradient-to-br ${selectedPaper.color} px-4 py-5 sm:p-8 z-10 rounded-t-3xl sm:rounded-t-2xl`}>
-                <div className="flex items-start gap-3 sm:gap-4 pr-12">
-                  <span className="text-4xl sm:text-7xl">{selectedPaper.icon}</span>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-3 leading-tight break-words">
-                      {selectedPaper.title}
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2 items-center">
-                      <span className="px-2.5 py-1 sm:px-3 sm:py-1 bg-white/90 text-slate-900 text-xs sm:text-sm rounded-md font-semibold whitespace-nowrap">
-                        {selectedPaper.year}
-                      </span>
-                      <span className="text-white/50 text-xs sm:text-sm">•</span>
-                      <span className="px-2.5 py-1 sm:px-3 sm:py-1 bg-purple-500 text-white text-xs sm:text-sm rounded-md font-semibold whitespace-nowrap">
-                        {selectedPaper.category}
-                      </span>
-                      <span className="text-white/50 text-xs sm:text-sm">•</span>
-                      <span className={`px-2.5 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm rounded-md font-semibold whitespace-nowrap ${
-                        selectedPaper.status === 'Published' 
-                          ? 'bg-green-500 text-white'
-                          : selectedPaper.status === 'Completed'
-                          ? 'bg-blue-500 text-white'
-                          : 'bg-yellow-500 text-white'
-                      }`}>
-                        {selectedPaper.status}
-                      </span>
-                    </div>
+              {/* Scrollable content */}
+              <div className="overflow-y-auto flex-1">
+
+                {/* ── Hero: text-only header ── */}
+                <div className="relative px-6 pt-8 pb-6 sm:px-8 sm:pt-9 sm:pb-7 bg-white dark:bg-slate-900">
+                  {/* Close button */}
+                  <button
+                    onClick={() => setSelectedPaper(null)}
+                    className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-red-100 dark:hover:bg-red-900/40 text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-all duration-200 hover:rotate-90"
+                    title="Close"
+                  >
+                    <X size={18} />
+                  </button>
+
+                  {/* Top meta row: category + year + status */}
+                  <div className="flex flex-wrap items-center gap-2 mb-4 pr-10">
+                    <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${selectedPaper.color} shadow-sm`}>
+                      <BookOpen size={11} />
+                      {selectedPaper.category}
+                    </span>
+                    <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-full text-xs font-bold">
+                      📅 {selectedPaper.year}
+                    </span>
+                    <span className={`px-2.5 py-1 rounded-full text-xs font-bold text-white ${
+                      selectedPaper.status === 'Published'
+                        ? 'bg-emerald-500'
+                        : selectedPaper.status === 'Completed'
+                        ? 'bg-blue-500'
+                        : 'bg-amber-500'
+                    }`}>
+                      {selectedPaper.status === 'Published' ? '✓' : selectedPaper.status === 'Completed' ? '✔' : '⏳'} {selectedPaper.status}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white leading-tight mb-3">
+                    {selectedPaper.title}
+                  </h3>
+
+                  {/* Venue */}
+                  <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                    <BookOpen size={14} className="flex-shrink-0" />
+                    <span className="font-semibold">{selectedPaper.journal}</span>
                   </div>
                 </div>
-              </div>
 
-              {/* Modal Content */}
-              <div className="px-4 py-5 sm:p-8">
-                {/* Authors */}
-                <div className="mb-4 sm:mb-6">
-                  <h4 className="text-base sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-                    <Users size={18} className="text-blue-500" />
+                {/* ── Divider ── */}
+                <div className="mx-6 sm:mx-8 border-t border-slate-100 dark:border-slate-800" />
+
+                {/* ── Authors ── */}
+                <div className="px-6 pt-6 pb-0 sm:px-8 sm:pt-7">
+                  <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
+                    <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex-shrink-0">
+                      <Users size={13} className="text-blue-500" />
+                    </span>
                     Authors
                   </h4>
-                  <div className="flex flex-wrap gap-2 sm:gap-3">
+                  <div className="flex flex-wrap gap-2">
                     {selectedPaper.authors.map((author) => (
                       <span
                         key={author}
-                        className={`px-2 py-1 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-semibold text-xs sm:text-base ${
+                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${
                           author === 'Arpan Pramanik'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+                            ? 'bg-blue-600 text-white shadow-sm'
+                            : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700'
                         }`}
                       >
-                        {author}
+                        {author === 'Arpan Pramanik' ? '★ ' : ''}{author}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                {/* Abstract */}
-                <div className="mb-4 sm:mb-6">
-                  <h4 className="text-base sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-                    <FileText size={18} className="text-green-500" />
-                    Abstract
-                  </h4>
-                  <p className="text-sm sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                    {selectedPaper.abstract}
-                  </p>
+                {/* ── Abstract + Methodology two-col ── */}
+                <div className="px-6 py-6 sm:px-8 sm:py-7 grid sm:grid-cols-2 gap-6 sm:gap-8">
+                  <div>
+                    <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
+                      <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-green-100 dark:bg-green-900/40 flex-shrink-0">
+                        <FileText size={13} className="text-green-500" />
+                      </span>
+                      Abstract
+                    </h4>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                      {selectedPaper.abstract}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
+                      <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-purple-100 dark:bg-purple-900/40 flex-shrink-0">
+                        <Target size={13} className="text-purple-500" />
+                      </span>
+                      Methodology
+                    </h4>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                      {selectedPaper.methodology}
+                    </p>
+                  </div>
                 </div>
 
-                {/* Methodology */}
-                <div className="mb-4 sm:mb-6">
-                  <h4 className="text-base sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-                    <Target size={18} className="text-purple-500" />
-                    Methodology
-                  </h4>
-                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300">
-                    {selectedPaper.methodology}
-                  </p>
-                </div>
+                {/* ── Divider ── */}
+                <div className="mx-6 sm:mx-8 border-t border-slate-100 dark:border-slate-800" />
 
-                {/* Results */}
-                <div className="mb-4 sm:mb-6">
-                  <h4 className="text-base sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-                    <Award size={18} className="text-yellow-500" />
-                    Key Results
-                  </h4>
-                  <div className="grid grid-cols-2 gap-2 sm:gap-4">
-                    {Object.entries(selectedPaper.results).map(([key, value]) => (
-                      <div key={key} className="p-2 sm:p-4 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-700 dark:to-slate-600 rounded-lg">
-                        <div className="text-lg sm:text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">{value}</div>
-                        <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 capitalize">
-                          {key.replace(/([A-Z])/g, ' $1').trim()}
+                {/* ── Results + Keywords two-col ── */}
+                <div className="px-6 py-6 sm:px-8 sm:py-7 grid sm:grid-cols-2 gap-6 sm:gap-8">
+                  {/* Key Results */}
+                  <div>
+                    <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
+                      <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-yellow-100 dark:bg-yellow-900/40 flex-shrink-0">
+                        <Award size={13} className="text-yellow-500" />
+                      </span>
+                      Key Results
+                    </h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {Object.entries(selectedPaper.results).map(([key, value]) => (
+                        <div key={key} className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 text-center">
+                          <div className="text-base font-bold text-blue-600 dark:text-blue-400 mb-0.5">{value}</div>
+                          <div className="text-[11px] text-slate-500 dark:text-slate-400 capitalize leading-tight">
+                            {key.replace(/([A-Z])/g, ' $1').trim()}
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Keywords */}
-                <div className="mb-6 sm:mb-8">
-                  <h4 className="text-base sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-                    <Sparkles size={18} className="text-orange-500" />
-                    Keywords
-                  </h4>
-                  <div className="flex flex-wrap gap-2 sm:gap-3">
-                    {selectedPaper.keywords.map((keyword) => (
-                      <motion.span
-                        key={keyword}
-                        whileHover={{ scale: 1.1 }}
-                        className="px-2 py-1 sm:px-3 sm:py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-md text-xs sm:text-sm font-medium"
-                      >
-                        {keyword}
-                      </motion.span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* DOI Number */}
-                {selectedPaper.doi && (
-                  <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl border-2 border-blue-200 dark:border-blue-800">
-                    <div className="flex items-start gap-3">
-                      <Award size={20} className="text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" />
-                      <div className="flex-1 min-w-0">
-                        <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-semibold mb-2">Digital Object Identifier (DOI)</div>
-                        <a
-                          href={`https://doi.org/${selectedPaper.doi}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm sm:text-base font-mono text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors break-all block"
-                        >
-                          {selectedPaper.doi}
-                        </a>
-                        <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">Click to view on publisher's website</div>
-                      </div>
+                      ))}
                     </div>
                   </div>
+
+                  {/* Keywords */}
+                  <div>
+                    <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
+                      <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-orange-100 dark:bg-orange-900/40 flex-shrink-0">
+                        <Sparkles size={13} className="text-orange-500" />
+                      </span>
+                      Keywords
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedPaper.keywords.map((keyword) => (
+                        <span
+                          key={keyword}
+                          className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors cursor-default"
+                        >
+                          {keyword}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* ── DOI ── */}
+                {selectedPaper.doi && (
+                  <>
+                    <div className="mx-6 sm:mx-8 border-t border-slate-100 dark:border-slate-800" />
+                    <div className="px-6 py-5 sm:px-8 sm:py-6">
+                      <div className="flex items-start gap-3 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
+                        <Award size={18} className="text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                        <div className="flex-1 min-w-0">
+                          <div className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">Digital Object Identifier (DOI)</div>
+                          <a
+                            href={`https://doi.org/${selectedPaper.doi}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm font-mono text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors break-all"
+                          >
+                            {selectedPaper.doi}
+                          </a>
+                          <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">Click to open on publisher's website</p>
+                        </div>
+                      </div>
+                    </div>
+                  </>
                 )}
 
-                {/* Action Buttons */}
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4">
+                {/* ── Divider ── */}
+                <div className="mx-6 sm:mx-8 border-t border-slate-100 dark:border-slate-800" />
+
+                {/* ── Action Buttons ── */}
+                <div className="px-6 py-5 sm:px-8 sm:py-6 flex flex-col sm:flex-row gap-3">
                   {selectedPaper.github && (
                     <motion.a
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={{ y: -2, boxShadow: '0 8px 25px rgba(0,0,0,0.25)' }}
+                      whileTap={{ scale: 0.97 }}
                       href={selectedPaper.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-slate-700 to-slate-900 text-white rounded-lg hover:from-slate-800 hover:to-black transition-all font-semibold text-xs sm:text-base shadow-lg"
+                      className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-slate-800 hover:bg-slate-700 rounded-xl font-semibold text-sm transition-all shadow-md"
                     >
-                      <Code2 size={20} />
-                      View Code
+                      <Code2 size={18} className="text-white" />
+                      <span className="text-white">View Source Code</span>
                     </motion.a>
                   )}
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setSelectedPaper(null)}
-                    className="flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all font-semibold text-xs sm:text-base shadow-lg"
-                  >
-                    Close
-                  </motion.button>
+                  {selectedPaper.doi && (
+                    <motion.a
+                      whileHover={{ y: -2, boxShadow: '0 10px 30px rgba(79,70,229,0.45)' }}
+                      whileTap={{ scale: 0.97 }}
+                      href={`https://doi.org/${selectedPaper.doi}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-indigo-600 hover:bg-indigo-700 rounded-xl font-bold text-sm transition-all shadow-md border border-indigo-500"
+                    >
+                      <ExternalLink size={18} className="text-white" />
+                      <span className="text-white">View Publication</span>
+                    </motion.a>
+                  )}
+                  {!selectedPaper.doi && !selectedPaper.github && (
+                    <div className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-slate-200 dark:bg-slate-700/50 text-slate-400 dark:text-slate-600 rounded-xl font-semibold text-sm cursor-default border border-dashed border-slate-300 dark:border-slate-700">
+                      <FileText size={18} />
+                      Under Review
+                    </div>
+                  )}
                 </div>
-              </div>
+
+              </div>{/* end scrollable */}
             </motion.div>
           </motion.div>
         )}
