@@ -42,8 +42,8 @@ const Navbar = () => {
             ? '0 20px 40px rgba(0,0,0,0.15)'
             : 'none',
         }}
-        transition={{ type: 'spring', stiffness: 120, damping: 18 }}
-        className={`mx-auto transition-all duration-500 ${
+        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+        className={`mx-auto transition-all duration-200 ${
           scrolled
             ? 'bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl border border-white/30 dark:border-white/10'
             : 'bg-transparent'
@@ -57,11 +57,20 @@ const Navbar = () => {
                 whileHover={{ scale: 1.05, rotate: [0, -2, 2, 0] }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className={`text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-purple-700 dark:from-blue-500 dark:via-purple-500 dark:to-purple-600 bg-clip-text text-transparent ${
-                  !scrolled ? 'drop-shadow-lg' : ''
-                }`}
+                className="flex items-center gap-2.5"
               >
-                arpanpramanik.dev
+                <div className="relative w-9 h-9 rounded-full p-[2px] bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 shadow-md">
+                  <img
+                    src="/logo.png"
+                    alt="Logo"
+                    className="w-full h-full rounded-full object-cover bg-slate-900"
+                  />
+                </div>
+                <span className={`text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-purple-700 dark:from-blue-500 dark:via-purple-500 dark:to-purple-600 bg-clip-text text-transparent ${
+                  !scrolled ? 'drop-shadow-lg' : ''
+                }`}>
+                  arpanpramanik.dev
+                </span>
               </motion.span>
             </Link>
 
