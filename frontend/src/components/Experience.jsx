@@ -3,8 +3,9 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Briefcase, Calendar, MapPin, Sparkles, Clock, ChevronRight } from 'lucide-react'
 import { experienceData } from '../data/experience'
+import useIsMobile from '../hooks/useIsMobile'
 
-const ExperienceCard = ({ exp, index }) => {
+const ExperienceCard = ({ exp, index, shouldReduceMotion }) => {
   const cardRef = useRef(null)
   const cardInView = useInView(cardRef, { once: true, amount: 0.25 })
 
@@ -25,11 +26,13 @@ const ExperienceCard = ({ exp, index }) => {
           transition={{ delay: 0.2 + index * 0.12, type: 'spring', stiffness: 300 }}
           className="relative z-10 w-4 h-4 mt-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 border-[3px] border-white dark:border-slate-900 shadow-lg"
         >
-          <motion.div
-            animate={{ scale: [1, 2.2, 1], opacity: [0.6, 0, 0.6] }}
-            transition={{ duration: 2.5, repeat: Infinity, delay: index * 0.5 }}
-            className="absolute inset-0 rounded-full bg-blue-400"
-          />
+          {!shouldReduceMotion && (
+            <motion.div
+              animate={{ scale: [1, 2.2, 1], opacity: [0.6, 0, 0.6] }}
+              transition={{ duration: 2.5, repeat: Infinity, delay: index * 0.5 }}
+              className="absolute inset-0 rounded-full bg-blue-400"
+            />
+          )}
         </motion.div>
         {/* Vertical line */}
         {index < experienceData.length - 1 && (
@@ -148,6 +151,7 @@ const ExperienceCard = ({ exp, index }) => {
 const Experience = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
+  const { shouldReduceMotion } = useIsMobile()
 
   const totalTech = [...new Set(experienceData.flatMap(e => e.skills || []))].length
 
@@ -159,9 +163,9 @@ const Experience = () => {
 
   return (
     <section id="experience" className="pt-12 pb-20 relative overflow-hidden">
-      {/* Subtle background blobs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-400/10 to-purple-500/10 dark:from-blue-400/5 dark:to-purple-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-purple-400/10 to-pink-500/10 dark:from-purple-400/5 dark:to-pink-500/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Subtle background blobs — hidden on mobile for performance */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-400/10 to-purple-500/10 dark:from-blue-400/5 dark:to-purple-500/5 rounded-full blur-3xl pointer-events-none hidden md:block" />
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-purple-400/10 to-pink-500/10 dark:from-purple-400/5 dark:to-pink-500/5 rounded-full blur-3xl pointer-events-none hidden md:block" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -235,7 +239,7 @@ const Experience = () => {
           {/* ── Timeline Cards ── */}
           <div className="space-y-8">
             {experienceData.map((exp, index) => (
-              <ExperienceCard key={exp.id} exp={exp} index={index} />
+              <ExperienceCard key={exp.id} exp={exp} index={index} shouldReduceMotion={shouldReduceMotion} />
             ))}
           </div>
 

@@ -143,3 +143,44 @@ html.dark * {
 .active-nav-link .nav-link-container {
   position: relative;
 }
+
+/* ── MOBILE PERFORMANCE ── */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* GPU compositing hint for animated sections */
+section {
+  will-change: auto;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Disable expensive CSS blur on mobile */
+@media (max-width: 768px) {
+  .blur-3xl,
+  .blur-xl {
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+
+  .backdrop-blur-sm,
+  .backdrop-blur-md {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
+
+/* Respect system reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

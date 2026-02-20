@@ -141,7 +141,7 @@ const Contact = () => {
                 <motion.a
                   whileHover={{ x: 10, scale: 1.02 }}
                   href={`mailto:${personalInfo.contact.email}`}
-                  className="flex items-center gap-3 sm:gap-4 p-4 sm:p-6 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all border border-slate-200 dark:border-slate-700 group"
+                  className="flex items-center gap-3 sm:gap-4 p-4 sm:p-6 bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all border border-slate-200 dark:border-slate-700 group"
                 >
                   <motion.div 
                     whileHover={{ rotate: 360 }}
@@ -161,7 +161,7 @@ const Contact = () => {
                 <motion.a
                   whileHover={{ x: 10, scale: 1.02 }}
                   href={`tel:${personalInfo.contact.phone}`}
-                  className="flex items-center gap-3 sm:gap-4 p-4 sm:p-6 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all border border-slate-200 dark:border-slate-700 group"
+                  className="flex items-center gap-3 sm:gap-4 p-4 sm:p-6 bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all border border-slate-200 dark:border-slate-700 group"
                 >
                   <motion.div 
                     whileHover={{ rotate: 360 }}
@@ -180,7 +180,7 @@ const Contact = () => {
 
                 <motion.div
                   whileHover={{ x: 10, scale: 1.02 }}
-                  className="flex items-center gap-3 sm:gap-4 p-4 sm:p-6 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all border border-slate-200 dark:border-slate-700 group"
+                  className="flex items-center gap-3 sm:gap-4 p-4 sm:p-6 bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all border border-slate-200 dark:border-slate-700 group"
                 >
                   <motion.div 
                     whileHover={{ rotate: 360 }}
@@ -249,7 +249,7 @@ const Contact = () => {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
               onSubmit={handleSubmit}
-              className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-4 sm:p-8 rounded-xl sm:rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700"
+              className="bg-white dark:bg-slate-800 p-4 sm:p-8 rounded-xl sm:rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700"
             >
               <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6">
                 Send Me a Message

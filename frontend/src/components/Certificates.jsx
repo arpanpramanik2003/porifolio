@@ -68,31 +68,31 @@ const Certificates = () => {
 
   return (
     <section id="certificates" className="pt-12 pb-20 relative overflow-hidden">
-      {/* Animated Floating Background Elements - Transparent */}
+      {/* Floating Background — hidden on mobile for performance */}
       <motion.div
         animate={floatingAnimation}
-        className="absolute top-20 left-10 opacity-3 dark:opacity-5"
+        className="absolute top-20 left-10 opacity-3 dark:opacity-5 hidden md:block"
       >
         <div className="w-64 h-64 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-3xl blur-3xl" />
       </motion.div>
       
       <motion.div
         animate={{ ...floatingAnimation, transition: { ...floatingAnimation.transition, delay: 2 } }}
-        className="absolute bottom-20 right-10 opacity-3 dark:opacity-5"
+        className="absolute bottom-20 right-10 opacity-3 dark:opacity-5 hidden md:block"
       >
         <div className="w-80 h-80 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full blur-3xl" />
       </motion.div>
 
       <motion.div
         animate={{ ...floatingAnimation, transition: { ...floatingAnimation.transition, delay: 4 } }}
-        className="absolute top-1/2 right-1/4 opacity-3 dark:opacity-5"
+        className="absolute top-1/2 right-1/4 opacity-3 dark:opacity-5 hidden lg:block"
       >
         <Award size={200} className="text-yellow-500" />
       </motion.div>
 
       <motion.div
         animate={{ ...floatingAnimation, transition: { ...floatingAnimation.transition, delay: 6 } }}
-        className="absolute bottom-1/4 left-1/4 opacity-3 dark:opacity-5"
+        className="absolute bottom-1/4 left-1/4 opacity-3 dark:opacity-5 hidden lg:block"
       >
         <Sparkles size={150} className="text-orange-500" />
       </motion.div>
@@ -157,17 +157,8 @@ const Certificates = () => {
                   y: -5,
                   transition: { duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }
                 }}
-                className="bg-gradient-to-br from-white to-yellow-50/50 dark:from-slate-800 dark:to-yellow-900/10 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-2xl text-center border border-yellow-200/50 dark:border-yellow-700/30 transition-shadow relative overflow-hidden group"
+                className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-2xl text-center border border-yellow-200/50 dark:border-yellow-700/30 transition-shadow relative overflow-hidden group"
               >
-                {/* Animated background on hover */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity"
-                  animate={{
-                    backgroundPosition: ['0% 0%', '100% 100%'],
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
-                />
-                
                 <motion.div 
                   className="text-4xl mb-3 relative z-10"
                   animate={isInView ? {
@@ -209,17 +200,8 @@ const Certificates = () => {
                   scale: 1.02,
                   transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }
                 }}
-                className="group relative bg-gradient-to-br from-white to-blue-50/30 dark:from-slate-800 dark:to-blue-900/10 backdrop-blur-sm p-8 rounded-2xl shadow-xl hover:shadow-2xl border-l-4 border-blue-500 transition-all overflow-hidden"
+                className="group relative bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl hover:shadow-2xl border-l-4 border-blue-500 transition-all overflow-hidden"
               >
-                {/* Background gradient on hover */}
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 opacity-0 group-hover:opacity-100 transition-opacity"
-                  animate={{
-                    backgroundPosition: ['0% 0%', '100% 100%'],
-                  }}
-                  transition={{ duration: 4, repeat: Infinity, repeatType: 'reverse' }}
-                />
-
                 {/* Content */}
                 <div className="relative z-10">
                   {/* Icon and Title */}

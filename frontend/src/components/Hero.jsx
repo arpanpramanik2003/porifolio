@@ -3,6 +3,7 @@ import { TypeAnimation } from 'react-type-animation'
 import { Github, Linkedin, Mail, Download, ArrowDown, Code2, Sparkles } from 'lucide-react'
 import { Link } from 'react-scroll'
 import { personalInfo } from '../data/personalInfo'
+import useIsMobile from '../hooks/useIsMobile'
 
 const Hero = () => {
   const containerVariants = {
@@ -40,14 +41,18 @@ const Hero = () => {
     }
   }
 
-  const floatingAnimation = {
-    y: [-10, 10, -10],
-    transition: {
-      duration: 3,
-      repeat: Infinity,
-      ease: 'easeInOut'
-    }
-  }
+  const { shouldReduceMotion } = useIsMobile()
+
+  const floatingAnimation = shouldReduceMotion
+    ? {}
+    : {
+        y: [-10, 10, -10],
+        transition: {
+          duration: 3,
+          repeat: Infinity,
+          ease: 'easeInOut'
+        }
+      }
 
   return (
     <section
@@ -57,16 +62,16 @@ const Hero = () => {
       {/* Gradient Overlays - Removed to eliminate border mismatch */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent z-0" />
 
-      {/* Floating Elements */}
+      {/* Floating Elements — hidden on mobile for performance */}
       <motion.div
         animate={floatingAnimation}
-        className="absolute top-20 left-10 text-blue-400/20"
+        className="absolute top-20 left-10 text-blue-400/20 hidden md:block"
       >
         <Code2 size={80} />
       </motion.div>
       <motion.div
-        animate={{ ...floatingAnimation, transition: { ...floatingAnimation.transition, delay: 1 } }}
-        className="absolute bottom-20 right-10 text-purple-400/20"
+        animate={floatingAnimation}
+        className="absolute bottom-20 right-10 text-purple-400/20 hidden md:block"
       >
         <Sparkles size={60} />
       </motion.div>
@@ -81,23 +86,27 @@ const Hero = () => {
         {/* Profile Image - FIXED Clean Version */}
         <motion.div variants={imageVariants} className="mb-8">
           <div className="relative w-36 h-36 mx-auto">
-            {/* Glowing Background */}
-            <motion.div
-              animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.5, 0.8, 0.5]
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 blur-xl"
-            />
+            {/* Glowing Background — simplified on mobile */}
+            {!shouldReduceMotion && (
+              <motion.div
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.5, 0.8, 0.5]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 blur-xl"
+              />
+            )}
 
             {/* Rotating Border Container */}
             <div className="relative w-full h-full rounded-full p-1 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500"
-              />
+              {!shouldReduceMotion && (
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                  className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500"
+                />
+              )}
 
               {/* Image */}
               <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-slate-900 bg-slate-900 z-10">
@@ -220,7 +229,7 @@ const Hero = () => {
             href={personalInfo.social.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative p-4 bg-slate-200/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-full text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors border border-slate-300 dark:border-slate-700 hover:border-blue-500"
+            className="group relative p-4 bg-slate-200/80 dark:bg-slate-800/50 rounded-full text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors border border-slate-300 dark:border-slate-700 hover:border-blue-500"
           >
             <Github size={28} />
             <motion.div
@@ -237,7 +246,7 @@ const Hero = () => {
             href={personalInfo.social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative p-4 bg-slate-200/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-full text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors border border-slate-300 dark:border-slate-700 hover:border-blue-500"
+            className="group relative p-4 bg-slate-200/80 dark:bg-slate-800/50 rounded-full text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors border border-slate-300 dark:border-slate-700 hover:border-blue-500"
           >
             <Linkedin size={28} />
             <motion.div
@@ -252,7 +261,7 @@ const Hero = () => {
             whileHover={{ scale: 1.2, rotate: 5, y: -5 }}
             whileTap={{ scale: 0.9 }}
             href={personalInfo.social.email}
-            className="group relative p-4 bg-slate-200/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-full text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors border border-slate-300 dark:border-slate-700 hover:border-purple-500"
+            className="group relative p-4 bg-slate-200/80 dark:bg-slate-800/50 rounded-full text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors border border-slate-300 dark:border-slate-700 hover:border-purple-500"
           >
             <Mail size={28} />
             <motion.div
@@ -287,7 +296,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 + index * 0.1, duration: 0.3 }}
-              className="group relative p-4 bg-slate-100/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-300 dark:border-slate-700 hover:border-blue-400 transition-all duration-200 overflow-hidden cursor-pointer"
+              className="group relative p-4 bg-slate-100/80 dark:bg-slate-800/50 rounded-xl border border-slate-300 dark:border-slate-700 hover:border-blue-400 transition-all duration-200 overflow-hidden cursor-pointer"
             >
               {/* Neon glow background on hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl`} />

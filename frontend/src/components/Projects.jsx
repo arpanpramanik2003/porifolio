@@ -205,31 +205,31 @@ const Projects = () => {
 
   return (
     <section id="projects" className="pt-12 pb-20 relative overflow-hidden">
-      {/* Animated Floating Background Elements */}
+      {/* Floating Background Elements — hidden on mobile for performance */}
       <motion.div
         animate={floatingAnimation}
-        className="absolute top-20 left-10 opacity-5 dark:opacity-10"
+        className="absolute top-20 left-10 opacity-5 dark:opacity-10 hidden md:block"
       >
         <div className="w-64 h-64 bg-gradient-to-br from-blue-400 to-purple-500 rounded-3xl blur-3xl" />
       </motion.div>
 
       <motion.div
         animate={{ ...floatingAnimation, transition: { ...floatingAnimation.transition, delay: 2 } }}
-        className="absolute bottom-20 right-10 opacity-5 dark:opacity-10"
+        className="absolute bottom-20 right-10 opacity-5 dark:opacity-10 hidden md:block"
       >
         <div className="w-80 h-80 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full blur-3xl" />
       </motion.div>
 
       <motion.div
         animate={{ ...floatingAnimation, transition: { ...floatingAnimation.transition, delay: 4 } }}
-        className="absolute top-1/2 right-1/4 opacity-5 dark:opacity-10"
+        className="absolute top-1/2 right-1/4 opacity-5 dark:opacity-10 hidden lg:block"
       >
         <Code2 size={200} className="text-blue-500" />
       </motion.div>
 
       <motion.div
         animate={{ ...floatingAnimation, transition: { ...floatingAnimation.transition, delay: 6 } }}
-        className="absolute bottom-1/4 left-1/4 opacity-5 dark:opacity-10"
+        className="absolute bottom-1/4 left-1/4 opacity-5 dark:opacity-10 hidden lg:block"
       >
         <Sparkles size={150} className="text-purple-500" />
       </motion.div>

@@ -120,15 +120,8 @@ const Research = () => {
                   y: -8,
                   transition: { duration: 0.2, ease: "easeOut" }
                 }}
-                className={`bg-gradient-to-br ${stat.bg} backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-xl hover:shadow-2xl text-center border-2 border-white/50 dark:border-slate-700/50 cursor-pointer relative overflow-hidden group`}
+                className={`bg-gradient-to-br ${stat.bg} p-4 sm:p-6 rounded-2xl shadow-xl hover:shadow-2xl text-center border-2 border-white/50 dark:border-slate-700/50 cursor-pointer relative overflow-hidden group`}
               >
-                {/* Shine effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100"
-                  animate={{ x: ['-200%', '200%'] }}
-                  transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
-                />
-                
                 <motion.div 
                   className="text-2xl sm:text-4xl mb-2 sm:mb-3 relative z-10"
                   animate={{ 
@@ -173,15 +166,9 @@ const Research = () => {
                   y: -8,
                   transition: { duration: 0.2, ease: "easeOut" }
                 }}
-                className="bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-700 backdrop-blur-sm p-4 sm:p-8 rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl border-2 border-slate-200/50 dark:border-slate-600/50 cursor-pointer relative overflow-hidden group"
+                className="bg-white dark:bg-slate-800 p-4 sm:p-8 rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl border-2 border-slate-200/50 dark:border-slate-600/50 cursor-pointer relative overflow-hidden group"
                 onClick={() => setSelectedPaper(paper)}
               >
-                {/* Animated shine effect on hover */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent opacity-0 group-hover:opacity-100"
-                  animate={{ x: ['-200%', '200%'] }}
-                  transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
-                />
                 <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                   {/* Paper Icon */}
                   <motion.div

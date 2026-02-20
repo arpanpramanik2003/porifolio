@@ -66,7 +66,7 @@ const Navbar = () => {
             </Link>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-1">
+            <div className="hidden lg:flex space-x-1">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.to
 
@@ -108,7 +108,7 @@ const Navbar = () => {
             {/* Mobile Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`md:hidden transition-colors ${
+              className={`lg:hidden transition-colors ${
                 scrolled
                   ? 'text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400'
                   : 'text-slate-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-300'
@@ -125,7 +125,7 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden mt-3 mx-auto w-[92%] bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/30 dark:border-white/10"
+          className="lg:hidden mt-3 mx-auto w-[92%] bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/30 dark:border-white/10"
         >
           <div className="px-4 pt-2 pb-4 space-y-1">
             {navLinks.map((link) => (
