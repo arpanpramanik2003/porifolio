@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
-import { Award, Calendar, Building, Sparkles, TrendingUp, CheckCircle, ChevronDown } from 'lucide-react'
+import { Award, Calendar, Building, Sparkles, TrendingUp, CheckCircle, ChevronDown, ExternalLink } from 'lucide-react'
 import { certificatesData } from '../data/certificates'
 
 const Certificates = () => {
@@ -249,12 +249,25 @@ const Certificates = () => {
                     </div>
                   </div>
 
-                  {/* Completion Badge */}
-                  <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
+                  {/* Completion Badge + View Button */}
+                  <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between gap-4 flex-wrap">
                     <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
                       <CheckCircle size={20} className="fill-current" />
                       <span className="text-sm font-bold">Certificate Earned</span>
                     </div>
+                    {cert.file && (
+                      <motion.a
+                        href={cert.file}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-semibold rounded-lg shadow hover:shadow-lg transition-shadow"
+                      >
+                        <ExternalLink size={14} />
+                        View Certificate
+                      </motion.a>
+                    )}
                   </div>
                 </div>
 
