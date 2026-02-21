@@ -85,8 +85,7 @@ export const researchData = [
     keywords: ['Hybrid CNN-ViT', 'Vision Transformer', 'Multi-Task Learning', 'Solanaceous Crops', 'Quality Assessment', 'Explainable AI', 'Grad-CAM', 'Streamlit Deployment'],
     methodology: 'Multi-headed hybrid CNN-ViT with shared Vision Transformer backbone, task-specific output heads, Grad-CAM for explainability, 30%+ parameter reduction',
     results: {
-      potatoAccuracy: '98.45%',
-      tomatoAccuracy: '97.49%',
+      cropAccuracy: '98.45% / 97.49%',
       qualityAccuracy: '98.5%',
       dataset: 'Potato & Tomato (10,000 images)',
       deployment: 'Streamlit interface'
