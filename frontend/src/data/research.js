@@ -70,6 +70,31 @@ export const researchData = [
     arxiv: null,
     github: 'https://github.com/arpanpramanik2003/cropsense',
     color: 'from-orange-500 to-red-500'
+  },
+  {
+    id: 4,
+    title: 'An Explainable Deep Learning Approach for Quality Assessment in Solanaceous Crops',
+    authors: ['Shibdas Dutta', 'Barshan Adhikari', 'Arpan Pramanik', 'Diya Chanda'],
+    conference: 'Presented',
+    journal: 'IEEE/ COMPUTINGCON Conference',
+    year: '2025',
+    status: 'Completed',
+    category: 'Agricultural AI',
+    icon: '🍅',
+    abstract: 'This paper presents a novel multi-headed hybrid CNN-ViT model for simultaneous classification of potato and tomato crops along with their quality assessment (healthy vs. diseased). Unlike traditional models that treat crop identification and disease detection separately, our approach uses a shared Vision Transformer-based backbone with task-specific output heads, enabling efficient multi-task learning and reducing parameters by over 30%. The model is trained on a custom dataset containing 10,000 images of diseased and healthy samples of both crops, evenly split across four classes. We employ extensive geometric and photometric augmentations to improve generalization under varied real-world conditions. Experimental results show strong performance, achieving 98.45% accuracy in potato classification and 97.49% for tomato, with overall quality assessment accuracy reaching 98.5%. To enhance interpretability, we apply Grad-CAM visualizations that highlight critical regions such as leaf lesions and discoloration, offering insights into the model\'s decision-making process. The complete system is deployed via an interactive Streamlit interface, enabling real-time prediction and explanation.',
+    keywords: ['Hybrid CNN-ViT', 'Vision Transformer', 'Multi-Task Learning', 'Solanaceous Crops', 'Quality Assessment', 'Explainable AI', 'Grad-CAM', 'Streamlit Deployment'],
+    methodology: 'Multi-headed hybrid CNN-ViT with shared Vision Transformer backbone, task-specific output heads, Grad-CAM for explainability, 30%+ parameter reduction',
+    results: {
+      potatoAccuracy: '98.45%',
+      tomatoAccuracy: '97.49%',
+      qualityAccuracy: '98.5%',
+      dataset: 'Potato & Tomato (10,000 images)',
+      deployment: 'Streamlit interface'
+    },
+    doi: '10.1109/COMPUTINGCON64838.2025.11376762',
+    arxiv: null,
+    github: null,
+    color: 'from-indigo-500 to-violet-500'
   }
 ]
 
