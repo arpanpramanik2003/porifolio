@@ -115,7 +115,7 @@ const ProjectCard = ({ project, index, setSelectedProject }) => {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-gradient-to-r from-slate-700 to-slate-900 dark:from-slate-700 dark:to-slate-900 rounded-lg hover:from-slate-800 hover:to-black dark:hover:from-slate-800 dark:hover:to-black transition-all"
+              className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 dark:from-indigo-600 dark:to-indigo-700 rounded-lg hover:from-indigo-700 hover:to-indigo-800 dark:hover:from-indigo-700 dark:hover:to-indigo-800 transition-all"
               title="View Source Code"
             >
               <Github size={18} className="text-white" />
@@ -138,7 +138,7 @@ const ProjectCard = ({ project, index, setSelectedProject }) => {
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-purple-600 rounded-lg hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-700 dark:hover:to-purple-700 transition-all"
+              className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-gradient-to-r from-cyan-500 to-cyan-600 dark:from-cyan-500 dark:to-cyan-600 rounded-lg hover:from-cyan-600 hover:to-cyan-700 dark:hover:from-cyan-600 dark:hover:to-cyan-700 transition-all"
               title="View Live Demo"
             >
               <ExternalLink size={18} className="text-white" />
@@ -158,7 +158,7 @@ const ProjectCard = ({ project, index, setSelectedProject }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setSelectedProject(project)}
-            className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-purple-600 dark:bg-purple-600 text-white rounded-lg hover:bg-purple-700 dark:hover:bg-purple-700 transition-colors"
+            className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-gradient-to-r from-pink-500 to-rose-600 dark:from-pink-500 dark:to-rose-600 rounded-lg hover:from-pink-600 hover:to-rose-700 dark:hover:from-pink-600 dark:hover:to-rose-700 transition-all"
             title="View Project Details"
           >
             <Info size={18} />

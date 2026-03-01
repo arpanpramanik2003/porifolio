@@ -262,10 +262,10 @@ const Certificates = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-semibold rounded-lg shadow hover:shadow-lg transition-shadow"
+                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-semibold rounded-lg shadow hover:shadow-lg transition-shadow"
                       >
-                        <ExternalLink size={14} />
-                        View Certificate
+                        <ExternalLink size={14} className="text-white" />
+                        <span className="text-white">View Certificate</span>
                       </motion.a>
                     )}
                   </div>
