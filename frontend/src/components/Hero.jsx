@@ -109,7 +109,7 @@ const Hero = () => {
 
       {/* ── Main layout ── */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8">
 
           {/* ════════════ LEFT — Text Content ════════════ */}
           <motion.div
@@ -336,7 +336,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1, duration: 0.7 }}
               whileHover={{ scale: 1.02 }}
-              className="w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl border border-slate-200/60 dark:border-slate-700/60"
+              className="hidden md:block w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl border border-slate-200/60 dark:border-slate-700/60"
             >
               {/* Terminal titlebar */}
               <div className="flex items-center gap-2 px-4 pt-4 pb-3 bg-slate-800 dark:bg-slate-900">
