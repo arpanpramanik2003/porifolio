@@ -11,7 +11,6 @@ import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
 import ParticleBackground from './components/ParticleBackground'
 import ThemeToggle from './components/ThemeToggle'
-import InteractiveRobot from './components/InteractiveRobot'
 import { ThemeProvider } from './contexts/ThemeContext'
 
 function App() {
@@ -22,9 +21,6 @@ function App() {
 
         {/* FIXED PARTICLE BACKGROUND */}
         <ParticleBackground />
-
-        {/* INTERACTIVE ROBOT */}
-        <InteractiveRobot />
 
         {/* THEME TOGGLE BUTTON */}
         <ThemeToggle />
