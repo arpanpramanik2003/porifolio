@@ -195,13 +195,13 @@ export const projectsData = [
   },
   {
     id: 9,
-    title: 'Smart Student Hub',
+    title: 'SSH-V2',
     category: 'Web Development',
     image: '/project-images/ssh.png',
     featured: false,
     description: 'Full-stack student management platform with authentication, portfolios, file uploads, and admin dashboard.',
-    fullDescription: 'Comprehensive student management application with React frontend and Node.js backend. Features include JWT authentication, student portfolio management, file upload with Multer, PDF portfolio generation, and admin dashboards for CRUD operations. Built with MongoDB for data persistence and responsive design for all devices.',
-    tech: ['React', 'Node.js', 'Tailwind', 'Express', 'MongoDB', 'JWT', 'Multer', 'REST API'],
+    fullDescription: 'Comprehensive student management application with React frontend and Node.js backend. Features include JWT authentication, student portfolio management, file upload with Multer, PDF portfolio generation, and admin dashboards for CRUD operations. Built with PostgreSQL for data persistence and responsive design for all devices.',
+    tech: ['Next.js', 'React', 'Node.js', 'Tailwind', 'Express', 'Supabase', 'JWT', 'Multer', 'REST API', 'EmailJS'],
     features: [
       'User authentication with JWT tokens',
       'Student portfolio creation and management',
@@ -210,10 +210,10 @@ export const projectsData = [
       'PDF portfolio generation from student data',
       'Responsive design for mobile and desktop',
       'RESTful API architecture',
-      'MongoDB database with Mongoose ODM'
+      'Supabase PostgreSQL database with real-time capabilities'
     ],
     github: 'https://github.com/arpanpramanik2003/smart-student-hub',
-    live: 'https://ssh.arpanpramanik.dev/',
+    live: 'https://ssh-v2.arpanpramanik.dev/',
     status: 'Completed',
     year: '2025'
   },
