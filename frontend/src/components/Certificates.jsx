@@ -159,18 +159,19 @@ const Certificates = () => {
                 initial={{ opacity: 0, y: 40, scale: 0.95 }}
                 animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: 0.6 + index * 0.15 }}
-                className="cert-flip-container"
+                className="cert-flip-container cursor-pointer"
                 style={{ perspective: '1200px' }}
+                onClick={() => cert.file && setExpandedCert(expandedCert === cert.id ? null : cert.id)}
               >
                 <motion.div
-                  className="cert-flip-inner relative w-full"
+                  className="cert-flip-inner relative w-full min-h-[320px] sm:min-h-[340px] md:min-h-[360px]"
                   animate={{ rotateY: expandedCert === cert.id ? 180 : 0 }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  style={{ transformStyle: 'preserve-3d', minHeight: '340px' }}
+                  style={{ transformStyle: 'preserve-3d' }}
                 >
                   {/* ── FRONT FACE ── */}
                   <div
-                    className="cert-flip-face absolute inset-0 p-8 rounded-2xl shadow-xl overflow-hidden neon-card"
+                    className="cert-flip-face absolute inset-0 p-4 sm:p-6 md:p-8 rounded-2xl shadow-xl overflow-hidden neon-card"
                     style={{
                       background: 'var(--bg-card)',
                       border: '1px solid var(--border)',
@@ -183,12 +184,12 @@ const Certificates = () => {
                       <div className="flex items-start gap-4 mb-4">
                         <motion.div
                           whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.15, transition: { duration: 0.5 } }}
-                          className="flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center text-3xl shadow-lg neon-btn"
+                          className="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-xl flex items-center justify-center text-2xl md:text-3xl shadow-lg neon-btn"
                         >
                           {cert.icon}
                         </motion.div>
                         <div className="flex-1">
-                          <h3 className="text-xl font-bold mb-2 transition-colors leading-tight" style={{ color: 'var(--text-primary)' }}>
+                          <h3 className="text-sm sm:text-base md:text-xl font-bold mb-1 sm:mb-2 transition-colors leading-tight" style={{ color: 'var(--text-primary)' }}>
                             {cert.title}
                           </h3>
                           <span className="inline-block px-3 py-1 text-xs rounded-full font-semibold neon-pill">
@@ -197,7 +198,7 @@ const Certificates = () => {
                         </div>
                       </div>
 
-                      <p className="mb-4 leading-relaxed text-sm" style={{ color: 'var(--text-secondary)' }}>
+                      <p className="mb-3 leading-relaxed text-xs sm:text-sm line-clamp-3 md:line-clamp-none" style={{ color: 'var(--text-secondary)' }}>
                         {cert.description}
                       </p>
 
@@ -229,15 +230,16 @@ const Certificates = () => {
                         </div>
                         {cert.file && (
                           <motion.button
-                            onClick={() => setExpandedCert(cert.id)}
+                            onClick={(e) => { e.stopPropagation(); setExpandedCert(cert.id); }}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg shadow hover:shadow-lg transition-shadow neon-btn"
+                            className="hidden md:flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg shadow hover:shadow-lg transition-shadow neon-btn"
                           >
                             <Eye size={14} />
                             <span>View Certificate</span>
                           </motion.button>
                         )}
+                        <span className="flex md:hidden text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>Tap to view →</span>
                       </div>
                     </div>
 
@@ -274,14 +276,15 @@ const Certificates = () => {
                         {cert.title}
                       </h4>
                       <motion.button
-                        onClick={() => setExpandedCert(null)}
+                        onClick={(e) => { e.stopPropagation(); setExpandedCert(null); }}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex-shrink-0 flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg shadow hover:shadow-lg transition-shadow neon-btn"
+                        className="hidden md:flex flex-shrink-0 items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg shadow hover:shadow-lg transition-shadow neon-btn"
                       >
                         <RotateCcw size={14} />
                         <span>Flip Back</span>
                       </motion.button>
+                      <span className="flex md:hidden text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>Tap to go back →</span>
                     </div>
                   </div>
                 </motion.div>
