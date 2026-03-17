@@ -10,14 +10,20 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
 import ParticleBackground from './components/ParticleBackground'
+import GlowOrb from './components/GlowOrb'
 import ThemeToggle from './components/ThemeToggle'
 import { ThemeProvider } from './contexts/ThemeContext'
 
 function App() {
   return (
     <ThemeProvider>
-      <div className="relative min-h-screen overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300">
+      <div className="relative min-h-screen overflow-hidden transition-colors duration-300"
+        style={{ background: 'var(--bg-primary)' }}
+      >
         <CustomCursor />
+
+        {/* CURSOR-TRACKING GLOW ORB (Antigravity-style) */}
+        <GlowOrb />
 
         {/* FIXED PARTICLE BACKGROUND */}
         <ParticleBackground />

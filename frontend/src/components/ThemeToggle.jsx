@@ -13,7 +13,7 @@ const ThemeToggle = () => {
       whileHover={{ scale: 1.15, rotate: 180 }}
       whileTap={{ scale: 0.9 }}
       onClick={toggleTheme}
-      className="fixed bottom-8 right-8 z-50 p-4 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 text-white rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 backdrop-blur-sm border-2 border-white/20"
+      className="fixed bottom-8 right-8 z-50 p-4 text-white rounded-full shadow-2xl transition-all duration-300 backdrop-blur-sm border-2 border-white/20 neon-btn"
       title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
     >
       <AnimatePresence mode="wait">
@@ -42,7 +42,8 @@ const ThemeToggle = () => {
       
       {/* Pulsing ring effect */}
       <motion.div
-        className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 to-purple-400"
+        className="absolute inset-0 rounded-full"
+        style={{ background: 'var(--gradient-accent)' }}
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.5, 0, 0.5]

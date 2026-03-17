@@ -1,176 +1,154 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { Github, ExternalLink, X, Code2, Sparkles, ChevronDown, ChevronUp, Info } from 'lucide-react'
+import { Github, ExternalLink, X, Code2, Sparkles, ChevronDown, ChevronUp, ArrowUpRight } from 'lucide-react'
 import { projectsData } from '../data/projects'
 
-// Shared utility — maps category to a Tailwind gradient string
-const getNeonColor = (category) => {
-  const colorMap = {
-    'Deep Learning': 'from-blue-500 via-cyan-500 to-blue-600',
-    'Computer Vision': 'from-purple-500 via-pink-500 to-purple-600',
-    'Agricultural AI': 'from-green-500 via-emerald-500 to-green-600',
-    'NLP': 'from-yellow-500 via-orange-500 to-yellow-600',
-    'Web Development': 'from-indigo-500 via-blue-500 to-indigo-600',
-    'Full Stack': 'from-rose-500 via-pink-500 to-rose-600',
-    'Machine Learning': 'from-teal-500 via-cyan-500 to-teal-600',
-  }
-  return colorMap[category] || 'from-blue-500 via-purple-500 to-blue-600'
-}
-
-// Individual Project Card Component with scroll animation
-const ProjectCard = ({ project, index, setSelectedProject }) => {
+/* ── Bento Card ── */
+const BentoCard = ({ project, index, isHero, setSelectedProject }) => {
   return (
     <motion.div
-      key={project.id}
       layout
-      initial={{ opacity: 0, y: 50, scale: 0.95 }}
-      whileInView={{ 
-        opacity: 1, 
-        y: 0, 
-        scale: 1,
-        transition: { 
-          duration: 0.5, 
-          ease: [0.34, 1.56, 0.64, 1]
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          delay: (index % 4) * 0.1,
+          ease: [0.22, 1, 0.36, 1]
         }
       }}
-      viewport={{ once: true, amount: 0.3 }}
-      exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.3 } }}
-      whileHover={{ 
-        y: -10, 
-        scale: 1.02,
-        boxShadow: '0 0 40px rgba(59, 130, 246, 0.6)',
-        transition: { duration: 0.2 }
+      viewport={{ once: true, amount: 0.15 }}
+      onClick={() => setSelectedProject(project)}
+      className={`group relative overflow-hidden rounded-2xl cursor-pointer ${
+        isHero ? 'md:col-span-2 md:row-span-2' : ''
+      }`}
+      style={{
+        minHeight: isHero ? undefined : '280px',
       }}
-      className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden group border border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 transition-all cursor-pointer"
     >
-      {/* Neon glow background on hover */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${getNeonColor(project.category)} opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none z-0`} />
-      
-      {/* Content wrapper */}
-      <div className="relative z-10">
-      {/* Project Image */}
-      <div className="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900">
+      {/* Full-bleed background image */}
+      <div className="absolute inset-0 z-0">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
         />
-
-        {/* Year and Status Badges */}
-        <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
-          <span className="px-3 py-1.5 bg-gradient-to-r from-blue-500 to-purple-600 backdrop-blur-sm text-white text-xs font-bold rounded-full shadow-lg">
-            {project.year}
-          </span>
-
-          {project.status && (
-            <span className={`px-3 py-1.5 text-xs font-bold rounded-full shadow-lg ${
-              project.status === 'Completed' ? 'bg-green-500 text-white' : 'bg-yellow-500 text-white'
-            }`}>
-              {project.status}
-            </span>
-          )}
-        </div>
-
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>
 
-      {/* Project Info */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors mb-2">
+      {/* Gradient overlay — darkens bottom for text readability */}
+      <div
+        className="absolute inset-0 z-10 transition-opacity duration-500"
+        style={{
+          background: isHero
+            ? 'linear-gradient(to top, rgba(3,7,18,0.95) 0%, rgba(3,7,18,0.7) 40%, rgba(3,7,18,0.2) 70%, rgba(3,7,18,0.1) 100%)'
+            : 'linear-gradient(to top, rgba(3,7,18,0.95) 0%, rgba(3,7,18,0.65) 50%, rgba(3,7,18,0.25) 100%)',
+        }}
+      />
+
+      {/* Neon border glow on hover */}
+      <div
+        className="absolute inset-0 z-20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{
+          boxShadow: 'inset 0 0 0 2px var(--accent), 0 0 20px var(--neon-glow), inset 0 0 20px var(--neon-glow)',
+        }}
+      />
+
+      {/* Top badges */}
+      <div className="absolute top-4 left-4 z-30 flex gap-2">
+        <span className="px-3 py-1.5 backdrop-blur-md bg-black/50 text-white text-[11px] font-bold rounded-full border border-white/10 shadow-xl">
+          {project.category}
+        </span>
+      </div>
+      <div className="absolute top-4 right-4 z-30 flex items-center gap-2">
+        <span className="px-3 py-1.5 backdrop-blur-md bg-black/50 text-white/80 text-[11px] font-bold rounded-full border border-white/10">
+          {project.year}
+        </span>
+        <span
+          className={`w-2.5 h-2.5 rounded-full ${
+            project.status === 'Completed'
+              ? 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]'
+              : 'bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]'
+          }`}
+          title={project.status}
+        />
+      </div>
+
+      {/* Content — sits at the bottom */}
+      <div className={`absolute bottom-0 left-0 right-0 z-30 p-5 ${isHero ? 'sm:p-8' : 'p-5'}`}>
+        <h3
+          className={`font-bold leading-tight mb-2 text-white group-hover:text-[var(--accent)] transition-colors duration-300 ${
+            isHero ? 'text-2xl sm:text-3xl' : 'text-lg sm:text-xl'
+          }`}
+        >
           {project.title}
         </h3>
 
-        <span className="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs rounded-full mb-3 font-semibold">
-          {project.category}
-        </span>
-
-        <p className="text-slate-600 dark:text-slate-300 mb-4 line-clamp-2 leading-relaxed text-sm">
+        {/* Description — only on hero or all cards */}
+        <p
+          className={`text-white/60 leading-relaxed mb-4 ${
+            isHero ? 'text-sm sm:text-base line-clamp-3' : 'text-xs line-clamp-2'
+          }`}
+        >
           {project.description}
         </p>
 
-        {/* Tech Stack Tags */}
-        <div className="flex flex-wrap gap-2 mb-5">
-          {project.tech.slice(0, 3).map((tech) => (
+        {/* Tech pills — frosted glass */}
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {project.tech.slice(0, isHero ? 5 : 3).map((tech) => (
             <span
               key={tech}
-              className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs rounded-md font-medium"
+              className="px-2 py-0.5 text-[10px] font-semibold rounded-md backdrop-blur-md bg-white/10 text-white/70 border border-white/5"
             >
               {tech}
             </span>
           ))}
-          {project.tech.length > 3 && (
-            <span className="px-2 py-1 text-slate-500 text-xs font-medium">
-              +{project.tech.length - 3}
+          {project.tech.length > (isHero ? 5 : 3) && (
+            <span className="px-2 py-0.5 text-[10px] font-semibold rounded-md text-white/40">
+              +{project.tech.length - (isHero ? 5 : 3)}
             </span>
           )}
         </div>
 
-        {/* Action Buttons */}
-        <div className="grid grid-cols-3 gap-2">
-          {project.github ? (
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+        {/* Action buttons — slide up on hover */}
+        <div
+          className="flex items-center gap-2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400 ease-out"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {project.github && (
+            <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 dark:from-indigo-600 dark:to-indigo-700 rounded-lg hover:from-indigo-700 hover:to-indigo-800 dark:hover:from-indigo-700 dark:hover:to-indigo-800 transition-all"
-              title="View Source Code"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold backdrop-blur-md bg-white/10 text-white border border-white/10 hover:bg-white/20 hover:border-[var(--accent)] transition-all"
             >
-              <Github size={18} className="text-white" />
-              <span className="text-xs font-bold text-white">Code</span>
-            </motion.a>
-          ) : (
-            <div
-              className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-lg cursor-not-allowed opacity-50"
-              title="Source code not available"
-            >
-              <Github size={18} />
-              <span className="text-xs font-semibold">Code</span>
-            </div>
+              <Github size={14} /> Code
+            </a>
           )}
-
-          {project.live ? (
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          {project.live && (
+            <a
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-gradient-to-r from-cyan-500 to-cyan-600 dark:from-cyan-500 dark:to-cyan-600 rounded-lg hover:from-cyan-600 hover:to-cyan-700 dark:hover:from-cyan-600 dark:hover:to-cyan-700 transition-all"
-              title="View Live Demo"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold text-black transition-all hover:shadow-[0_0_15px_var(--neon-glow)] neon-btn"
             >
-              <ExternalLink size={18} className="text-white" />
-              <span className="text-xs font-bold text-white">Live</span>
-            </motion.a>
-          ) : (
-            <div
-              className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 rounded-lg cursor-not-allowed opacity-50"
-              title="Live demo not available"
-            >
-              <ExternalLink size={18} />
-              <span className="text-xs font-semibold">N/A</span>
-            </div>
+              <ExternalLink size={14} /> Live
+            </a>
           )}
-
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setSelectedProject(project)}
-            className="flex flex-col items-center justify-center gap-1 px-3 py-2.5 bg-gradient-to-r from-pink-500 to-rose-600 dark:from-pink-500 dark:to-rose-600 rounded-lg hover:from-pink-600 hover:to-rose-700 dark:hover:from-pink-600 dark:hover:to-rose-700 transition-all"
-            title="View Project Details"
+          <button
+            onClick={(e) => { e.stopPropagation(); setSelectedProject(project); }}
+            className="ml-auto flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-semibold backdrop-blur-md bg-white/10 text-white/80 border border-white/10 hover:bg-white/20 transition-all"
           >
-            <Info size={18} />
-            <span className="text-xs font-semibold">Info</span>
-          </motion.button>
+            Details <ArrowUpRight size={12} />
+          </button>
         </div>
-      </div>
       </div>
     </motion.div>
   )
 }
 
+/* ── Main Projects Component ── */
 const Projects = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
@@ -192,46 +170,20 @@ const Projects = () => {
 
   const hasMoreProjects = filteredProjects.length > displayedProjects.length
 
-  const floatingAnimation = {
-    y: [-20, 20, -20],
-    x: [-10, 10, -10],
-    rotate: [0, 5, -5, 0],
-    transition: {
-      duration: 8,
-      repeat: Infinity,
-      ease: 'easeInOut'
-    }
-  }
-
   return (
     <section id="projects" className="pt-12 pb-20 relative overflow-hidden">
-      {/* Floating Background Elements — hidden on mobile for performance */}
+      {/* Floating background accents */}
       <motion.div
-        animate={floatingAnimation}
-        className="absolute top-20 left-10 opacity-5 dark:opacity-10 hidden md:block"
+        animate={{ y: [-20, 20, -20], x: [-10, 10, -10], transition: { duration: 8, repeat: Infinity, ease: 'easeInOut' } }}
+        className="absolute top-20 left-10 opacity-5 dark:opacity-[0.03] hidden md:block"
       >
-        <div className="w-64 h-64 bg-gradient-to-br from-blue-400 to-purple-500 rounded-3xl blur-3xl" />
+        <div className="w-64 h-64 rounded-3xl blur-3xl" style={{ background: 'var(--accent)' }} />
       </motion.div>
-
       <motion.div
-        animate={{ ...floatingAnimation, transition: { ...floatingAnimation.transition, delay: 2 } }}
-        className="absolute bottom-20 right-10 opacity-5 dark:opacity-10 hidden md:block"
+        animate={{ y: [20, -20, 20], x: [10, -10, 10], transition: { duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 } }}
+        className="absolute bottom-20 right-10 opacity-5 dark:opacity-[0.03] hidden md:block"
       >
-        <div className="w-80 h-80 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full blur-3xl" />
-      </motion.div>
-
-      <motion.div
-        animate={{ ...floatingAnimation, transition: { ...floatingAnimation.transition, delay: 4 } }}
-        className="absolute top-1/2 right-1/4 opacity-5 dark:opacity-10 hidden lg:block"
-      >
-        <Code2 size={200} className="text-blue-500" />
-      </motion.div>
-
-      <motion.div
-        animate={{ ...floatingAnimation, transition: { ...floatingAnimation.transition, delay: 6 } }}
-        className="absolute bottom-1/4 left-1/4 opacity-5 dark:opacity-10 hidden lg:block"
-      >
-        <Sparkles size={150} className="text-purple-500" />
+        <div className="w-80 h-80 rounded-full blur-3xl" style={{ background: 'var(--accent-secondary)' }} />
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -249,26 +201,26 @@ const Projects = () => {
               transition={{ duration: 0.5 }}
               className="inline-block mb-4"
             >
-              <span className="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold">
+              <span className="px-4 py-2 rounded-full text-sm font-semibold neon-pill">
                 My Work
               </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
               Featured Projects
             </h2>
             <motion.div
               initial={{ width: 0 }}
               animate={isInView ? { width: '100px' } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full mb-4"
+              className="h-1 mx-auto rounded-full mb-4 neon-line"
             />
-            <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            <p style={{ color: 'var(--text-secondary)' }} className="max-w-2xl mx-auto">
               A showcase of my AI/ML projects featuring deep learning, computer vision, and full-stack web applications
             </p>
           </div>
 
-          {/* Filter Buttons */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {/* Filter Bar */}
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
             {categories.map((category) => (
               <motion.button
                 key={category}
@@ -278,10 +230,14 @@ const Projects = () => {
                   setFilter(category)
                   setShowAll(false)
                 }}
-                className={`px-6 py-3 rounded-full font-semibold transition-all ${filter === category
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
-                    : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
-                  }`}
+                className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
+                  filter === category ? 'neon-btn shadow-lg' : ''
+                }`}
+                style={filter !== category ? {
+                  background: 'var(--bg-card)',
+                  color: 'var(--text-secondary)',
+                  border: '1px solid var(--border)',
+                } : {}}
               >
                 {category}
               </motion.button>
@@ -294,23 +250,25 @@ const Projects = () => {
             animate={isInView ? { opacity: 1 } : {}}
             className="text-center mb-8"
           >
-            <span className="text-slate-600 dark:text-slate-400">
-              Showing <strong className="text-blue-600 dark:text-blue-400">{displayedProjects.length}</strong> of <strong className="text-purple-600 dark:text-purple-400">{filteredProjects.length}</strong> projects
+            <span style={{ color: 'var(--text-secondary)' }}>
+              Showing <strong style={{ color: 'var(--accent)' }}>{displayedProjects.length}</strong> of <strong style={{ color: 'var(--accent-secondary)' }}>{filteredProjects.length}</strong> projects
             </span>
           </motion.div>
 
-          {/* Projects Grid */}
+          {/* ══════ BENTO GRID ══════ */}
           <AnimatePresence mode="wait">
             <motion.div
               layout
               transition={{ duration: 0.3 }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+              className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12"
+              style={{ gridAutoFlow: 'dense', gridAutoRows: 'minmax(300px, auto)' }}
             >
               {displayedProjects.map((project, index) => (
-                <ProjectCard
+                <BentoCard
                   key={project.id}
                   project={project}
                   index={index}
+                  isHero={index === 0 && !showAll}
                   setSelectedProject={setSelectedProject}
                 />
               ))}
@@ -336,19 +294,19 @@ const Projects = () => {
                     }, 300)
                   }
                 }}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all hover:from-blue-700 hover:to-purple-700"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all neon-btn"
               >
                 {showAll ? (
                   <>
-                    <ChevronUp size={24} />
-                    Show Less Projects
-                    <ChevronUp size={24} />
+                    <ChevronUp size={20} />
+                    Show Less
+                    <ChevronUp size={20} />
                   </>
                 ) : (
                   <>
-                    <ChevronDown size={24} />
+                    <ChevronDown size={20} />
                     View All {filteredProjects.length} Projects
-                    <ChevronDown size={24} />
+                    <ChevronDown size={20} />
                   </>
                 )}
               </motion.button>
@@ -373,30 +331,30 @@ const Projects = () => {
               exit={{ y: 60, opacity: 0, scale: 0.97 }}
               transition={{ type: 'spring', damping: 28, stiffness: 280 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl w-full sm:max-w-5xl max-h-[90vh] sm:max-h-[88vh] flex flex-col shadow-2xl overflow-hidden"
+              className="relative rounded-2xl sm:rounded-3xl w-full sm:max-w-5xl max-h-[90vh] sm:max-h-[88vh] flex flex-col shadow-2xl overflow-hidden"
+              style={{
+                background: 'var(--bg-secondary)',
+                border: '1px solid var(--border)',
+              }}
             >
-              {/* Category accent bar at very top */}
-              <div className={`h-1.5 w-full bg-gradient-to-r ${getNeonColor(selectedProject.category)} flex-shrink-0`} />
+              {/* Accent bar */}
+              <div className="h-1.5 w-full neon-line flex-shrink-0" />
 
-              {/* Scrollable content area */}
+              {/* Scrollable content */}
               <div className="overflow-y-auto flex-1">
-
-                {/* ── Hero: image + title ── */}
+                {/* Hero: image + title */}
                 <div className="sm:flex">
-
-                  {/* Left: project image */}
                   <div className="relative sm:w-2/5 h-56 sm:h-auto flex-shrink-0">
                     <img
                       src={selectedProject.image}
                       alt={selectedProject.title}
                       className="w-full h-full object-cover"
                     />
-                    {/* gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-black/65 via-black/20 to-transparent" />
-
-                    {/* Floating badges on image */}
                     <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
-                      <span className="px-2.5 py-1 bg-white/95 dark:bg-slate-900/90 text-slate-900 dark:text-white rounded-full text-xs font-bold shadow-md backdrop-blur-sm">
+                      <span className="px-2.5 py-1 rounded-full text-xs font-bold shadow-md backdrop-blur-sm"
+                        style={{ background: 'var(--bg-card)', color: 'var(--text-primary)' }}
+                      >
                         📅 {selectedProject.year}
                       </span>
                       <span className={`px-2.5 py-1 rounded-full text-xs font-bold text-white shadow-md ${
@@ -407,64 +365,63 @@ const Projects = () => {
                     </div>
                   </div>
 
-                  {/* Right: title + meta */}
-                  <div className="relative flex-1 px-6 py-6 sm:px-8 sm:py-8 bg-white dark:bg-slate-900">
-                    {/* Close button */}
+                  <div className="relative flex-1 px-6 py-6 sm:px-8 sm:py-8" style={{ background: 'var(--bg-secondary)' }}>
                     <button
                       onClick={() => setSelectedProject(null)}
-                      className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-red-100 dark:hover:bg-red-900/40 text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-all duration-200 hover:rotate-90"
+                      className="absolute top-4 right-4 p-2 rounded-full transition-all duration-200 hover:rotate-90"
+                      style={{
+                        background: 'var(--bg-card-hover)',
+                        color: 'var(--text-tertiary)',
+                      }}
                       title="Close"
                     >
                       <X size={18} />
                     </button>
 
-                    {/* Category pill */}
-                    <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${getNeonColor(selectedProject.category)} mb-4 shadow-sm`}>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold mb-4 shadow-sm neon-btn">
                       <Code2 size={11} />
                       {selectedProject.category}
                     </span>
 
-                    <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight mb-4 pr-8">
+                    <h3 className="text-2xl sm:text-3xl font-bold leading-tight mb-4 pr-8" style={{ color: 'var(--text-primary)' }}>
                       {selectedProject.title}
                     </h3>
 
-                    <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+                    <p className="text-sm sm:text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                       {selectedProject.fullDescription}
                     </p>
                   </div>
                 </div>
 
-                {/* ── Divider ── */}
-                <div className="mx-6 sm:mx-8 border-t border-slate-100 dark:border-slate-800" />
+                <div className="mx-6 sm:mx-8" style={{ borderTop: '1px solid var(--border)' }} />
 
-                {/* ── Features + Tech in two-column grid ── */}
+                {/* Features + Tech */}
                 <div className="px-6 py-6 sm:px-8 sm:py-7 grid sm:grid-cols-2 gap-6 sm:gap-10">
-
-                  {/* Key Features */}
                   <div>
-                    <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">
-                      <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-yellow-100 dark:bg-yellow-900/40 flex-shrink-0">
-                        <Sparkles size={13} className="text-yellow-500" />
+                    <h4 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-4" style={{ color: 'var(--text-primary)' }}>
+                      <span className="flex items-center justify-center w-7 h-7 rounded-lg" style={{ background: 'rgba(255,199,64,0.15)' }}>
+                        <Sparkles size={13} style={{ color: 'var(--accent-warm)' }} />
                       </span>
                       Key Features
                     </h4>
                     <ul className="space-y-2.5">
                       {selectedProject.features.map((feature, i) => (
                         <li key={i} className="flex items-start gap-3">
-                          <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
-                            <span className="text-blue-600 dark:text-blue-400 font-bold" style={{ fontSize: 10 }}>✓</span>
+                          <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
+                            style={{ background: 'rgba(0,229,255,0.15)' }}
+                          >
+                            <span className="font-bold" style={{ fontSize: 10, color: 'var(--accent)' }}>✓</span>
                           </span>
-                          <span className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{feature}</span>
+                          <span className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  {/* Technologies */}
                   <div>
-                    <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">
-                      <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-purple-100 dark:bg-purple-900/40 flex-shrink-0">
-                        <Code2 size={13} className="text-purple-500" />
+                    <h4 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-4" style={{ color: 'var(--text-primary)' }}>
+                      <span className="flex items-center justify-center w-7 h-7 rounded-lg" style={{ background: 'rgba(179,136,255,0.15)' }}>
+                        <Code2 size={13} style={{ color: 'var(--accent-secondary)' }} />
                       </span>
                       Tech Stack
                     </h4>
@@ -472,7 +429,12 @@ const Projects = () => {
                       {selectedProject.tech.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors cursor-default"
+                          className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-default"
+                          style={{
+                            background: 'var(--bg-card-hover)',
+                            color: 'var(--text-secondary)',
+                            border: '1px solid var(--border)',
+                          }}
                         >
                           {tech}
                         </span>
@@ -481,25 +443,31 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* ── Divider ── */}
-                <div className="mx-6 sm:mx-8 border-t border-slate-100 dark:border-slate-800" />
+                <div className="mx-6 sm:mx-8" style={{ borderTop: '1px solid var(--border)' }} />
 
-                {/* ── Action Buttons ── */}
+                {/* Action Buttons */}
                 <div className="px-6 py-5 sm:px-8 sm:py-6 flex flex-col sm:flex-row gap-3">
                   {selectedProject.github ? (
                     <motion.a
-                      whileHover={{ y: -2, boxShadow: '0 8px 25px rgba(0,0,0,0.2)' }}
+                      whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.97 }}
                       href={selectedProject.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-slate-900 dark:bg-slate-700 hover:bg-slate-800 dark:hover:bg-slate-600 text-white rounded-xl font-semibold text-sm transition-all shadow-md"
+                      className="flex-1 flex items-center justify-center gap-2.5 py-3.5 rounded-xl font-semibold text-sm transition-all shadow-md"
+                      style={{
+                        background: 'var(--bg-elevated)',
+                        color: 'var(--text-primary)',
+                        border: '1px solid var(--border)',
+                      }}
                     >
                       <Github size={18} />
                       View Source Code
                     </motion.a>
                   ) : (
-                    <div className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 rounded-xl font-semibold text-sm cursor-not-allowed opacity-60 border border-dashed border-slate-300 dark:border-slate-700">
+                    <div className="flex-1 flex items-center justify-center gap-2.5 py-3.5 rounded-xl font-semibold text-sm cursor-not-allowed opacity-60 border border-dashed"
+                      style={{ background: 'var(--bg-card-hover)', color: 'var(--text-tertiary)', borderColor: 'var(--border)' }}
+                    >
                       <Github size={18} />
                       Code Not Available
                     </div>
@@ -507,25 +475,26 @@ const Projects = () => {
 
                   {selectedProject.live ? (
                     <motion.a
-                      whileHover={{ y: -2, boxShadow: '0 10px 30px rgba(79,70,229,0.5)' }}
+                      whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.97 }}
                       href={selectedProject.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold text-sm transition-all shadow-md border border-indigo-500"
+                      className="flex-1 flex items-center justify-center gap-2.5 py-3.5 rounded-xl font-bold text-sm transition-all shadow-md neon-btn"
                     >
-                      <ExternalLink size={18} className="text-white" />
-                      <span className="text-white">Live Demo</span>
+                      <ExternalLink size={18} />
+                      Live Demo
                     </motion.a>
                   ) : (
-                    <div className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-slate-200 dark:bg-slate-700/50 text-slate-400 dark:text-slate-600 rounded-xl font-semibold text-sm cursor-not-allowed border border-dashed border-slate-300 dark:border-slate-700">
+                    <div className="flex-1 flex items-center justify-center gap-2.5 py-3.5 rounded-xl font-semibold text-sm cursor-not-allowed border border-dashed"
+                      style={{ background: 'var(--bg-card-hover)', color: 'var(--text-tertiary)', borderColor: 'var(--border)' }}
+                    >
                       <ExternalLink size={18} />
                       Demo Not Available
                     </div>
                   )}
                 </div>
-
-              </div>{/* end scrollable */}
+              </div>
             </motion.div>
           </motion.div>
         )}

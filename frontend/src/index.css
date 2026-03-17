@@ -3,9 +3,101 @@
 /* Tailwind v4: Enable class-based dark mode (like v3's darkMode: 'class') */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* -----------------------------
+/* ─────────────────────────────────────────────
+   🎨 THEME COLOR SYSTEM — CSS Custom Properties
+   Change ONE place → entire site updates!
+   ───────────────────────────────────────────── */
+
+:root {
+  /* ── ACCENT COLORS (Light Mode) ── */
+  --accent: #0284c7;            /* Deep Sky Blue — primary accent */
+  --accent-secondary: #7e22ce;  /* Deep Purple — secondary */
+  --accent-tertiary: #db2777;   /* Deep Pink — tertiary  */
+  --accent-warm: #ea580c;       /* Deep Orange */
+
+  /* ── RAW HSL values (for alpha variants via Tailwind) ── */
+  --accent-h: 200;
+  --accent-s: 98%;
+  --accent-l: 39%;
+
+  /* ── SURFACE COLORS (Light Mode) ── */
+  --bg-primary: #e2e8f0;        /* Slate-200 (cooler, softer light gray) */
+  --bg-secondary: #f1f5f9;      /* Slate-100 */
+  --bg-card: #f8fafc;           /* Slate-50 */
+  --bg-card-hover: #ffffff;
+  --bg-elevated: #f8fafc;
+
+  /* ── TEXT COLORS (Light Mode) ── */
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-tertiary: #64748b;
+  --text-on-accent: #ffffff;    /* White text on dark buttons */
+
+  /* ── BORDER / DIVIDER (Light Mode) ── */
+  --border: #cbd5e1;
+  --border-hover: #0284c7;
+
+  /* ── NEON GLOWS (Light Mode) ── */
+  --neon-glow: rgba(2, 132, 199, 0.2);
+  --neon-glow-strong: rgba(2, 132, 199, 0.35);
+  --neon-glow-secondary: rgba(126, 34, 206, 0.2);
+  --neon-glow-tertiary: rgba(219, 39, 119, 0.2);
+
+  /* ── GRADIENTS ── */
+  --gradient-accent: linear-gradient(135deg, var(--accent), #2563eb, var(--accent-secondary));
+  --gradient-hero: linear-gradient(135deg, var(--accent), var(--accent-secondary), var(--accent-tertiary));
+  --gradient-neon: linear-gradient(90deg, var(--accent), var(--accent-tertiary), var(--accent-secondary));
+  /* High-contrast stunning gradient specifically for the main Hero Title */
+  --gradient-text-hero: linear-gradient(to right, #0284c7 0%, #2563eb 30%, #7e22ce 70%, #db2777 100%);
+
+  /* ── SCROLLBAR ── */
+  --scrollbar-track: #f1f5f9;
+  --scrollbar-thumb: linear-gradient(to bottom, var(--accent), var(--accent-secondary), var(--accent-tertiary));
+
+  /* ── MISC ── */
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── DARK MODE OVERRIDES ── */
+html.dark {
+  --accent: #00e5ff;
+  --accent-secondary: #b388ff;
+  --accent-tertiary: #ff6be6;
+  --accent-warm: #ffc740;
+
+  --bg-primary: #030712;
+  --bg-secondary: #0a0f1e;
+  --bg-card: #0d1322;
+  --bg-card-hover: #131a2e;
+  --bg-elevated: #111827;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --text-on-accent: #000000;
+
+  --border: #1e293b;
+  --border-hover: #00e5ff;
+
+  --neon-glow: rgba(0, 229, 255, 0.35);
+  --neon-glow-strong: rgba(0, 229, 255, 0.65);
+  --neon-glow-secondary: rgba(179, 136, 255, 0.35);
+  --neon-glow-tertiary: rgba(255, 107, 230, 0.35);
+
+  --gradient-accent: linear-gradient(135deg, var(--accent), #4facfe, var(--accent-secondary));
+  --gradient-text-hero: linear-gradient(to right, #00f2fe 0%, #4facfe 30%, #f093fb 70%, #f5576c 100%);
+
+  --scrollbar-track: #030712;
+}
+
+/* ─────────────────────────────────────────────
    GLOBAL RESET & BASE
------------------------------ */
+   ───────────────────────────────────────────── */
 html,
 body {
   margin: 0;
@@ -17,11 +109,13 @@ body {
 
 /* Theme-aware backgrounds */
 html {
-  background: #ffffff; /* light mode default */
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 html.dark {
-  background: #020617; /* dark mode */
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 /* Disable mobile background repaint issues */
@@ -32,37 +126,21 @@ html.dark {
   }
 }
 
-/* Typography & rendering */
-:root {
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Light mode text color */
-html {
-  color: rgba(0, 0, 0, 0.87);
-}
-
-/* Dark mode text color */
-html.dark {
-  color: rgba(255, 255, 255, 0.87);
-}
-
 /* Links */
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--accent);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--accent-secondary);
 }
 
 /* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', 'Inter', sans-serif;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -86,53 +164,140 @@ button {
   transition: border-color 0.25s;
 }
 
-/* -----------------------------
+/* ─────────────────────────────────────────────
    CUSTOM CURSOR
------------------------------ */
+   ───────────────────────────────────────────── */
 * {
   cursor: none !important;
 }
 
-/* -----------------------------
+/* ─────────────────────────────────────────────
+   NEON UTILITY CLASSES
+   ───────────────────────────────────────────── */
+
+/* Neon text glow */
+.neon-text {
+  color: var(--accent);
+  text-shadow:
+    0 0 7px var(--neon-glow),
+    0 0 20px var(--neon-glow),
+    0 0 42px var(--neon-glow);
+}
+
+.neon-text-secondary {
+  color: var(--accent-secondary);
+  text-shadow:
+    0 0 7px var(--neon-glow-secondary),
+    0 0 20px var(--neon-glow-secondary),
+    0 0 42px var(--neon-glow-secondary);
+}
+
+.neon-text-tertiary {
+  color: var(--accent-tertiary);
+  text-shadow:
+    0 0 7px var(--neon-glow-tertiary),
+    0 0 20px var(--neon-glow-tertiary),
+    0 0 42px var(--neon-glow-tertiary);
+}
+
+/* Neon border glow */
+.neon-border {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 5px var(--neon-glow),
+    0 0 15px var(--neon-glow),
+    inset 0 0 5px var(--neon-glow);
+}
+
+.neon-border-subtle {
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  box-shadow: 0 0 8px var(--neon-glow);
+}
+
+/* Neon card effect on hover */
+.neon-card {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.neon-card:hover {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 10px var(--neon-glow),
+    0 0 30px var(--neon-glow),
+    inset 0 0 10px rgba(0, 229, 255, 0.05);
+}
+
+/* Neon line / divider */
+.neon-line {
+  background: var(--gradient-hero);
+  box-shadow: 0 0 10px var(--neon-glow), 0 0 20px var(--neon-glow-secondary);
+}
+
+/* Neon button */
+.neon-btn {
+  background: var(--gradient-accent);
+  color: var(--text-on-accent);
+  font-weight: 700;
+  box-shadow: 0 0 15px var(--neon-glow), 0 0 30px var(--neon-glow);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.neon-btn:hover {
+  box-shadow: 0 0 20px var(--neon-glow-strong), 0 0 50px var(--neon-glow);
+}
+
+/* Neon pill/badge */
+.neon-pill {
+  background: rgba(0, 229, 255, 0.1);
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+/* Accent gradient text */
+.gradient-text {
+  background: var(--gradient-text-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hero name neon outline effect */
+.hero-name-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--accent);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 640px) {
+  .hero-name-outline {
+    -webkit-text-stroke: 1.5px var(--accent);
+  }
+}
+
+/* ─────────────────────────────────────────────
    SCROLLBAR
------------------------------ */
-/* Light mode scrollbar */
+   ───────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #ec4899);
+  background: var(--gradient-hero);
   border-radius: 10px;
-  border: 2px solid #f1f5f9;
+  border: 2px solid var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #60a5fa, #a78bfa, #f472b6);
-}
-
-/* Dark mode scrollbar */
-html.dark ::-webkit-scrollbar-track {
-  background: #020617;
-}
-
-html.dark ::-webkit-scrollbar-thumb {
-  border: 2px solid #020617;
+  background: var(--gradient-neon);
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #8b5cf6 #f1f5f9;
-}
-
-html.dark * {
-  scrollbar-color: #8b5cf6 #020617;
+  scrollbar-color: var(--accent-secondary) var(--scrollbar-track);
 }
 
 /* Active Navbar Link */
@@ -144,9 +309,36 @@ html.dark * {
   position: relative;
 }
 
-/* ── MOBILE PERFORMANCE ── */
+/* ─────────────────────────────────────────────
+   CURSOR-TRACKING GLOW ORB (Background)
+   ───────────────────────────────────────────── */
+.glow-orb {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--neon-glow) 0%,
+    rgba(0, 229, 255, 0.08) 35%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  transition: opacity 0.3s ease;
+}
 
-/* Disable expensive CSS blur on mobile */
+html:not(.dark) .glow-orb {
+  background: radial-gradient(
+    circle,
+    rgba(0, 229, 255, 0.12) 0%,
+    rgba(179, 136, 255, 0.06) 35%,
+    transparent 70%
+  );
+}
+
+/* ── MOBILE PERFORMANCE ── */
 @media (max-width: 768px) {
   .blur-3xl,
   .blur-xl {
@@ -158,6 +350,10 @@ html.dark * {
   .backdrop-blur-md {
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
+  }
+
+  .glow-orb {
+    display: none;
   }
 }
 
@@ -171,4 +367,13 @@ html.dark * {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ── Scrollbar Hide Utility ── */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

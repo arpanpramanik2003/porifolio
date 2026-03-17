@@ -39,15 +39,18 @@ const Navbar = () => {
           width: scrolled ? '92%' : '100%',
           borderRadius: scrolled ? '9999px' : '0px',
           boxShadow: scrolled
-            ? '0 20px 40px rgba(0,0,0,0.15)'
+            ? '0 8px 32px rgba(0,229,255,0.15), 0 0 0 1px rgba(0,229,255,0.08)'
             : 'none',
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 25 }}
         className={`mx-auto transition-all duration-200 ${
           scrolled
-            ? 'bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl border border-white/30 dark:border-white/10'
+            ? 'backdrop-blur-xl border border-white/10 dark:border-white/5'
             : 'bg-transparent'
         }`}
+        style={scrolled ? {
+          background: 'color-mix(in srgb, var(--bg-secondary) 70%, transparent)',
+        } : {}}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center h-12">
@@ -59,14 +62,17 @@ const Navbar = () => {
                 transition={{ duration: 0.3 }}
                 className="flex items-center gap-2.5"
               >
-                <div className="relative w-9 h-9 rounded-full p-[2px] bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 shadow-md">
+                <div className="relative w-9 h-9 rounded-full p-[2px] shadow-md neon-border-subtle"
+                  style={{ background: 'var(--gradient-hero)' }}
+                >
                   <img
                     src="/logo.png"
                     alt="Logo"
-                    className="w-full h-full rounded-full object-cover bg-slate-900"
+                    className="w-full h-full rounded-full object-cover"
+                    style={{ background: 'var(--bg-primary)' }}
                   />
                 </div>
-                <span className={`text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-purple-700 dark:from-blue-500 dark:via-purple-500 dark:to-purple-600 bg-clip-text text-transparent ${
+                <span className={`text-xl font-bold gradient-text ${
                   !scrolled ? 'drop-shadow-lg' : ''
                 }`}>
                   arpanpramanik.dev
@@ -94,18 +100,16 @@ const Navbar = () => {
                       <span
                         className={`relative z-10 transition-colors ${
                           isActive
-                            ? 'text-blue-600 dark:text-blue-400'
-                            : scrolled
-                              ? 'text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400'
-                              : 'text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-300'
+                            ? 'neon-text'
+                            : 'text-slate-700 dark:text-slate-300 group-hover:text-[var(--accent)]'
                         }`}
                       >
                         {link.name}
                       </span>
 
-                      {/* Active underline */}
+                      {/* Active underline — neon gradient */}
                       <span
-                        className={`absolute bottom-0 left-1/2 h-[2px] -translate-x-1/2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-300 ${
+                        className={`absolute bottom-0 left-1/2 h-[2px] -translate-x-1/2 neon-line transition-all duration-300 ${
                           isActive ? 'w-full' : 'w-0 group-hover:w-full'
                         }`}
                       />
@@ -118,11 +122,7 @@ const Navbar = () => {
             {/* Mobile Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`lg:hidden transition-colors ${
-                scrolled
-                  ? 'text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400'
-                  : 'text-slate-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-300'
-              }`}
+              className="lg:hidden transition-colors text-slate-700 dark:text-slate-200 hover:text-[var(--accent)]"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -135,7 +135,8 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="lg:hidden mt-3 mx-auto w-[92%] bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/30 dark:border-white/10"
+          className="lg:hidden mt-3 mx-auto w-[92%] backdrop-blur-xl rounded-2xl shadow-xl border border-white/10"
+          style={{ background: 'color-mix(in srgb, var(--bg-secondary) 90%, transparent)' }}
         >
           <div className="px-4 pt-2 pb-4 space-y-1">
             {navLinks.map((link) => (
@@ -155,9 +156,9 @@ const Navbar = () => {
                 <div
                   className={`block py-3 px-4 font-semibold rounded-lg cursor-pointer transition-all ${
                     activeSection === link.to
-                      ? 'text-blue-600 dark:text-blue-400'
-                      : 'text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400'
-                  } hover:bg-slate-200/50 dark:hover:bg-white/10`}
+                      ? 'neon-text'
+                      : 'text-slate-700 dark:text-slate-200 hover:text-[var(--accent)]'
+                  } hover:bg-[var(--bg-card-hover)]`}
                 >
                   {link.name}
                 </div>

@@ -15,9 +15,11 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-slate-900 dark:bg-slate-950 text-slate-300 relative overflow-hidden">
-      {/* Decorative gradient */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
+    <footer className="relative overflow-hidden"
+      style={{ background: 'var(--bg-secondary)', color: 'var(--text-secondary)' }}
+    >
+      {/* Decorative gradient — neon line */}
+      <div className="absolute top-0 left-0 right-0 h-1 neon-line" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10 text-center md:text-left">
@@ -30,16 +32,16 @@ const Footer = () => {
             viewport={{ once: true }}
             className="flex flex-col items-center md:items-start"
           >
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
+            <h3 className="text-2xl font-bold gradient-text mb-4">
               Arpan Pramanik
             </h3>
 
-            <p className="text-slate-400 mb-4 max-w-sm">
+            <p className="mb-4 max-w-sm" style={{ color: 'var(--text-tertiary)' }}>
               Full-Stack Developer & AI/ML Enthusiast passionate about building innovative solutions.
             </p>
 
             <div className="flex gap-4 justify-center md:justify-start">
-              {[ 
+              {[
                 { icon: Github, link: personalInfo.social.github },
                 { icon: Linkedin, link: personalInfo.social.linkedin },
                 { icon: Mail, link: personalInfo.social.email },
@@ -50,7 +52,12 @@ const Footer = () => {
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors"
+                  className="p-3 rounded-lg transition-colors neon-card"
+                  style={{
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border)',
+                    color: 'var(--text-secondary)',
+                  }}
                 >
                   <Icon size={20} />
                 </motion.a>
@@ -66,7 +73,7 @@ const Footer = () => {
             viewport={{ once: true }}
             className="flex flex-col items-center md:items-start"
           >
-            <h4 className="text-lg font-bold text-white mb-4">
+            <h4 className="text-lg font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
               Quick Links
             </h4>
             <ul className="space-y-2">
@@ -76,7 +83,10 @@ const Footer = () => {
                     to={link.to}
                     smooth
                     duration={500}
-                    className="hover:text-blue-400 transition-colors cursor-pointer"
+                    className="transition-colors cursor-pointer"
+                    style={{ color: 'var(--text-tertiary)' }}
+                    onMouseEnter={(e) => { e.target.style.color = 'var(--accent)' }}
+                    onMouseLeave={(e) => { e.target.style.color = 'var(--text-tertiary)' }}
                   >
                     {link.name}
                   </Link>
@@ -93,14 +103,16 @@ const Footer = () => {
             viewport={{ once: true }}
             className="flex flex-col items-center md:items-start"
           >
-            <h4 className="text-lg font-bold text-white mb-4">
+            <h4 className="text-lg font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
               Get In Touch
             </h4>
-            <ul className="space-y-3 text-slate-400">
+            <ul className="space-y-3" style={{ color: 'var(--text-tertiary)' }}>
               <li>
                 <a
                   href={`mailto:${personalInfo.contact.email}`}
-                  className="hover:text-blue-400 transition-colors break-all"
+                  className="transition-colors break-all"
+                  onMouseEnter={(e) => { e.target.style.color = 'var(--accent)' }}
+                  onMouseLeave={(e) => { e.target.style.color = 'var(--text-tertiary)' }}
                 >
                   {personalInfo.contact.email}
                 </a>
@@ -108,7 +120,9 @@ const Footer = () => {
               <li>
                 <a
                   href={`tel:${personalInfo.contact.phone}`}
-                  className="hover:text-blue-400 transition-colors"
+                  className="transition-colors"
+                  onMouseEnter={(e) => { e.target.style.color = 'var(--accent)' }}
+                  onMouseLeave={(e) => { e.target.style.color = 'var(--text-tertiary)' }}
                 >
                   {personalInfo.contact.phone}
                 </a>
@@ -121,15 +135,15 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-slate-800 mb-6" />
+        <div className="mb-6" style={{ borderTop: '1px solid var(--border)' }} />
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-center">
-          <p className="flex items-center gap-2 text-slate-400 text-sm">
-            Made with <Heart size={16} className="text-red-500 fill-current animate-pulse" /> by Arpan Pramanik
+          <p className="flex items-center gap-2 text-sm" style={{ color: 'var(--text-tertiary)' }}>
+            Made with <Heart size={16} className="fill-current animate-pulse" style={{ color: 'var(--accent-tertiary)' }} /> by Arpan Pramanik
           </p>
 
-          <p className="text-xs sm:text-sm text-slate-500">
+          <p className="text-xs sm:text-sm" style={{ color: 'var(--text-tertiary)' }}>
             © {currentYear} All rights reserved.
           </p>
 
@@ -137,7 +151,7 @@ const Footer = () => {
             <motion.button
               whileHover={{ scale: 1.1, y: -5 }}
               whileTap={{ scale: 0.9 }}
-              className="p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg"
+              className="p-3 rounded-full shadow-lg neon-btn"
             >
               <ArrowUp size={18} />
             </motion.button>

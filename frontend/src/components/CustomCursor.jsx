@@ -52,14 +52,14 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Main Cursor Dot - Changes COLOR on click, not scale */}
+      {/* Main Cursor Dot — neon accent */}
       <motion.div
         className="fixed top-0 left-0 w-4 h-4 rounded-full pointer-events-none z-[9999] mix-blend-difference"
         animate={{
           x: mousePosition.x - 8,
           y: mousePosition.y - 8,
           scale: isHovering ? 1.5 : 1,
-          backgroundColor: isClicking ? '#ec4899' : '#3b82f6', // Pink when clicking
+          backgroundColor: isClicking ? '#ff6be6' : '#00e5ff',
         }}
         transition={{
           type: 'spring',
@@ -67,22 +67,32 @@ const CustomCursor = () => {
           damping: 28,
           mass: 0.5,
         }}
+        style={{
+          boxShadow: isClicking
+            ? '0 0 12px #ff6be6, 0 0 24px rgba(255,107,230,0.4)'
+            : '0 0 12px #00e5ff, 0 0 24px rgba(0,229,255,0.4)',
+        }}
       />
 
-      {/* Cursor Ring */}
+      {/* Cursor Ring — neon glow ring */}
       <motion.div
         className="fixed top-0 left-0 w-8 h-8 border-2 rounded-full pointer-events-none z-[9999] mix-blend-difference"
         animate={{
           x: mousePosition.x - 16,
           y: mousePosition.y - 16,
           scale: isHovering ? 2 : 1,
-          borderColor: isClicking ? '#ec4899' : '#8b5cf6', // Pink when clicking
+          borderColor: isClicking ? '#ff6be6' : '#b388ff',
         }}
         transition={{
           type: 'spring',
           stiffness: 150,
           damping: 15,
           mass: 0.8,
+        }}
+        style={{
+          boxShadow: isClicking
+            ? '0 0 8px rgba(255,107,230,0.5)'
+            : '0 0 8px rgba(179,136,255,0.3)',
         }}
       />
     </>
