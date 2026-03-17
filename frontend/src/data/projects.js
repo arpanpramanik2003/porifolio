@@ -240,6 +240,30 @@ export const projectsData = [
     live: 'https://abhigraha2k25.vercel.app/',
     status: 'Completed',
     year: '2025'
+  },
+  {
+    id: 11,
+    title: 'PaperLens AI',
+    category: 'Web Development',
+    image: '/project-images/paperlens.png',
+    featured: false,
+    description: 'Research paper explainer that analyzes PDF or DOCX files, generates structured summaries, and supports grounded follow-up Q&A.',
+    fullDescription: 'Built a full-stack research paper explainer with a React frontend and FastAPI backend for faster academic reading workflows. The system extracts content from PDF and DOCX files, creates overlapping semantic chunks, combines dense retrieval with BM25, and improves answer quality with cross-encoder reranking before generating structured analysis and grounded follow-up responses.',
+    tech: ['React 19', 'Vite', 'Tailwind CSS', 'FastAPI', 'Groq API', 'FAISS', 'BM25', 'sentence-transformers', 'CrossEncoder', 'pdfplumber'],
+    features: [
+      'Upload and analyze research papers in PDF and DOCX formats',
+      'Structured markdown analysis covering key idea, methodology, results, limitations, and future work',
+      'Follow-up question answering grounded in the uploaded document',
+      'Hybrid retrieval pipeline combining semantic search with BM25 scoring',
+      'Cross-encoder reranking to improve chunk relevance before generation',
+      'Hash-based in-memory document caching for faster repeated access',
+      'Streaming responses for both analysis and question answering',
+      'Frontend in React with FastAPI backend and Groq-powered inference'
+    ],
+    github: 'https://github.com/arpanpramanik2003/PaperLens-AI.git',
+    live: "https://paperlens.arpanpramanik.dev/",
+    status: 'Completed',
+    year: '2026'
   }
 ]
 
