@@ -283,7 +283,7 @@ const Experience = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.35 }}
-            className="grid grid-cols-3 gap-3 sm:gap-5 mb-16 max-w-2xl mx-auto"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-16 max-w-2xl mx-auto"
           >
             {quickStats.map((stat, i) => (
               <motion.div

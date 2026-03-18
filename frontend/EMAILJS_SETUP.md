@@ -64,3 +64,4 @@ VITE_EMAILJS_PUBLIC_KEY=xGZz2dZ87evBJDUC2
 - `VITE_EMAILJS_PUBLIC_KEY`: Your EmailJS public key
 
 **Important**: Never commit the `.env` file to version control. It's already in `.gitignore`.
+z
