@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { Github, ExternalLink, X, Code2, Sparkles, ChevronDown, ChevronUp, ArrowUpRight } from 'lucide-react'
+import { Github, ExternalLink, X, Code2, Sparkles, ChevronDown, ChevronUp } from 'lucide-react'
 import { projectsData } from '../data/projects'
 
 /* ── Bento Card ── */
@@ -65,14 +65,6 @@ const BentoCard = ({ project, index, isHero, setSelectedProject }) => {
         <span className="px-3 py-1.5 backdrop-blur-md bg-black/50 text-white/80 text-[11px] font-bold rounded-full border border-white/10">
           {project.year}
         </span>
-        <span
-          className={`w-2.5 h-2.5 rounded-full ${
-            project.status === 'Completed'
-              ? 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]'
-              : 'bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]'
-          }`}
-          title={project.status}
-        />
       </div>
 
       {/* Content — sits at the bottom */}
@@ -84,65 +76,6 @@ const BentoCard = ({ project, index, isHero, setSelectedProject }) => {
         >
           {project.title}
         </h3>
-
-        {/* Description — only on hero or all cards */}
-        <p
-          className={`text-white/60 leading-relaxed mb-4 ${
-            isHero ? 'text-sm sm:text-base line-clamp-3' : 'text-xs line-clamp-2'
-          }`}
-        >
-          {project.description}
-        </p>
-
-        {/* Tech pills — frosted glass */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {project.tech.slice(0, isHero ? 5 : 3).map((tech) => (
-            <span
-              key={tech}
-              className="px-2 py-0.5 text-[10px] font-semibold rounded-md backdrop-blur-md bg-white/10 text-white/70 border border-white/5"
-            >
-              {tech}
-            </span>
-          ))}
-          {project.tech.length > (isHero ? 5 : 3) && (
-            <span className="px-2 py-0.5 text-[10px] font-semibold rounded-md text-white/40">
-              +{project.tech.length - (isHero ? 5 : 3)}
-            </span>
-          )}
-        </div>
-
-        {/* Action buttons — slide up on hover */}
-        <div
-          className="flex items-center gap-2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400 ease-out"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold backdrop-blur-md bg-white/10 text-white border border-white/10 hover:bg-white/20 hover:border-[var(--accent)] transition-all"
-            >
-              <Github size={14} /> Code
-            </a>
-          )}
-          {project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold text-black transition-all hover:shadow-[0_0_15px_var(--neon-glow)] neon-btn"
-            >
-              <ExternalLink size={14} /> Live
-            </a>
-          )}
-          <button
-            onClick={(e) => { e.stopPropagation(); setSelectedProject(project); }}
-            className="ml-auto flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-semibold backdrop-blur-md bg-white/10 text-white/80 border border-white/10 hover:bg-white/20 transition-all"
-          >
-            Details <ArrowUpRight size={12} />
-          </button>
-        </div>
       </div>
     </motion.div>
   )
