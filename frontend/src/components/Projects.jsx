@@ -1,107 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { Github, ExternalLink, X, Code2, Sparkles, ChevronDown, ChevronUp } from 'lucide-react'
+import { Github, ExternalLink, Info, X, Code2, Sparkles } from 'lucide-react'
 import { projectsData } from '../data/projects'
-
-/* ── Bento Card ── */
-const BentoCard = ({ project, index, isHero, setSelectedProject }) => {
-  return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        transition: {
-          duration: 0.6,
-          delay: (index % 4) * 0.1,
-          ease: [0.22, 1, 0.36, 1]
-        }
-      }}
-      viewport={{ once: true, amount: 0.15 }}
-      onClick={() => setSelectedProject(project)}
-      className={`group relative overflow-hidden rounded-2xl cursor-pointer ${
-        isHero ? 'md:col-span-2 md:row-span-2' : ''
-      }`}
-      style={{
-        minHeight: isHero ? undefined : '280px',
-      }}
-    >
-      {/* Full-bleed background image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-        />
-      </div>
-
-      {/* Gradient overlay — darkens bottom for text readability */}
-      <div
-        className="absolute inset-0 z-10 transition-opacity duration-500"
-        style={{
-          background: isHero
-            ? 'linear-gradient(to top, rgba(3,7,18,0.95) 0%, rgba(3,7,18,0.7) 40%, rgba(3,7,18,0.2) 70%, rgba(3,7,18,0.1) 100%)'
-            : 'linear-gradient(to top, rgba(3,7,18,0.95) 0%, rgba(3,7,18,0.65) 50%, rgba(3,7,18,0.25) 100%)',
-        }}
-      />
-
-      {/* Neon border glow on hover */}
-      <div
-        className="absolute inset-0 z-20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{
-          boxShadow: 'inset 0 0 0 2px var(--accent), 0 0 20px var(--neon-glow), inset 0 0 20px var(--neon-glow)',
-        }}
-      />
-
-      {/* Top badges */}
-      <div className="absolute top-4 left-4 z-30 flex gap-2">
-        <span className="px-3 py-1.5 backdrop-blur-md bg-black/50 text-white text-[11px] font-bold rounded-full border border-white/10 shadow-xl">
-          {project.category}
-        </span>
-      </div>
-      <div className="absolute top-4 right-4 z-30 flex items-center gap-2">
-        <span className="px-3 py-1.5 backdrop-blur-md bg-black/50 text-white/80 text-[11px] font-bold rounded-full border border-white/10">
-          {project.year}
-        </span>
-      </div>
-
-      {/* Content — sits at the bottom */}
-      <div className={`absolute bottom-0 left-0 right-0 z-30 p-5 ${isHero ? 'sm:p-8' : 'p-5'}`}>
-        <h3
-          className={`font-bold leading-tight mb-2 text-white group-hover:text-[var(--accent)] transition-colors duration-300 ${
-            isHero ? 'text-2xl sm:text-3xl' : 'text-lg sm:text-xl'
-          }`}
-        >
-          {project.title}
-        </h3>
-      </div>
-    </motion.div>
-  )
-}
+import { personalInfo } from '../data/personalInfo'
 
 /* ── Main Projects Component ── */
 const Projects = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
-  const [filter, setFilter] = useState('All')
   const [selectedProject, setSelectedProject] = useState(null)
-  const [showAll, setShowAll] = useState(false)
-
-  const categories = ['All', 'Machine Learning', 'Deep Learning', 'Computer Vision', 'Web Development']
-
-  const filteredProjects = filter === 'All'
-    ? projectsData
-    : projectsData.filter(project => project.category === filter)
-
-  const displayedProjects = showAll
-    ? filteredProjects
-    : filter === 'All'
-      ? filteredProjects.filter(project => project.featured).slice(0, 3)
-      : filteredProjects.slice(0, 3)
-
-  const hasMoreProjects = filteredProjects.length > displayedProjects.length
 
   return (
     <section id="projects" className="pt-12 pb-20 relative overflow-hidden">
@@ -148,107 +56,141 @@ const Projects = () => {
               className="h-1 mx-auto rounded-full mb-4 neon-line"
             />
             <p style={{ color: 'var(--text-secondary)' }} className="max-w-2xl mx-auto">
-              A showcase of my AI/ML projects featuring deep learning, computer vision, and full-stack web applications
+              A showcase of selected projects with focused outcomes, tools, and live links
             </p>
           </div>
 
-          {/* Filter Bar */}
-          <div className="flex flex-wrap justify-center gap-2 mb-10">
-            {categories.map((category) => (
-              <motion.button
-                key={category}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  setFilter(category)
-                  setShowAll(false)
-                }}
-                className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
-                  filter === category ? 'neon-btn shadow-lg' : ''
+          <div className="space-y-8 sm:space-y-10">
+            {projectsData.map((project, index) => (
+              <motion.article
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch p-4 sm:p-6 rounded-2xl neon-card ${
+                  index % 2 !== 0 ? 'lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1' : ''
                 }`}
-                style={filter !== category ? {
+                style={{
                   background: 'var(--bg-card)',
-                  color: 'var(--text-secondary)',
                   border: '1px solid var(--border)',
-                } : {}}
+                }}
               >
-                {category}
-              </motion.button>
+                <div className="overflow-hidden rounded-xl" style={{ border: '1px solid var(--border)' }}>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full min-h-[220px] sm:min-h-[280px] object-cover"
+                  />
+                </div>
+
+                <div className="flex flex-col justify-between gap-5">
+                  <div>
+                    <span
+                      className="inline-flex px-3 py-1 rounded-full text-xs font-semibold mb-3"
+                      style={{
+                        background: 'var(--bg-card-hover)',
+                        color: 'var(--accent)',
+                        border: '1px solid var(--border)',
+                      }}
+                    >
+                      {project.category}
+                    </span>
+
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
+                      {project.title}
+                    </h3>
+
+                    <p className="text-sm sm:text-base leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+                      {project.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.slice(0, 6).map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1.5 rounded-lg text-xs font-semibold"
+                          style={{
+                            background: 'var(--bg-card-hover)',
+                            color: 'var(--text-secondary)',
+                            border: '1px solid var(--border)',
+                          }}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    <motion.button
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setSelectedProject(project)}
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm"
+                      style={{
+                        background: 'var(--bg-card-hover)',
+                        color: 'var(--text-primary)',
+                        border: '1px solid var(--border)',
+                      }}
+                    >
+                      <Info size={16} />
+                      Info
+                    </motion.button>
+
+                    {project.github && (
+                      <motion.a
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm"
+                        style={{
+                          background: 'var(--bg-elevated)',
+                          color: 'var(--text-primary)',
+                          border: '1px solid var(--border)',
+                        }}
+                      >
+                        <Github size={16} />
+                        Source
+                      </motion.a>
+                    )}
+
+                    {project.live && (
+                      <motion.a
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm neon-btn"
+                      >
+                        <ExternalLink size={16} />
+                        Live Demo
+                      </motion.a>
+                    )}
+                  </div>
+                </div>
+              </motion.article>
             ))}
           </div>
 
-          {/* Project Count */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            className="text-center mb-8"
-          >
-            <span style={{ color: 'var(--text-secondary)' }}>
-              Showing <strong style={{ color: 'var(--accent)' }}>{displayedProjects.length}</strong> of <strong style={{ color: 'var(--accent-secondary)' }}>{filteredProjects.length}</strong> projects
-            </span>
-          </motion.div>
-
-          {/* ══════ BENTO GRID ══════ */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              layout
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12"
-              style={{ gridAutoFlow: 'dense', gridAutoRows: 'minmax(300px, auto)' }}
+          <p className="text-center mt-10 text-sm sm:text-base" style={{ color: 'var(--text-secondary)' }}>
+            For more projects, visit{' '}
+            <a
+              href={personalInfo.social.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold"
+              style={{ color: 'var(--accent)' }}
             >
-              {displayedProjects.map((project, index) => (
-                <BentoCard
-                  key={project.id}
-                  project={project}
-                  index={index}
-                  isHero={index === 0 && !showAll}
-                  setSelectedProject={setSelectedProject}
-                />
-              ))}
-            </motion.div>
-          </AnimatePresence>
-
-          {/* View More / View Less Button */}
-          {filteredProjects.length > 3 && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.3 }}
-              className="text-center"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  setShowAll(!showAll)
-                  if (showAll) {
-                    setTimeout(() => {
-                      document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                    }, 300)
-                  }
-                }}
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all neon-btn"
-              >
-                {showAll ? (
-                  <>
-                    <ChevronUp size={20} />
-                    Show Less
-                    <ChevronUp size={20} />
-                  </>
-                ) : (
-                  <>
-                    <ChevronDown size={20} />
-                    View All {filteredProjects.length} Projects
-                    <ChevronDown size={20} />
-                  </>
-                )}
-              </motion.button>
-            </motion.div>
-          )}
+              GitHub
+            </a>
+            .
+          </p>
         </motion.div>
       </div>
 
-      {/* ─── Project Detail Modal ─── */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -270,12 +212,9 @@ const Projects = () => {
                 border: '1px solid var(--border)',
               }}
             >
-              {/* Accent bar */}
               <div className="h-1.5 w-full neon-line flex-shrink-0" />
 
-              {/* Scrollable content */}
               <div className="overflow-y-auto flex-1">
-                {/* Hero: image + title */}
                 <div className="sm:flex">
                   <div className="relative sm:w-2/5 h-56 sm:h-auto flex-shrink-0">
                     <img
@@ -328,7 +267,6 @@ const Projects = () => {
 
                 <div className="mx-6 sm:mx-8" style={{ borderTop: '1px solid var(--border)' }} />
 
-                {/* Features + Tech */}
                 <div className="px-6 py-6 sm:px-8 sm:py-7 grid sm:grid-cols-2 gap-6 sm:gap-10">
                   <div>
                     <h4 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-4" style={{ color: 'var(--text-primary)' }}>
@@ -378,7 +316,6 @@ const Projects = () => {
 
                 <div className="mx-6 sm:mx-8" style={{ borderTop: '1px solid var(--border)' }} />
 
-                {/* Action Buttons */}
                 <div className="px-6 py-5 sm:px-8 sm:py-6 flex flex-col sm:flex-row gap-3">
                   {selectedProject.github ? (
                     <motion.a
