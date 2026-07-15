@@ -153,6 +153,17 @@ const Skills = () => {
   
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedFilter, setSelectedFilter] = useState('All')
+  const [isMobile, setIsMobile] = useState(false)
+  const [showAllMobile, setShowAllMobile] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const totalSkills = useMemo(() => {
     return skillsData.reduce((acc, cat) => acc + cat.skills.length, 0)
@@ -186,6 +197,14 @@ const Skills = () => {
 
     return list
   }, [selectedFilter, searchQuery])
+
+  // Restrict to 3 elements on mobile if collapse is active
+  const categoriesToRender = useMemo(() => {
+    if (isMobile && !showAllMobile) {
+      return filteredCategories.slice(0, 3)
+    }
+    return filteredCategories
+  }, [filteredCategories, isMobile, showAllMobile])
 
   const quickStats = [
     { label: 'Total Skills', value: totalSkills, suffix: '+', icon: Code, color: 'var(--accent)' },
@@ -321,20 +340,42 @@ const Skills = () => {
           {/* ── Dynamic Category Cards Grid ── */}
           <div className="min-h-[200px]">
             <AnimatePresence mode="popLayout">
-              {filteredCategories.length > 0 ? (
-                <motion.div
-                  layout
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-                >
-                  {filteredCategories.map((category, index) => (
-                    <CategoryCard
-                      key={category.category}
-                      category={category}
-                      index={index}
-                      searchQuery={searchQuery}
-                    />
-                  ))}
-                </motion.div>
+              {categoriesToRender.length > 0 ? (
+                <>
+                  <motion.div
+                    layout
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                  >
+                    {categoriesToRender.map((category, index) => (
+                      <CategoryCard
+                        key={category.category}
+                        category={category}
+                        index={index}
+                        searchQuery={searchQuery}
+                      />
+                    ))}
+                  </motion.div>
+
+                  {isMobile && filteredCategories.length > 3 && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-8 text-center"
+                    >
+                      <button
+                        onClick={() => setShowAllMobile(!showAllMobile)}
+                        className="px-6 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all focus:outline-none neon-pill shadow-sm"
+                        style={{
+                          background: 'var(--bg-card)',
+                          border: '1px solid var(--border)',
+                          color: 'var(--accent)',
+                        }}
+                      >
+                        {showAllMobile ? 'Show Less' : `View More (+${filteredCategories.length - 3} categories)`}
+                      </button>
+                    </motion.div>
+                  )}
+                </>
               ) : (
                 <motion.div
                   initial={{ opacity: 0 }}
