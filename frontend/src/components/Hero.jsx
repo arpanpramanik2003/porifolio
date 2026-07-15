@@ -87,40 +87,21 @@ const Hero = () => {
             backgroundSize: '60px 60px',
           }}
         />
-        {/* Glowing orbs — neon colors */}
-        <motion.div
-          animate={shouldReduceMotion ? {} : { scale: [1, 1.2, 1], opacity: [0.15, 0.35, 0.15] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full blur-3xl"
-          style={{ background: 'var(--accent)', opacity: 0.08 }}
-        />
-        <motion.div
-          animate={shouldReduceMotion ? {} : { scale: [1.2, 1, 1.2], opacity: [0.1, 0.3, 0.1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl"
-          style={{ background: 'var(--accent-secondary)', opacity: 0.08 }}
-        />
-        <motion.div
-          animate={shouldReduceMotion ? {} : { scale: [1, 1.3, 1], opacity: [0.08, 0.25, 0.08] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
-          className="absolute top-3/4 left-1/2 w-72 h-72 rounded-full blur-3xl"
-          style={{ background: 'var(--accent-tertiary)', opacity: 0.06 }}
-        />
       </div>
 
       {/* ── Main layout ── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8">
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+        <div className="flex flex-col items-center justify-center gap-10">
 
-          {/* ════════════ LEFT — Text Content ════════════ */}
+          {/* ════════════ Center Content Panel ════════════ */}
           <motion.div
             variants={container}
             initial="hidden"
             animate="visible"
-            className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl mx-auto lg:mx-0"
+            className="w-full flex flex-col items-center text-center"
           >
             {/* Greeting chip */}
-            <motion.div variants={item} className="mb-5">
+            <motion.div variants={item} className="mb-6">
               <motion.span
                 whileHover={{ scale: 1.05 }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold
@@ -144,8 +125,8 @@ const Hero = () => {
             </motion.div>
 
             {/* Name */}
-            <motion.div variants={item} className="mb-4 overflow-hidden">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none whitespace-nowrap">
+            <motion.div variants={item} className="mb-5 overflow-hidden">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight leading-none">
                 <span className="relative inline-block">
                   <span style={{ color: 'var(--text-primary)' }}>
                     {personalInfo.firstName}
@@ -163,7 +144,7 @@ const Hero = () => {
             </motion.div>
 
             {/* Typing role */}
-            <motion.div variants={item} className="mb-5 flex items-center gap-3">
+            <motion.div variants={item} className="mb-6 flex items-center gap-3">
               <div className="flex items-center gap-2 px-4 py-2 rounded-lg backdrop-blur-sm neon-card"
                 style={{
                   background: 'var(--bg-card)',
@@ -193,25 +174,13 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            {/* Description */}
-            <motion.p
-              variants={item}
-              className="text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              {personalInfo.tagline}{' '}
-              <span className="font-medium" style={{ color: 'var(--accent)' }}>
-                {personalInfo.description}
-              </span>
-            </motion.p>
-
             {/* CTA Buttons */}
-            <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 mb-7 w-full sm:w-auto">
-              <Link to="projects" smooth duration={500}>
+            <motion.div variants={item} className="flex flex-col sm:flex-row justify-center gap-4 mb-8 w-full sm:w-auto">
+              <Link to="projects" smooth duration={500} className="w-full sm:w-auto">
                 <motion.button
                   whileHover={{ scale: 1.04, boxShadow: '0 0 28px var(--neon-glow-strong)' }}
                   whileTap={{ scale: 0.96 }}
-                  className="relative w-full sm:w-auto px-6 py-2.5 rounded-full font-semibold text-sm text-black overflow-hidden group shadow-lg neon-btn"
+                  className="relative w-full px-6 py-2.5 rounded-full font-semibold text-sm text-black overflow-hidden group shadow-lg neon-btn"
                 >
                   <span className="relative flex items-center justify-center gap-2">
                     <Code2 size={15} />
@@ -245,7 +214,7 @@ const Hero = () => {
             </motion.div>
 
             {/* Social icons */}
-            <motion.div variants={item} className="flex gap-3 mb-10">
+            <motion.div variants={item} className="flex gap-3 mb-10 justify-center">
               {[
                 { icon: Github, href: personalInfo.social.github, label: 'GitHub' },
                 { icon: Linkedin, href: personalInfo.social.linkedin, label: 'LinkedIn' },
@@ -272,7 +241,7 @@ const Hero = () => {
             </motion.div>
 
             {/* Stats row */}
-            <motion.div variants={item} className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full">
+            <motion.div variants={item} className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
               {stats.map((s, i) => (
                 <motion.div
                   key={s.label}
@@ -298,125 +267,8 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* ════════════ RIGHT — Visual Panel ════════════ */}
-          <motion.div
-            ref={containerRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
-            className="flex-1 flex flex-col items-center gap-4 max-w-lg mx-auto lg:mx-0 w-full"
-          >
-            {/* 3-D Tilting card */}
-            <motion.div
-              style={shouldReduceMotion ? {} : { rotateX, rotateY, transformStyle: 'preserve-3d' }}
-              className="relative w-52 h-52 sm:w-56 sm:h-56 md:w-64 md:h-64 mb-10"
-            >
-              {/* Outer glow ring — neon conic gradient */}
-              <motion.div
-                animate={shouldReduceMotion ? {} : { rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: 'conic-gradient(from 0deg, var(--accent), var(--accent-secondary), var(--accent-tertiary), var(--accent), var(--accent-secondary))',
-                  padding: '3px',
-                  borderRadius: '50%',
-                  boxShadow: '0 0 30px var(--neon-glow), 0 0 60px var(--neon-glow-secondary)',
-                }}
-              >
-                <div className="w-full h-full rounded-full" style={{ background: 'var(--bg-primary)' }} />
-              </motion.div>
-
-              {/* Secondary spinner ring */}
-              <motion.div
-                animate={shouldReduceMotion ? {} : { rotate: -360 }}
-                transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-3 rounded-full border-2 border-dashed"
-                style={{ borderColor: 'color-mix(in srgb, var(--accent) 40%, transparent)' }}
-              />
-
-              {/* Profile image */}
-              <div className="absolute inset-4 rounded-full overflow-hidden shadow-2xl"
-                style={{
-                  boxShadow: '0 0 25px var(--neon-glow), 0 0 50px var(--neon-glow-secondary)',
-                  ring: '4px',
-                }}
-              >
-                <img
-                  src={personalInfo.profileImage}
-                  alt={personalInfo.name}
-                  className="w-full h-full object-cover"
-                />
-                {/* Overlay shimmer */}
-                <motion.div
-                  className="absolute inset-0"
-                  style={{
-                    background: 'linear-gradient(to top right, rgba(0,229,255,0.15), transparent, rgba(255,107,230,0.15))',
-                  }}
-                  animate={{ opacity: [0.3, 0.6, 0.3] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                />
-              </div>
-            </motion.div>
-
-            {/* Animated terminal card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1, duration: 0.7 }}
-              whileHover={{ scale: 1.02 }}
-              className="hidden md:block w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl neon-card"
-              style={{ border: '1px solid var(--border)' }}
-            >
-              {/* Terminal titlebar */}
-              <div className="flex items-center gap-2 px-4 pt-4 pb-3"
-                style={{ background: 'var(--bg-elevated)' }}
-              >
-                <span className="w-3 h-3 rounded-full bg-red-500" />
-                <span className="w-3 h-3 rounded-full bg-yellow-500" />
-                <span className="w-3 h-3 rounded-full bg-green-500" />
-                <span className="ml-3 text-xs font-mono tracking-wide" style={{ color: 'var(--text-tertiary)' }}>arpan@portfolio ~ %</span>
-              </div>
-              {/* Terminal body */}
-              <div className="px-4 py-4 font-mono text-sm space-y-2"
-                style={{ background: 'var(--bg-card)' }}
-              >
-                {terminalLines.map((line, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1.4 + i * 0.4 }}
-                    className="flex gap-2"
-                  >
-                    <span style={{ color: 'var(--text-tertiary)' }} className="select-none">{line.prefix}</span>
-                    <TypeAnimation
-                      sequence={[i * 600, line.text]}
-                      wrapper="span"
-                      speed={70}
-                      className={line.color}
-                      cursor={false}
-                    />
-                  </motion.div>
-                ))}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 3 }}
-                  className="flex gap-2"
-                  style={{ color: 'var(--accent)' }}
-                >
-                  <span style={{ color: 'var(--text-tertiary)' }}>✓</span>
-                  <span>Ready to collaborate!</span>
-                </motion.div>
-              </div>
-            </motion.div>
-          </motion.div>
         </div>
       </div>
-
-
     </section>
   )
 }
