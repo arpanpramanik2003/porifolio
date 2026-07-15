@@ -145,7 +145,7 @@ const Hero = () => {
 
             {/* Typing role */}
             <motion.div variants={item} className="mb-6 flex items-center gap-3">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-lg backdrop-blur-sm neon-card"
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg backdrop-blur-sm neon-card h-[40px] sm:h-[46px]"
                 style={{
                   background: 'var(--bg-card)',
                   border: '1px solid var(--border)',
@@ -164,6 +164,7 @@ const Hero = () => {
                   className="text-base sm:text-lg font-semibold"
                   style={{ color: 'var(--text-primary)' }}
                   repeat={Infinity}
+                  cursor={false}
                 />
                 <motion.span
                   animate={{ opacity: [1, 0] }}
