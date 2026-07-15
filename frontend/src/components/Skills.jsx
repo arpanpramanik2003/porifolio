@@ -341,7 +341,7 @@ const Skills = () => {
           <div className="min-h-[200px]">
             <AnimatePresence mode="popLayout">
               {categoriesToRender.length > 0 ? (
-                <>
+                <motion.div key="skills-active-container" className="w-full">
                   <motion.div
                     layout
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
@@ -375,7 +375,7 @@ const Skills = () => {
                       </button>
                     </motion.div>
                   )}
-                </>
+                </motion.div>
               ) : (
                 <motion.div
                   initial={{ opacity: 0 }}
