@@ -228,22 +228,24 @@ const About = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.8 }}
-                className="rounded-2xl p-4 relative overflow-hidden"
+                className="rounded-2xl p-5 relative overflow-hidden"
                 style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
               >
                 <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full blur-2xl"
                   style={{ background: 'var(--accent)', opacity: 0.1 }} />
                 <div className="text-2xl mb-1 opacity-30" style={{ color: 'var(--accent)', fontFamily: 'serif' }}>"</div>
-                <p className="text-xs italic leading-relaxed mb-2" style={{ color: 'var(--text-secondary)' }}>
+                <p className="text-xs italic leading-relaxed mb-3.5" style={{ color: 'var(--text-secondary)' }}>
                   Passionate about building intelligent solutions that bridge the gap between research and real-world impact.
                 </p>
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-full overflow-hidden">
-                    <img src={personalInfo.profileImage} alt="" className="w-full h-full object-cover" />
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-solid"
+                    style={{ borderColor: 'var(--accent)', boxShadow: '0 0 10px var(--neon-glow)' }}
+                  >
+                    <img src={personalInfo.profileImage} alt={personalInfo.name} className="w-full h-full object-cover" />
                   </div>
                   <div>
-                    <p className="text-[11px] font-bold" style={{ color: 'var(--text-primary)' }}>{personalInfo.name}</p>
-                    <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>CSE (AI/ML) Student</p>
+                    <p className="text-xs font-bold" style={{ color: 'var(--text-primary)' }}>{personalInfo.name}</p>
+                    <p className="text-[10px] font-medium" style={{ color: 'var(--text-tertiary)' }}>CSE (AI/ML) Student</p>
                   </div>
                 </div>
               </motion.div>
