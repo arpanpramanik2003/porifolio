@@ -175,12 +175,12 @@ const Hero = () => {
             </motion.div>
 
             {/* CTA Buttons */}
-            <motion.div variants={item} className="flex flex-col sm:flex-row justify-center gap-4 mb-8 w-full sm:w-auto">
-              <Link to="projects" smooth duration={500} className="w-full sm:w-auto">
+            <motion.div variants={item} className="flex flex-row flex-wrap justify-center items-center gap-4 mb-8 w-full">
+              <Link to="projects" smooth duration={500} className="w-auto">
                 <motion.button
                   whileHover={{ scale: 1.04, boxShadow: '0 0 28px var(--neon-glow-strong)' }}
                   whileTap={{ scale: 0.96 }}
-                  className="relative w-full px-6 py-2.5 rounded-full font-semibold text-sm text-black overflow-hidden group shadow-lg neon-btn"
+                  className="relative w-auto px-6 py-2.5 rounded-full font-semibold text-sm text-black overflow-hidden group shadow-lg neon-btn"
                 >
                   <span className="relative flex items-center justify-center gap-2">
                     <Code2 size={15} />
@@ -194,7 +194,7 @@ const Hero = () => {
                 download
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
-                className="w-full sm:w-auto px-6 py-2.5 rounded-full font-semibold text-sm border-2 transition-all flex items-center justify-center gap-2 backdrop-blur-sm"
+                className="w-auto px-6 py-2.5 rounded-full font-semibold text-sm border-2 transition-all flex items-center justify-center gap-2 backdrop-blur-sm"
                 style={{
                   borderColor: 'var(--accent)',
                   color: 'var(--accent)',
