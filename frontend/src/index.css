@@ -1,58 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 @import "tailwindcss";
 
-/* Tailwind v4: Enable class-based dark mode (like v3's darkMode: 'class') */
+/* Tailwind v4: Enable class-based dark mode */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ─────────────────────────────────────────────
-   🎨 THEME COLOR SYSTEM — CSS Custom Properties
-   Change ONE place → entire site updates!
+   EDITORIAL & ENGINEERING DESIGN SYSTEM
    ───────────────────────────────────────────── */
 
 :root {
-  /* ── ACCENT COLORS (Light Mode) ── */
-  --accent: #0284c7;            /* Deep Sky Blue — primary accent */
-  --accent-secondary: #7e22ce;  /* Deep Purple — secondary */
-  --accent-tertiary: #db2777;   /* Deep Pink — tertiary  */
-  --accent-warm: #ea580c;       /* Deep Orange */
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  /* ── RAW HSL values (for alpha variants via Tailwind) ── */
-  --accent-h: 200;
-  --accent-s: 98%;
-  --accent-l: 39%;
+  /* ── ACCENT PALETTE (Light) ── */
+  --accent: #4f46e5;            /* Electric Indigo */
+  --accent-secondary: #d97706;  /* Ember Amber */
+  --accent-tertiary: #059669;   /* Sage Emerald */
+  --accent-warm: #ea580c;
 
-  /* ── SURFACE COLORS (Light Mode) ── */
-  --bg-primary: #e2e8f0;        /* Slate-200 (cooler, softer light gray) */
-  --bg-secondary: #f1f5f9;      /* Slate-100 */
-  --bg-card: #f8fafc;           /* Slate-50 */
-  --bg-card-hover: #ffffff;
-  --bg-elevated: #f8fafc;
+  /* ── SURFACE COLORS (Light) ── */
+  --bg-primary: #f8fafc;        /* Slate 50 */
+  --bg-secondary: #f1f5f9;      /* Slate 100 */
+  --bg-card: #ffffff;           /* Pure White */
+  --bg-card-hover: #f8fafc;
+  --bg-elevated: #ffffff;
 
-  /* ── TEXT COLORS (Light Mode) ── */
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --text-tertiary: #64748b;
-  --text-on-accent: #ffffff;    /* White text on dark buttons */
+  /* ── TEXT COLORS (Light) ── */
+  --text-primary: #0f172a;      /* Deep Slate */
+  --text-secondary: #475569;    /* Muted Slate */
+  --text-tertiary: #94a3b8;     /* Light Muted Slate */
+  --text-on-accent: #ffffff;
 
-  /* ── BORDER / DIVIDER (Light Mode) ── */
-  --border: #cbd5e1;
-  --border-hover: #0284c7;
-
-  /* ── NEON GLOWS (Light Mode) ── */
-  --neon-glow: rgba(2, 132, 199, 0.2);
-  --neon-glow-strong: rgba(2, 132, 199, 0.35);
-  --neon-glow-secondary: rgba(126, 34, 206, 0.2);
-  --neon-glow-tertiary: rgba(219, 39, 119, 0.2);
-
-  /* ── GRADIENTS ── */
-  --gradient-accent: linear-gradient(135deg, var(--accent), #2563eb, var(--accent-secondary));
-  --gradient-hero: linear-gradient(135deg, var(--accent), var(--accent-secondary), var(--accent-tertiary));
-  --gradient-neon: linear-gradient(90deg, var(--accent), var(--accent-tertiary), var(--accent-secondary));
-  /* High-contrast stunning gradient specifically for the main Hero Title */
-  --gradient-text-hero: linear-gradient(to right, #0284c7 0%, #2563eb 30%, #7e22ce 70%, #db2777 100%);
-
-  /* ── SCROLLBAR ── */
-  --scrollbar-track: #f1f5f9;
-  --scrollbar-thumb: linear-gradient(to bottom, var(--accent), var(--accent-secondary), var(--accent-tertiary));
+  /* ── BORDER / DIVIDER (Light) ── */
+  --border: #e2e8f0;
+  --border-hover: #cbd5e1;
 
   /* ── MISC ── */
   line-height: 1.5;
@@ -65,34 +47,23 @@
 
 /* ── DARK MODE OVERRIDES ── */
 html.dark {
-  --accent: #00e5ff;
-  --accent-secondary: #b388ff;
-  --accent-tertiary: #ff6be6;
-  --accent-warm: #ffc740;
+  --accent: #6366f1;            /* Indigo 500 */
+  --accent-secondary: #f59e0b;  /* Amber 500 */
+  --accent-tertiary: #10b981;   /* Emerald 500 */
+  --accent-warm: #f97316;
 
-  --bg-primary: #030712;
-  --bg-secondary: #0a0f1e;
-  --bg-card: #0d1322;
-  --bg-card-hover: #131a2e;
-  --bg-elevated: #111827;
+  --bg-primary: #07090e;        /* Deep Charcoal Void */
+  --bg-secondary: #0f121a;      /* Slate Surface */
+  --bg-card: #141824;           /* Elevated Dark Card */
+  --bg-card-hover: #1b2030;
+  --bg-elevated: #1e2436;
 
-  --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-tertiary: #64748b;
-  --text-on-accent: #000000;
+  --text-primary: #f8fafc;      /* Warm Off-White */
+  --text-secondary: #94a3b8;    /* Muted Slate */
+  --text-tertiary: #64748b;     /* Dark Slate */
 
-  --border: #1e293b;
-  --border-hover: #00e5ff;
-
-  --neon-glow: rgba(0, 229, 255, 0.35);
-  --neon-glow-strong: rgba(0, 229, 255, 0.65);
-  --neon-glow-secondary: rgba(179, 136, 255, 0.35);
-  --neon-glow-tertiary: rgba(255, 107, 230, 0.35);
-
-  --gradient-accent: linear-gradient(135deg, var(--accent), #4facfe, var(--accent-secondary));
-  --gradient-text-hero: linear-gradient(to right, #00f2fe 0%, #4facfe 30%, #f093fb 70%, #f5576c 100%);
-
-  --scrollbar-track: #030712;
+  --border: #1e2638;
+  --border-hover: #334155;
 }
 
 /* ─────────────────────────────────────────────
@@ -104,7 +75,13 @@ body {
   padding: 0;
   min-height: 100%;
   overflow-x: hidden;
-  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-body);
+}
+
+/* Lenis smooth scroll compatibility */
+html.lenis,
+html.lenis body {
+  height: auto;
 }
 
 /* Theme-aware backgrounds */
@@ -118,27 +95,14 @@ html.dark {
   color: var(--text-primary);
 }
 
-/* Disable mobile background repaint issues */
-@supports (-webkit-touch-callout: none) {
-  html,
-  body {
-    background-attachment: scroll !important;
-  }
-}
+/* Typography utilities */
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+.font-mono { font-family: var(--font-mono); }
 
-/* Links */
-a {
-  font-weight: 500;
-  color: var(--accent);
-  text-decoration: inherit;
-}
-a:hover {
-  color: var(--accent-secondary);
-}
-
-/* Headings */
+/* Headings — use Outfit, not Orbitron */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Orbitron', 'Inter', sans-serif;
+  font-family: var(--font-display);
 }
 
 h1 {
@@ -152,6 +116,17 @@ h1 {
   }
 }
 
+/* Links */
+a {
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: inherit;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--accent-secondary);
+}
+
 /* Buttons */
 button {
   border-radius: 8px;
@@ -161,105 +136,129 @@ button {
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.3s ease;
 }
 
-/* ─────────────────────────────────────────────
-   CUSTOM CURSOR
-   ───────────────────────────────────────────── */
-* {
-  cursor: none !important;
-}
-
-/* ─────────────────────────────────────────────
-   NEON UTILITY CLASSES
-   ───────────────────────────────────────────── */
-
-/* Neon text glow */
-.neon-text {
-  color: var(--accent);
-  text-shadow:
-    0 0 7px var(--neon-glow),
-    0 0 20px var(--neon-glow),
-    0 0 42px var(--neon-glow);
-}
-
-.neon-text-secondary {
-  color: var(--accent-secondary);
-  text-shadow:
-    0 0 7px var(--neon-glow-secondary),
-    0 0 20px var(--neon-glow-secondary),
-    0 0 42px var(--neon-glow-secondary);
-}
-
-.neon-text-tertiary {
-  color: var(--accent-tertiary);
-  text-shadow:
-    0 0 7px var(--neon-glow-tertiary),
-    0 0 20px var(--neon-glow-tertiary),
-    0 0 42px var(--neon-glow-tertiary);
-}
-
-/* Neon border glow */
-.neon-border {
-  border-color: var(--accent);
-  box-shadow:
-    0 0 5px var(--neon-glow),
-    0 0 15px var(--neon-glow),
-    inset 0 0 5px var(--neon-glow);
-}
-
-.neon-border-subtle {
-  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
-  box-shadow: 0 0 8px var(--neon-glow);
-}
-
-/* Neon card effect on hover */
-.neon-card {
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
-}
-.neon-card:hover {
-  border-color: var(--accent);
-  box-shadow:
-    0 0 10px var(--neon-glow),
-    0 0 30px var(--neon-glow),
-    inset 0 0 10px rgba(0, 229, 255, 0.05);
-}
-
-/* Neon line / divider */
-.neon-line {
-  background: var(--gradient-hero);
-  box-shadow: 0 0 10px var(--neon-glow), 0 0 20px var(--neon-glow-secondary);
-}
-
-/* Neon button */
-.neon-btn {
-  background: var(--gradient-accent);
+/* Text selection branding */
+::selection {
+  background: var(--accent);
   color: var(--text-on-accent);
-  font-weight: 700;
-  box-shadow: 0 0 15px var(--neon-glow), 0 0 30px var(--neon-glow);
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
-}
-.neon-btn:hover {
-  box-shadow: 0 0 20px var(--neon-glow-strong), 0 0 50px var(--neon-glow);
 }
 
-/* Neon pill/badge */
-.neon-pill {
-  background: rgba(0, 229, 255, 0.1);
-  color: var(--accent);
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+/* ─────────────────────────────────────────────
+   CUSTOM CURSOR — Hide native on desktop only
+   ───────────────────────────────────────────── */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
 
-/* Accent gradient text */
+/* Ensure touch/mobile keeps native cursor */
+@media (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+}
+
+/* Disable mobile background repaint issues */
+@supports (-webkit-touch-callout: none) {
+  html,
+  body {
+    background-attachment: scroll !important;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   SCROLLBAR
+   ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: 9999px;
+  border: 1px solid var(--bg-primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-hover) var(--bg-primary);
+}
+
+/* ─────────────────────────────────────────────
+   CARD & INTERACTION SYSTEM
+   ───────────────────────────────────────────── */
+
+/* Subtle architectural card hover */
+.card-arch {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-arch:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.15);
+}
+
+html.dark .card-arch:hover {
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.4);
+}
+
+/* Color-inversion card hover (premium, inspired by reference) */
+.card-invert {
+  transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease;
+}
+.card-invert:hover {
+  background: var(--text-primary) !important;
+  color: var(--bg-primary) !important;
+  border-color: transparent !important;
+}
+
+/* Image zoom on hover */
+.img-hover-zoom {
+  overflow: hidden;
+}
+.img-hover-zoom img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-hover-zoom:hover img {
+  transform: scale(1.04);
+}
+
+/* Active Navbar Link */
+.active-nav-link .nav-link-container span:last-child {
+  width: 100% !important;
+}
+
+.active-nav-link .nav-link-container {
+  position: relative;
+}
+
+/* ─────────────────────────────────────────────
+   ACCENT TEXT (gradient text retained, neon removed)
+   ───────────────────────────────────────────── */
+
 .gradient-text {
-  background: var(--gradient-text-hero);
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Hero name neon outline effect */
+/* Hero name outline effect */
 .hero-name-outline {
   color: transparent;
   -webkit-text-stroke: 2px var(--accent);
@@ -273,72 +272,8 @@ button {
 }
 
 /* ─────────────────────────────────────────────
-   SCROLLBAR
+   MOBILE PERFORMANCE
    ───────────────────────────────────────────── */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--scrollbar-track);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--gradient-hero);
-  border-radius: 10px;
-  border: 2px solid var(--scrollbar-track);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--gradient-neon);
-}
-
-/* Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent-secondary) var(--scrollbar-track);
-}
-
-/* Active Navbar Link */
-.active-nav-link .nav-link-container span:last-child {
-  width: 100% !important;
-}
-
-.active-nav-link .nav-link-container {
-  position: relative;
-}
-
-/* ─────────────────────────────────────────────
-   CURSOR-TRACKING GLOW ORB (Background)
-   ───────────────────────────────────────────── */
-.glow-orb {
-  position: fixed;
-  pointer-events: none;
-  z-index: 1;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    var(--neon-glow) 0%,
-    rgba(0, 229, 255, 0.08) 35%,
-    transparent 70%
-  );
-  filter: blur(40px);
-  transition: opacity 0.3s ease;
-}
-
-html:not(.dark) .glow-orb {
-  background: radial-gradient(
-    circle,
-    rgba(0, 229, 255, 0.12) 0%,
-    rgba(179, 136, 255, 0.06) 35%,
-    transparent 70%
-  );
-}
-
-/* ── MOBILE PERFORMANCE ── */
 @media (max-width: 768px) {
   .blur-3xl,
   .blur-xl {
@@ -351,10 +286,6 @@ html:not(.dark) .glow-orb {
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
   }
-
-  .glow-orb {
-    display: none;
-  }
 }
 
 /* Respect system reduced-motion preference */
@@ -365,7 +296,6 @@ html:not(.dark) .glow-orb {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
 

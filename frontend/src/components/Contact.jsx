@@ -1,30 +1,23 @@
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Sparkles, MessageCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Check, Copy, ArrowUpRight, MessageSquare } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 import { personalInfo } from '../data/personalInfo'
 
 const Contact = () => {
-  const ref = useRef(null)
   const formRef = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.1 })
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState('')
-
-  const floatingAnimation = {
-    y: [-20, 20, -20],
-    x: [-10, 10, -10],
-    rotate: [0, 5, -5, 0],
-    transition: { duration: 8, repeat: Infinity, ease: 'easeInOut' }
-  }
+  const [copiedEmail, setCopiedEmail] = useState(false)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText(personalInfo.contact.email)
+    setCopiedEmail(true)
+    setTimeout(() => setCopiedEmail(false), 2000)
   }
 
   const handleSubmit = (e) => {
@@ -58,331 +51,204 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="pt-12 pb-16 sm:pb-20 relative overflow-hidden">
-      {/* Floating Backgrounds */}
-      <motion.div animate={floatingAnimation} className="absolute top-20 left-10 opacity-[0.03] hidden sm:block">
-        <div className="w-64 h-64 rounded-3xl blur-3xl" style={{ background: 'var(--accent)' }} />
-      </motion.div>
-      <motion.div animate={{ ...floatingAnimation, transition: { ...floatingAnimation.transition, delay: 2 } }} className="absolute bottom-20 right-10 opacity-[0.03] hidden sm:block">
-        <div className="w-80 h-80 rounded-full blur-3xl" style={{ background: 'var(--accent-tertiary)' }} />
-      </motion.div>
-
-      <div className="max-w-2xl sm:max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Section Header */}
-          <div className="text-center mb-10 sm:mb-16">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={isInView ? { scale: 1 } : {}}
-              transition={{ duration: 0.5 }}
-              className="inline-block mb-4"
-            >
-              <span className="px-4 py-2 rounded-full text-sm font-semibold neon-pill">
-                Let's Connect
-              </span>
-            </motion.div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-              Get In Touch
-            </h2>
-            <motion.div
-              initial={{ width: 0 }}
-              animate={isInView ? { width: '100px' } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="h-1 mx-auto rounded-full mb-4 neon-line"
-            />
-            <p className="max-w-md sm:max-w-2xl mx-auto text-base sm:text-lg" style={{ color: 'var(--text-secondary)' }}>
-              Have a project in mind or want to collaborate? Feel free to reach out!
-            </p>
+    <section id="contact" className="py-24 md:py-32 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Asymmetric Header */}
+        <div className="mb-16">
+          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider mb-3" style={{ color: 'var(--accent)' }}>
+            <span>[07]</span>
+            <span className="w-8 h-px bg-[var(--accent)]" />
+            <span>DIRECT DISPATCH CONSOLE</span>
           </div>
 
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 sm:gap-12">
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6 }}
-              className="mb-12 lg:mb-0"
-            >
-              <h3 className="text-xl sm:text-2xl font-bold mb-5 sm:mb-8" style={{ color: 'var(--text-primary)' }}>
-                Contact Information
-              </h3>
+          <h2 className="font-display text-4xl sm:text-5xl font-black tracking-tight leading-tight max-w-3xl"
+            style={{ color: 'var(--text-primary)' }}
+          >
+            INITIATE DIRECT COMMUNICATION.
+          </h2>
+        </div>
 
-              <div className="space-y-4 sm:space-y-6">
-                {[
-                  {
-                    icon: <Mail size={24} />,
-                    label: 'Email',
-                    value: personalInfo.contact.email,
-                    href: `mailto:${personalInfo.contact.email}`,
-                    color: 'var(--accent)',
-                  },
-                  {
-                    icon: <Phone size={24} />,
-                    label: 'Phone',
-                    value: personalInfo.contact.phone,
-                    href: `tel:${personalInfo.contact.phone}`,
-                    color: 'var(--accent-secondary)',
-                  },
-                  {
-                    icon: <MapPin size={24} />,
-                    label: 'Location',
-                    value: `${personalInfo.contact.location}, ${personalInfo.contact.state}`,
-                    href: null,
-                    color: 'var(--accent-tertiary)',
-                  },
-                ].map((item, i) => {
-                  const Wrapper = item.href ? motion.a : motion.div
-                  return (
-                    <Wrapper
-                      key={i}
-                      whileHover={{ x: 10, scale: 1.02 }}
-                      {...(item.href ? { href: item.href } : {})}
-                      className="flex items-center gap-3 sm:gap-4 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all group neon-card"
-                      style={{
-                        background: 'var(--bg-card)',
-                        border: '1px solid var(--border)',
-                      }}
-                    >
-                      <motion.div
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.6 }}
-                        className="p-3 sm:p-4 text-white rounded-lg sm:rounded-xl shadow-md"
-                        style={{ background: item.color }}
-                      >
-                        {item.icon}
-                      </motion.div>
-                      <div className="flex-1">
-                        <p className="text-xs sm:text-sm mb-1" style={{ color: 'var(--text-tertiary)' }}>{item.label}</p>
-                        <p className="font-bold text-sm sm:text-base break-all transition-colors" style={{ color: 'var(--text-primary)' }}>
-                          {item.value}
-                        </p>
-                      </div>
-                    </Wrapper>
-                  )
-                })}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left Column: Direct Communication Channels (5 Cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            {/* Direct Email Dispatch Card */}
+            <div className="p-6 rounded-2xl border card-arch" style={{ background: 'var(--bg-card)' }}>
+              <div className="font-mono text-xs uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>
+                PRIMARY EMAIL DISPATCH
               </div>
-
-              {/* Social Links */}
-              <div className="mt-8 sm:mt-10">
-                <h4 className="text-base sm:text-lg font-bold mb-4 sm:mb-6 flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
-                  <Sparkles style={{ color: 'var(--accent-warm)' }} size={20} />
-                  Connect on Social Media
-                </h4>
-                <div className="flex gap-3 sm:gap-4">
-                  <motion.a
-                    whileHover={{ scale: 1.15, rotate: 5, y: -5 }}
-                    whileTap={{ scale: 0.95 }}
-                    href={personalInfo.social.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 sm:p-5 rounded-lg sm:rounded-xl transition-colors shadow-lg neon-card"
-                    style={{
-                      background: 'var(--bg-elevated)',
-                      color: 'var(--text-primary)',
-                      border: '1px solid var(--border)',
-                    }}
-                  >
-                    <Github size={24} />
-                  </motion.a>
-                  <motion.a
-                    whileHover={{ scale: 1.15, rotate: 5, y: -5 }}
-                    whileTap={{ scale: 0.95 }}
-                    href={personalInfo.social.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 sm:p-5 rounded-lg sm:rounded-xl transition-colors shadow-lg"
-                    style={{
-                      background: 'var(--accent)',
-                      color: 'var(--text-on-accent)',
-                    }}
-                  >
-                    <Linkedin size={24} />
-                  </motion.a>
-                </div>
+              <div className="flex items-center justify-between font-mono text-sm font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
+                <span>{personalInfo.contact.email}</span>
+                <button
+                  onClick={copyEmail}
+                  className="p-2 rounded-lg border text-xs flex items-center gap-1 transition-colors card-arch"
+                  style={{ color: 'var(--text-secondary)' }}
+                  title="Copy Email"
+                >
+                  {copiedEmail ? <Check size={14} style={{ color: 'var(--accent-tertiary)' }} /> : <Copy size={14} />}
+                </button>
               </div>
-
-              {/* Quick Info Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.6 }}
-                className="mt-8 sm:mt-10 p-4 sm:p-6 rounded-xl sm:rounded-2xl neon-card"
-                style={{
-                  background: 'var(--bg-card)',
-                  border: '1px solid var(--border)',
-                }}
+              <a
+                href={`mailto:${personalInfo.contact.email}`}
+                className="w-full py-3 rounded-xl font-display font-semibold text-xs flex items-center justify-center gap-2 border transition-all card-arch"
+                style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}
               >
-                <h4 className="font-bold mb-2 sm:mb-3 text-sm sm:text-base" style={{ color: 'var(--text-primary)' }}>💡 Quick Response</h4>
-                <p className="text-xs sm:text-sm" style={{ color: 'var(--text-secondary)' }}>
-                  I usually respond within 24 hours. For urgent matters, feel free to call directly!
-                </p>
-              </motion.div>
-            </motion.div>
+                <Mail size={14} />
+                <span>Launch Default Mail Client</span>
+                <ArrowUpRight size={14} style={{ color: 'var(--accent)' }} />
+              </a>
+            </div>
 
-            {/* Contact Form */}
-            <motion.form
+            {/* Quick Contact Dossier Ledger */}
+            <div className="p-6 rounded-2xl border card-arch space-y-4 font-mono text-xs" style={{ background: 'var(--bg-card)' }}>
+              <div className="flex items-center justify-between pb-3 border-b" style={{ borderColor: 'var(--border)' }}>
+                <span style={{ color: 'var(--text-tertiary)' }}>PHONE / WHATSAPP</span>
+                <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{personalInfo.contact.phone}</span>
+              </div>
+              <div className="flex items-center justify-between pb-3 border-b" style={{ borderColor: 'var(--border)' }}>
+                <span style={{ color: 'var(--text-tertiary)' }}>LOCATION</span>
+                <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{personalInfo.contact.location}, WB, India</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span style={{ color: 'var(--text-tertiary)' }}>EXPECTED RESPONSE</span>
+                <span className="font-bold px-2 py-0.5 rounded border" style={{ borderColor: 'var(--accent-tertiary)', color: 'var(--accent-tertiary)', background: 'var(--bg-secondary)' }}>
+                  &lt; 24 HOURS
+                </span>
+              </div>
+            </div>
+
+            {/* Social Channels Row */}
+            <div className="p-6 rounded-2xl border card-arch" style={{ background: 'var(--bg-card)' }}>
+              <div className="font-mono text-xs uppercase tracking-wider mb-4" style={{ color: 'var(--text-tertiary)' }}>
+                DIRECT NETWORK PROFILES
+              </div>
+              <div className="flex gap-3">
+                <a
+                  href={personalInfo.social.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 py-3 px-4 rounded-xl border font-mono text-xs font-semibold flex items-center justify-center gap-2 transition-colors card-arch"
+                  style={{ color: 'var(--text-primary)', background: 'var(--bg-secondary)' }}
+                >
+                  <Github size={16} />
+                  <span>GitHub</span>
+                </a>
+                <a
+                  href={personalInfo.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 py-3 px-4 rounded-xl border font-mono text-xs font-semibold flex items-center justify-center gap-2 transition-colors card-arch"
+                  style={{ color: 'var(--text-primary)', background: 'var(--bg-secondary)' }}
+                >
+                  <Linkedin size={16} />
+                  <span>LinkedIn</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right Column: Engineering Contact Form Console (7 Cols) */}
+          <div className="lg:col-span-7">
+            <form
               ref={formRef}
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
               onSubmit={handleSubmit}
-              className="p-4 sm:p-8 rounded-xl sm:rounded-2xl shadow-xl neon-card"
-              style={{
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border)',
-              }}
+              className="p-8 sm:p-10 rounded-3xl border space-y-6 card-arch"
+              style={{ background: 'var(--bg-card)' }}
             >
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6" style={{ color: 'var(--text-primary)' }}>
-                Send Me a Message
-              </h3>
+              <div className="font-mono text-xs uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>
+                TRANSMIT MESSAGE VIA CONSOLE
+              </div>
 
-              <div className="space-y-4 sm:space-y-6">
+              <div className="space-y-4">
                 <div>
-                  <label className="block text-xs sm:text-base font-semibold mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Your Name *
+                  <label className="block font-mono text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--text-secondary)' }}>
+                    YOUR NAME *
                   </label>
                   <input
                     type="text"
                     name="name"
+                    required
                     value={formData.name}
                     onChange={handleChange}
-                    required
-                    className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg sm:rounded-xl focus:outline-none transition-all"
-                    style={{
-                      background: 'var(--bg-card-hover)',
-                      color: 'var(--text-primary)',
-                      border: '2px solid var(--border)',
-                    }}
-                    onFocus={(e) => {
-                      e.target.style.borderColor = 'var(--accent)'
-                      e.target.style.boxShadow = '0 0 12px var(--neon-glow)'
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = 'var(--border)'
-                      e.target.style.boxShadow = 'none'
-                    }}
-                    placeholder="Type your name here"
+                    placeholder="e.g. Dr. Alex Vance"
+                    className="w-full px-4 py-3 rounded-xl border font-mono text-sm transition-colors focus:outline-none focus:border-[var(--accent)] card-arch"
+                    style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs sm:text-base font-semibold mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Your Email *
+                  <label className="block font-mono text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--text-secondary)' }}>
+                    EMAIL ADDRESS *
                   </label>
                   <input
                     type="email"
                     name="email"
+                    required
                     value={formData.email}
                     onChange={handleChange}
-                    required
-                    className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg sm:rounded-xl focus:outline-none transition-all"
-                    style={{
-                      background: 'var(--bg-card-hover)',
-                      color: 'var(--text-primary)',
-                      border: '2px solid var(--border)',
-                    }}
-                    onFocus={(e) => {
-                      e.target.style.borderColor = 'var(--accent)'
-                      e.target.style.boxShadow = '0 0 12px var(--neon-glow)'
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = 'var(--border)'
-                      e.target.style.boxShadow = 'none'
-                    }}
-                    placeholder="Type your email here"
+                    placeholder="e.g. alex.vance@research.org"
+                    className="w-full px-4 py-3 rounded-xl border font-mono text-sm transition-colors focus:outline-none focus:border-[var(--accent)] card-arch"
+                    style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs sm:text-base font-semibold mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Your Message *
+                  <label className="block font-mono text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--text-secondary)' }}>
+                    TRANSMISSION MESSAGE *
                   </label>
                   <textarea
                     name="message"
+                    required
+                    rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    required
-                    rows="6"
-                    className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg sm:rounded-xl focus:outline-none resize-none transition-all"
-                    style={{
-                      background: 'var(--bg-card-hover)',
-                      color: 'var(--text-primary)',
-                      border: '2px solid var(--border)',
-                    }}
-                    onFocus={(e) => {
-                      e.target.style.borderColor = 'var(--accent)'
-                      e.target.style.boxShadow = '0 0 12px var(--neon-glow)'
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = 'var(--border)'
-                      e.target.style.boxShadow = 'none'
-                    }}
-                    placeholder="Tell me about your project or inquiry..."
+                    placeholder="Describe your inquiry, project scope, or opportunity..."
+                    className="w-full px-4 py-3 rounded-xl border font-mono text-sm transition-colors focus:outline-none focus:border-[var(--accent)] card-arch resize-none"
+                    style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}
                   />
                 </div>
-
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  disabled={status === 'sending'}
-                  className="w-full px-6 py-3 sm:px-8 sm:py-4 rounded-lg sm:rounded-xl font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed neon-btn"
-                >
-                  {status === 'sending' ? (
-                    <>
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
-                      />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send size={20} />
-                      Send Message
-                    </>
-                  )}
-                </motion.button>
-
-                {status === 'success' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-3 sm:p-4 rounded-lg sm:rounded-xl text-center font-semibold"
-                    style={{
-                      background: 'rgba(0,255,136,0.1)',
-                      border: '1px solid #00ff88',
-                      color: '#00ff88',
-                    }}
-                  >
-                    ✓ Message sent successfully! I'll get back to you soon.
-                  </motion.div>
-                )}
-
-                {status === 'error' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-3 sm:p-4 rounded-lg sm:rounded-xl text-center font-semibold"
-                    style={{
-                      background: 'rgba(255,59,48,0.1)',
-                      border: '1px solid #ff3b30',
-                      color: '#ff3b30',
-                    }}
-                  >
-                    ✗ Failed to send. Please try again or email directly.
-                  </motion.div>
-                )}
               </div>
-            </motion.form>
+
+              {/* Status Indicator Feedback */}
+              {status === 'success' && (
+                <div className="p-3 rounded-xl border font-mono text-xs" style={{ borderColor: 'var(--accent-tertiary)', color: 'var(--accent-tertiary)', background: 'var(--bg-secondary)' }}>
+                  ✓ Message transmitted successfully. I will get back to you shortly.
+                </div>
+              )}
+              {status === 'error' && (
+                <div className="p-3 rounded-xl border font-mono text-xs" style={{ borderColor: 'red', color: 'red', background: 'var(--bg-secondary)' }}>
+                  ✕ Transmission failed. Please try emailing directly at {personalInfo.contact.email}
+                </div>
+              )}
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className="w-full py-4 rounded-xl font-display font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-sm"
+                style={{
+                  background: 'var(--text-primary)',
+                  color: 'var(--bg-primary)'
+                }}
+              >
+                {status === 'sending' ? (
+                  <span>TRANSMITTING MESSAGE...</span>
+                ) : (
+                  <>
+                    <Send size={14} />
+                    <span>TRANSMIT MESSAGE NOW</span>
+                  </>
+                )}
+              </button>
+
+            </form>
           </div>
-        </motion.div>
+
+        </div>
+
       </div>
     </section>
   )

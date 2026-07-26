@@ -9,42 +9,38 @@ import Certificates from './components/Certificates'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
-import ParticleBackground from './components/ParticleBackground'
-import GlowOrb from './components/GlowOrb'
-import ThemeToggle from './components/ThemeToggle'
+import StaticBackground from './components/StaticBackground'
+import SmoothScroll from './components/SmoothScroll'
 import { ThemeProvider } from './contexts/ThemeContext'
 
 function App() {
   return (
     <ThemeProvider>
-      <div className="relative min-h-screen overflow-hidden transition-colors duration-300"
-        style={{ background: 'var(--bg-primary)' }}
-      >
-        <CustomCursor />
+      <SmoothScroll>
+        <div className="relative min-h-screen font-body transition-colors duration-500"
+          style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}
+        >
+          {/* Fixed background layers (grain + grid + vignette) */}
+          <StaticBackground />
 
-        {/* CURSOR-TRACKING GLOW ORB (Antigravity-style) */}
-        <GlowOrb />
+          {/* Single precision cursor overlay */}
+          <CustomCursor />
 
-        {/* FIXED PARTICLE BACKGROUND */}
-        <ParticleBackground />
-
-        {/* THEME TOGGLE BUTTON */}
-        <ThemeToggle />
-
-        {/* MAIN CONTENT */}
-        <div className="relative z-10">
-          <Navbar />
-          <Hero />
-          <About />
-          <Skills />
-          <Experience />
-          <Projects />
-          <Research />
-          <Certificates />
-          <Contact />
-          <Footer />
+          {/* Main Content */}
+          <div className="relative z-10">
+            <Navbar />
+            <Hero />
+            <About />
+            <Skills />
+            <Experience />
+            <Projects />
+            <Research />
+            <Certificates />
+            <Contact />
+            <Footer />
+          </div>
         </div>
-      </div>
+      </SmoothScroll>
     </ThemeProvider>
   )
 }
