@@ -18,7 +18,7 @@ export const experienceData = [
   },
   {
     id: 2,
-    title: 'Flask Development Intern',
+    title: 'Backend Development Intern',
     company: 'Xetalabs',
     location: 'Guwahati, Assam',
     duration: 'July 2025',
