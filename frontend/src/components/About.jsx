@@ -112,37 +112,55 @@ const About = () => {
           {/* Right Column: Profile Dossier & Key Credentials (5 Cols) */}
           <div className="lg:col-span-5 space-y-6">
             
-            {/* Profile Dossier Card */}
+            {/* Profile Dossier Card with Compact Vertical Portrait */}
             <div className="p-6 rounded-2xl border card-arch relative overflow-hidden"
               style={{ background: 'var(--bg-card)' }}
             >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 shrink-0 card-arch"
+              {/* Header: Compact 530x690 Vertical Portrait Photo + Info */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-6 pb-6 border-b"
+                style={{ borderColor: 'var(--border)' }}
+              >
+                
+                {/* 530x690 Aspect Ratio Vertical Frame */}
+                <div className="w-28 sm:w-32 aspect-[530/690] rounded-xl overflow-hidden border-2 shrink-0 card-arch shadow-sm relative group"
                   style={{ borderColor: 'var(--accent)' }}
                 >
                   <img
                     src={personalInfo.profileImage}
                     alt={personalInfo.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                     onError={(e) => {
                       e.target.onerror = null
-                      e.target.src = 'https://via.placeholder.com/150'
+                      e.target.src = 'https://via.placeholder.com/530x690?text=Arpan'
                     }}
                   />
                 </div>
-                
-                <div>
-                  <h3 className="font-display font-bold text-xl" style={{ color: 'var(--text-primary)' }}>
+
+                {/* Dossier Info Header */}
+                <div className="space-y-1.5 flex-1 min-w-0">
+                  <div className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded border"
+                    style={{ borderColor: 'var(--accent-tertiary)', color: 'var(--accent-tertiary)', background: 'var(--bg-secondary)' }}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-tertiary)] animate-pulse" />
+                    <span>VERIFIED ENGINEER</span>
+                  </div>
+
+                  <h3 className="font-display font-black text-2xl tracking-tight"
+                    style={{ color: 'var(--text-primary)' }}
+                  >
                     {personalInfo.name}
                   </h3>
-                  <div className="font-mono text-xs mt-0.5" style={{ color: 'var(--accent)' }}>
+
+                  <div className="font-mono text-xs font-semibold" style={{ color: 'var(--accent)' }}>
                     B.Tech CSE (AI & ML) • 2023–2027
                   </div>
-                  <div className="flex items-center gap-1 font-mono text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
-                    <MapPin size={12} />
+
+                  <div className="flex items-center gap-1.5 font-mono text-xs pt-0.5" style={{ color: 'var(--text-secondary)' }}>
+                    <MapPin size={13} className="text-[var(--accent)] shrink-0" />
                     <span>West Bengal, India</span>
                   </div>
                 </div>
+
               </div>
 
               {/* Dossier Quick Ledger */}
