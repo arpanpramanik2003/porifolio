@@ -1,6 +1,23 @@
 export const experienceData = [
   {
     id: 1,
+    title: 'AI Research Intern',
+    company: 'National Institute of Technology (NIT) Durgapur',
+    location: 'Durgapur, West Bengal',
+    duration: 'June 2026',
+    period: '4 Weeks',
+    type: 'Summer Research Internship',
+    description: 'Conducted research on lightweight deep learning architectures by optimizing EfficientNet variants for image classification tasks with a focus on model efficiency and inference speed.',
+    highlights: [
+      'Evaluated architectural variants across the EfficientNet family',
+      'Benchmarked performance on open-source image datasets',
+      'Analyzed trade-offs between accuracy, parameter efficiency, and FLOPs',
+      'Optimized deep learning models for efficient execution'
+    ],
+    skills: ['Python', 'PyTorch', 'TensorFlow', 'EfficientNet', 'Deep Learning', 'Computer Vision', 'Model Optimization']
+  },
+  {
+    id: 2,
     title: 'Flask Development Intern',
     company: 'Xetalabs',
     location: 'Guwahati, Assam',
@@ -17,7 +34,7 @@ export const experienceData = [
     skills: ['Python', 'Flask', 'REST APIs', 'SQLAlchemy', 'PostgreSQL', 'JWT Auth', 'Jinja2', 'Railway', 'Git', 'Postman']
   },
   {
-    id: 2,
+    id: 3,
     title: 'Cyber Security Intern',
     company: 'Webel PVT. LTD & The Neotia University',
     location: 'West Bengal, India',
@@ -34,7 +51,7 @@ export const experienceData = [
     skills: ['Kali Linux', 'Nmap', 'Burp Suite', 'Wireshark', 'Metasploit', 'OWASP', 'Network Security', 'Ethical Hacking', 'Firewalls', 'IDS/IPS']
   },
   {
-    id: 3,
+    id: 4,
     title: 'Cyber Security Intern',
     company: 'DataSpace Academy & The Neotia University',
     location: 'West Bengal, India',
@@ -51,3 +68,4 @@ export const experienceData = [
     skills: ['Python', 'Cryptography', 'Wireshark', 'Threat Modeling', 'Digital Forensics', 'STRIDE', 'Linux CLI', 'Bash Scripting']
   }
 ]
+
