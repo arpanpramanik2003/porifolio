@@ -60,7 +60,7 @@ const About = () => {
           <div className="lg:col-span-7 space-y-10">
             
             {/* Lead Bio Paragraphs */}
-            <div className="space-y-5 font-body text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+            <div className="space-y-5 font-body text-base sm:text-lg leading-relaxed text-justify sm:text-left" style={{ color: 'var(--text-secondary)' }}>
               <p>
                 I am a Computer Science Undergraduate specializing in AI/ML at <strong className="font-semibold" style={{ color: 'var(--text-primary)' }}>The Neotia University</strong> (9.42 CGPA). My focus centers on building reliable web platforms, intelligent retrieval systems, and machine learning models that bridge scientific research with real-world utility.
               </p>
@@ -97,7 +97,7 @@ const About = () => {
                       <h4 className="font-display font-bold text-base mb-2" style={{ color: 'var(--text-primary)' }}>
                         {p.title}
                       </h4>
-                      <p className="font-body text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                      <p className="font-body text-xs leading-relaxed text-justify sm:text-left" style={{ color: 'var(--text-secondary)' }}>
                         {p.desc}
                       </p>
                     </div>

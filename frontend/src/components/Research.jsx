@@ -85,7 +85,7 @@ const Research = () => {
                 </div>
 
                 {/* Abstract Text */}
-                <p className="font-body text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                <p className="font-body text-sm leading-relaxed text-justify sm:text-left" style={{ color: 'var(--text-secondary)' }}>
                   {paper.abstract}
                 </p>
 

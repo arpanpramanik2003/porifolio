@@ -78,7 +78,7 @@ const Experience = () => {
                 <div className="lg:col-span-7 space-y-6 lg:border-l lg:pl-8" style={{ borderColor: 'var(--border)' }}>
                   
                   {/* Summary Description */}
-                  <p className="font-body text-sm sm:text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  <p className="font-body text-sm sm:text-base leading-relaxed text-justify sm:text-left" style={{ color: 'var(--text-secondary)' }}>
                     {exp.description}
                   </p>
 

@@ -85,7 +85,7 @@ const Projects = () => {
                   {featuredProject.title}
                 </h3>
 
-                <p className="font-body text-sm leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>
+                <p className="font-body text-sm leading-relaxed mb-6 text-justify sm:text-left" style={{ color: 'var(--text-secondary)' }}>
                   {featuredProject.description}
                 </p>
 
@@ -183,7 +183,7 @@ const Projects = () => {
                   <h3 className="font-display font-bold text-xl sm:text-2xl mb-2" style={{ color: 'var(--text-primary)' }}>
                     {project.title}
                   </h3>
-                  <p className="font-body text-xs sm:text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+                  <p className="font-body text-xs sm:text-sm leading-relaxed mb-4 text-justify sm:text-left" style={{ color: 'var(--text-secondary)' }}>
                     {project.description}
                   </p>
 
