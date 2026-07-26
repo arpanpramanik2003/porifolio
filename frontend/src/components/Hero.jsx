@@ -8,6 +8,32 @@ const Hero = () => {
   const [activeTab, setActiveTab] = useState('overview')
   const [copiedCommand, setCopiedCommand] = useState(false)
 
+  // 3D Cursor Tilt State
+  const [rotateX, setRotateX] = useState(0)
+  const [rotateY, setRotateY] = useState(0)
+
+  const handleMouseMove = (e) => {
+    const card = e.currentTarget.getBoundingClientRect()
+    const cardWidth = card.width
+    const cardHeight = card.height
+    const centerX = card.left + cardWidth / 2
+    const centerY = card.top + cardHeight / 2
+    const mouseX = e.clientX - centerX
+    const mouseY = e.clientY - centerY
+
+    // Tilt calculations (-7deg to +7deg)
+    const rX = (-mouseY / (cardHeight / 2)) * 7
+    const rY = (mouseX / (cardWidth / 2)) * 7
+
+    setRotateX(rX)
+    setRotateY(rY)
+  }
+
+  const handleMouseLeave = () => {
+    setRotateX(0)
+    setRotateY(0)
+  }
+
   const copyCommand = () => {
     navigator.clipboard.writeText('npx arpan-pramanik')
     setCopiedCommand(true)
@@ -38,13 +64,13 @@ const Hero = () => {
     { label: 'Key Innovation', value: 'PaperLens AI', subtext: 'Research Co-Pilot' }
   ]
 
+  // Stack data referencing the 5 domains in TECHNICAL ECOSYSTEM
   const stack = [
-    'React / Next.js',
-    'TypeScript & Python',
-    'FastAPI & Node.js',
-    'PostgreSQL / Supabase',
-    'Groq API & FAISS RAG',
-    'Tailwind CSS / Framer Motion'
+    { domain: '01. LANGUAGES', tech: 'Python • Java • JavaScript • C • SQL', role: 'Runtime Logic' },
+    { domain: '02. AI SYSTEMS', tech: 'PyTorch • TensorFlow • Grad-CAM • Hugging Face', role: 'Deep Learning & XAI' },
+    { domain: '03. FULL-STACK', tech: 'React.js • Next.js • FastAPI • Express.js', role: 'Reactive Web & APIs' },
+    { domain: '04. CLOUD INFRA', tech: 'PostgreSQL • Supabase • AWS • Docker', role: 'Vector Store & Infra' },
+    { domain: '05. MLOPS', tech: 'Git/GitHub • Linux • Postman • Vite • Vercel', role: 'CI/CD Pipelines' }
   ]
 
   return (
@@ -198,13 +224,20 @@ const Hero = () => {
           </div>
 
           {/* ════════════════════════════════════════════════════
-             RIGHT COLUMN: Interactive Engineering Telemetry Console (5 Cols)
+             RIGHT COLUMN: Interactive 3D Cursor-Tilted Telemetry Console (5 Cols)
              ════════════════════════════════════════════════════ */}
           <motion.div variants={itemVariants} className="lg:col-span-5">
-            <div className="rounded-2xl border shadow-xl overflow-hidden card-arch">
+            <motion.div
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              animate={{ rotateX, rotateY }}
+              transition={{ type: 'spring', stiffness: 250, damping: 20 }}
+              style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
+              className="rounded-2xl border shadow-xl overflow-hidden card-arch min-h-[380px] flex flex-col justify-between cursor-pointer"
+            >
               
               {/* Terminal Window Top Bar */}
-              <div className="px-4 py-3 border-b flex items-center justify-between"
+              <div className="px-4 py-3 border-b flex items-center justify-between shrink-0"
                 style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border)' }}
               >
                 <div className="flex items-center gap-2">
@@ -224,7 +257,7 @@ const Hero = () => {
               </div>
 
               {/* Console Mode Selector Tabs */}
-              <div className="flex border-b font-mono text-xs overflow-x-auto scrollbar-hide"
+              <div className="flex border-b font-mono text-xs overflow-x-auto scrollbar-hide shrink-0"
                 style={{ borderColor: 'var(--border)', background: 'var(--bg-primary)' }}
               >
                 {[
@@ -235,7 +268,7 @@ const Hero = () => {
                   <button
                     key={id}
                     onClick={() => setActiveTab(id)}
-                    className="flex-1 min-w-[110px] py-3 px-3 flex items-center justify-center gap-2 border-r transition-colors relative"
+                    className="flex-1 min-w-[110px] py-2.5 px-3 flex items-center justify-center gap-2 border-r transition-colors relative"
                     style={{
                       borderColor: 'var(--border)',
                       color: activeTab === id ? 'var(--text-primary)' : 'var(--text-tertiary)',
@@ -255,106 +288,111 @@ const Hero = () => {
                 ))}
               </div>
 
-              {/* Tab Content Display */}
-              <div className="p-6 font-mono text-xs min-h-[280px] flex flex-col justify-between"
+              {/* Dynamic Flex-1 Tab Display: Utilizes 100% of vertical space with zero wasted dark gaps */}
+              <div className="p-4 sm:p-5 font-mono text-xs flex-1 flex flex-col justify-between"
                 style={{ background: 'var(--bg-card)' }}
               >
-                <AnimatePresence mode="wait">
-                  {activeTab === 'overview' && (
-                    <motion.div
-                      key="overview"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.2 }}
-                      className="space-y-4"
-                    >
-                      <div className="grid grid-cols-2 gap-3">
-                        {stats.map((s) => (
-                          <div key={s.label} className="p-3 rounded-xl border card-arch" style={{ background: 'var(--bg-secondary)' }}>
-                            <div className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{s.label}</div>
-                            <div className="text-base font-bold font-display mt-0.5" style={{ color: 'var(--text-primary)' }}>{s.value}</div>
-                            <div className="text-[10px] mt-0.5" style={{ color: 'var(--accent)' }}>{s.subtext}</div>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="p-3 rounded-xl border font-mono text-[11px] space-y-1.5"
-                        style={{ borderColor: 'var(--border)', background: 'var(--bg-primary)' }}
+                <div className="flex-1 flex flex-col justify-start mb-3">
+                  <AnimatePresence mode="wait">
+                    {activeTab === 'overview' && (
+                      <motion.div
+                        key="overview"
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.15 }}
+                        className="space-y-2.5"
                       >
-                        <div className="flex items-center justify-between text-[10px]" style={{ color: 'var(--text-tertiary)' }}>
-                          <span>CURRENT STATUS</span>
-                          <span style={{ color: 'var(--accent-tertiary)' }}>ACTIVE DEPLOYMENT</span>
+                        <div className="grid grid-cols-2 gap-2">
+                          {stats.map((s) => (
+                            <div key={s.label} className="p-2 rounded-xl border card-arch" style={{ background: 'var(--bg-secondary)' }}>
+                              <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{s.label}</div>
+                              <div className="text-sm font-bold font-display mt-0.5" style={{ color: 'var(--text-primary)' }}>{s.value}</div>
+                              <div className="text-[10px] mt-0.5" style={{ color: 'var(--accent)' }}>{s.subtext}</div>
+                            </div>
+                          ))}
                         </div>
-                        <div className="font-semibold" style={{ color: 'var(--text-primary)' }}>
-                          Building PaperLens AI & Advanced Web Workflows
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
 
-                  {activeTab === 'architecture' && (
-                    <motion.div
-                      key="architecture"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.2 }}
-                      className="space-y-3"
-                    >
-                      <div className="text-[11px] uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>
-                        PRIMARY ENGINEERING STACK
-                      </div>
-                      <div className="space-y-2">
-                        {stack.map((item, idx) => (
-                          <div key={item} className="flex items-center justify-between p-2 rounded-lg border text-[11px]"
-                            style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border)' }}
-                          >
-                            <span style={{ color: 'var(--text-primary)' }}>{item}</span>
-                            <span className="text-[10px] px-1.5 py-0.5 rounded font-mono"
-                              style={{ background: 'var(--bg-primary)', color: 'var(--accent)' }}
+                        <div className="p-2.5 rounded-xl border font-mono text-[11px] space-y-1"
+                          style={{ borderColor: 'var(--border)', background: 'var(--bg-primary)' }}
+                        >
+                          <div className="flex items-center justify-between text-[10px]" style={{ color: 'var(--text-tertiary)' }}>
+                            <span>CURRENT STATUS</span>
+                            <span style={{ color: 'var(--accent-tertiary)' }}>ACTIVE DEPLOYMENT</span>
+                          </div>
+                          <div className="font-semibold text-xs leading-tight" style={{ color: 'var(--text-primary)' }}>
+                            Building PaperLens AI & Advanced Web Workflows
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {activeTab === 'architecture' && (
+                      <motion.div
+                        key="architecture"
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.15 }}
+                        className="space-y-1.5"
+                      >
+                        <div className="text-[10px] uppercase tracking-wider mb-1" style={{ color: 'var(--text-tertiary)' }}>
+                          ECOSYSTEM STACK (5 CORE DOMAINS)
+                        </div>
+                        <div className="space-y-1.5">
+                          {stack.map((item) => (
+                            <div key={item.domain} className="py-1.5 px-2.5 rounded-lg border text-[11px] flex items-center justify-between gap-2"
+                              style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border)' }}
                             >
-                              0{idx + 1}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
+                              <div className="min-w-0">
+                                <div className="font-bold text-[9px]" style={{ color: 'var(--accent)' }}>{item.domain}</div>
+                                <div className="truncate text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{item.tech}</div>
+                              </div>
+                              <span className="text-[9px] px-1.5 py-0.5 rounded font-mono shrink-0"
+                                style={{ background: 'var(--bg-primary)', color: 'var(--text-tertiary)' }}
+                              >
+                                {item.role}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
 
-                  {activeTab === 'focus' && (
-                    <motion.div
-                      key="focus"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.2 }}
-                      className="space-y-4"
-                    >
-                      <div className="text-[11px] uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>
-                        R&D INITIATIVES & CORE FOCUS
-                      </div>
-                      <div className="space-y-3">
-                        <div className="p-3 rounded-xl border space-y-1" style={{ background: 'var(--bg-secondary)' }}>
-                          <div className="font-semibold text-xs" style={{ color: 'var(--accent)' }}>01. Hybrid RAG & Vector Retrieval</div>
-                          <div className="text-[11px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                            Combining FAISS, BM25, and CrossEncoder reranking for grounded scientific paper QA.
+                    {activeTab === 'focus' && (
+                      <motion.div
+                        key="focus"
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.15 }}
+                        className="space-y-2.5"
+                      >
+                        <div className="text-[10px] uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>
+                          R&D INITIATIVES & CORE FOCUS
+                        </div>
+                        <div className="space-y-2">
+                          <div className="p-2.5 rounded-xl border space-y-1" style={{ background: 'var(--bg-secondary)' }}>
+                            <div className="font-semibold text-xs" style={{ color: 'var(--accent)' }}>01. Hybrid RAG & Vector Retrieval</div>
+                            <div className="text-[11px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                              Combining FAISS, BM25, and CrossEncoder reranking for grounded scientific paper QA.
+                            </div>
+                          </div>
+
+                          <div className="p-2.5 rounded-xl border space-y-1" style={{ background: 'var(--bg-secondary)' }}>
+                            <div className="font-semibold text-xs" style={{ color: 'var(--accent-secondary)' }}>02. Scalable Web Architectures</div>
+                            <div className="text-[11px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                              End-to-end full-stack applications built with Next.js, FastAPI, PostgreSQL, and Clerk auth.
+                            </div>
                           </div>
                         </div>
-
-                        <div className="p-3 rounded-xl border space-y-1" style={{ background: 'var(--bg-secondary)' }}>
-                          <div className="font-semibold text-xs" style={{ color: 'var(--accent-secondary)' }}>02. Scalable Web Architectures</div>
-                          <div className="text-[11px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                            End-to-end full-stack applications built with Next.js, FastAPI, PostgreSQL, and Clerk auth.
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
                 {/* Console Bottom System Line */}
-                <div className="pt-4 border-t flex items-center justify-between text-[11px]"
+                <div className="pt-2.5 border-t flex items-center justify-between text-[10px] shrink-0"
                   style={{ borderColor: 'var(--border)', color: 'var(--text-tertiary)' }}
                 >
                   <div className="flex items-center gap-1.5">
@@ -366,7 +404,7 @@ const Hero = () => {
 
               </div>
 
-            </div>
+            </motion.div>
           </motion.div>
 
         </motion.div>
