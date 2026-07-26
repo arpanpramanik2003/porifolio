@@ -18,10 +18,10 @@ const Footer = () => {
           
           {/* Brand & Telemetry Line */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg border flex items-center justify-center font-bold card-arch"
-              style={{ color: 'var(--text-primary)', background: 'var(--bg-card)' }}
+            <div className="w-8 h-8 rounded-lg border overflow-hidden flex items-center justify-center card-arch"
+              style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}
             >
-              AP
+              <img src="/apple-touch-icon.png" alt="Arpan Pramanik Logo" className="w-full h-full object-cover p-0.5" />
             </div>
             <div>
               <div className="font-bold" style={{ color: 'var(--text-primary)' }}>

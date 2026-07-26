@@ -47,13 +47,13 @@ const Navbar = () => {
             {/* Left: Brand Architectural Logo */}
             <Link to="hero" smooth duration={500} className="cursor-pointer group">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl border flex items-center justify-center font-mono text-xs font-bold transition-colors card-arch"
+                <div className="w-9 h-9 rounded-xl border overflow-hidden flex items-center justify-center transition-colors card-arch"
                   style={{
-                    color: 'var(--text-primary)',
-                    background: 'var(--bg-card)'
+                    background: 'var(--bg-card)',
+                    borderColor: 'var(--border)'
                   }}
                 >
-                  AP
+                  <img src="/apple-touch-icon.png" alt="Arpan Pramanik Logo" className="w-full h-full object-cover p-0.5" />
                 </div>
                 <div className="flex flex-col">
                   <span className="font-display font-bold text-base tracking-tight leading-none group-hover:text-[var(--accent)] transition-colors"
