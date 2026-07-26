@@ -79,8 +79,8 @@ const Contact = () => {
               <div className="font-mono text-xs uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>
                 PRIMARY EMAIL DISPATCH
               </div>
-              <div className="flex items-center justify-between font-mono text-sm font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
-                <span>{personalInfo.contact.email}</span>
+              <div className="flex items-center justify-between gap-2 font-mono text-xs sm:text-sm font-semibold mb-4 min-w-0" style={{ color: 'var(--text-primary)' }}>
+                <span className="truncate">{personalInfo.contact.email}</span>
                 <button
                   onClick={copyEmail}
                   className="p-2 rounded-lg border text-xs flex items-center gap-1 transition-colors card-arch"

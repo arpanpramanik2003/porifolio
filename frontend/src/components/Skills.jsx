@@ -60,16 +60,16 @@ const Skills = () => {
         
         {/* Top Header & Telemetry Progress Bar */}
         <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 z-20 shrink-0">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-3 pb-3 border-b"
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-2 sm:mb-3 pb-2 sm:pb-3 border-b"
             style={{ borderColor: 'var(--border)' }}
           >
             <div>
-              <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider mb-1" style={{ color: 'var(--accent)' }}>
+              <div className="hidden sm:flex items-center gap-2 font-mono text-xs uppercase tracking-wider mb-1" style={{ color: 'var(--accent)' }}>
                 <span>[02]</span>
                 <span className="w-8 h-px bg-[var(--accent)]" />
                 <span>ENGINEERING TOOLKIT & PRODUCTION STACK</span>
               </div>
-              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight"
+              <h2 className="font-display text-xl sm:text-3xl lg:text-4xl font-black tracking-tight"
                 style={{ color: 'var(--text-primary)' }}
               >
                 TECHNICAL ECOSYSTEM.
@@ -77,7 +77,7 @@ const Skills = () => {
             </div>
 
             {/* Scroll Direction Guide & Progress Counter */}
-            <div className="flex items-center gap-4 font-mono text-xs" style={{ color: 'var(--text-secondary)' }}>
+            <div className="flex items-center justify-between sm:justify-end gap-4 font-mono text-xs" style={{ color: 'var(--text-secondary)' }}>
               <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg border card-arch">
                 <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
                 <span>SCROLL TO EXPLORE DOMAINS</span>
@@ -86,29 +86,29 @@ const Skills = () => {
 
               {/* Progress Indicator */}
               <div className="flex items-center gap-2">
-                <div className="w-24 sm:w-32 h-1.5 rounded-full overflow-hidden" style={{ background: 'var(--bg-secondary)' }}>
+                <div className="w-20 sm:w-32 h-1.5 rounded-full overflow-hidden" style={{ background: 'var(--bg-secondary)' }}>
                   <motion.div
                     className="h-full rounded-full bg-[var(--accent)]"
                     style={{ width: progressPercent }}
                   />
                 </div>
-                <span className="font-bold" style={{ color: 'var(--text-primary)' }}>5 DOMAINS</span>
+                <span className="font-bold text-[11px] sm:text-xs" style={{ color: 'var(--text-primary)' }}>5 DOMAINS</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Horizontal Track Area */}
-        <div className="flex-1 flex items-center overflow-hidden my-auto py-2">
+        <div className="flex-1 flex items-center overflow-hidden my-auto py-1 sm:py-2">
           <motion.div
             ref={trackRef}
             style={{ x: xTransform }}
-            className="flex items-stretch gap-6 sm:gap-8 px-4 sm:px-8 lg:px-16 will-change-transform"
+            className="flex items-stretch gap-4 sm:gap-8 px-3 sm:px-8 lg:px-16 will-change-transform"
           >
             {domainEcosystem.map((domain) => (
               <div
                 key={domain.id}
-                className="w-[85vw] sm:w-[540px] md:w-[620px] shrink-0 rounded-2xl border p-6 sm:p-8 flex flex-col justify-between transition-all card-arch"
+                className="w-[88vw] sm:w-[540px] md:w-[620px] shrink-0 rounded-2xl border p-4 sm:p-8 flex flex-col justify-between transition-all card-arch"
                 style={{
                   background: 'var(--bg-card)',
                   borderColor: 'var(--border)'
@@ -116,7 +116,8 @@ const Skills = () => {
               >
                 {/* Domain Header */}
                 <div>
-                  <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b" style={{ borderColor: 'var(--border)' }}>
+                  {/* Desktop Only Domain Tagline & Number */}
+                  <div className="hidden sm:flex items-center justify-between gap-4 mb-4 pb-3 border-b" style={{ borderColor: 'var(--border)' }}>
                     <div className="flex items-center gap-2 font-mono text-xs uppercase" style={{ color: 'var(--accent)' }}>
                       <span>[DOMAIN // {domain.index}]</span>
                     </div>
@@ -127,41 +128,43 @@ const Skills = () => {
                     </span>
                   </div>
 
-                  <h3 className="font-display font-black text-2xl sm:text-3xl mb-3" style={{ color: 'var(--text-primary)' }}>
+                  {/* Main Domain Category Title (Directly shown on Mobile) */}
+                  <h3 className="font-display font-black text-xl sm:text-3xl mb-2 sm:mb-3" style={{ color: 'var(--text-primary)' }}>
                     {domain.category}
                   </h3>
 
-                  <p className="font-body text-xs sm:text-sm leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>
+                  {/* Paragraph Description: Full on Desktop, Hidden on Mobile for max vertical space */}
+                  <p className="hidden sm:block font-body text-xs sm:text-sm leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>
                     {domain.description}
                   </p>
 
                   {/* Grouped Technology Clusters */}
-                  <div className="space-y-5">
+                  <div className="space-y-3 sm:space-y-5">
                     {domain.clusters.map((cluster) => (
-                      <div key={cluster.name} className="space-y-2">
-                        <div className="font-mono text-[11px] uppercase tracking-wider font-semibold" style={{ color: 'var(--text-tertiary)' }}>
+                      <div key={cluster.name} className="space-y-1.5 sm:space-y-2">
+                        <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider font-semibold" style={{ color: 'var(--text-tertiary)' }}>
                           • {cluster.name}
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
                           {cluster.skills.map((skill) => (
                             <div
                               key={skill.name}
-                              className="p-2.5 rounded-xl border flex items-center justify-between gap-3 transition-colors card-arch"
+                              className="p-2 sm:p-2.5 rounded-xl border flex items-center justify-between gap-2 transition-colors card-arch"
                               style={{
                                 background: 'var(--bg-secondary)',
                                 borderColor: 'var(--border)'
                               }}
                             >
-                              <div className="flex items-center gap-2.5 min-w-0">
+                              <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
                                 {skill.logo ? (
                                   typeof skill.logo === 'string' && skill.logo.startsWith('http') ? (
-                                    <img src={skill.logo} alt="" className="w-5 h-5 object-contain shrink-0" />
+                                    <img src={skill.logo} alt="" className="w-4 h-4 sm:w-5 sm:h-5 object-contain shrink-0" />
                                   ) : (
-                                    <span className="text-base leading-none shrink-0">{skill.logo}</span>
+                                    <span className="text-sm sm:text-base leading-none shrink-0">{skill.logo}</span>
                                   )
                                 ) : (
-                                  <span className="w-5 h-5 rounded flex items-center justify-center font-mono text-[9px] font-bold shrink-0 bg-[var(--accent)] text-white">
+                                  <span className="w-4 h-4 sm:w-5 sm:h-5 rounded flex items-center justify-center font-mono text-[8px] sm:text-[9px] font-bold shrink-0 bg-[var(--accent)] text-white">
                                     {skill.tag || 'AI'}
                                   </span>
                                 )}
@@ -170,7 +173,7 @@ const Skills = () => {
                                 </span>
                               </div>
 
-                              <span className="font-mono text-[10px] truncate shrink-0" style={{ color: 'var(--text-tertiary)' }}>
+                              <span className="font-mono text-[9px] sm:text-[10px] truncate shrink-0" style={{ color: 'var(--text-tertiary)' }}>
                                 {skill.role}
                               </span>
                             </div>
@@ -179,14 +182,13 @@ const Skills = () => {
                       </div>
                     ))}
                   </div>
-
                 </div>
 
                 {/* Domain Panel Footer */}
-                <div className="mt-6 pt-4 border-t flex items-center justify-between font-mono text-[10px]"
+                <div className="mt-3 sm:mt-6 pt-2.5 sm:pt-4 border-t flex items-center justify-between font-mono text-[9px] sm:text-[10px]"
                   style={{ borderColor: 'var(--border)', color: 'var(--text-tertiary)' }}
                 >
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                     <span>PRODUCTION READY</span>
                   </div>
