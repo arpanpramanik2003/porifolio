@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion'
-import { GraduationCap, MapPin, Briefcase, Award, Download, ArrowUpRight, Cpu, Layers, Code, Brain } from 'lucide-react'
+import { GraduationCap, MapPin, Download, ArrowUpRight, Cpu, Code, Brain } from 'lucide-react'
 import { aboutData } from '../data/about'
 import { personalInfo } from '../data/personalInfo'
 

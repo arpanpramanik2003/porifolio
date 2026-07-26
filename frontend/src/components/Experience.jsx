@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion'
-import { Briefcase, Calendar, MapPin, ArrowRight, Terminal, ShieldCheck, Cpu } from 'lucide-react'
+import { Briefcase, Calendar, MapPin, Terminal, Cpu, ArrowRight } from 'lucide-react'
 import { experienceData } from '../data/experience'
 
 const Experience = () => {

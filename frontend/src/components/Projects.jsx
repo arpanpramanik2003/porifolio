@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Github, ExternalLink, Info, X, ArrowUpRight, Code, Sparkles, CheckCircle2 } from 'lucide-react'
+import { Github, ExternalLink, Info, X, ArrowUpRight, Code, Sparkles } from 'lucide-react'
 import { projectsData } from '../data/projects'
 import { personalInfo } from '../data/personalInfo'
 
