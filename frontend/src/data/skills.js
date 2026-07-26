@@ -1,94 +1,134 @@
-// Devicon CDN base URL
 const devicon = (name, variant = 'original') =>
   `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-${variant}.svg`;
 
-export const skillsData = [
+export const domainEcosystem = [
   {
-    category: 'Programming Languages',
-    icon: '💻',
-    color: 'from-blue-500 to-cyan-500',
-    skills: [
-      { name: 'C / C++', icon: '🅲', logo: devicon('cplusplus') },
-      { name: 'Python', icon: '🐍', logo: devicon('python') },
-      { name: 'Java', icon: '☕', logo: devicon('java') },
-      { name: 'R', icon: '📈', logo: devicon('r') }
+    id: 'languages',
+    index: '01',
+    category: 'Languages',
+    tagline: 'RUNTIME EXECUTION & CORE LOGIC',
+    description: 'Formulating efficient algorithms, concurrent data processing, and type-safe backend abstractions across low-level and high-level execution runtimes.',
+    clusters: [
+      {
+        name: 'High-Level & AI Execution',
+        skills: [
+          { name: 'Python', role: 'AI & Data Engine', logo: devicon('python') },
+          { name: 'JavaScript', role: 'Reactive Systems', logo: devicon('javascript') },
+          { name: 'Java', role: 'OOP & Enterprise', logo: devicon('java') }
+        ]
+      },
+      {
+        name: 'Systems & Query Engines',
+        skills: [
+          { name: 'C', role: 'Systems & Memory', logo: devicon('c') },
+          { name: 'SQL', role: 'Relational Queries', logo: devicon('postgresql') },
+          { name: 'R', role: 'Statistical Computing', logo: devicon('r') }
+        ]
+      }
     ]
   },
   {
-    category: 'Frontend Development',
-    icon: '🎨',
-    color: 'from-purple-500 to-pink-500',
-    skills: [
-      { name: 'HTML / CSS / JavaScript', icon: '🧩', logo: devicon('javascript') },
-      { name: 'React.js / Vite', icon: '⚛️', logo: devicon('react') },
-      { name: 'Tailwind CSS / Bootstrap', icon: '🎨', logo: devicon('tailwindcss') },
-      { name: 'Framer Motion', icon: '✨', logo: devicon('framermotion') }
+    id: 'ai-engineering',
+    index: '02',
+    category: 'AI & Intelligent Systems',
+    tagline: 'NEURAL NETWORKS, VISION & RAG',
+    description: 'Architecting deep learning pipelines, training computer vision models, building explainable AI with Grad-CAM, and deploying RAG architectures.',
+    clusters: [
+      {
+        name: 'Deep Learning & Vision Frameworks',
+        skills: [
+          { name: 'PyTorch', role: 'Neural Architectures', logo: devicon('pytorch') },
+          { name: 'TensorFlow', role: 'Model Training & Serving', logo: devicon('tensorflow') },
+          { name: 'Keras', role: 'Rapid DL Prototyping', logo: devicon('keras') },
+          { name: 'OpenCV', role: 'Computer Vision', logo: devicon('opencv') },
+          { name: 'Scikit-Learn', role: 'Predictive Modeling', logo: devicon('scikitlearn') }
+        ]
+      },
+      {
+        name: 'Explainable AI & RAG Orchestration',
+        skills: [
+          { name: 'Grad-CAM (XAI)', role: 'Model Explainability', logo: null, tag: 'XAI' },
+          { name: 'Hugging Face', role: 'Transformers & LLMs', logo: '🤗' },
+          { name: 'FAISS', role: 'Vector Similarity Indexing', logo: null, tag: 'RAG' },
+          { name: 'Groq API', role: 'Ultra-Fast Inference', logo: null, tag: 'LLM' }
+        ]
+      }
     ]
   },
   {
-    category: 'Backend Development',
-    icon: '⚙️',
-    color: 'from-green-500 to-teal-500',
-    skills: [
-      { name: 'Node.js / Express.js', icon: '🟢', logo: devicon('nodejs') },
-      { name: 'Flask / FastAPI', icon: '🐍', logo: devicon('flask') },
-      { name: 'Authentication (JWT, Google Auth, bcrypt)', icon: '🔐', logo: devicon('google') },
-      { name: 'RESTful API Design', icon: '🔌', logo: devicon('fastapi') }
+    id: 'full-stack',
+    index: '03',
+    category: 'Full-Stack Engineering',
+    tagline: 'REACTIVE UIs & ASYNCHRONOUS APIs',
+    description: 'Engineering high-throughput asynchronous microservices, server-rendered frontend architectures, and resilient RESTful APIs for production environments.',
+    clusters: [
+      {
+        name: 'Reactive Client Architectures',
+        skills: [
+          { name: 'React.js', role: 'Component Framework', logo: devicon('react') },
+          { name: 'Next.js', role: 'SSR & App Router', logo: devicon('nextjs') },
+          { name: 'Tailwind CSS', role: 'Design Systems', logo: devicon('tailwindcss') }
+        ]
+      },
+      {
+        name: 'Scalable Backend Microservices',
+        skills: [
+          { name: 'Node.js', role: 'Event-Driven Runtime', logo: devicon('nodejs') },
+          { name: 'Express.js', role: 'HTTP Microservices', logo: devicon('express', 'original') },
+          { name: 'FastAPI', role: 'Async Python Services', logo: devicon('fastapi') },
+          { name: 'REST APIs', role: 'Contract Specifications', logo: null, tag: 'API' }
+        ]
+      }
     ]
   },
   {
-    category: 'AI / ML & Deep Learning',
-    icon: '🤖',
-    color: 'from-orange-500 to-red-500',
-    skills: [
-      { name: 'TensorFlow / Keras', icon: '🧠', logo: devicon('tensorflow') },
-      { name: 'PyTorch / Lightning', icon: '🔥', logo: devicon('pytorch') },
-      { name: 'Scikit-learn / Transfer Learning', icon: '📊', logo: devicon('scikitlearn') },
-      { name: 'OpenCV / Mediapipe', icon: '👁️', logo: devicon('opencv') }
+    id: 'data-cloud',
+    index: '04',
+    category: 'Data & Cloud Infrastructure',
+    tagline: 'VECTOR STORES, CLOUD & CI/CD',
+    description: 'Designing relational and document schemas, managing vector stores for similarity search, automating CI/CD deployments, and orchestrating cloud services.',
+    clusters: [
+      {
+        name: 'Persistence & Vector Databases',
+        skills: [
+          { name: 'PostgreSQL', role: 'Relational Store', logo: devicon('postgresql') },
+          { name: 'MongoDB', role: 'Document Database', logo: devicon('mongodb') },
+          { name: 'Supabase (pgvector)', role: 'Vector Search Engine', logo: devicon('supabase') }
+        ]
+      },
+      {
+        name: 'Cloud Ecosystem & Containerization',
+        skills: [
+          { name: 'AWS (EC2, S3, Lambda)', role: 'Cloud Computing & Storage', logo: devicon('amazonwebservices', 'plain-wordmark') },
+          { name: 'Docker', role: 'Container Reproducibility', logo: devicon('docker') },
+          { name: 'GitHub Actions', role: 'Automated CI/CD Pipelines', logo: devicon('githubactions') }
+        ]
+      }
     ]
   },
   {
-    category: 'Databases',
-    icon: '🗄️',
-    color: 'from-indigo-500 to-purple-500',
-    skills: [
-      { name: 'MongoDB / MySQL', icon: '🍃', logo: devicon('mongodb') },
-      { name: 'PostgreSQL / OracleDB', icon: '🐘', logo: devicon('postgresql') },
-      { name: 'Supabase / Firebase', icon: '🔥', logo: devicon('firebase', 'plain') },
-      { name: 'SQLite (Local Testing)', icon: '💾', logo: devicon('sqlite') }
-    ]
-  },
-  {
-    category: 'Cloud & DevOps',
-    icon: '☁️',
-    color: 'from-sky-500 to-blue-500',
-    skills: [
-      { name: 'AWS (EC2, S3)', icon: '☁️', logo: devicon('amazonwebservices', 'plain-wordmark') },
-      { name: 'Railway / Render', icon: '🚂', logo: devicon('railway') },
-      { name: 'Vercel / Streamlit', icon: '🚀', logo: devicon('vercel') },
-      { name: 'GitHub / Docker', icon: '🐙', logo: devicon('docker') }
-    ]
-  },
-  {
-    category: 'Tools & Productivity',
-    icon: '🛠️',
-    color: 'from-yellow-500 to-orange-500',
-    skills: [
-      { name: 'VS Code / Cursor', icon: '💻', logo: devicon('vscode') },
-      { name: 'Jupyter / Google Colab / Kaggle', icon: '📓', logo: devicon('jupyter') },
-      { name: 'Hugging Face / Ollama', icon: '🤗', logo: devicon('kaggle') },
-      { name: 'Postman / Thunder Client', icon: '📮', logo: devicon('postman') }
-    ]
-  },
-  {
-    category: 'Specialized Skills',
-    icon: '🎯',
-    color: 'from-pink-500 to-rose-500',
-    skills: [
-      { name: 'Research Paper Writing (Overleaf / LaTeX)', icon: '📜', logo: devicon('latex') },
-      { name: 'CI/CD & Deployment Automation', icon: '⚡', logo: devicon('githubactions') },
-      { name: 'Cross-Dataset Validation & Model Evaluation', icon: '📈', logo: devicon('matplotlib') },
-      { name: 'Team Collaboration & Hackathons', icon: '🤝', logo: devicon('slack') }
+    id: 'workflow-mlops',
+    index: '05',
+    category: 'MLOps & Developer Ecosystem',
+    tagline: 'PRODUCTION DISCIPLINE & TOOLING',
+    description: 'Maintaining code quality, versioned pipeline deployments, reproducible container environments, and automated testing suites across the software lifecycle.',
+    clusters: [
+      {
+        name: 'Environment & Version Control',
+        skills: [
+          { name: 'Git & GitHub', role: 'Distributed Control', logo: devicon('git') },
+          { name: 'Linux Administration', role: 'POSIX Server Management', logo: devicon('linux') },
+          { name: 'Postman', role: 'API Testing & Docs', logo: devicon('postman') }
+        ]
+      },
+      {
+        name: 'Build & Delivery Infrastructure',
+        skills: [
+          { name: 'Vite', role: 'Lightning Bundler', logo: devicon('vite') },
+          { name: 'Vercel', role: 'Global Edge Hosting', logo: devicon('vercel') },
+          { name: 'Jupyter', role: 'Data Exploration', logo: devicon('jupyter') }
+        ]
+      }
     ]
   }
-];
+]
