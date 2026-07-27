@@ -42,7 +42,7 @@ export const researchData = [
       classes: '36 fruit & vegetable varieties',
       deployment: 'Streamlit + OpenCV'
     },
-    doi: null,
+    doi: '10.1007/978-3-032-21901-5_35',
     arxiv: null,
     github: 'https://github.com/arpanpramanik2003/fruit-veg-classification.git',
     color: 'from-blue-500 to-purple-500'
