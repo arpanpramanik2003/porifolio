@@ -22,14 +22,14 @@ const Research = () => {
             <h2 className="font-display text-4xl sm:text-5xl font-black tracking-tight leading-tight max-w-3xl"
               style={{ color: 'var(--text-primary)' }}
             >
-              IEEE CONFERENCE PAPERS & DEEP LEARNING RESEARCH.
+              CONFERENCE PAPERS & DEEP LEARNING RESEARCH.
             </h2>
 
             <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl border font-mono text-xs card-arch"
               style={{ background: 'var(--bg-card)', color: 'var(--text-secondary)' }}
             >
               <Award size={15} style={{ color: 'var(--accent-secondary)' }} />
-              <span>4 IEEE Conference Papers & Manuscripts</span>
+              <span>4 Conference Papers & Manuscripts (IEEE & Springer)</span>
             </div>
           </div>
         </div>
@@ -214,7 +214,7 @@ const Research = () => {
               >
                 {selectedPaper.doi && (
                   <a href={`https://doi.org/${selectedPaper.doi}`} target="_blank" rel="noopener noreferrer" className="font-bold underline" style={{ color: 'var(--accent)' }}>
-                    VIEW DOI ON IEEE XPLORE
+                    VIEW PUBLICATION DOI
                   </a>
                 )}
                 <button onClick={() => setSelectedPaper(null)} style={{ color: 'var(--text-tertiary)' }}>
