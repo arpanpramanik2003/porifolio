@@ -307,3 +307,17 @@ html.dark .card-arch:hover {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* ─────────────────────────────────────────────
+   3D PERSPECTIVE & SPATIAL UTILITIES
+   ───────────────────────────────────────────── */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
