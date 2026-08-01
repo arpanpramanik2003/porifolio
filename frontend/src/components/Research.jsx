@@ -90,7 +90,7 @@ const Research = () => {
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-            <h2 className="font-display text-4xl sm:text-5xl font-black tracking-tight leading-tight max-w-3xl"
+            <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-snug max-w-3xl"
               style={{ color: 'var(--text-primary)' }}
             >
               CONFERENCE PAPERS & DEEP LEARNING RESEARCH.
