@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { Link } from 'react-scroll'
 import { Github, Linkedin, Mail, Download, ArrowRight, Copy, Check, Terminal, ChevronDown, Sparkles } from 'lucide-react'
 import { personalInfo } from '../data/personalInfo'
+import SparklesCore from './SparklesCore'
 
 const Hero = () => {
   const [copiedCommand, setCopiedCommand] = useState(false)
@@ -122,6 +123,7 @@ const Hero = () => {
         }}
       />
 
+
       {/* ─────────────────────────────────────────────────────────────
          MAIN CENTERED SCROLL CONTAINER (Optical Viewport Alignment)
          ───────────────────────────────────────────────────────────── */}
@@ -153,7 +155,7 @@ const Hero = () => {
            MAIN HERO TITLE: Character-by-Character Animated Name
            Responsive: Separate lines on mobile, side-by-side on sm+
            ════════════════════════════════════════════════════ */}
-        <div className="mb-8 sm:mb-12 w-full flex justify-center items-center overflow-hidden">
+        <div className="mb-2 sm:mb-4 w-full flex justify-center items-center overflow-hidden">
           <h1 className="font-display text-4xl min-[380px]:text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[9.5rem] font-black tracking-tighter leading-[0.95] uppercase text-center flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6 select-none">
             {/* First Name: ARPAN */}
             <span className="flex items-center justify-center">
@@ -171,7 +173,7 @@ const Hero = () => {
               ))}
             </span>
 
-            {/* Surname: PRAMANIK (Stack cleanly below on mobile without breaking mid-word) */}
+            {/* Surname: PRAMANIK */}
             <span className="flex items-center justify-center">
               {lastChars.map((char, index) => (
                 <motion.span
@@ -188,6 +190,42 @@ const Hero = () => {
             </span>
           </h1>
         </div>
+        {/* ════════════════════════════════════════════════════
+           ACETERITY 21ST.DEV RUNNING SPARKLES & CYAN BEAM EFFECT
+           (Non-blocking layout: buttons sit right under cyan line while sparkles float behind)
+           ════════════════════════════════════════════════════ */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="w-[40rem] max-w-full h-0 relative pointer-events-none flex flex-col items-center justify-start overflow-visible z-0 mb-8 sm:mb-12"
+        >
+          {/* Cyan & Sky Highlight Glow Lines */}
+          <div className="absolute inset-x-12 sm:inset-x-20 top-0 bg-gradient-to-r from-transparent via-cyan-400 to-transparent h-[2px] w-3/4 blur-sm opacity-90 z-20" />
+          <div className="absolute inset-x-12 sm:inset-x-20 top-0 bg-gradient-to-r from-transparent via-cyan-400 to-transparent h-px w-3/4 opacity-90 z-20" />
+          <div className="absolute inset-x-32 sm:inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-300 to-transparent h-[5px] w-1/4 blur-sm opacity-80 z-20" />
+          <div className="absolute inset-x-32 sm:inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-200 to-transparent h-px w-1/4 opacity-80 z-20" />
+
+          {/* Masked Particle Canvas Container — Floats seamlessly behind buttons */}
+          <div
+            className="w-full h-36 sm:h-48 relative top-0"
+            style={{
+              maskImage: 'radial-gradient(350px 220px at top, white 25%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(350px 220px at top, white 25%, transparent 100%)'
+            }}
+          >
+            <SparklesCore
+              id="hero-name-sparkles"
+              background="transparent"
+              minSize={0.4}
+              maxSize={1.4}
+              particleDensity={800}
+              className="w-full h-full"
+              particleColor="#FFFFFF"
+              speed={0.8}
+            />
+          </div>
+        </motion.div>
 
         {/* ════════════════════════════════════════════════════
            SUB-COMPONENTS: Action Bar, NPX Command & Metrics Grid
