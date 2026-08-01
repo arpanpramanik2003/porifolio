@@ -10,19 +10,19 @@ const About = () => {
   // Track scroll inside About section for parallax & 3D dynamics
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start end', 'end start']
+    offset: ['start 92%', 'end start']
   })
 
-  // Spring physics for natural, non-laggy motion
+  // Spring physics for natural, smooth motion
   const smoothScroll = useSpring(scrollYProgress, {
-    stiffness: 90,
-    damping: 25,
+    stiffness: 60,
+    damping: 20,
     restDelta: 0.001
   })
 
-  // Parallax offsets for asymmetric columns
-  const headerY = useTransform(smoothScroll, [0, 0.3], [40, 0])
-  const headerOpacity = useTransform(smoothScroll, [0, 0.25], [0, 1])
+  // Silky smooth scroll entrance for section title
+  const headerY = useTransform(smoothScroll, [0.05, 0.38], [45, 0])
+  const headerOpacity = useTransform(smoothScroll, [0.05, 0.35], [0, 1])
 
   const leftColY = useTransform(smoothScroll, [0.1, 0.4], [50, 0])
   const rightColY = useTransform(smoothScroll, [0.1, 0.45], [80, 0])

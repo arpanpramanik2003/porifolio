@@ -34,18 +34,18 @@ const Skills = () => {
   // Track vertical scroll progress relative to when section top touches bottom of Navbar (80px)
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start 90%', 'end 100%']
+    offset: ['start 92%', 'end 100%']
   })
 
   const smoothScroll = useSpring(scrollYProgress, {
-    stiffness: 90,
-    damping: 25,
+    stiffness: 60,
+    damping: 20,
     restDelta: 0.001
   })
 
-  // Header scroll entrance fade & translation animation
-  const headerY = useTransform(smoothScroll, [0, 0.15], [35, 0])
-  const headerOpacity = useTransform(smoothScroll, [0, 0.15], [0, 1])
+  // Silky smooth scroll entrance for section title
+  const headerY = useTransform(smoothScroll, [0.03, 0.22], [45, 0])
+  const headerOpacity = useTransform(smoothScroll, [0.03, 0.2], [0, 1])
 
   // Map vertical scroll progress 0 -> 1 to exact pixel horizontal translation 0 -> -scrollDistance
   const xTransform = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance])

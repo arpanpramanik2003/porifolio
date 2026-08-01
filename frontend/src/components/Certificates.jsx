@@ -10,21 +10,21 @@ const Certificates = () => {
   // Scroll tracking for parallax background lighting pulse
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start end', 'end start']
+    offset: ['start 92%', 'end start']
   })
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 24,
+    stiffness: 60,
+    damping: 20,
     restDelta: 0.001
   })
 
   const ambientGlowScale = useTransform(smoothProgress, [0, 0.5, 1], [0.7, 1.25, 0.8])
   const ambientGlowOpacity = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [0, 0.22, 0.15, 0])
 
-  // Section Header Entrance Scroll Fade & Translation
-  const headerY = useTransform(smoothProgress, [0, 0.25], [35, 0])
-  const headerOpacity = useTransform(smoothProgress, [0, 0.2], [0, 1])
+  // Silky smooth scroll entrance for section title
+  const headerY = useTransform(smoothProgress, [0.05, 0.38], [45, 0])
+  const headerOpacity = useTransform(smoothProgress, [0.05, 0.35], [0, 1])
 
   // Framer Motion Animation Variants for smooth header landing transition
   const headerVariants = {
