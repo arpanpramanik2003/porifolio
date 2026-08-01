@@ -108,7 +108,7 @@ const About = () => {
           </div>
           
           <h2
-            className="font-display text-2xl sm:text-4xl lg:text-6xl font-black tracking-tight max-w-4xl leading-[1.1]"
+            className="font-display text-xl sm:text-3xl lg:text-5xl font-black tracking-tight max-w-4xl leading-[1.1]"
             style={{ color: 'var(--text-primary)' }}
           >
             ENGINEERING WITH RIGOR, GROUNDED AI & INTENTIONAL DESIGN.
