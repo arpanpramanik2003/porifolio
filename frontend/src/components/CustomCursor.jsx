@@ -130,11 +130,11 @@ const CustomCursor = () => {
       style={{
         width: '20px',
         height: '20px',
-        backgroundColor: isDarkMode ? '#6366f1' : '#4338ca',
-        border: isDarkMode ? '2px solid rgba(199, 210, 254, 0.5)' : '2px solid rgba(255, 255, 255, 0.8)',
+        backgroundColor: isDarkMode ? '#ffffff' : '#09090b',
+        border: isDarkMode ? '1.5px solid rgba(255, 255, 255, 0.8)' : '1.5px solid rgba(0, 0, 0, 0.8)',
         boxShadow: isDarkMode
-          ? '0 0 18px rgba(99, 102, 241, 0.6)'
-          : '0 4px 14px rgba(67, 56, 202, 0.35)',
+          ? '0 0 14px rgba(255, 255, 255, 0.4)'
+          : '0 4px 14px rgba(0, 0, 0, 0.25)',
         willChange: 'transform, opacity',
       }}
       aria-hidden="true"

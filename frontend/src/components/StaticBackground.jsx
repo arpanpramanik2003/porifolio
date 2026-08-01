@@ -42,13 +42,13 @@ const StaticBackground = () => {
         }}
       />
 
-      {/* Layer 3: Radial Vignette */}
+      {/* Layer 3: Top Spotlight Radial Vignette (Vercel & Stripe Style) */}
       <div
         className="absolute inset-0"
         style={{
           background: isDarkMode
-            ? 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.4) 100%)'
-            : 'radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(0,0,0,0.06) 100%)',
+            ? 'radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.06) 0%, transparent 60%), radial-gradient(ellipse at 50% 100%, transparent 40%, rgba(0,0,0,0.6) 100%)'
+            : 'radial-gradient(ellipse at 50% 0%, rgba(0,0,0,0.03) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(0,0,0,0.04) 100%)',
         }}
       />
     </div>

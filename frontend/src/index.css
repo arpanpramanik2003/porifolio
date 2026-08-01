@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@700;800;900&display=swap');
 @import "tailwindcss";
 
 /* Tailwind v4: Enable class-based dark mode */
@@ -9,32 +9,34 @@
    ───────────────────────────────────────────── */
 
 :root {
-  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Syne', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-syne: 'Syne', sans-serif;
+  --font-space: 'Space Grotesk', sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* ── ACCENT PALETTE (Light) ── */
-  --accent: #4f46e5;            /* Electric Indigo */
-  --accent-secondary: #d97706;  /* Ember Amber */
-  --accent-tertiary: #059669;   /* Sage Emerald */
-  --accent-warm: #ea580c;
+  /* ── ACCENT PALETTE (Light: Deep Charcoal / Monochromatic) ── */
+  --accent: #09090b;            /* High Contrast Charcoal */
+  --accent-secondary: #27272a;  /* Dark Zinc */
+  --accent-tertiary: #52525b;   /* Mid Zinc */
+  --accent-warm: #18181b;
 
   /* ── SURFACE COLORS (Light) ── */
-  --bg-primary: #f8fafc;        /* Slate 50 */
-  --bg-secondary: #f1f5f9;      /* Slate 100 */
-  --bg-card: #ffffff;           /* Pure White */
-  --bg-card-hover: #f8fafc;
+  --bg-primary: #ffffff;        /* Pure White */
+  --bg-secondary: #f4f4f5;      /* Zinc 100 */
+  --bg-card: #ffffff;           /* Pure White Card */
+  --bg-card-hover: #fafafa;     /* Zinc 50 */
   --bg-elevated: #ffffff;
 
   /* ── TEXT COLORS (Light) ── */
-  --text-primary: #0f172a;      /* Deep Slate */
-  --text-secondary: #475569;    /* Muted Slate */
-  --text-tertiary: #94a3b8;     /* Light Muted Slate */
+  --text-primary: #09090b;      /* Deepest Zinc */
+  --text-secondary: #52525b;    /* Zinc 600 */
+  --text-tertiary: #71717a;     /* Zinc 500 */
   --text-on-accent: #ffffff;
 
   /* ── BORDER / DIVIDER (Light) ── */
-  --border: #e2e8f0;
-  --border-hover: #cbd5e1;
+  --border: #e4e4e7;            /* Zinc 200 */
+  --border-hover: #a1a1aa;      /* Zinc 400 */
 
   /* ── MISC ── */
   line-height: 1.5;
@@ -45,25 +47,26 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── DARK MODE OVERRIDES ── */
+/* ── DARK MODE OVERRIDES (Vercel & Stripe Pitch Black Pure #000000) ── */
 html.dark {
-  --accent: #6366f1;            /* Indigo 500 */
-  --accent-secondary: #f59e0b;  /* Amber 500 */
-  --accent-tertiary: #10b981;   /* Emerald 500 */
-  --accent-warm: #f97316;
+  --accent: #ffffff;            /* Pure Crisp White */
+  --accent-secondary: #e4e4e7;  /* Zinc 200 */
+  --accent-tertiary: #a1a1aa;   /* Zinc 400 */
+  --accent-warm: #fafafa;
 
-  --bg-primary: #07090e;        /* Deep Charcoal Void */
-  --bg-secondary: #0f121a;      /* Slate Surface */
-  --bg-card: #141824;           /* Elevated Dark Card */
-  --bg-card-hover: #1b2030;
-  --bg-elevated: #1e2436;
+  --bg-primary: #000000;        /* Pure True Pitch Black */
+  --bg-secondary: #09090b;      /* Zinc 950 Deep Surface */
+  --bg-card: #0a0a0c;           /* Pure Dark Surface Card */
+  --bg-card-hover: #141417;     /* Hover Dark Card */
+  --bg-elevated: #1c1c21;
 
-  --text-primary: #f8fafc;      /* Warm Off-White */
-  --text-secondary: #94a3b8;    /* Muted Slate */
-  --text-tertiary: #64748b;     /* Dark Slate */
+  --text-primary: #ffffff;      /* High-Contrast Pure White */
+  --text-secondary: #a1a1aa;    /* Neutral Zinc 400 */
+  --text-tertiary: #71717a;     /* Muted Zinc 500 */
+  --text-on-accent: #000000;
 
-  --border: #1e2638;
-  --border-hover: #334155;
+  --border: #27272a;            /* Precision Zinc 800 1px Border */
+  --border-hover: #3f3f46;      /* Zinc 700 Hover Border */
 }
 
 /* ─────────────────────────────────────────────
@@ -97,6 +100,8 @@ html.dark {
 
 /* Typography utilities */
 .font-display { font-family: var(--font-display); }
+.font-syne { font-family: var(--font-syne); }
+.font-space { font-family: var(--font-space); }
 .font-body { font-family: var(--font-body); }
 .font-mono { font-family: var(--font-mono); }
 
@@ -252,7 +257,7 @@ html.dark .card-arch:hover {
    ───────────────────────────────────────────── */
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  background: linear-gradient(180deg, var(--text-primary) 0%, var(--text-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
