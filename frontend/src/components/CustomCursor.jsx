@@ -126,15 +126,12 @@ const CustomCursor = () => {
   return (
     <div
       ref={dotRef}
-      className="fixed top-0 left-0 z-[9999] pointer-events-none rounded-full transition-colors duration-300"
+      className="fixed top-0 left-0 z-[9999] pointer-events-none rounded-full"
       style={{
         width: '20px',
         height: '20px',
-        backgroundColor: isDarkMode ? '#ffffff' : '#09090b',
-        border: isDarkMode ? '1.5px solid rgba(255, 255, 255, 0.8)' : '1.5px solid rgba(0, 0, 0, 0.8)',
-        boxShadow: isDarkMode
-          ? '0 0 14px rgba(255, 255, 255, 0.4)'
-          : '0 4px 14px rgba(0, 0, 0, 0.25)',
+        backgroundColor: '#ffffff',
+        mixBlendMode: 'difference',
         willChange: 'transform, opacity',
       }}
       aria-hidden="true"
