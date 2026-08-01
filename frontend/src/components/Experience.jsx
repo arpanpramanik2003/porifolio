@@ -63,7 +63,7 @@ const Experience = () => {
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <h2
-              className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight max-w-3xl leading-[1.08]"
+              className="font-display text-2xl sm:text-4xl lg:text-6xl font-black tracking-tight max-w-3xl leading-[1.1]"
               style={{ color: 'var(--text-primary)' }}
             >
               PRACTICAL EXPERIENCE & RESEARCH INTERNSHIPS.

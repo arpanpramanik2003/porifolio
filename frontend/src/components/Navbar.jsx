@@ -46,8 +46,8 @@ const Navbar = () => {
               </div>
             </Link>
 
-            {/* Center: Desktop Clean Navigation (No Numbers, Fully Transparent) */}
-            <nav className="hidden md:flex items-center space-x-1 font-body text-xs">
+            {/* Center: Desktop Navigation (Bold, Larger Font, Clean Pure Black-White Active Notation, No Capsule / No Underline) */}
+            <nav className="hidden md:flex items-center space-x-2 font-display">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.to
 
@@ -60,24 +60,17 @@ const Navbar = () => {
                     spy
                     offset={-80}
                     onSetActive={() => setActiveSection(link.to)}
-                    className="relative px-3.5 py-2 cursor-pointer transition-colors group"
+                    className="px-3.5 py-2 cursor-pointer transition-colors group"
                   >
-                    <span className="font-medium text-xs tracking-wide transition-colors"
+                    <span
+                      className="font-bold text-sm sm:text-base tracking-wide transition-colors group-hover:text-[var(--text-primary)]"
                       style={{
-                        color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)'
+                        color: isActive ? 'var(--text-primary)' : 'var(--text-tertiary)',
+                        opacity: isActive ? 1 : 0.65
                       }}
                     >
                       {link.name}
                     </span>
-
-                    {/* Active Underline Indicator */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeNavLine"
-                        className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full"
-                        style={{ background: 'var(--text-primary)' }}
-                      />
-                    )}
                   </Link>
                 )
               })}

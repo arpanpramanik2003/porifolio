@@ -41,8 +41,10 @@ const Hero = () => {
   }
 
   // Character-by-Character Staggered Reveal Animation
-  const nameString = "ARPAN PRAMANIK"
-  const nameCharacters = Array.from(nameString)
+  const firstName = "ARPAN"
+  const lastName = "PRAMANIK"
+  const firstChars = Array.from(firstName)
+  const lastChars = Array.from(lastName)
 
   const letterVariants = {
     hidden: {
@@ -149,20 +151,15 @@ const Hero = () => {
 
         {/* ════════════════════════════════════════════════════
            MAIN HERO TITLE: Character-by-Character Animated Name
+           Responsive: Separate lines on mobile, side-by-side on sm+
            ════════════════════════════════════════════════════ */}
         <div className="mb-8 sm:mb-12 w-full flex justify-center items-center overflow-hidden">
-          <h1 className="font-display text-4xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[9.5rem] font-black tracking-tighter leading-none uppercase text-center flex flex-wrap justify-center select-none">
-            {nameCharacters.map((char, index) => {
-              if (char === " ") {
-                return (
-                  <span key={index} className="w-3 sm:w-6 lg:w-8 inline-block">
-                    &nbsp;
-                  </span>
-                )
-              }
-              return (
+          <h1 className="font-display text-4xl min-[380px]:text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[9.5rem] font-black tracking-tighter leading-[0.95] uppercase text-center flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6 select-none">
+            {/* First Name: ARPAN */}
+            <span className="flex items-center justify-center">
+              {firstChars.map((char, index) => (
                 <motion.span
-                  key={index}
+                  key={`first-${index}`}
                   custom={index}
                   initial="hidden"
                   animate="visible"
@@ -171,8 +168,24 @@ const Hero = () => {
                 >
                   {char}
                 </motion.span>
-              )
-            })}
+              ))}
+            </span>
+
+            {/* Surname: PRAMANIK (Stack cleanly below on mobile without breaking mid-word) */}
+            <span className="flex items-center justify-center">
+              {lastChars.map((char, index) => (
+                <motion.span
+                  key={`last-${index}`}
+                  custom={firstChars.length + index}
+                  initial="hidden"
+                  animate="visible"
+                  variants={letterVariants}
+                  className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
           </h1>
         </div>
 
