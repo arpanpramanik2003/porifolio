@@ -240,18 +240,15 @@ const Projects = () => {
           </div>
         </motion.div>
 
-        {/* Secondary Case Studies Grid (Staggered Landing Entrance) */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={gridContainerVariants}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
-        >
+        {/* Secondary Case Studies Grid (Individual Card Viewport Scroll Landing) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {secondaryProjects.map((project) => (
             <motion.div
               key={project.id}
-              variants={cardItemVariants}
+              initial={{ opacity: 0, y: 55, scale: 0.95, filter: 'blur(10px)' }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -8, scale: 1.015, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
               className="rounded-2xl border flex flex-col justify-between overflow-hidden transition-all card-arch shadow-md hover:shadow-xl"
               style={{ background: 'var(--bg-card)' }}
@@ -335,7 +332,7 @@ const Projects = () => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
       </div>
 
