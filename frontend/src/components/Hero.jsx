@@ -155,7 +155,7 @@ const Hero = () => {
            MAIN HERO TITLE: Character-by-Character Animated Name
            Responsive: Separate lines on mobile, side-by-side on sm+
            ════════════════════════════════════════════════════ */}
-        <div className="mb-2 sm:mb-4 w-full flex justify-center items-center overflow-hidden">
+        <div className="mt-2 sm:mt-4 mb-0 w-full flex justify-center items-center overflow-hidden">
           <h1 className="font-display text-4xl min-[380px]:text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[9.5rem] font-black tracking-tighter leading-[0.95] uppercase text-center flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6 select-none">
             {/* First Name: ARPAN */}
             <span className="flex items-center justify-center">
@@ -198,9 +198,9 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="w-[40rem] max-w-full h-0 relative pointer-events-none flex flex-col items-center justify-start overflow-visible z-0 mb-8 sm:mb-12"
+          className="w-[40rem] max-w-full h-0 relative pointer-events-none flex flex-col items-center justify-start overflow-visible z-0 mt-2 sm:mt-3 mb-8 sm:mb-12"
         >
-          {/* Cyan & Sky Highlight Glow Lines */}
+          {/* Cyan & Sky Highlight Glow Lines — Cleanly positioned below name text */}
           <div className="absolute inset-x-12 sm:inset-x-20 top-0 bg-gradient-to-r from-transparent via-cyan-400 to-transparent h-[2px] w-3/4 blur-sm opacity-90 z-20" />
           <div className="absolute inset-x-12 sm:inset-x-20 top-0 bg-gradient-to-r from-transparent via-cyan-400 to-transparent h-px w-3/4 opacity-90 z-20" />
           <div className="absolute inset-x-32 sm:inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-300 to-transparent h-[5px] w-1/4 blur-sm opacity-80 z-20" />
