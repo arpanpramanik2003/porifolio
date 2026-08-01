@@ -1,14 +1,30 @@
 import { useState, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Check, Copy, ArrowUpRight, MessageSquare } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 import { personalInfo } from '../data/personalInfo'
 
 const Contact = () => {
   const formRef = useRef(null)
+  const sectionRef = useRef(null)
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState('')
   const [copiedEmail, setCopiedEmail] = useState(false)
+
+  // Scroll tracking for title entrance fade
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start']
+  })
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 24,
+    restDelta: 0.001
+  })
+
+  const headerY = useTransform(smoothProgress, [0, 0.25], [35, 0])
+  const headerOpacity = useTransform(smoothProgress, [0, 0.2], [0, 1])
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -51,11 +67,14 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="contact" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Asymmetric Header */}
-        <div className="mb-16">
+        <motion.div
+          style={{ y: headerY, opacity: headerOpacity }}
+          className="mb-16"
+        >
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider mb-3" style={{ color: 'var(--accent)' }}>
             <span>[07]</span>
             <span className="w-8 h-px bg-[var(--accent)]" />
@@ -67,7 +86,7 @@ const Contact = () => {
           >
             INITIATE DIRECT COMMUNICATION.
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           

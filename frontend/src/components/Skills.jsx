@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { domainEcosystem } from '../data/skills'
 
@@ -11,8 +11,6 @@ const Skills = () => {
   useEffect(() => {
     const updateDistance = () => {
       if (trackRef.current) {
-        // Calculate exact horizontal scrollable distance:
-        // Total track width minus viewport width + end margin padding
         const trackWidth = trackRef.current.scrollWidth
         const viewportWidth = window.innerWidth
         const distance = trackWidth - viewportWidth + 64
@@ -36,11 +34,20 @@ const Skills = () => {
   // Track vertical scroll progress relative to when section top touches bottom of Navbar (80px)
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start 80px', 'end 100%']
+    offset: ['start 90%', 'end 100%']
   })
 
+  const smoothScroll = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 25,
+    restDelta: 0.001
+  })
+
+  // Header scroll entrance fade & translation animation
+  const headerY = useTransform(smoothScroll, [0, 0.15], [35, 0])
+  const headerOpacity = useTransform(smoothScroll, [0, 0.15], [0, 1])
+
   // Map vertical scroll progress 0 -> 1 to exact pixel horizontal translation 0 -> -scrollDistance
-  // Works bidirectionally: Right-to-Left when scrolling DOWN, Left-to-Right when scrolling UP
   const xTransform = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance])
   const progressPercent = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
 
@@ -50,18 +57,18 @@ const Skills = () => {
       ref={containerRef}
       className="relative w-full"
       style={{
-        // Height equals 100vh pinned viewport height + exact scrollable distance pixels
         height: scrollDistance ? `${window.innerHeight + scrollDistance}px` : '280vh'
       }}
     >
       
-      {/* Sticky Viewport: Pins flush underneath fixed Navbar (top-16 on mobile, top-20 on desktop) */}
+      {/* Sticky Viewport */}
       <div className="sticky top-16 sm:top-20 h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)] w-full flex flex-col justify-between py-3 sm:py-4 overflow-hidden z-10">
         
         {/* Top Header & Telemetry Progress Bar */}
         <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 z-20 shrink-0">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-2 sm:mb-3 pb-2 sm:pb-3 border-b"
-            style={{ borderColor: 'var(--border)' }}
+          <motion.div
+            className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-2 sm:mb-3 pb-2 sm:pb-3 border-b"
+            style={{ borderColor: 'var(--border)', y: headerY, opacity: headerOpacity }}
           >
             <div>
               <div className="hidden sm:flex items-center gap-2 font-mono text-xs uppercase tracking-wider mb-1" style={{ color: 'var(--accent)' }}>
@@ -95,7 +102,7 @@ const Skills = () => {
                 <span className="font-bold text-[11px] sm:text-xs" style={{ color: 'var(--text-primary)' }}>5 DOMAINS</span>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Horizontal Track Area */}

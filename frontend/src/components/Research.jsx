@@ -22,6 +22,10 @@ const Research = () => {
   const ambientGlowScale = useTransform(smoothProgress, [0, 0.5, 1], [0.7, 1.25, 0.8])
   const ambientGlowOpacity = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [0, 0.25, 0.18, 0])
 
+  // Section Header Entrance Scroll Fade & Translation
+  const headerY = useTransform(smoothProgress, [0, 0.25], [35, 0])
+  const headerOpacity = useTransform(smoothProgress, [0, 0.2], [0, 1])
+
   // Framer Motion Animation Variants for smooth landing transition
   const headerVariants = {
     hidden: { opacity: 0, y: 45, filter: 'blur(10px)' },
@@ -77,10 +81,7 @@ const Research = () => {
         
         {/* Asymmetric Header with Smooth Landing Fade */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={headerVariants}
+          style={{ y: headerY, opacity: headerOpacity }}
           className="mb-16"
         >
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider mb-3" style={{ color: 'var(--accent)' }}>
