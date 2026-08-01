@@ -1,21 +1,107 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useRef } from 'react'
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion'
 import { Github, ExternalLink, Info, X, ArrowUpRight, Code, Sparkles, CheckCircle2 } from 'lucide-react'
 import { projectsData } from '../data/projects'
 import { personalInfo } from '../data/personalInfo'
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null)
+  const sectionRef = useRef(null)
 
   const featuredProject = projectsData.find(p => p.featured) || projectsData[0]
   const secondaryProjects = projectsData.filter(p => p.id !== featuredProject.id)
 
+  // Scroll tracking for parallax background lighting pulse
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start']
+  })
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 24,
+    restDelta: 0.001
+  })
+
+  const ambientGlowScale = useTransform(smoothProgress, [0, 0.5, 1], [0.7, 1.25, 0.8])
+  const ambientGlowOpacity = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [0, 0.25, 0.2, 0])
+
+  // Framer Motion Animation Variants for smooth landing transition
+  const headerVariants = {
+    hidden: { opacity: 0, y: 45, filter: 'blur(10px)' },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      transition: {
+        duration: 0.85,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  }
+
+  const flagshipVariants = {
+    hidden: { opacity: 0, y: 60, scale: 0.95, filter: 'blur(12px)' },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: 'blur(0px)',
+      transition: {
+        duration: 0.95,
+        ease: [0.16, 1, 0.3, 1],
+        delay: 0.15
+      }
+    }
+  }
+
+  const gridContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.16,
+        delayChildren: 0.25
+      }
+    }
+  }
+
+  const cardItemVariants = {
+    hidden: { opacity: 0, y: 55, scale: 0.95, filter: 'blur(10px)' },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: 'blur(0px)',
+      transition: {
+        duration: 0.75,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  }
+
   return (
-    <section id="projects" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="projects" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
+      {/* Dynamic Parallax Background Glow */}
+      <motion.div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[650px] h-[650px] pointer-events-none blur-3xl rounded-full z-0"
+        style={{
+          scale: ambientGlowScale,
+          opacity: ambientGlowOpacity,
+          background: 'radial-gradient(circle, var(--accent) 0%, rgba(99, 102, 241, 0.05) 50%, transparent 70%)'
+        }}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Asymmetric Header */}
-        <div className="mb-16">
+        {/* Asymmetric Header with Smooth Landing Fade */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={headerVariants}
+          className="mb-16"
+        >
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider mb-3" style={{ color: 'var(--accent)' }}>
             <span>[04]</span>
             <span className="w-8 h-px bg-[var(--accent)]" />
@@ -33,17 +119,23 @@ const Projects = () => {
               href={personalInfo.social.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold hover:underline"
+              className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold hover:underline group"
               style={{ color: 'var(--accent)' }}
             >
               <span>VIEW ALL REPOSITORIES ON GITHUB</span>
-              <ArrowUpRight size={14} />
+              <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Flagship Featured Case Study (Magazine Hero Card) */}
-        <div className="mb-16 rounded-3xl border overflow-hidden transition-all card-arch"
+        {/* Flagship Featured Case Study (Magazine Hero Card - Smooth Landing Drop) */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={flagshipVariants}
+          whileHover={{ y: -6, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } }}
+          className="mb-16 rounded-3xl border overflow-hidden transition-all card-arch shadow-lg hover:shadow-2xl"
           style={{ background: 'var(--bg-card)' }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
@@ -64,8 +156,9 @@ const Projects = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               
               <div className="absolute top-4 left-4 flex gap-2 font-mono text-xs">
-                <span className="px-3 py-1 rounded-full font-bold shadow-md bg-indigo-600 text-white">
-                  ★ FLAGSHIP PROJECT
+                <span className="px-3 py-1 rounded-full font-bold shadow-md bg-indigo-600 text-white flex items-center gap-1">
+                  <Sparkles size={13} />
+                  <span>FLAGSHIP PROJECT</span>
                 </span>
                 <span className="px-3 py-1 rounded-full font-bold shadow-md bg-black/70 text-white backdrop-blur-sm border border-white/20">
                   {featuredProject.year}
@@ -108,7 +201,7 @@ const Projects = () => {
                     href={featuredProject.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-3 rounded-xl font-display font-semibold text-xs flex items-center gap-2 transition-all shadow-sm"
+                    className="px-5 py-3 rounded-xl font-display font-semibold text-xs flex items-center gap-2 transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
                     style={{
                       background: 'var(--text-primary)',
                       color: 'var(--bg-primary)'
@@ -124,7 +217,7 @@ const Projects = () => {
                     href={featuredProject.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-3 rounded-xl font-display font-semibold text-xs flex items-center gap-2 border transition-colors card-arch"
+                    className="px-5 py-3 rounded-xl font-display font-semibold text-xs flex items-center gap-2 border transition-colors card-arch hover:scale-[1.02] active:scale-[0.98]"
                     style={{ color: 'var(--text-primary)' }}
                   >
                     <Github size={14} />
@@ -134,7 +227,7 @@ const Projects = () => {
 
                 <button
                   onClick={() => setSelectedProject(featuredProject)}
-                  className="px-4 py-3 rounded-xl font-mono text-xs flex items-center gap-1.5 border transition-colors card-arch ml-auto"
+                  className="px-4 py-3 rounded-xl font-mono text-xs flex items-center gap-1.5 border transition-colors card-arch ml-auto hover:text-[var(--accent)]"
                   style={{ color: 'var(--text-tertiary)' }}
                 >
                   <Info size={14} />
@@ -145,14 +238,22 @@ const Projects = () => {
             </div>
 
           </div>
-        </div>
+        </motion.div>
 
-        {/* Secondary Case Studies Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {secondaryProjects.map((project, idx) => (
-            <div
+        {/* Secondary Case Studies Grid (Staggered Landing Entrance) */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={gridContainerVariants}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
+          {secondaryProjects.map((project) => (
+            <motion.div
               key={project.id}
-              className="rounded-2xl border flex flex-col justify-between overflow-hidden transition-all card-arch"
+              variants={cardItemVariants}
+              whileHover={{ y: -8, scale: 1.015, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
+              className="rounded-2xl border flex flex-col justify-between overflow-hidden transition-all card-arch shadow-md hover:shadow-xl"
               style={{ background: 'var(--bg-card)' }}
             >
               {/* Image Preview */}
@@ -232,9 +333,9 @@ const Projects = () => {
                 </div>
 
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
 
@@ -249,6 +350,7 @@ const Projects = () => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
               onClick={(e) => e.stopPropagation()}
               className="rounded-3xl border max-w-3xl w-full max-h-[85vh] overflow-hidden flex flex-col shadow-2xl card-arch"
               style={{ background: 'var(--bg-card)' }}
@@ -265,7 +367,7 @@ const Projects = () => {
                 </div>
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="p-2 rounded-xl border card-arch"
+                  className="p-2 rounded-xl border card-arch hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
                   style={{ color: 'var(--text-tertiary)' }}
                 >
                   <X size={18} />
@@ -341,6 +443,7 @@ const Projects = () => {
                 </div>
                 <button
                   onClick={() => setSelectedProject(null)}
+                  className="hover:underline"
                   style={{ color: 'var(--text-tertiary)' }}
                 >
                   CLOSE
