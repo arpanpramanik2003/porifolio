@@ -350,11 +350,12 @@ const Projects = () => {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
               onClick={(e) => e.stopPropagation()}
-              className="rounded-3xl border max-w-3xl w-full max-h-[85vh] overflow-hidden flex flex-col shadow-2xl card-arch"
+              data-lenis-prevent="true"
+              className="rounded-3xl border max-w-3xl w-full max-h-[85vh] overflow-hidden flex flex-col shadow-2xl card-arch relative z-50"
               style={{ background: 'var(--bg-card)' }}
             >
               {/* Modal Top Header */}
-              <div className="p-6 border-b flex items-center justify-between" style={{ borderColor: 'var(--border)', background: 'var(--bg-secondary)' }}>
+              <div className="p-6 border-b flex items-center justify-between shrink-0" style={{ borderColor: 'var(--border)', background: 'var(--bg-secondary)' }}>
                 <div>
                   <div className="font-mono text-xs uppercase" style={{ color: 'var(--accent)' }}>
                     [PROJECT SPECIFICATION // {selectedProject.year}]
@@ -373,7 +374,7 @@ const Projects = () => {
               </div>
 
               {/* Modal Scroll Content */}
-              <div className="p-6 sm:p-8 overflow-y-auto space-y-6 font-body">
+              <div data-lenis-prevent="true" className="p-6 sm:p-8 overflow-y-auto flex-1 min-h-0 overscroll-contain space-y-6 font-body">
                 <div>
                   <div className="font-mono text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--text-tertiary)' }}>
                     ARCHITECTURAL OVERVIEW
