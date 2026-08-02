@@ -7,10 +7,10 @@ const Research = () => {
   const [selectedPaper, setSelectedPaper] = useState(null)
   const sectionRef = useRef(null)
 
-  // Scroll tracking for parallax background lighting pulse
+  // Scroll tracking for parallax background lighting pulse and left vertical neon root stem animation
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start 92%', 'end start']
+    offset: ['start 75%', 'end 85%']
   })
 
   const smoothProgress = useSpring(scrollYProgress, {
@@ -19,6 +19,7 @@ const Research = () => {
     restDelta: 0.001
   })
 
+  const timelineLineHeight = useTransform(smoothProgress, [0, 1], ['0%', '100%'])
   const ambientGlowScale = useTransform(smoothProgress, [0, 0.5, 1], [0.7, 1.25, 0.8])
   const ambientGlowOpacity = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [0, 0.25, 0.18, 0])
 
@@ -26,7 +27,14 @@ const Research = () => {
   const headerY = useTransform(smoothProgress, [0.05, 0.38], [45, 0])
   const headerOpacity = useTransform(smoothProgress, [0.05, 0.35], [0, 1])
 
-  // Framer Motion Animation Variants for smooth landing transition
+  // Neon color accents per research paper node
+  const neonAccents = [
+    { color: '#00f2fe', shadow: '0 0 16px rgba(0, 242, 254, 0.85)', bg: 'rgba(0, 242, 254, 0.12)' },  // Electric Cyan
+    { color: '#3b82f6', shadow: '0 0 16px rgba(59, 130, 246, 0.85)', bg: 'rgba(59, 130, 246, 0.12)' },  // Neon Blue
+    { color: '#a855f7', shadow: '0 0 16px rgba(168, 85, 247, 0.85)', bg: 'rgba(168, 85, 247, 0.12)' }, // Neon Purple
+    { color: '#10b981', shadow: '0 0 16px rgba(16, 185, 129, 0.85)', bg: 'rgba(16, 185, 129, 0.12)' }  // Neon Emerald
+  ]
+
   const headerVariants = {
     hidden: { opacity: 0, y: 45, filter: 'blur(10px)' },
     visible: {
@@ -106,19 +114,70 @@ const Research = () => {
           </div>
         </motion.div>
 
-        {/* Academic Publication Cards List (Individual Card Viewport Scroll Landing) */}
-        <div className="space-y-8">
-          {researchData.map((paper, idx) => (
-            <motion.div
-              key={paper.id}
-              initial={{ opacity: 0, y: 55, scale: 0.96, filter: 'blur(10px)' }}
-              whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -6, scale: 1.008, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
-              className="p-6 sm:p-8 rounded-2xl border transition-all card-arch shadow-md hover:shadow-xl relative overflow-hidden group"
-              style={{ background: 'var(--bg-card)' }}
-            >
+        {/* Academic Publication Cards List with Left Animated Neon Root Stem */}
+        <div className="relative pl-6 sm:pl-10 md:pl-16">
+          
+          {/* Static Background Root Stem Track */}
+          <div
+            className="absolute left-2.5 sm:left-4 md:left-7 top-6 bottom-6 w-1 -translate-x-1/2 rounded-full opacity-20"
+            style={{ background: 'var(--border)' }}
+          />
+
+          {/* Dynamic Animated Glowing Neon Root Line */}
+          <motion.div
+            className="absolute left-2.5 sm:left-4 md:left-7 top-6 w-1 origin-top rounded-full -translate-x-1/2 z-10 overflow-visible pointer-events-none"
+            style={{
+              height: timelineLineHeight,
+              background: 'linear-gradient(180deg, #00f2fe 0%, #3b82f6 30%, #a855f7 65%, #10b981 100%)',
+              boxShadow: '0 0 12px #00f2fe, 0 0 22px #a855f7, 0 0 32px #10b981'
+            }}
+          >
+            {/* Glowing Neon Lead Tip Particle */}
+            <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white shadow-[0_0_14px_#00f2fe,0_0_24px_#a855f7] animate-ping opacity-80" />
+            <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-cyan-300 shadow-[0_0_12px_#00f2fe]" />
+          </motion.div>
+
+          {/* Publication Cards Stack */}
+          <div className="space-y-8 md:space-y-12">
+            {researchData.map((paper, idx) => {
+              const accent = neonAccents[idx % neonAccents.length]
+
+              return (
+                <motion.div
+                  key={paper.id}
+                  initial={{ opacity: 0, y: 55, scale: 0.96, filter: 'blur(10px)' }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ y: -6, scale: 1.008, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
+                  className="p-6 sm:p-8 rounded-2xl border transition-all card-arch shadow-md hover:shadow-xl relative overflow-visible group"
+                  style={{ background: 'var(--bg-card)' }}
+                >
+                  {/* Neon Root Bullet Node */}
+                  <div
+                    className="absolute -left-[14px] sm:-left-[24px] md:-left-[36px] -translate-x-1/2 top-8 w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 flex items-center justify-center transition-all duration-500 group-hover:scale-125 z-20"
+                    style={{
+                      borderColor: accent.color,
+                      background: 'var(--bg-card)',
+                      boxShadow: accent.shadow
+                    }}
+                  >
+                    <div
+                      className="w-2 h-2 rounded-full transition-transform duration-300 group-hover:scale-150"
+                      style={{
+                        background: accent.color,
+                        boxShadow: `0 0 8px ${accent.color}`
+                      }}
+                    />
+                  </div>
+
+                  {/* Top Accent Gradient Border Highlight */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl opacity-80"
+                    style={{
+                      background: `linear-gradient(to right, ${accent.color}, transparent)`
+                    }}
+                  />
               <div className="flex flex-col space-y-6">
                 
                 {/* Top Meta Row: Index, Status, Journal */}
@@ -223,11 +282,12 @@ const Research = () => {
                     </button>
                   </div>
                 </div>
-
               </div>
             </motion.div>
-          ))}
+          )
+        })}
         </div>
+      </div>
 
       </div>
 

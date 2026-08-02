@@ -6,10 +6,10 @@ import { experienceData } from '../data/experience'
 const Experience = () => {
   const sectionRef = useRef(null)
 
-  // Track scroll position inside Experience section for spatial timeline animation
+  // Scroll tracking for left vertical neon timeline stem animation
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start 92%', 'end 90%']
+    offset: ['start 75%', 'end 85%']
   })
 
   // Spring physics for natural line drawing & card motion
@@ -26,12 +26,12 @@ const Experience = () => {
   const headerY = useTransform(smoothProgress, [0.05, 0.38], [45, 0])
   const headerOpacity = useTransform(smoothProgress, [0.05, 0.35], [0, 1])
 
-  // Custom accent themes for each role index
+  // Distinct Neon Sunset & Cyber Solar Palette for Industrial Roles
   const roleAccents = [
-    { accent: 'var(--accent)', bg: 'rgba(99, 102, 241, 0.08)' },           // NIT Durgapur (Indigo)
-    { accent: 'var(--accent-secondary)', bg: 'rgba(245, 158, 11, 0.08)' },  // Xetalabs (Amber)
-    { accent: 'var(--accent-tertiary)', bg: 'rgba(16, 185, 129, 0.08)' },  // Webel (Emerald)
-    { accent: 'var(--accent-warm)', bg: 'rgba(249, 115, 22, 0.08)' }        // DataSpace (Warm Orange)
+    { accent: '#ff5e36', shadow: '0 0 16px rgba(255, 94, 54, 0.85)', bg: 'rgba(255, 94, 54, 0.12)' },   // Sunset Coral (Role 1)
+    { accent: '#f59e0b', shadow: '0 0 16px rgba(245, 158, 11, 0.85)', bg: 'rgba(245, 158, 11, 0.12)' },  // Solar Amber (Role 2)
+    { accent: '#ec4899', shadow: '0 0 16px rgba(236, 72, 153, 0.85)', bg: 'rgba(236, 72, 153, 0.12)' },  // Neon Magenta (Role 3)
+    { accent: '#d946ef', shadow: '0 0 16px rgba(217, 70, 239, 0.85)', bg: 'rgba(217, 70, 239, 0.12)' }   // Cyber Violet (Role 4)
   ]
 
   return (
@@ -48,9 +48,7 @@ const Experience = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* ─────────────────────────────────────────────────────────────
-           ASYMMETRIC SECTION HEADER (Scroll Parallax)
-           ───────────────────────────────────────────────────────────── */}
+        {/* ASYMMETRIC SECTION HEADER */}
         <motion.div
           style={{ y: headerY, opacity: headerOpacity }}
           className="mb-16 md:mb-24"
@@ -76,26 +74,28 @@ const Experience = () => {
           </div>
         </motion.div>
 
-        {/* ─────────────────────────────────────────────────────────────
-           BESPOKE INDUSTRIAL TIMELINE LEDGER
-           ───────────────────────────────────────────────────────────── */}
+        {/* BESPOKE INDUSTRIAL TIMELINE LEDGER WITH ANIMATED NEON ROOT STEM */}
         <div className="relative pl-8 sm:pl-12 md:pl-16">
           
-          {/* Static Background Timeline Line */}
+          {/* Static Background Root Stem Track */}
           <div
-            className="absolute left-3 sm:left-5 md:left-7 top-4 bottom-4 w-0.5 -translate-x-1/2"
+            className="absolute left-3 sm:left-5 md:left-7 top-4 bottom-4 w-1 -translate-x-1/2 rounded-full opacity-20"
             style={{ background: 'var(--border)' }}
           />
 
-          {/* Dynamic Animated Glowing Scroll Timeline Line */}
+          {/* Dynamic Animated Glowing Sunset Neon Root Line */}
           <motion.div
-            className="absolute left-3 sm:left-5 md:left-7 top-4 w-0.5 origin-top rounded-full -translate-x-1/2"
+            className="absolute left-3 sm:left-5 md:left-7 top-4 w-1 origin-top rounded-full -translate-x-1/2 z-10 overflow-visible pointer-events-none"
             style={{
               height: timelineLineHeight,
-              background: 'linear-gradient(to bottom, var(--accent), var(--accent-secondary), var(--accent-tertiary))',
-              boxShadow: '0 0 12px var(--accent)'
+              background: 'linear-gradient(180deg, #ff5e36 0%, #f59e0b 33%, #ec4899 66%, #d946ef 100%)',
+              boxShadow: '0 0 14px #ff5e36, 0 0 24px #ec4899, 0 0 34px #d946ef'
             }}
-          />
+          >
+            {/* Glowing Neon Lead Tip Particle */}
+            <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white shadow-[0_0_14px_#ff5e36,0_0_24px_#d946ef] animate-ping opacity-80" />
+            <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-amber-300 shadow-[0_0_12px_#ff5e36]" />
+          </motion.div>
 
           {/* Experience Cards Stack */}
           <div className="space-y-12 md:space-y-16">
@@ -111,18 +111,21 @@ const Experience = () => {
                   transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   className="relative group"
                 >
-                  {/* Timeline Node Point (Mathematically aligned centered on line) */}
+                  {/* Timeline Neon Bullet Node Point */}
                   <div
-                    className="absolute -left-[20px] sm:-left-[28px] md:-left-[36px] -translate-x-1/2 top-6 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-500 group-hover:scale-125 z-20"
+                    className="absolute -left-[20px] sm:-left-[28px] md:-left-[36px] -translate-x-1/2 top-6 w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 flex items-center justify-center transition-all duration-500 group-hover:scale-130 z-20"
                     style={{
                       borderColor: theme.accent,
                       background: 'var(--bg-card)',
-                      boxShadow: `0 0 16px ${theme.accent}`
+                      boxShadow: theme.shadow
                     }}
                   >
                     <div
                       className="w-2 h-2 rounded-full transition-transform duration-300 group-hover:scale-150"
-                      style={{ background: theme.accent }}
+                      style={{
+                        background: theme.accent,
+                        boxShadow: `0 0 8px ${theme.accent}`
+                      }}
                     />
                   </div>
 
