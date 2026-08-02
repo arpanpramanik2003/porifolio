@@ -13,7 +13,7 @@ const Skills = () => {
       if (trackRef.current) {
         const trackWidth = trackRef.current.scrollWidth
         const viewportWidth = window.innerWidth
-        const distance = trackWidth - viewportWidth + 64
+        const distance = trackWidth - viewportWidth
         setScrollDistance(Math.max(0, distance))
       }
     }
@@ -31,10 +31,10 @@ const Skills = () => {
     }
   }, [])
 
-  // Track vertical scroll progress relative to when section top touches bottom of Navbar (80px)
+  // Track vertical scroll progress starting strictly when section top touches bottom of Navbar (80px)
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start 92%', 'end 100%']
+    offset: ['start 80px', 'end 100%']
   })
 
   const smoothScroll = useSpring(scrollYProgress, {
@@ -43,13 +43,13 @@ const Skills = () => {
     restDelta: 0.001
   })
 
-  // Silky smooth scroll entrance for section title
-  const headerY = useTransform(smoothScroll, [0.03, 0.22], [45, 0])
-  const headerOpacity = useTransform(smoothScroll, [0.03, 0.2], [0, 1])
+  // Header stays clean & visible upon reaching navbar docking position
+  const headerY = useTransform(smoothScroll, [0, 0.1], [10, 0])
+  const headerOpacity = useTransform(smoothScroll, [0, 0.1], [0.95, 1])
 
   // Map vertical scroll progress 0 -> 1 to exact pixel horizontal translation 0 -> -scrollDistance
-  const xTransform = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance])
-  const progressPercent = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
+  const xTransform = useTransform(smoothScroll, [0, 1], [0, -scrollDistance])
+  const progressPercent = useTransform(smoothScroll, [0, 1], ['0%', '100%'])
 
   return (
     <section
