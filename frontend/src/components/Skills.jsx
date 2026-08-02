@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { domainEcosystem } from '../data/skills'
 
@@ -20,14 +20,19 @@ const Skills = () => {
 
     updateDistance()
 
+    const resizeObserver = new ResizeObserver(() => {
+      updateDistance()
+    })
+
+    if (trackRef.current) {
+      resizeObserver.observe(trackRef.current)
+    }
+
     window.addEventListener('resize', updateDistance)
-    const t1 = setTimeout(updateDistance, 300)
-    const t2 = setTimeout(updateDistance, 1000)
 
     return () => {
+      resizeObserver.disconnect()
       window.removeEventListener('resize', updateDistance)
-      clearTimeout(t1)
-      clearTimeout(t2)
     }
   }, [])
 
@@ -37,19 +42,13 @@ const Skills = () => {
     offset: ['start 80px', 'end 100%']
   })
 
-  const smoothScroll = useSpring(scrollYProgress, {
-    stiffness: 60,
-    damping: 20,
-    restDelta: 0.001
-  })
-
-  // Header stays clean & visible upon reaching navbar docking position
-  const headerY = useTransform(smoothScroll, [0, 0.1], [10, 0])
-  const headerOpacity = useTransform(smoothScroll, [0, 0.1], [0.95, 1])
+  // Direct 1:1 scroll transform (Lenis handles smooth interpolation, eliminating spring wobble/shaking)
+  const headerY = useTransform(scrollYProgress, [0, 0.1], [10, 0])
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.1], [0.95, 1])
 
   // Map vertical scroll progress 0 -> 1 to exact pixel horizontal translation 0 -> -scrollDistance
-  const xTransform = useTransform(smoothScroll, [0, 1], [0, -scrollDistance])
-  const progressPercent = useTransform(smoothScroll, [0, 1], ['0%', '100%'])
+  const xTransform = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance])
+  const progressPercent = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
 
   return (
     <section
@@ -115,7 +114,7 @@ const Skills = () => {
             {domainEcosystem.map((domain) => (
               <div
                 key={domain.id}
-                className="w-[88vw] sm:w-[540px] md:w-[620px] shrink-0 rounded-2xl border p-4 sm:p-8 flex flex-col justify-between transition-all card-arch"
+                className="w-[88vw] sm:w-[540px] md:w-[620px] shrink-0 rounded-2xl border p-4 sm:p-8 flex flex-col justify-between card-arch"
                 style={{
                   background: 'var(--bg-card)',
                   borderColor: 'var(--border)'
