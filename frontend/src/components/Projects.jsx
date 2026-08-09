@@ -65,24 +65,25 @@ const SpotlightCard = ({ children, className = '', style = {}, onClick }) => {
         ...style
       }}
     >
-      {/* Dynamic Cursor Spotlight Edge Glow Mask */}
+      {/* Dynamic Cursor Spotlight Edge Glow Mask (Vibrant Dual-Theme 2px Border) */}
       <div
-        className="pointer-events-none absolute -inset-px rounded-3xl transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-30"
+        className="pointer-events-none absolute -inset-[2px] rounded-[24px] transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-30"
         style={{
-          background: `radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--accent), transparent 75%)`,
-          padding: '1px',
+          background: `radial-gradient(450px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--text-primary) 0%, #ff5e36 40%, transparent 75%)`,
+          padding: '2px',
           mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
           maskComposite: 'exclude',
           WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-          WebkitMaskComposite: 'xor'
+          WebkitMaskComposite: 'xor',
+          filter: 'drop-shadow(0 0 8px var(--text-primary)) drop-shadow(0 0 14px rgba(255, 94, 54, 0.85))'
         }}
       />
 
-      {/* Dynamic Surface Radial Glow */}
+      {/* Dynamic Surface Radial Ambient Glow (Theme Adaptive Tint) */}
       <div
         className="pointer-events-none absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-10"
         style={{
-          background: `radial-gradient(450px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.035) 0%, transparent 80%)`
+          background: `radial-gradient(550px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 94, 54, 0.08) 0%, rgba(9, 9, 11, 0.03) 50%, transparent 80%)`
         }}
       />
 
