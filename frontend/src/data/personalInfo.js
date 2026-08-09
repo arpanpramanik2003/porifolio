@@ -28,5 +28,5 @@ export const personalInfo = {
   },
   
   resume: '/resume.pdf',
-  profileImage: '/profile.jpg'
+  profileImage: '/profile.webp'
 }

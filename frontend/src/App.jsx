@@ -1,17 +1,20 @@
+import { lazy, Suspense } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
-import Research from './components/Research'
-import Certificates from './components/Certificates'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
 import StaticBackground from './components/StaticBackground'
 import SmoothScroll from './components/SmoothScroll'
 import { ThemeProvider } from './contexts/ThemeContext'
+
+// Below-the-fold dynamic imports
+const Research = lazy(() => import('./components/Research'))
+const Certificates = lazy(() => import('./components/Certificates'))
+const Contact = lazy(() => import('./components/Contact'))
+const Footer = lazy(() => import('./components/Footer'))
 
 function App() {
   return (
@@ -34,10 +37,12 @@ function App() {
             <Skills />
             <Experience />
             <Projects />
-            <Research />
-            <Certificates />
-            <Contact />
-            <Footer />
+            <Suspense fallback={<div className="min-h-[20vh]" />}>
+              <Research />
+              <Certificates />
+              <Contact />
+              <Footer />
+            </Suspense>
           </div>
         </div>
       </SmoothScroll>
