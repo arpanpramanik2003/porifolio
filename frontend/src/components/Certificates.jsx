@@ -49,7 +49,7 @@ const Certificates = () => {
     }
   }, [selectedCert])
 
-  // Scroll tracking for parallax background lighting pulse
+  // Scroll tracking for section header entrance
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start 92%', 'end start']
@@ -62,35 +62,21 @@ const Certificates = () => {
   const headerY = useTransform(scrollYProgress, [0.05, 0.38], [45, 0])
   const headerOpacity = useTransform(scrollYProgress, [0.05, 0.35], [0, 1])
 
-  // Framer Motion Animation Variants for smooth header landing transition
-  const headerVariants = {
-    hidden: { opacity: 0, y: 45, filter: 'blur(10px)' },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      transition: {
-        duration: 0.85,
-        ease: [0.16, 1, 0.3, 1]
-      }
-    }
-  }
-
   return (
     <section id="certificates" aria-labelledby="certificates-heading" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
       {/* Dynamic Parallax Ambient Glow */}
       <motion.div
-        className="absolute top-1/3 left-1/3 w-[600px] h-[600px] pointer-events-none blur-3xl rounded-full z-0"
+        className="absolute top-1/3 left-1/3 w-[600px] h-[600px] pointer-events-none blur-3xl rounded-full z-0 opacity-10 dark:opacity-5"
         style={{
           scale: ambientGlowScale,
           opacity: ambientGlowOpacity,
-          background: 'radial-gradient(circle, var(--accent-tertiary) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 70%)'
+          background: 'radial-gradient(circle, var(--accent) 0%, transparent 70%)'
         }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Asymmetric Header with Smooth Landing Fade */}
+        {/* Asymmetric Section Header */}
         <motion.div
           style={{ y: headerY, opacity: headerOpacity }}
           className="mb-16"
@@ -108,44 +94,88 @@ const Certificates = () => {
               VERIFIED ACADEMIC & TECHNICAL CREDENTIALS.
             </h2>
 
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl border font-mono text-xs card-arch shadow-sm"
-              style={{ background: 'var(--bg-card)', color: 'var(--text-secondary)' }}
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border font-mono text-xs card-arch shadow-xs"
+              style={{ background: 'var(--bg-card)', borderColor: 'var(--border)', color: 'var(--text-secondary)' }}
             >
-              <ShieldCheck size={15} style={{ color: 'var(--accent-tertiary)' }} />
-              <span>{certificatesData.length} Verified Accreditations & Badges</span>
+              <ShieldCheck size={15} style={{ color: 'var(--accent)' }} />
+              <span className="font-semibold">{certificatesData.length} Verified Accreditations & Badges</span>
             </div>
           </div>
         </motion.div>
 
-        {/* Credentials Grid (Individual Card Viewport Scroll Landing) */}
+        {/* ─────────────────────────────────────────────────────────────
+           VERIFIED CREDENTIALS 3-COLUMN SCANNER RETICLE GRID
+           ───────────────────────────────────────────────────────────── */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {certificatesData.map((cert, idx) => (
             <motion.div
               key={cert.id}
-              initial={{ opacity: 0, y: 50, scale: 0.95, filter: 'blur(10px)' }}
-              whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -8, scale: 1.015, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
-              className="p-6 rounded-2xl border flex flex-col justify-between transition-all card-arch shadow-md hover:shadow-xl group"
-              style={{ background: 'var(--bg-card)' }}
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
+              tabIndex={0}
+              className="relative p-6 rounded-2xl border flex flex-col justify-between transition-all duration-250 ease-out card-arch shadow-xs hover:shadow-xl hover:-translate-y-1 focus-within:-translate-y-1 focus-outline group cursor-default h-full"
+              style={{
+                background: 'var(--bg-card)',
+                borderColor: 'var(--border)'
+              }}
             >
+              {/* ── RETICLE SCANNER CORNER BRACKETS (GPU-Accelerated CSS) ── */}
+              {/* Top-Left Reticle Corner */}
+              <div
+                className="absolute top-2.5 left-2.5 w-3.5 h-3.5 border-t-2 border-l-2 pointer-events-none opacity-0 scale-125 -translate-x-1 -translate-y-1 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:scale-100 group-focus-within:translate-x-0 group-focus-within:translate-y-0 z-20"
+                style={{ borderColor: 'var(--accent)' }}
+              />
+              {/* Top-Right Reticle Corner */}
+              <div
+                className="absolute top-2.5 right-2.5 w-3.5 h-3.5 border-t-2 border-r-2 pointer-events-none opacity-0 scale-125 translate-x-1 -translate-y-1 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:scale-100 group-focus-within:translate-x-0 group-focus-within:translate-y-0 z-20"
+                style={{ borderColor: 'var(--accent)' }}
+              />
+              {/* Bottom-Left Reticle Corner */}
+              <div
+                className="absolute bottom-2.5 left-2.5 w-3.5 h-3.5 border-b-2 border-l-2 pointer-events-none opacity-0 scale-125 -translate-x-1 translate-y-1 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:scale-100 group-focus-within:translate-x-0 group-focus-within:translate-y-0 z-20"
+                style={{ borderColor: 'var(--accent)' }}
+              />
+              {/* Bottom-Right Reticle Corner */}
+              <div
+                className="absolute bottom-2.5 right-2.5 w-3.5 h-3.5 border-b-2 border-r-2 pointer-events-none opacity-0 scale-125 translate-x-1 translate-y-1 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:scale-100 group-focus-within:translate-x-0 group-focus-within:translate-y-0 z-20"
+                style={{ borderColor: 'var(--accent)' }}
+              />
+
+              {/* Card Body */}
               <div className="space-y-4">
                 
                 {/* Header Meta Row */}
                 <div className="flex items-center justify-between font-mono text-xs pb-3 border-b" style={{ borderColor: 'var(--border)' }}>
-                  <span className="font-bold" style={{ color: 'var(--accent)' }}>[CRED // 0{idx + 1}]</span>
-                  <span className="px-2 py-0.5 rounded border" style={{ borderColor: 'var(--border)', color: 'var(--text-tertiary)', background: 'var(--bg-secondary)' }}>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold tracking-wider" style={{ color: 'var(--accent)' }}>
+                      [CRED // 0{idx + 1}]
+                    </span>
+                    {/* Animated Verification Stamp Icon */}
+                    <ShieldCheck
+                      size={15}
+                      className="pointer-events-none opacity-0 scale-50 -rotate-12 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:rotate-0 group-focus-within:opacity-100 group-focus-within:scale-100 group-focus-within:rotate-0"
+                      style={{ color: 'var(--accent)' }}
+                    />
+                  </div>
+                  <span
+                    className="px-2 py-0.5 rounded border text-[11px]"
+                    style={{ borderColor: 'var(--border)', color: 'var(--text-tertiary)', background: 'var(--bg-secondary)' }}
+                  >
                     {cert.date}
                   </span>
                 </div>
 
                 {/* Title & Type */}
                 <div>
-                  <h3 className="font-display font-bold text-lg leading-snug mb-1 transition-colors group-hover:text-[var(--accent)]" style={{ color: 'var(--text-primary)' }}>
+                  <h3
+                    className="font-display font-bold text-lg leading-snug mb-1 tracking-tight transition-colors group-hover:text-[var(--accent)]"
+                    style={{ color: 'var(--text-primary)' }}
+                  >
                     {cert.title}
                   </h3>
-                  <div className="font-mono text-xs" style={{ color: 'var(--accent-secondary)' }}>
+                  <div className="font-mono text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>
                     {cert.type}
                   </div>
                 </div>
@@ -157,17 +187,18 @@ const Certificates = () => {
 
               </div>
 
-              {/* Footer Meta Row: Issuer & View Document Action */}
+              {/* Footer Meta Row: Issuer & View Action */}
               <div className="pt-4 mt-6 border-t flex items-center justify-between font-mono text-xs" style={{ borderColor: 'var(--border)' }}>
                 <div className="flex items-center gap-1.5 truncate max-w-[65%]" style={{ color: 'var(--text-tertiary)' }}>
-                  <Building size={13} className="shrink-0" />
+                  <Building size={13} className="shrink-0" style={{ color: 'var(--accent)' }} />
                   <span className="truncate">{cert.issuer}</span>
                 </div>
 
                 {cert.file && (
                   <button
                     onClick={() => setSelectedCert(cert)}
-                    className="flex items-center gap-1 font-semibold hover:underline group/btn"
+                    aria-label={`View verified certificate for ${cert.title}`}
+                    className="flex items-center gap-1 font-semibold hover:underline group/btn focus-outline"
                     style={{ color: 'var(--accent)' }}
                   >
                     <Eye size={13} className="transition-transform group-hover/btn:scale-110" />
@@ -203,7 +234,7 @@ const Certificates = () => {
               style={{ background: 'var(--bg-card)' }}
             >
               {/* Modal Header */}
-              <div className="p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border)', background: 'var(--bg-secondary)' }}>
+              <div className="p-5 border-b flex items-center justify-between shrink-0" style={{ borderColor: 'var(--border)', background: 'var(--bg-secondary)' }}>
                 <div>
                   <div className="font-mono text-xs uppercase" style={{ color: 'var(--accent)' }}>
                     [VERIFIED CERTIFICATE DOCUMENT // {selectedCert.date}]
@@ -212,7 +243,12 @@ const Certificates = () => {
                     {selectedCert.title}
                   </h3>
                 </div>
-                <button onClick={() => setSelectedCert(null)} aria-label="Close modal" className="p-2 rounded-xl border card-arch hover:bg-black/10 dark:hover:bg-white/10 transition-colors" style={{ color: 'var(--text-tertiary)' }}>
+                <button
+                  onClick={() => setSelectedCert(null)}
+                  aria-label="Close modal"
+                  className="p-2 rounded-xl border card-arch hover:bg-black/10 dark:hover:bg-white/10 transition-colors focus-outline"
+                  style={{ color: 'var(--text-tertiary)' }}
+                >
                   <X size={18} />
                 </button>
               </div>
@@ -235,11 +271,11 @@ const Certificates = () => {
               </div>
 
               {/* Modal Bottom Bar */}
-              <div className="p-5 border-t flex items-center justify-between font-mono text-xs"
+              <div className="p-5 border-t flex items-center justify-between font-mono text-xs shrink-0"
                 style={{ borderColor: 'var(--border)', background: 'var(--bg-secondary)' }}
               >
                 <span style={{ color: 'var(--text-secondary)' }}>ISSUED BY: {selectedCert.issuer}</span>
-                <button onClick={() => setSelectedCert(null)} className="hover:underline" style={{ color: 'var(--text-tertiary)' }}>
+                <button onClick={() => setSelectedCert(null)} className="hover:underline focus-outline" style={{ color: 'var(--text-tertiary)' }}>
                   CLOSE
                 </button>
               </div>
