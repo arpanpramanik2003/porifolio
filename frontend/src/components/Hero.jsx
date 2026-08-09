@@ -7,6 +7,14 @@ import BlueprintGridCanvas from './BlueprintGridCanvas'
 
 const glyphs = '01#*><%{}[]/@&$!~?'
 
+const nameCycleData = [
+  { text: 'অর্পন প্রামানিক', lang: 'Bengali', fontFamily: "'Noto Sans Bengali', sans-serif" },
+  { text: 'अर्पन प्रामाणिक', lang: 'Hindi', fontFamily: "'Noto Sans Devanagari', sans-serif" },
+  { text: 'அர்பன் பிரமாணிக்', lang: 'Tamil', fontFamily: "'Noto Sans Tamil', sans-serif" },
+  { text: 'అర్పన్ ప్రామాణిక్', lang: 'Telugu', fontFamily: "'Noto Sans Telugu', sans-serif" },
+  { text: 'ARPAN PRAMANIK', lang: 'English', isFinal: true }
+]
+
 const ScrambleText = ({ text, delay = 0, className = '' }) => {
   const [displayText, setDisplayText] = useState(text)
 
@@ -106,7 +114,24 @@ const CountUpStat = ({ targetNum, suffix = '', label, subtext, rawText }) => {
 const Hero = ({ isIntroComplete = true }) => {
   const [copiedCommand, setCopiedCommand] = useState(false)
   const [showToast, setShowToast] = useState(false)
+  const [cycleIndex, setCycleIndex] = useState(0)
   const heroRef = useRef(null)
+
+  // Manage Multi-Language Name Cycle Timer
+  useEffect(() => {
+    if (!isIntroComplete) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setCycleIndex(nameCycleData.length - 1)
+      return
+    }
+
+    if (cycleIndex < nameCycleData.length - 1) {
+      const timer = setTimeout(() => {
+        setCycleIndex((prev) => prev + 1)
+      }, 450)
+      return () => clearTimeout(timer)
+    }
+  }, [isIntroComplete, cycleIndex])
 
   // Scroll bindings
   const { scrollYProgress } = useScroll({
@@ -159,6 +184,9 @@ const Hero = ({ isIntroComplete = true }) => {
     { label: 'Key Innovation', rawText: 'PaperLens AI', subtext: 'Research Co-Pilot' }
   ]
 
+  const currentLangObj = nameCycleData[cycleIndex]
+  const isFinalEnglish = currentLangObj.isFinal
+
   return (
     <section
       id="hero"
@@ -197,20 +225,51 @@ const Hero = ({ isIntroComplete = true }) => {
         </motion.div>
 
         {/* ════════════════════════════════════════════════════
-           MAIN HERO TITLE: Character Scramble-to-Lock Name
+           MULTI-LANGUAGE NAME CYCLE & DROP-IN REVEAL HEADLINE
            ════════════════════════════════════════════════════ */}
-        <div className="mt-2 sm:mt-4 mb-6 sm:mb-10 w-full flex justify-center items-center overflow-hidden">
-          <h1
-            id="hero-title"
-            className="font-display text-4xl min-[380px]:text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[9rem] font-black tracking-tighter leading-[0.95] uppercase text-center flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6 select-none"
-          >
-            <span className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]">
-              {isIntroComplete && <ScrambleText text="ARPAN" delay={100} />}
-            </span>
-            <span className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]">
-              {isIntroComplete && <ScrambleText text="PRAMANIK" delay={250} />}
-            </span>
-          </h1>
+        <div className="mt-2 sm:mt-4 mb-6 sm:mb-10 w-full flex justify-center items-center min-h-[120px] sm:min-h-[180px] overflow-hidden select-none">
+          <AnimatePresence mode="wait">
+            {!isFinalEnglish ? (
+              /* Regional Language Cycle Step (Bengali, Hindi, Tamil, Telugu) */
+              <motion.div
+                key={currentLangObj.lang}
+                initial={{ opacity: 0, scale: 0.94, filter: 'blur(6px)' }}
+                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, scale: 1.04, filter: 'blur(6px)' }}
+                transition={{ duration: 0.28, ease: 'easeOut' }}
+                className="text-center"
+              >
+                <span
+                  className="font-black text-3xl min-[380px]:text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]"
+                  style={{ fontFamily: currentLangObj.fontFamily }}
+                >
+                  {currentLangObj.text}
+                </span>
+              </motion.div>
+            ) : (
+              /* Final English Resting State: Drop-In Fall from Above + Scramble Lock */
+              <motion.h1
+                key="english-final"
+                id="hero-title"
+                initial={{ y: -50, opacity: 0, scale: 0.92, filter: 'blur(10px)' }}
+                animate={{ y: 0, opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 130,
+                  damping: 15,
+                  mass: 0.8
+                }}
+                className="font-display text-4xl min-[380px]:text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[9rem] font-black tracking-tighter leading-[0.95] uppercase text-center flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6"
+              >
+                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]">
+                  <ScrambleText text="ARPAN" delay={50} />
+                </span>
+                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]">
+                  <ScrambleText text="PRAMANIK" delay={200} />
+                </span>
+              </motion.h1>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* ════════════════════════════════════════════════════
