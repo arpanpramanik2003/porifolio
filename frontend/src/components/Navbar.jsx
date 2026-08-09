@@ -82,6 +82,7 @@ const Navbar = () => {
               {/* Borderless Theme Switcher Button */}
               <button
                 onClick={toggleTheme}
+                aria-label={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
                 title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
                 className="p-2.5 rounded-xl border-none flex items-center justify-center transition-colors hover:bg-white/10 dark:hover:bg-white/10"
                 style={{ color: 'var(--text-primary)', background: 'transparent' }}
@@ -130,6 +131,8 @@ const Navbar = () => {
             <div className="flex sm:hidden items-center gap-2">
               <button
                 onClick={toggleTheme}
+                aria-label={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
                 className="p-2 rounded-lg border-none"
                 style={{ color: 'var(--text-primary)', background: 'transparent' }}
               >
@@ -137,6 +140,9 @@ const Navbar = () => {
               </button>
               <button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                aria-expanded={isOpen}
+                aria-controls="mobile-menu"
                 className="p-2 rounded-lg border-none"
                 style={{ color: 'var(--text-primary)', background: 'transparent' }}
               >
@@ -152,6 +158,9 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-menu"
+            role="region"
+            aria-label="Mobile Navigation"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}

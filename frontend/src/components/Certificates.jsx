@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Award, Calendar, Building, CheckCircle2, Eye, ExternalLink, X, ShieldCheck } from 'lucide-react'
 import { certificatesData } from '../data/certificates'
@@ -6,6 +6,48 @@ import { certificatesData } from '../data/certificates'
 const Certificates = () => {
   const [selectedCert, setSelectedCert] = useState(null)
   const sectionRef = useRef(null)
+  const modalRef = useRef(null)
+
+  // Focus trapping & Escape key dismissal for modal
+  useEffect(() => {
+    if (!selectedCert) return
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedCert(null)
+      }
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusables = modalRef.current.querySelectorAll(
+          'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+        )
+        if (focusables.length === 0) return
+        const first = focusables[0]
+        const last = focusables[focusables.length - 1]
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault()
+            last.focus()
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault()
+            first.focus()
+          }
+        }
+      }
+    }
+
+    const previousFocus = document.activeElement
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      if (previousFocus && previousFocus.focus) {
+        previousFocus.focus()
+      }
+    }
+  }, [selectedCert])
 
   // Scroll tracking for parallax background lighting pulse
   const { scrollYProgress } = useScroll({
@@ -35,7 +77,7 @@ const Certificates = () => {
   }
 
   return (
-    <section id="certificates" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
+    <section id="certificates" aria-labelledby="certificates-heading" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
       {/* Dynamic Parallax Ambient Glow */}
       <motion.div
         className="absolute top-1/3 left-1/3 w-[600px] h-[600px] pointer-events-none blur-3xl rounded-full z-0"
@@ -60,7 +102,7 @@ const Certificates = () => {
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-            <h2 className="font-display text-xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug max-w-3xl"
+            <h2 id="certificates-heading" className="font-display text-xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug max-w-3xl"
               style={{ color: 'var(--text-primary)' }}
             >
               VERIFIED ACADEMIC & TECHNICAL CREDENTIALS.
@@ -148,6 +190,10 @@ const Certificates = () => {
             className="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           >
             <motion.div
+              ref={modalRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="cert-modal-title"
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -162,11 +208,11 @@ const Certificates = () => {
                   <div className="font-mono text-xs uppercase" style={{ color: 'var(--accent)' }}>
                     [VERIFIED CERTIFICATE DOCUMENT // {selectedCert.date}]
                   </div>
-                  <h3 className="font-display font-bold text-lg" style={{ color: 'var(--text-primary)' }}>
+                  <h3 id="cert-modal-title" className="font-display font-bold text-lg" style={{ color: 'var(--text-primary)' }}>
                     {selectedCert.title}
                   </h3>
                 </div>
-                <button onClick={() => setSelectedCert(null)} className="p-2 rounded-xl border card-arch hover:bg-black/10 dark:hover:bg-white/10 transition-colors" style={{ color: 'var(--text-tertiary)' }}>
+                <button onClick={() => setSelectedCert(null)} aria-label="Close modal" className="p-2 rounded-xl border card-arch hover:bg-black/10 dark:hover:bg-white/10 transition-colors" style={{ color: 'var(--text-tertiary)' }}>
                   <X size={18} />
                 </button>
               </div>

@@ -76,6 +76,7 @@ const About = () => {
   return (
     <section
       id="about"
+      aria-labelledby="about-heading"
       ref={sectionRef}
       className="py-24 md:py-36 relative overflow-hidden perspective-1000"
     >
@@ -101,6 +102,7 @@ const About = () => {
           </div>
           
           <h2
+            id="about-heading"
             className="font-display text-xl sm:text-3xl lg:text-5xl font-black tracking-tight max-w-4xl leading-[1.1]"
             style={{ color: 'var(--text-primary)' }}
           >

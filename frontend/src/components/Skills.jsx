@@ -60,6 +60,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
+      aria-labelledby="skills-heading"
       ref={containerRef}
       className="relative w-full"
       style={{
@@ -82,7 +83,7 @@ const Skills = () => {
                 <span className="w-8 h-px bg-[var(--accent)]" />
                 <span>ENGINEERING TOOLKIT & PRODUCTION STACK</span>
               </div>
-              <h2 className="font-display text-lg sm:text-2xl lg:text-3xl font-black tracking-tight"
+              <h2 id="skills-heading" className="font-display text-lg sm:text-2xl lg:text-3xl font-black tracking-tight"
                 style={{ color: 'var(--text-primary)' }}
               >
                 TECHNICAL ECOSYSTEM.

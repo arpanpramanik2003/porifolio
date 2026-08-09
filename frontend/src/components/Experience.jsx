@@ -30,6 +30,7 @@ const Experience = () => {
   return (
     <section
       id="experience"
+      aria-labelledby="experience-heading"
       ref={sectionRef}
       className="py-24 md:py-36 relative overflow-hidden perspective-1000"
     >
@@ -54,6 +55,7 @@ const Experience = () => {
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <h2
+              id="experience-heading"
               className="font-display text-xl sm:text-3xl lg:text-5xl font-black tracking-tight max-w-3xl leading-[1.1]"
               style={{ color: 'var(--text-primary)' }}
             >

@@ -92,6 +92,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
+      aria-labelledby="hero-title"
       ref={heroRef}
       className="relative min-h-screen w-full flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-12 overflow-hidden"
     >
@@ -149,7 +150,7 @@ const Hero = () => {
            Responsive: Separate lines on mobile, side-by-side on sm+
            ════════════════════════════════════════════════════ */}
         <div className="mt-2 sm:mt-4 mb-0 w-full flex justify-center items-center overflow-hidden">
-          <h1 className="font-display text-4xl min-[380px]:text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[9.5rem] font-black tracking-tighter leading-[0.95] uppercase text-center flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6 select-none">
+          <h1 id="hero-title" className="font-display text-4xl min-[380px]:text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[9.5rem] font-black tracking-tighter leading-[0.95] uppercase text-center flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6 select-none">
             {/* First Name: ARPAN */}
             <span className="flex items-center justify-center">
               {firstChars.map((char, index) => (

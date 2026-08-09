@@ -29,9 +29,11 @@ function App() {
           {/* Single precision cursor overlay */}
           <CustomCursor />
 
-          {/* Main Content */}
-          <div className="relative z-10">
-            <Navbar />
+          {/* Header Navigation */}
+          <Navbar />
+
+          {/* Main Content Landmark */}
+          <main id="main-content" className="relative z-10">
             <Hero />
             <About />
             <Skills />
@@ -41,9 +43,13 @@ function App() {
               <Research />
               <Certificates />
               <Contact />
-              <Footer />
             </Suspense>
-          </div>
+          </main>
+
+          {/* Footer Landmark */}
+          <Suspense fallback={null}>
+            <Footer />
+          </Suspense>
         </div>
       </SmoothScroll>
     </ThemeProvider>

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Github, ExternalLink, Info, X, ArrowUpRight, Code, Sparkles, CheckCircle2 } from 'lucide-react'
 import { projectsData } from '../data/projects'
@@ -7,9 +7,51 @@ import { personalInfo } from '../data/personalInfo'
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null)
   const sectionRef = useRef(null)
+  const modalRef = useRef(null)
 
   const featuredProject = projectsData.find(p => p.featured) || projectsData[0]
   const secondaryProjects = projectsData.filter(p => p.id !== featuredProject.id)
+
+  // Focus trapping & Escape key dismissal for modal
+  useEffect(() => {
+    if (!selectedProject) return
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedProject(null)
+      }
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusables = modalRef.current.querySelectorAll(
+          'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+        )
+        if (focusables.length === 0) return
+        const first = focusables[0]
+        const last = focusables[focusables.length - 1]
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault()
+            last.focus()
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault()
+            first.focus()
+          }
+        }
+      }
+    }
+
+    const previousFocus = document.activeElement
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      if (previousFocus && previousFocus.focus) {
+        previousFocus.focus()
+      }
+    }
+  }, [selectedProject])
 
   // Scroll tracking for parallax background lighting pulse
   const { scrollYProgress } = useScroll({
@@ -79,7 +121,7 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
+    <section id="projects" aria-labelledby="projects-heading" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
       {/* Dynamic Parallax Background Glow */}
       <motion.div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[650px] h-[650px] pointer-events-none blur-3xl rounded-full z-0"
@@ -104,7 +146,7 @@ const Projects = () => {
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-            <h2 className="font-display text-xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug max-w-3xl"
+            <h2 id="projects-heading" className="font-display text-xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug max-w-3xl"
               style={{ color: 'var(--text-primary)' }}
             >
               SELECTED PRODUCTION SYSTEMS & AI PLATFORMS.
@@ -347,6 +389,10 @@ const Projects = () => {
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           >
             <motion.div
+              ref={modalRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="project-modal-title"
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -362,12 +408,13 @@ const Projects = () => {
                   <div className="font-mono text-xs uppercase" style={{ color: 'var(--accent)' }}>
                     [PROJECT SPECIFICATION // {selectedProject.year}]
                   </div>
-                  <h3 className="font-display font-bold text-2xl" style={{ color: 'var(--text-primary)' }}>
+                  <h3 id="project-modal-title" className="font-display font-bold text-2xl" style={{ color: 'var(--text-primary)' }}>
                     {selectedProject.title}
                   </h3>
                 </div>
                 <button
                   onClick={() => setSelectedProject(null)}
+                  aria-label="Close modal"
                   className="p-2 rounded-xl border card-arch hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
                   style={{ color: 'var(--text-tertiary)' }}
                 >

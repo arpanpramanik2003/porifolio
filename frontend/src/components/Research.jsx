@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { BookOpen, ExternalLink, Award, Users, FileText, ArrowUpRight, CheckCircle2, X, Sparkles } from 'lucide-react'
 import { researchData } from '../data/research'
@@ -6,6 +6,48 @@ import { researchData } from '../data/research'
 const Research = () => {
   const [selectedPaper, setSelectedPaper] = useState(null)
   const sectionRef = useRef(null)
+  const modalRef = useRef(null)
+
+  // Focus trapping & Escape key dismissal for modal
+  useEffect(() => {
+    if (!selectedPaper) return
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedPaper(null)
+      }
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusables = modalRef.current.querySelectorAll(
+          'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+        )
+        if (focusables.length === 0) return
+        const first = focusables[0]
+        const last = focusables[focusables.length - 1]
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault()
+            last.focus()
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault()
+            first.focus()
+          }
+        }
+      }
+    }
+
+    const previousFocus = document.activeElement
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      if (previousFocus && previousFocus.focus) {
+        previousFocus.focus()
+      }
+    }
+  }, [selectedPaper])
 
   // Scroll tracking for parallax background lighting pulse and left vertical neon root stem animation
   const { scrollYProgress } = useScroll({
@@ -68,7 +110,7 @@ const Research = () => {
   }
 
   return (
-    <section id="research" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
+    <section id="research" aria-labelledby="research-heading" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
       {/* Dynamic Parallax Ambient Glow */}
       <motion.div
         className="absolute top-1/3 right-1/4 w-[600px] h-[600px] pointer-events-none blur-3xl rounded-full z-0"
@@ -93,7 +135,7 @@ const Research = () => {
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-            <h2 className="font-display text-xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug max-w-3xl"
+            <h2 id="research-heading" className="font-display text-xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug max-w-3xl"
               style={{ color: 'var(--text-primary)' }}
             >
               CONFERENCE PAPERS & DEEP LEARNING RESEARCH.
@@ -293,6 +335,10 @@ const Research = () => {
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           >
             <motion.div
+              ref={modalRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="paper-modal-title"
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -307,11 +353,11 @@ const Research = () => {
                   <div className="font-mono text-xs uppercase" style={{ color: 'var(--accent)' }}>
                     [PAPER DOSSIER // {selectedPaper.journal}]
                   </div>
-                  <h3 className="font-display font-bold text-xl leading-snug" style={{ color: 'var(--text-primary)' }}>
+                  <h3 id="paper-modal-title" className="font-display font-bold text-xl leading-snug" style={{ color: 'var(--text-primary)' }}>
                     {selectedPaper.title}
                   </h3>
                 </div>
-                <button onClick={() => setSelectedPaper(null)} className="p-2 rounded-xl border card-arch hover:bg-black/10 dark:hover:bg-white/10 transition-colors" style={{ color: 'var(--text-tertiary)' }}>
+                <button onClick={() => setSelectedPaper(null)} aria-label="Close modal" className="p-2 rounded-xl border card-arch hover:bg-black/10 dark:hover:bg-white/10 transition-colors" style={{ color: 'var(--text-tertiary)' }}>
                   <X size={18} />
                 </button>
               </div>

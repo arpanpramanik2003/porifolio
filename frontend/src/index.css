@@ -29,8 +29,8 @@
 
   /* ── TEXT COLORS (Light) ── */
   --text-primary: #09090b;      /* Deepest Zinc */
-  --text-secondary: #52525b;    /* Zinc 600 */
-  --text-tertiary: #71717a;     /* Zinc 500 */
+  --text-secondary: #3f3f46;    /* Zinc 700 */
+  --text-tertiary: #52525b;     /* High contrast Zinc 600 (WCAG 7.0:1) */
   --text-on-accent: #ffffff;
 
   /* ── BORDER / DIVIDER (Light) ── */
@@ -60,8 +60,8 @@ html.dark {
   --bg-elevated: #1c1c21;
 
   --text-primary: #ffffff;      /* High-Contrast Pure White */
-  --text-secondary: #a1a1aa;    /* Neutral Zinc 400 */
-  --text-tertiary: #71717a;     /* Muted Zinc 500 */
+  --text-secondary: #e4e4e7;    /* High-Contrast Zinc 200 */
+  --text-tertiary: #a1a1aa;     /* High contrast Zinc 400 (WCAG 7.5:1) */
   --text-on-accent: #000000;
 
   --border: #27272a;            /* Precision Zinc 800 1px Border */
@@ -150,12 +150,19 @@ button {
 }
 
 /* ─────────────────────────────────────────────
-   CUSTOM CURSOR — Hide native on desktop only
+   CUSTOM CURSOR & ACCESSIBILITY FOCUS RINGS
    ───────────────────────────────────────────── */
 @media (pointer: fine) {
-  * {
-    cursor: none !important;
+  *:not(:focus-visible) {
+    cursor: none;
   }
+}
+
+/* Accessible focus indicator override for keyboard navigation */
+:focus-visible {
+  cursor: auto !important;
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 3px !important;
 }
 
 /* Ensure touch/mobile keeps native cursor */

@@ -62,7 +62,7 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
+    <section id="contact" aria-labelledby="contact-heading" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Asymmetric Header */}
@@ -76,7 +76,7 @@ const Contact = () => {
             <span>DIRECT DISPATCH CONSOLE</span>
           </div>
 
-          <h2 className="font-display text-xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug max-w-3xl"
+          <h2 id="contact-heading" className="font-display text-xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug max-w-3xl"
             style={{ color: 'var(--text-primary)' }}
           >
             INITIATE DIRECT COMMUNICATION.
@@ -227,16 +227,18 @@ const Contact = () => {
               </div>
 
               {/* Status Indicator Feedback */}
-              {status === 'success' && (
-                <div className="p-3 rounded-xl border font-mono text-xs" style={{ borderColor: 'var(--accent-tertiary)', color: 'var(--accent-tertiary)', background: 'var(--bg-secondary)' }}>
-                  ✓ Message transmitted successfully. I will get back to you shortly.
-                </div>
-              )}
-              {status === 'error' && (
-                <div className="p-3 rounded-xl border font-mono text-xs" style={{ borderColor: 'red', color: 'red', background: 'var(--bg-secondary)' }}>
-                  ✕ Transmission failed. Please try emailing directly at {personalInfo.contact.email}
-                </div>
-              )}
+              <div aria-live="polite" role="status">
+                {status === 'success' && (
+                  <div className="p-3 rounded-xl border font-mono text-xs" style={{ borderColor: 'var(--accent-tertiary)', color: 'var(--accent-tertiary)', background: 'var(--bg-secondary)' }}>
+                    ✓ Message transmitted successfully. I will get back to you shortly.
+                  </div>
+                )}
+                {status === 'error' && (
+                  <div className="p-3 rounded-xl border font-mono text-xs" style={{ borderColor: 'red', color: 'red', background: 'var(--bg-secondary)' }}>
+                    ✕ Transmission failed. Please try emailing directly at {personalInfo.contact.email}
+                  </div>
+                )}
+              </div>
 
               {/* Submit Button */}
               <button
