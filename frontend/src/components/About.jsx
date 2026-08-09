@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { GraduationCap, MapPin, Download, ArrowUpRight, Cpu, Code, Brain, ShieldCheck, Sparkles } from 'lucide-react'
 import { aboutData } from '../data/about'
 import { personalInfo } from '../data/personalInfo'
@@ -13,23 +13,16 @@ const About = () => {
     offset: ['start 92%', 'end start']
   })
 
-  // Spring physics for natural, smooth motion
-  const smoothScroll = useSpring(scrollYProgress, {
-    stiffness: 60,
-    damping: 20,
-    restDelta: 0.001
-  })
-
   // Silky smooth scroll entrance for section title
-  const headerY = useTransform(smoothScroll, [0.05, 0.38], [45, 0])
-  const headerOpacity = useTransform(smoothScroll, [0.05, 0.35], [0, 1])
+  const headerY = useTransform(scrollYProgress, [0.05, 0.38], [45, 0])
+  const headerOpacity = useTransform(scrollYProgress, [0.05, 0.35], [0, 1])
 
-  const leftColY = useTransform(smoothScroll, [0.1, 0.4], [50, 0])
-  const rightColY = useTransform(smoothScroll, [0.1, 0.45], [80, 0])
+  const leftColY = useTransform(scrollYProgress, [0.1, 0.4], [50, 0])
+  const rightColY = useTransform(scrollYProgress, [0.1, 0.45], [80, 0])
   
   // Subtle 3D portrait perspective tilt on scroll
-  const portraitRotateX = useTransform(smoothScroll, [0.2, 0.6], [8, -4])
-  const portraitScale = useTransform(smoothScroll, [0.2, 0.5], [0.96, 1])
+  const portraitRotateX = useTransform(scrollYProgress, [0.2, 0.6], [8, -4])
+  const portraitScale = useTransform(scrollYProgress, [0.2, 0.5], [0.96, 1])
 
   const pillars = [
     {

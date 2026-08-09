@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Check, Copy, ArrowUpRight, MessageSquare } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 import { personalInfo } from '../data/personalInfo'
@@ -17,15 +17,9 @@ const Contact = () => {
     offset: ['start 92%', 'end start']
   })
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 60,
-    damping: 20,
-    restDelta: 0.001
-  })
-
   // Silky smooth scroll entrance for section title
-  const headerY = useTransform(smoothProgress, [0.05, 0.38], [45, 0])
-  const headerOpacity = useTransform(smoothProgress, [0.05, 0.35], [0, 1])
+  const headerY = useTransform(scrollYProgress, [0.05, 0.38], [45, 0])
+  const headerOpacity = useTransform(scrollYProgress, [0.05, 0.35], [0, 1])
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })

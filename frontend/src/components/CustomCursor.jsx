@@ -40,8 +40,26 @@ const CustomCursor = () => {
     const dot = dotRef.current
     if (!dot) return
 
+    let isRunning = false
+
+    const startLoop = () => {
+      if (!isRunning && !document.hidden) {
+        isRunning = true
+        rafId.current = requestAnimationFrame(animate)
+      }
+    }
+
+    const stopLoop = () => {
+      isRunning = false
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current)
+        rafId.current = null
+      }
+    }
+
     const onMouseMove = (e) => {
       mouse.current = { x: e.clientX, y: e.clientY }
+      startLoop()
     }
 
     const onMouseOver = (e) => {
@@ -63,26 +81,41 @@ const CustomCursor = () => {
         targetScale.current = 1
         targetOpacity.current = 1
       }
+      startLoop()
     }
 
     const onMouseDown = () => {
       targetScale.current = 0.75
+      startLoop()
     }
 
     const onMouseUp = () => {
       targetScale.current = 1
+      startLoop()
     }
 
     const onMouseLeave = () => {
       targetOpacity.current = 0
+      startLoop()
     }
 
     const onMouseEnter = () => {
       targetOpacity.current = 1
+      startLoop()
     }
 
-    // Animation loop — pure RAF lerp for 60fps tracking
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        stopLoop()
+      } else {
+        startLoop()
+      }
+    }
+
+    // Animation loop — pure RAF lerp for 60fps tracking with idle auto-pause
     const animate = () => {
+      if (!isRunning || document.hidden) return
+
       pos.current.x = lerp(pos.current.x, mouse.current.x, 0.18)
       pos.current.y = lerp(pos.current.y, mouse.current.y, 0.18)
       scale.current = lerp(scale.current, targetScale.current, 0.18)
@@ -92,26 +125,39 @@ const CustomCursor = () => {
       dot.style.transform = `translate3d(${pos.current.x - 10}px, ${pos.current.y - 10}px, 0) scale(${scale.current})`
       dot.style.opacity = opacity.current
 
-      rafId.current = requestAnimationFrame(animate)
+      // Settle check: pause loop when cursor position has settled
+      const dx = Math.abs(pos.current.x - mouse.current.x)
+      const dy = Math.abs(pos.current.y - mouse.current.y)
+      const ds = Math.abs(scale.current - targetScale.current)
+      const dop = Math.abs(opacity.current - targetOpacity.current)
+
+      if (dx < 0.05 && dy < 0.05 && ds < 0.005 && dop < 0.005) {
+        isRunning = false
+        rafId.current = null
+      } else {
+        rafId.current = requestAnimationFrame(animate)
+      }
     }
 
     window.addEventListener('mousemove', onMouseMove, { passive: true })
     window.addEventListener('mouseover', onMouseOver, { passive: true })
     window.addEventListener('mousedown', onMouseDown)
     window.addEventListener('mouseup', onMouseUp)
+    document.addEventListener('visibilitychange', onVisibilityChange)
     document.documentElement.addEventListener('mouseleave', onMouseLeave)
     document.documentElement.addEventListener('mouseenter', onMouseEnter)
 
-    rafId.current = requestAnimationFrame(animate)
+    startLoop()
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('mouseover', onMouseOver)
       window.removeEventListener('mousedown', onMouseDown)
       window.removeEventListener('mouseup', onMouseUp)
+      document.removeEventListener('visibilitychange', onVisibilityChange)
       document.documentElement.removeEventListener('mouseleave', onMouseLeave)
       document.documentElement.removeEventListener('mouseenter', onMouseEnter)
-      if (rafId.current) cancelAnimationFrame(rafId.current)
+      stopLoop()
     }
   }, [lerp])
 

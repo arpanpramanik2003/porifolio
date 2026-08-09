@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-scroll'
 import { Github, Linkedin, Mail, Download, ArrowRight, Copy, Check, Terminal, ChevronDown, Sparkles } from 'lucide-react'
 import { personalInfo } from '../data/personalInfo'
@@ -15,25 +15,18 @@ const Hero = () => {
     offset: ['start start', 'end start']
   })
 
-  // Spring-smoothed scroll progress for liquid-smooth physics
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  })
-
   // Scroll-driven transformations for the Hero container
-  const heroY = useTransform(smoothProgress, [0, 1], [0, -60])
-  const heroScale = useTransform(smoothProgress, [0, 1], [1, 0.96])
-  const heroOpacity = useTransform(smoothProgress, [0, 0.75, 1], [1, 0.85, 0])
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, -60])
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.96])
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.75, 1], [1, 0.85, 0])
 
   // Parallax backdrop lighting shift
-  const bgGlowScale = useTransform(smoothProgress, [0, 1], [1, 1.3])
-  const bgGlowOpacity = useTransform(smoothProgress, [0, 1], [0.5, 0.05])
+  const bgGlowScale = useTransform(scrollYProgress, [0, 1], [1, 1.3])
+  const bgGlowOpacity = useTransform(scrollYProgress, [0, 1], [0.5, 0.05])
 
   // Dynamic Scroll Indicator fade on scroll
-  const scrollCueOpacity = useTransform(smoothProgress, [0, 0.12], [1, 0])
-  const scrollCueY = useTransform(smoothProgress, [0, 0.12], [0, 20])
+  const scrollCueOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0])
+  const scrollCueY = useTransform(scrollYProgress, [0, 0.12], [0, 20])
 
   const copyCommand = () => {
     navigator.clipboard.writeText('npx arpan-pramanik')

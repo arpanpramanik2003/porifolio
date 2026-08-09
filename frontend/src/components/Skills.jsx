@@ -6,7 +6,14 @@ import { domainEcosystem } from '../data/skills'
 const Skills = () => {
   const containerRef = useRef(null)
   const trackRef = useRef(null)
-  const [scrollDistance, setScrollDistance] = useState(0)
+  const [scrollDistance, setScrollDistance] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const cardWidth = window.innerWidth < 640 ? window.innerWidth * 0.88 : (window.innerWidth < 768 ? 540 : 620)
+      const totalTrackWidth = domainEcosystem.length * cardWidth + (domainEcosystem.length - 1) * 32 + 64
+      return Math.max(0, totalTrackWidth - window.innerWidth)
+    }
+    return 2000
+  })
 
   useEffect(() => {
     const updateDistance = () => {
@@ -56,7 +63,7 @@ const Skills = () => {
       ref={containerRef}
       className="relative w-full"
       style={{
-        height: scrollDistance ? `${window.innerHeight + scrollDistance}px` : '280vh'
+        height: `${(typeof window !== 'undefined' ? window.innerHeight : 800) + scrollDistance}px`
       }}
     >
       

@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Award, Calendar, Building, CheckCircle2, Eye, ExternalLink, X, ShieldCheck } from 'lucide-react'
 import { certificatesData } from '../data/certificates'
 
@@ -13,18 +13,12 @@ const Certificates = () => {
     offset: ['start 92%', 'end start']
   })
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 60,
-    damping: 20,
-    restDelta: 0.001
-  })
-
-  const ambientGlowScale = useTransform(smoothProgress, [0, 0.5, 1], [0.7, 1.25, 0.8])
-  const ambientGlowOpacity = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [0, 0.22, 0.15, 0])
+  const ambientGlowScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.7, 1.25, 0.8])
+  const ambientGlowOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 0.22, 0.15, 0])
 
   // Silky smooth scroll entrance for section title
-  const headerY = useTransform(smoothProgress, [0.05, 0.38], [45, 0])
-  const headerOpacity = useTransform(smoothProgress, [0.05, 0.35], [0, 1])
+  const headerY = useTransform(scrollYProgress, [0.05, 0.38], [45, 0])
+  const headerOpacity = useTransform(scrollYProgress, [0.05, 0.35], [0, 1])
 
   // Framer Motion Animation Variants for smooth header landing transition
   const headerVariants = {

@@ -19,6 +19,7 @@ export const SparklesCore = ({
     if (!ctx) return
 
     let animationFrameId
+    let isVisible = true
     let width = (canvas.width = canvas.parentElement?.clientWidth || 600)
     let height = (canvas.height = canvas.parentElement?.clientHeight || 200)
 
@@ -43,6 +44,8 @@ export const SparklesCore = ({
     }))
 
     const render = () => {
+      if (!isVisible) return
+
       ctx.clearRect(0, 0, width, height)
 
       particles.forEach((p) => {
@@ -79,11 +82,28 @@ export const SparklesCore = ({
       animationFrameId = requestAnimationFrame(render)
     }
 
+    // Pause rendering when canvas is out of viewport
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisible
+        isVisible = entry.isIntersecting
+        if (isVisible && !wasVisible) {
+          animationFrameId = requestAnimationFrame(render)
+        } else if (!isVisible && animationFrameId) {
+          cancelAnimationFrame(animationFrameId)
+        }
+      },
+      { threshold: 0 }
+    )
+
+    observer.observe(canvas)
+
     render()
 
     return () => {
       window.removeEventListener('resize', handleResize)
-      cancelAnimationFrame(animationFrameId)
+      observer.disconnect()
+      if (animationFrameId) cancelAnimationFrame(animationFrameId)
     }
   }, [minSize, maxSize, speed, particleColor, particleDensity])
 

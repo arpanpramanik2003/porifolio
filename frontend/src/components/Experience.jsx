@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Calendar, MapPin, ArrowRight, Building2, CheckCircle2, Sparkles, Award } from 'lucide-react'
 import { experienceData } from '../data/experience'
 
@@ -12,19 +12,12 @@ const Experience = () => {
     offset: ['start 75%', 'end 85%']
   })
 
-  // Spring physics for natural line drawing & card motion
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 60,
-    damping: 20,
-    restDelta: 0.001
-  })
-
   // Dynamic vertical timeline fill height (0% to 100%)
-  const timelineLineHeight = useTransform(smoothProgress, [0, 1], ['0%', '100%'])
+  const timelineLineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
   
   // Silky smooth scroll entrance for section title
-  const headerY = useTransform(smoothProgress, [0.05, 0.38], [45, 0])
-  const headerOpacity = useTransform(smoothProgress, [0.05, 0.35], [0, 1])
+  const headerY = useTransform(scrollYProgress, [0.05, 0.38], [45, 0])
+  const headerOpacity = useTransform(scrollYProgress, [0.05, 0.35], [0, 1])
 
   // Distinct Neon Sunset & Cyber Solar Palette for Industrial Roles
   const roleAccents = [
