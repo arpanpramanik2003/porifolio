@@ -220,10 +220,14 @@ const About = () => {
                   <img
                     src={personalInfo.profileImage}
                     alt={personalInfo.name}
+                    width="530"
+                    height="690"
+                    fetchPriority="high"
+                    decoding="async"
                     className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                     onError={(e) => {
                       e.target.onerror = null
-                      e.target.src = 'https://via.placeholder.com/530x690?text=Arpan'
+                      e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='530' height='690' viewBox='0 0 530 690'%3E%3Crect width='100%25' height='100%25' fill='%2318181b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23a1a1aa' font-family='sans-serif' font-size='24'%3EArpan Pramanik%3C/text%3E%3C/svg%3E"
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />

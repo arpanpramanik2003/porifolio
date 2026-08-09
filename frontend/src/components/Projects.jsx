@@ -148,10 +148,14 @@ const Projects = () => {
               <img
                 src={featuredProject.image}
                 alt={featuredProject.title}
+                width="800"
+                height="500"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   e.target.onerror = null
-                  e.target.src = 'https://via.placeholder.com/800x500?text=PaperLens+AI'
+                  e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect width='100%25' height='100%25' fill='%2318181b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23a1a1aa' font-family='sans-serif' font-size='28'%3EPaperLens AI%3C/text%3E%3C/svg%3E"
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -259,10 +263,14 @@ const Projects = () => {
                 <img
                   src={project.image}
                   alt={project.title}
+                  width="600"
+                  height="350"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     e.target.onerror = null
-                    e.target.src = `https://via.placeholder.com/600x350?text=${encodeURIComponent(project.title)}`
+                    e.target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='350' viewBox='0 0 600 350'%3E%3Crect width='100%25' height='100%25' fill='%2318181b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23a1a1aa' font-family='sans-serif' font-size='20'%3E${encodeURIComponent(project.title)}%3C/text%3E%3C/svg%3E`
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />

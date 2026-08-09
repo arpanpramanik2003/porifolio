@@ -182,10 +182,14 @@ const Certificates = () => {
                 <img
                   src={selectedCert.file}
                   alt={selectedCert.title}
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                   className="max-w-full max-h-[65vh] object-contain rounded-xl border border-white/10"
                   onError={(e) => {
                     e.target.onerror = null
-                    e.target.src = `https://via.placeholder.com/800x600?text=${encodeURIComponent(selectedCert.title)}`
+                    e.target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='100%25' height='100%25' fill='%2318181b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23a1a1aa' font-family='sans-serif' font-size='24'%3E${encodeURIComponent(selectedCert.title)}%3C/text%3E%3C/svg%3E`
                   }}
                 />
               </div>

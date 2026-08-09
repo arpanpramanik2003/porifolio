@@ -21,7 +21,7 @@ const Footer = () => {
             <div className="w-8 h-8 rounded-lg border overflow-hidden flex items-center justify-center card-arch"
               style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}
             >
-              <img src="/nav-logo.png" alt="Arpan Pramanik Logo" className="w-full h-full object-cover p-0.5" />
+              <img src="/nav-logo.png" alt="Arpan Pramanik Logo" width="32" height="32" loading="lazy" decoding="async" className="w-full h-full object-cover p-0.5" />
             </div>
             <div>
               <div className="font-bold" style={{ color: 'var(--text-primary)' }}>

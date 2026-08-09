@@ -31,7 +31,7 @@ const Navbar = () => {
                 <div className="w-9 h-9 rounded-xl overflow-hidden flex items-center justify-center border-none transition-transform group-hover:scale-105"
                   style={{ background: 'var(--bg-card)' }}
                 >
-                  <img src="/nav-logo.png" alt="Arpan Pramanik Logo" className="w-full h-full object-cover p-0.5" />
+                  <img src="/nav-logo.png" alt="Arpan Pramanik Logo" width="36" height="36" fetchPriority="high" decoding="async" className="w-full h-full object-cover p-0.5" />
                 </div>
                 <div className="flex flex-col">
                   <span className="font-display font-bold text-base tracking-tight leading-none group-hover:text-[var(--accent-secondary)] transition-colors"
