@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { AnimatePresence } from 'framer-motion'
 import Navbar from '../src/components/Navbar'
 import Hero from '../src/components/Hero'
 import About from '../src/components/About'
@@ -42,14 +43,16 @@ export default function ClientAppShell() {
   return (
     <ThemeProvider>
       {/* Fullscreen Root Preloader Overlay */}
-      {!isIntroComplete && (
-        <IntroPreloader onComplete={() => setIsIntroComplete(true)} />
-      )}
+      <AnimatePresence mode="wait">
+        {!isIntroComplete && (
+          <IntroPreloader onComplete={() => setIsIntroComplete(true)} />
+        )}
+      </AnimatePresence>
 
       <SmoothScroll>
         <div
           className={`relative min-h-screen font-body transition-colors duration-500 ${
-            !isIntroComplete ? 'opacity-0 pointer-events-none max-h-screen overflow-hidden' : 'opacity-100'
+            !isIntroComplete ? 'pointer-events-none' : ''
           }`}
           style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}
         >

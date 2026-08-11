@@ -8,6 +8,7 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Navbar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/Navbar.jsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Hero$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/Hero.jsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$About$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/About.jsx [app-client] (ecmascript)");
@@ -26,6 +27,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$contexts$2f$ThemeCont
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
+;
 ;
 ;
 ;
@@ -71,16 +73,23 @@ function ClientAppShell() {
     ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$contexts$2f$ThemeContext$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ThemeProvider"], {
         children: [
-            !isIntroComplete && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$IntroPreloader$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                onComplete: ()=>setIsIntroComplete(true)
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+                mode: "wait",
+                children: !isIntroComplete && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$IntroPreloader$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                    onComplete: ()=>setIsIntroComplete(true)
+                }, void 0, false, {
+                    fileName: "[project]/app/ClientAppShell.jsx",
+                    lineNumber: 48,
+                    columnNumber: 11
+                }, this)
             }, void 0, false, {
                 fileName: "[project]/app/ClientAppShell.jsx",
                 lineNumber: 46,
-                columnNumber: 9
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$SmoothScroll$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: `relative min-h-screen font-body transition-colors duration-500 ${!isIntroComplete ? 'opacity-0 pointer-events-none max-h-screen overflow-hidden' : 'opacity-100'}`,
+                    className: `relative min-h-screen font-body transition-colors duration-500 ${!isIntroComplete ? 'pointer-events-none' : ''}`,
                     style: {
                         background: 'var(--bg-primary)',
                         color: 'var(--text-primary)'
@@ -88,17 +97,17 @@ function ClientAppShell() {
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$StaticBackground$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                             fileName: "[project]/app/ClientAppShell.jsx",
-                            lineNumber: 57,
+                            lineNumber: 60,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$CustomCursor$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                             fileName: "[project]/app/ClientAppShell.jsx",
-                            lineNumber: 60,
+                            lineNumber: 63,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Navbar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                             fileName: "[project]/app/ClientAppShell.jsx",
-                            lineNumber: 63,
+                            lineNumber: 66,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -109,70 +118,70 @@ function ClientAppShell() {
                                     isIntroComplete: isIntroComplete
                                 }, void 0, false, {
                                     fileName: "[project]/app/ClientAppShell.jsx",
-                                    lineNumber: 67,
+                                    lineNumber: 70,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$About$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                     fileName: "[project]/app/ClientAppShell.jsx",
-                                    lineNumber: 68,
+                                    lineNumber: 71,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Skills$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                     fileName: "[project]/app/ClientAppShell.jsx",
-                                    lineNumber: 69,
+                                    lineNumber: 72,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Experience$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                     fileName: "[project]/app/ClientAppShell.jsx",
-                                    lineNumber: 70,
+                                    lineNumber: 73,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Projects$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                     fileName: "[project]/app/ClientAppShell.jsx",
-                                    lineNumber: 71,
+                                    lineNumber: 74,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Research$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                     fileName: "[project]/app/ClientAppShell.jsx",
-                                    lineNumber: 72,
+                                    lineNumber: 75,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Certificates$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                     fileName: "[project]/app/ClientAppShell.jsx",
-                                    lineNumber: 73,
+                                    lineNumber: 76,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Contact$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                     fileName: "[project]/app/ClientAppShell.jsx",
-                                    lineNumber: 74,
+                                    lineNumber: 77,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/ClientAppShell.jsx",
-                            lineNumber: 66,
+                            lineNumber: 69,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Footer$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                             fileName: "[project]/app/ClientAppShell.jsx",
-                            lineNumber: 78,
+                            lineNumber: 81,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/ClientAppShell.jsx",
-                    lineNumber: 50,
+                    lineNumber: 53,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/ClientAppShell.jsx",
-                lineNumber: 49,
+                lineNumber: 52,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/ClientAppShell.jsx",
-        lineNumber: 43,
+        lineNumber: 44,
         columnNumber: 5
     }, this);
 }
@@ -5266,9 +5275,7 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$terminal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Terminal$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/terminal.js [app-client] (ecmascript) <export default as Terminal>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-check.js [app-client] (ecmascript) <export default as CheckCircle2>");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
@@ -5297,29 +5304,60 @@ const codeSnippets = [
         comment: '// OpenJDK 21'
     }
 ];
-const glyphs = '01#*><%{}[]/@&$!~?';
+const glyphs = '01#*><{}[]/@&$!~?=+';
+const particleChars = [
+    '0',
+    '1',
+    '{',
+    '}',
+    '<',
+    '>',
+    '/',
+    '*',
+    '#',
+    '&'
+];
+const generateParticles = (count)=>Array.from({
+        length: count
+    }, (_, i)=>({
+            char: particleChars[i % particleChars.length],
+            left: `${(i * 7.3 + 13) % 100}%`,
+            duration: 5 + i % 4 * 2,
+            delay: i * 0.8 % 5,
+            fontSize: 10 + i % 3 * 2
+        }));
 const IntroPreloader = ({ onComplete })=>{
     _s();
     const [stepIndex, setStepIndex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
-    const [displayedText, setDisplayedText] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
+    const [charStates, setCharStates] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [isFinished, setIsFinished] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [isWiping, setIsWiping] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const intervalRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
-    // Skip handler (manual bypass only)
-    const handleSkip = ()=>{
-        setIsWiping(true);
-        setTimeout(()=>{
+    const rafRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const timerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const particles = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "IntroPreloader.useMemo[particles]": ()=>generateParticles(14)
+    }["IntroPreloader.useMemo[particles]"], []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "IntroPreloader.useEffect": ()=>{
+            return ({
+                "IntroPreloader.useEffect": ()=>{
+                    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+                    if (timerRef.current) clearTimeout(timerRef.current);
+                }
+            })["IntroPreloader.useEffect"];
+        }
+    }["IntroPreloader.useEffect"], []);
+    const handleSkip = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "IntroPreloader.useCallback[handleSkip]": ()=>{
             onComplete();
-        }, 450);
-    };
-    // Handle keyboard ESC key for skip
+        }
+    }["IntroPreloader.useCallback[handleSkip]"], [
+        onComplete
+    ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "IntroPreloader.useEffect": ()=>{
             const handleKeyDown = {
                 "IntroPreloader.useEffect.handleKeyDown": (e)=>{
-                    if (e.key === 'Escape') {
-                        handleSkip();
-                    }
+                    if (e.key === 'Escape') handleSkip();
                 }
             }["IntroPreloader.useEffect.handleKeyDown"];
             window.addEventListener('keydown', handleKeyDown);
@@ -5327,346 +5365,415 @@ const IntroPreloader = ({ onComplete })=>{
                 "IntroPreloader.useEffect": ()=>window.removeEventListener('keydown', handleKeyDown)
             })["IntroPreloader.useEffect"];
         }
-    }["IntroPreloader.useEffect"], []);
-    // Sequence compilation lines
+    }["IntroPreloader.useEffect"], [
+        handleSkip
+    ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "IntroPreloader.useEffect": ()=>{
-            // Check reduced motion preference
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            if (("TURBOPACK compile-time value", "object") !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 onComplete();
                 return;
             }
             if (stepIndex < codeSnippets.length) {
                 const targetText = codeSnippets[stepIndex].text;
-                let charIdx = 0;
-                // Quick decode/scramble loop
-                intervalRef.current = setInterval({
-                    "IntroPreloader.useEffect": ()=>{
-                        if (charIdx <= targetText.length) {
-                            const locked = targetText.slice(0, charIdx);
-                            const scrambled = Array.from({
-                                length: Math.min(3, targetText.length - charIdx)
-                            }).map({
-                                "IntroPreloader.useEffect.scrambled": ()=>glyphs[Math.floor(Math.random() * glyphs.length)]
-                            }["IntroPreloader.useEffect.scrambled"]).join('');
-                            setDisplayedText(locked + scrambled);
-                            charIdx++;
-                        } else {
-                            clearInterval(intervalRef.current);
-                            // Hold briefly before advancing to next language
-                            setTimeout({
-                                "IntroPreloader.useEffect": ()=>{
-                                    setStepIndex({
-                                        "IntroPreloader.useEffect": (prev)=>prev + 1
-                                    }["IntroPreloader.useEffect"]);
-                                }
-                            }["IntroPreloader.useEffect"], 220);
-                        }
+                const totalChars = targetText.length;
+                const scrambleWindow = Math.min(5, totalChars);
+                let lockedCount = 0;
+                let lastFrameTime = 0;
+                // Balanced frame interval for optimal readability (24ms -> 14ms)
+                const getFrameInterval = {
+                    "IntroPreloader.useEffect.getFrameInterval": ()=>{
+                        const progress = lockedCount / totalChars;
+                        return 24 - progress * 10;
                     }
-                }["IntroPreloader.useEffect"], 24);
+                }["IntroPreloader.useEffect.getFrameInterval"];
+                const animate = {
+                    "IntroPreloader.useEffect.animate": (timestamp)=>{
+                        if (!lastFrameTime) lastFrameTime = timestamp;
+                        const elapsed = timestamp - lastFrameTime;
+                        if (elapsed >= getFrameInterval()) {
+                            lastFrameTime = timestamp;
+                            if (lockedCount <= totalChars) {
+                                const states = [];
+                                for(let i = 0; i < totalChars; i++){
+                                    if (i < lockedCount) {
+                                        states.push({
+                                            char: targetText[i],
+                                            locked: true
+                                        });
+                                    } else if (i < lockedCount + scrambleWindow) {
+                                        states.push({
+                                            char: glyphs[Math.floor(Math.random() * glyphs.length)],
+                                            locked: false
+                                        });
+                                    }
+                                }
+                                setCharStates(states);
+                                lockedCount++;
+                            } else {
+                                // Balanced pause (160ms) for pleasant pacing between languages
+                                timerRef.current = setTimeout({
+                                    "IntroPreloader.useEffect.animate": ()=>{
+                                        setStepIndex({
+                                            "IntroPreloader.useEffect.animate": (prev)=>prev + 1
+                                        }["IntroPreloader.useEffect.animate"]);
+                                    }
+                                }["IntroPreloader.useEffect.animate"], 160);
+                                return;
+                            }
+                        }
+                        rafRef.current = requestAnimationFrame(animate);
+                    }
+                }["IntroPreloader.useEffect.animate"];
+                rafRef.current = requestAnimationFrame(animate);
                 return ({
-                    "IntroPreloader.useEffect": ()=>clearInterval(intervalRef.current)
+                    "IntroPreloader.useEffect": ()=>{
+                        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+                        if (timerRef.current) clearTimeout(timerRef.current);
+                    }
                 })["IntroPreloader.useEffect"];
             } else if (stepIndex === codeSnippets.length) {
-                // Build successful final state
-                setDisplayedText('✓ Build successful — Arpan Pramanik');
                 setIsFinished(true);
-                const timer = setTimeout({
-                    "IntroPreloader.useEffect.timer": ()=>{
-                        handleSkip();
+                // Hold success state (750ms) so user can comfortably view completion before upward slide
+                timerRef.current = setTimeout({
+                    "IntroPreloader.useEffect": ()=>{
+                        onComplete();
                     }
-                }["IntroPreloader.useEffect.timer"], 700);
+                }["IntroPreloader.useEffect"], 750);
                 return ({
-                    "IntroPreloader.useEffect": ()=>clearTimeout(timer)
+                    "IntroPreloader.useEffect": ()=>{
+                        if (timerRef.current) clearTimeout(timerRef.current);
+                    }
                 })["IntroPreloader.useEffect"];
             }
         }
     }["IntroPreloader.useEffect"], [
-        stepIndex
+        stepIndex,
+        onComplete
     ]);
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
-        children: !isWiping && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-            id: "intro-preloader",
-            role: "dialog",
-            "aria-label": "Compiling identity intro sequence",
-            initial: {
-                opacity: 1
-            },
-            exit: {
-                clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)',
-                opacity: 0
-            },
-            transition: {
-                duration: 0.45,
-                ease: [
-                    0.16,
-                    1,
-                    0.3,
-                    1
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+        id: "intro-preloader",
+        role: "dialog",
+        "aria-label": "Compiling identity intro sequence",
+        initial: {
+            y: 0,
+            opacity: 1
+        },
+        exit: {
+            y: '-100%',
+            opacity: 1
+        },
+        transition: {
+            duration: 0.65,
+            ease: [
+                0.76,
+                0,
+                0.24,
+                1
+            ]
+        },
+        className: "intro-root",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "intro-grid",
+                "aria-hidden": "true"
+            }, void 0, false, {
+                fileName: "[project]/src/components/IntroPreloader.jsx",
+                lineNumber: 137,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "intro-scanline",
+                "aria-hidden": "true"
+            }, void 0, false, {
+                fileName: "[project]/src/components/IntroPreloader.jsx",
+                lineNumber: 138,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "intro-vignette",
+                "aria-hidden": "true"
+            }, void 0, false, {
+                fileName: "[project]/src/components/IntroPreloader.jsx",
+                lineNumber: 139,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "intro-particles",
+                "aria-hidden": "true",
+                children: particles.map((p, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        className: "intro-particle",
+                        style: {
+                            left: p.left,
+                            animationDuration: `${p.duration}s`,
+                            animationDelay: `${p.delay}s`,
+                            fontSize: `${p.fontSize}px`
+                        },
+                        children: p.char
+                    }, i, false, {
+                        fileName: "[project]/src/components/IntroPreloader.jsx",
+                        lineNumber: 144,
+                        columnNumber: 11
+                    }, ("TURBOPACK compile-time value", void 0)))
+            }, void 0, false, {
+                fileName: "[project]/src/components/IntroPreloader.jsx",
+                lineNumber: 142,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "intro-topbar",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "intro-topbar-left",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$terminal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Terminal$3e$__["Terminal"], {
+                                size: 14,
+                                className: "intro-topbar-icon"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/IntroPreloader.jsx",
+                                lineNumber: 162,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                children: "COMPILING IDENTITY v2.6"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/IntroPreloader.jsx",
+                                lineNumber: 163,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0))
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/IntroPreloader.jsx",
+                        lineNumber: 161,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        onClick: handleSkip,
+                        className: "intro-skip",
+                        children: "[ESC / Skip Intro]"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/IntroPreloader.jsx",
+                        lineNumber: 165,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0))
                 ]
-            },
-            className: "fixed inset-0 z-[9999] bg-black text-white flex flex-col justify-between p-6 sm:p-12 font-mono select-none overflow-hidden",
-            children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex items-center justify-between text-xs text-zinc-400",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex items-center gap-2",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$terminal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Terminal$3e$__["Terminal"], {
-                                    size: 14,
-                                    className: "text-cyan-400 animate-pulse"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/IntroPreloader.jsx",
-                                    lineNumber: 101,
-                                    columnNumber: 15
-                                }, ("TURBOPACK compile-time value", void 0)),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: "COMPILING IDENTITY v2.6"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/IntroPreloader.jsx",
-                                    lineNumber: 102,
-                                    columnNumber: 15
-                                }, ("TURBOPACK compile-time value", void 0))
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/components/IntroPreloader.jsx",
-                            lineNumber: 100,
-                            columnNumber: 13
-                        }, ("TURBOPACK compile-time value", void 0)),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                            onClick: handleSkip,
-                            className: "px-3 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900/80 text-zinc-300 hover:text-white hover:border-zinc-600 transition-colors focus-outline cursor-pointer",
-                            children: "[ESC / Skip Intro]"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/IntroPreloader.jsx",
-                            lineNumber: 105,
-                            columnNumber: 13
-                        }, ("TURBOPACK compile-time value", void 0))
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/src/components/IntroPreloader.jsx",
-                    lineNumber: 99,
-                    columnNumber: 11
-                }, ("TURBOPACK compile-time value", void 0)),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "max-w-3xl w-full mx-auto my-auto space-y-6",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex items-center justify-between text-xs text-zinc-500 pb-2 border-b border-zinc-800",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: "TARGET: ARPAN PRAMANIK"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/IntroPreloader.jsx",
-                                    lineNumber: 116,
-                                    columnNumber: 15
-                                }, ("TURBOPACK compile-time value", void 0)),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: isFinished ? 'STATUS: READY' : `STEP 0${Math.min(stepIndex + 1, 4)} / 04`
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/IntroPreloader.jsx",
-                                    lineNumber: 117,
-                                    columnNumber: 15
-                                }, ("TURBOPACK compile-time value", void 0))
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/components/IntroPreloader.jsx",
-                            lineNumber: 115,
-                            columnNumber: 13
-                        }, ("TURBOPACK compile-time value", void 0)),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "bg-zinc-950 border border-zinc-800 rounded-2xl p-6 sm:p-8 min-h-[140px] flex flex-col justify-between shadow-2xl relative overflow-hidden",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "absolute top-0 bottom-0 left-0 w-1 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/IntroPreloader.jsx",
-                                    lineNumber: 123,
-                                    columnNumber: 15
-                                }, ("TURBOPACK compile-time value", void 0)),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex items-center justify-between text-xs text-zinc-500 font-mono mb-4",
+            }, void 0, true, {
+                fileName: "[project]/src/components/IntroPreloader.jsx",
+                lineNumber: 160,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "intro-stage",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "intro-status-row",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                children: "TARGET: ARPAN PRAMANIK"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/IntroPreloader.jsx",
+                                lineNumber: 174,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                children: isFinished ? 'STATUS: ONLINE [0.00ms]' : `STEP 0${Math.min(stepIndex + 1, 4)} / 04`
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/IntroPreloader.jsx",
+                                lineNumber: 175,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0))
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/IntroPreloader.jsx",
+                        lineNumber: 173,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: `intro-terminal${isFinished ? ' is-finished' : ''}`,
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "intro-edge"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/IntroPreloader.jsx",
+                                lineNumber: 185,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "intro-terminal-header",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "intro-lang-tag",
+                                        children: isFinished ? 'EXECUTION_COMPLETE' : codeSnippets[stepIndex]?.lang
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/IntroPreloader.jsx",
+                                        lineNumber: 189,
+                                        columnNumber: 13
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "intro-comment-tag",
+                                        children: isFinished ? '// ZERO_ERRORS' : codeSnippets[stepIndex]?.comment
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/IntroPreloader.jsx",
+                                        lineNumber: 192,
+                                        columnNumber: 13
+                                    }, ("TURBOPACK compile-time value", void 0))
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/IntroPreloader.jsx",
+                                lineNumber: 188,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "intro-code-display",
+                                children: isFinished ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "intro-success-wrapper",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-cyan-400 font-semibold",
-                                            children: isFinished ? 'BUILD_SUCCESS' : codeSnippets[stepIndex]?.lang
+                                            className: "intro-pulse-dot"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/IntroPreloader.jsx",
-                                            lineNumber: 126,
+                                            lineNumber: 201,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            children: isFinished ? '✓ ZERO ERRORS' : codeSnippets[stepIndex]?.comment
+                                            className: "intro-success-tag",
+                                            children: "SYSTEM_READY"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/IntroPreloader.jsx",
-                                            lineNumber: 129,
+                                            lineNumber: 202,
+                                            columnNumber: 17
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "intro-success-divider",
+                                            children: "//"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/IntroPreloader.jsx",
+                                            lineNumber: 203,
+                                            columnNumber: 17
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "intro-success-name",
+                                            children: "ARPAN PRAMANIK"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/IntroPreloader.jsx",
+                                            lineNumber: 204,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/IntroPreloader.jsx",
-                                    lineNumber: 125,
+                                    lineNumber: 200,
                                     columnNumber: 15
-                                }, ("TURBOPACK compile-time value", void 0)),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "font-mono text-lg sm:text-2xl font-bold tracking-tight min-h-[40px] flex items-center gap-2",
-                                    children: isFinished ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-3 text-emerald-400",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
-                                                size: 24,
-                                                className: "shrink-0 animate-bounce"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/IntroPreloader.jsx",
-                                                lineNumber: 135,
-                                                columnNumber: 21
-                                            }, ("TURBOPACK compile-time value", void 0)),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                children: displayedText
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/IntroPreloader.jsx",
-                                                lineNumber: 136,
-                                                columnNumber: 21
-                                            }, ("TURBOPACK compile-time value", void 0))
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/IntroPreloader.jsx",
-                                        lineNumber: 134,
-                                        columnNumber: 19
-                                    }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-zinc-400",
-                                                children: "$ "
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/IntroPreloader.jsx",
-                                                lineNumber: 140,
-                                                columnNumber: 21
-                                            }, ("TURBOPACK compile-time value", void 0)),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-white",
-                                                children: displayedText
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/IntroPreloader.jsx",
-                                                lineNumber: 141,
-                                                columnNumber: 21
-                                            }, ("TURBOPACK compile-time value", void 0)),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "inline-block w-2.5 h-5 bg-cyan-400 ml-1 animate-pulse"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/IntroPreloader.jsx",
-                                                lineNumber: 142,
-                                                columnNumber: 21
-                                            }, ("TURBOPACK compile-time value", void 0))
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/IntroPreloader.jsx",
-                                        lineNumber: 139,
-                                        columnNumber: 19
-                                    }, ("TURBOPACK compile-time value", void 0))
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/IntroPreloader.jsx",
-                                    lineNumber: 132,
-                                    columnNumber: 15
-                                }, ("TURBOPACK compile-time value", void 0))
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/components/IntroPreloader.jsx",
-                            lineNumber: 121,
-                            columnNumber: 13
-                        }, ("TURBOPACK compile-time value", void 0)),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "space-y-1",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "h-1 w-full bg-zinc-900 rounded-full overflow-hidden",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                    className: "h-full bg-gradient-to-r from-cyan-500 to-emerald-400",
-                                    animate: {
-                                        width: isFinished ? '100%' : `${(stepIndex + 1) / codeSnippets.length * 100}%`
+                                }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    style: {
+                                        display: 'flex',
+                                        alignItems: 'center'
                                     },
-                                    transition: {
-                                        duration: 0.3
-                                    }
-                                }, void 0, false, {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "intro-prompt",
+                                            children: "$ "
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/IntroPreloader.jsx",
+                                            lineNumber: 208,
+                                            columnNumber: 17
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            children: charStates.map((s, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: s.locked ? 'intro-char-locked' : 'intro-char-scramble',
+                                                    children: s.char
+                                                }, i, false, {
+                                                    fileName: "[project]/src/components/IntroPreloader.jsx",
+                                                    lineNumber: 211,
+                                                    columnNumber: 21
+                                                }, ("TURBOPACK compile-time value", void 0)))
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/IntroPreloader.jsx",
+                                            lineNumber: 209,
+                                            columnNumber: 17
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "intro-cursor"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/IntroPreloader.jsx",
+                                            lineNumber: 221,
+                                            columnNumber: 17
+                                        }, ("TURBOPACK compile-time value", void 0))
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/src/components/IntroPreloader.jsx",
-                                    lineNumber: 151,
-                                    columnNumber: 17
+                                    lineNumber: 207,
+                                    columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/src/components/IntroPreloader.jsx",
-                                lineNumber: 150,
-                                columnNumber: 15
+                                lineNumber: 198,
+                                columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/IntroPreloader.jsx",
-                            lineNumber: 149,
-                            columnNumber: 13
-                        }, ("TURBOPACK compile-time value", void 0))
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/src/components/IntroPreloader.jsx",
-                    lineNumber: 114,
-                    columnNumber: 11
-                }, ("TURBOPACK compile-time value", void 0)),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex items-center justify-between text-[11px] text-zinc-500 font-mono",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            children: "FULL-STACK & AI ARCHITECT"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/IntroPreloader.jsx",
-                            lineNumber: 164,
-                            columnNumber: 13
-                        }, ("TURBOPACK compile-time value", void 0)),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            children: "PRESS ESC TO BYPASS"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/IntroPreloader.jsx",
-                            lineNumber: 165,
-                            columnNumber: 13
-                        }, ("TURBOPACK compile-time value", void 0))
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/src/components/IntroPreloader.jsx",
-                    lineNumber: 163,
-                    columnNumber: 11
-                }, ("TURBOPACK compile-time value", void 0)),
-                isWiping && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                    initial: {
-                        x: '0%'
-                    },
-                    animate: {
-                        x: '100%'
-                    },
-                    transition: {
-                        duration: 0.45,
-                        ease: [
-                            0.16,
-                            1,
-                            0.3,
-                            1
                         ]
-                    },
-                    className: "absolute top-0 bottom-0 right-0 w-1 bg-cyan-400 shadow-[0_0_20px_#22d3ee] z-[10000] pointer-events-none"
-                }, void 0, false, {
-                    fileName: "[project]/src/components/IntroPreloader.jsx",
-                    lineNumber: 170,
-                    columnNumber: 13
-                }, ("TURBOPACK compile-time value", void 0))
-            ]
-        }, void 0, true, {
-            fileName: "[project]/src/components/IntroPreloader.jsx",
-            lineNumber: 89,
-            columnNumber: 9
-        }, ("TURBOPACK compile-time value", void 0))
-    }, void 0, false, {
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/IntroPreloader.jsx",
+                        lineNumber: 183,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "intro-segments",
+                        children: codeSnippets.map((_, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "intro-segment",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: `intro-segment-fill${isFinished ? ' complete' : i <= stepIndex ? ' active' : ''}`
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/IntroPreloader.jsx",
+                                    lineNumber: 231,
+                                    columnNumber: 15
+                                }, ("TURBOPACK compile-time value", void 0))
+                            }, i, false, {
+                                fileName: "[project]/src/components/IntroPreloader.jsx",
+                                lineNumber: 230,
+                                columnNumber: 13
+                            }, ("TURBOPACK compile-time value", void 0)))
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/IntroPreloader.jsx",
+                        lineNumber: 228,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0))
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/IntroPreloader.jsx",
+                lineNumber: 171,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "intro-footer",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        children: "FULL-STACK & AI ARCHITECT"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/IntroPreloader.jsx",
+                        lineNumber: 247,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        children: "PRESS ESC TO BYPASS"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/IntroPreloader.jsx",
+                        lineNumber: 248,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0))
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/IntroPreloader.jsx",
+                lineNumber: 246,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0))
+        ]
+    }, "intro-preloader", true, {
         fileName: "[project]/src/components/IntroPreloader.jsx",
-        lineNumber: 87,
+        lineNumber: 126,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
-_s(IntroPreloader, "q/Ks0RPme7T9gwbklKDvim2Nvkk=");
+_s(IntroPreloader, "TQkSTZjWgtKtmLTx7gWojV3EqDo=");
 _c = IntroPreloader;
 const __TURBOPACK__default__export__ = IntroPreloader;
 var _c;
