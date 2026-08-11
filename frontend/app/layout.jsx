@@ -1,4 +1,5 @@
 import '../src/index.css'
+import { Analytics } from '@vercel/analytics/next'
 import {
   JetBrains_Mono,
   Noto_Sans_Bengali,
@@ -170,6 +171,7 @@ export default function RootLayout({ children }) {
       </head>
       <body style={{ backgroundColor: '#000000', color: '#ffffff' }}>
         {children}
+        <Analytics />
       </body>
     </html>
   )
