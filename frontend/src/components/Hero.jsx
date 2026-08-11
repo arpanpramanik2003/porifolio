@@ -241,12 +241,12 @@ const Hero = ({ isIntroComplete = true }) => {
                 transition={{ duration: 0.28, ease: 'easeOut' }}
                 className="text-center"
               >
-                <span
+                <h1
                   className="font-black text-3xl min-[380px]:text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]"
                   style={{ fontFamily: currentLangObj.fontFamily }}
                 >
                   {currentLangObj.text}
-                </span>
+                </h1>
               </motion.div>
             ) : (
               /* Final English Resting State: Drop-In Fall from Above + Scramble Lock */

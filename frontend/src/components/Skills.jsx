@@ -170,7 +170,7 @@ const Skills = () => {
                               <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
                                 {skill.logo ? (
                                   typeof skill.logo === 'string' && skill.logo.startsWith('http') ? (
-                                    <img src={skill.logo} alt="" width="20" height="20" loading="lazy" decoding="async" className="w-4 h-4 sm:w-5 sm:h-5 object-contain shrink-0" />
+                                    <img src={skill.logo} alt={`${skill.name} logo`} width="20" height="20" loading="lazy" decoding="async" className="w-4 h-4 sm:w-5 sm:h-5 object-contain shrink-0" />
                                   ) : (
                                     <span className="text-sm sm:text-base leading-none shrink-0">{skill.logo}</span>
                                   )

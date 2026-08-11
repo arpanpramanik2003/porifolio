@@ -325,7 +325,20 @@ self.__SERVER_FILES_MANIFEST={
     "turbopack": {
       "root": "D:\\Edutation(P)\\Portfolio\\frontend"
     },
-    "distDirRoot": ".next"
+    "distDirRoot": ".next",
+    "_originalRedirects": [
+      {
+        "source": "/:path*",
+        "has": [
+          {
+            "type": "host",
+            "value": "arpanpramanik.vercel.app"
+          }
+        ],
+        "destination": "https://arpanpramanik.dev/:path*",
+        "permanent": true
+      }
+    ]
   },
   "appDir": "D:\\Edutation(P)\\Portfolio\\frontend",
   "relativeAppDir": "",

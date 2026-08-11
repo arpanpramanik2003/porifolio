@@ -213,7 +213,7 @@ const About = () => {
                 >
                   <img
                     src={personalInfo.profileImage}
-                    alt={personalInfo.name}
+                    alt={`${personalInfo.name} - Full-Stack Developer & AI/ML Engineer`}
                     width="530"
                     height="690"
                     fetchPriority="high"

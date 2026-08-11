@@ -288,8 +288,8 @@ var __TURBOPACK__imported__module__$5b$next$5d2f$internal$2f$font$2f$google$2f$s
 ;
 const metadata = {
     metadataBase: new URL('https://arpanpramanik.dev'),
-    title: 'Arpan Pramanik | Full-Stack Developer & AI/ML Enthusiast',
-    description: 'Portfolio of Arpan Pramanik — Full-Stack Developer specializing in AI/ML, Deep Learning, Computer Vision, and Web Development.',
+    title: 'Arpan Pramanik | Full-Stack & AI/ML Developer',
+    description: 'Official portfolio of Arpan Pramanik — Full-Stack & AI/ML Developer specializing in React, Next.js, Deep Learning, and Computer Vision solutions.',
     keywords: [
         'Arpan Pramanik',
         'Full-Stack Developer',
@@ -298,6 +298,7 @@ const metadata = {
         'Computer Vision',
         'Web Development',
         'React',
+        'Next.js',
         'Python',
         'TensorFlow',
         'Portfolio'
@@ -317,12 +318,15 @@ const metadata = {
     openGraph: {
         type: 'website',
         url: 'https://arpanpramanik.dev',
-        title: 'Arpan Pramanik | Full-Stack Developer & AI/ML Enthusiast',
-        description: 'Portfolio of Arpan Pramanik — Full-Stack Developer specializing in AI/ML, Deep Learning, Computer Vision, and Web Development.',
+        title: 'Arpan Pramanik | Full-Stack & AI/ML Developer',
+        description: 'Official portfolio of Arpan Pramanik — Full-Stack & AI/ML Developer specializing in React, Next.js, Deep Learning, and Computer Vision solutions.',
         siteName: 'Arpan Pramanik Portfolio',
         images: [
             {
-                url: 'https://arpanpramanik.dev/logo.png'
+                url: 'https://arpanpramanik.dev/logo.png',
+                width: 1200,
+                height: 630,
+                alt: 'Arpan Pramanik - Full-Stack & AI/ML Developer Portfolio'
             }
         ],
         locale: 'en_US'
@@ -330,8 +334,8 @@ const metadata = {
     twitter: {
         card: 'summary_large_image',
         url: 'https://arpanpramanik.dev',
-        title: 'Arpan Pramanik | Full-Stack Developer & AI/ML Enthusiast',
-        description: 'Portfolio of Arpan Pramanik — Full-Stack Developer specializing in AI/ML, Deep Learning, Computer Vision, and Web Development.',
+        title: 'Arpan Pramanik | Full-Stack & AI/ML Developer',
+        description: 'Official portfolio of Arpan Pramanik — Full-Stack & AI/ML Developer specializing in React, Next.js, Deep Learning, and Computer Vision solutions.',
         images: [
             'https://arpanpramanik.dev/logo.png'
         ]
@@ -361,25 +365,52 @@ const metadata = {
 function RootLayout({ children }) {
     const jsonLd = {
         '@context': 'https://schema.org',
-        '@type': 'Person',
-        name: 'Arpan Pramanik',
-        url: 'https://arpanpramanik.dev',
-        image: 'https://arpanpramanik.dev/profile.jpg',
-        jobTitle: 'Full-Stack Developer & AI/ML Enthusiast',
-        description: 'Full-Stack Developer specializing in AI/ML, Deep Learning, Computer Vision, and Web Development',
-        sameAs: [
-            'https://github.com/arpanpramanik2003',
-            'https://www.linkedin.com/in/arpanpramanik2003/'
-        ],
-        alumniOf: {
-            '@type': 'CollegeOrUniversity',
-            name: 'The Neotia University'
-        },
-        hasPart: {
-            '@type': 'CreativeWork',
-            name: 'Arpan Pramanik Resume',
-            url: 'https://www.arpanpramanik.dev/resume.pdf'
-        }
+        '@graph': [
+            {
+                '@type': 'ProfilePage',
+                '@id': 'https://arpanpramanik.dev/#profilepage',
+                url: 'https://arpanpramanik.dev',
+                name: 'Arpan Pramanik Portfolio',
+                mainEntity: {
+                    '@id': 'https://arpanpramanik.dev/#person'
+                }
+            },
+            {
+                '@type': 'Person',
+                '@id': 'https://arpanpramanik.dev/#person',
+                name: 'Arpan Pramanik',
+                url: 'https://arpanpramanik.dev',
+                image: 'https://arpanpramanik.dev/profile.jpg',
+                jobTitle: 'Full-Stack & AI/ML Developer',
+                description: 'Full-Stack Developer specializing in AI/ML, Deep Learning, Computer Vision, React, and Next.js',
+                sameAs: [
+                    'https://github.com/arpanpramanik2003',
+                    'https://www.linkedin.com/in/arpanpramanik2003/'
+                ],
+                alumniOf: {
+                    '@type': 'CollegeOrUniversity',
+                    name: 'The Neotia University'
+                },
+                knowsAbout: [
+                    'Full-Stack Development',
+                    'Artificial Intelligence',
+                    'Machine Learning',
+                    'Deep Learning',
+                    'Computer Vision',
+                    'React.js',
+                    'Next.js',
+                    'Python',
+                    'TensorFlow',
+                    'Node.js',
+                    'Web Development'
+                ],
+                hasPart: {
+                    '@type': 'CreativeWork',
+                    name: 'Arpan Pramanik Resume',
+                    url: 'https://arpanpramanik.dev/resume.pdf'
+                }
+            }
+        ]
     };
     const fontVariables = [
         __TURBOPACK__imported__module__$5b$next$5d2f$internal$2f$font$2f$google$2f$jetbrains_mono_ffcb1f79$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].variable,
@@ -405,12 +436,12 @@ function RootLayout({ children }) {
                     }
                 }, void 0, false, {
                     fileName: "[project]/app/layout.jsx",
-                    lineNumber: 167,
+                    lineNumber: 198,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/layout.jsx",
-                lineNumber: 166,
+                lineNumber: 197,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("body", {
@@ -422,19 +453,19 @@ function RootLayout({ children }) {
                     children,
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$vercel$2f$analytics$2f$dist$2f$next$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Analytics"], {}, void 0, false, {
                         fileName: "[project]/app/layout.jsx",
-                        lineNumber: 174,
+                        lineNumber: 205,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/layout.jsx",
-                lineNumber: 172,
+                lineNumber: 203,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/layout.jsx",
-        lineNumber: 165,
+        lineNumber: 196,
         columnNumber: 5
     }, this);
 }

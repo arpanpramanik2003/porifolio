@@ -672,7 +672,7 @@ const About = ()=>{
                                                         },
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                                             src: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$personalInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["personalInfo"].profileImage,
-                                                            alt: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$personalInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["personalInfo"].name,
+                                                            alt: `${__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$personalInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["personalInfo"].name} - Full-Stack Developer & AI/ML Engineer`,
                                                             width: "530",
                                                             height: "690",
                                                             fetchPriority: "high",
@@ -4542,7 +4542,7 @@ const Hero = ({ isIntroComplete = true })=>{
                                     ease: 'easeOut'
                                 },
                                 className: "text-center",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                                     className: "font-black text-3xl min-[380px]:text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]",
                                     style: {
                                         fontFamily: currentLangObj.fontFamily
@@ -8649,7 +8649,7 @@ const Skills = ()=>{
                                                                                 children: [
                                                                                     skill.logo ? typeof skill.logo === 'string' && skill.logo.startsWith('http') ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                                                                         src: skill.logo,
-                                                                                        alt: "",
+                                                                                        alt: `${skill.name} logo`,
                                                                                         width: "20",
                                                                                         height: "20",
                                                                                         loading: "lazy",
