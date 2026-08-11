@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Calendar, MapPin, Building2, CheckCircle2, Sparkles, ArrowRight, ChevronRight } from 'lucide-react'

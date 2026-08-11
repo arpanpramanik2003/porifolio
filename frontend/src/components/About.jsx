@@ -1,3 +1,5 @@
+'use client'
+
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { GraduationCap, MapPin, Download, ArrowUpRight, Cpu, Code, Brain, ShieldCheck, Sparkles } from 'lucide-react'

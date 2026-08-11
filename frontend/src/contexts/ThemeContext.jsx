@@ -1,3 +1,5 @@
+'use client'
+
 import { createContext, useContext, useState, useEffect } from 'react'
 
 const ThemeContext = createContext()
@@ -13,9 +15,11 @@ export const useTheme = () => {
 export const ThemeProvider = ({ children }) => {
   // Initialize theme from localStorage or default to dark
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem('theme')
-    if (savedTheme) {
-      return savedTheme === 'dark'
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme')
+      if (savedTheme) {
+        return savedTheme === 'dark'
+      }
     }
     // Default to dark mode
     return true

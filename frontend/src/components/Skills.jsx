@@ -1,3 +1,5 @@
+'use client'
+
 import { useRef, useState, useEffect } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
@@ -6,14 +8,8 @@ import { domainEcosystem } from '../data/skills'
 const Skills = () => {
   const containerRef = useRef(null)
   const trackRef = useRef(null)
-  const [scrollDistance, setScrollDistance] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const cardWidth = window.innerWidth < 640 ? window.innerWidth * 0.88 : (window.innerWidth < 768 ? 540 : 620)
-      const totalTrackWidth = domainEcosystem.length * cardWidth + (domainEcosystem.length - 1) * 32 + 64
-      return Math.max(0, totalTrackWidth - window.innerWidth)
-    }
-    return 2000
-  })
+  const [scrollDistance, setScrollDistance] = useState(2000)
+  const [viewportHeight, setViewportHeight] = useState(800)
 
   useEffect(() => {
     const updateDistance = () => {
@@ -22,6 +18,7 @@ const Skills = () => {
         const viewportWidth = window.innerWidth
         const distance = trackWidth - viewportWidth
         setScrollDistance(Math.max(0, distance))
+        setViewportHeight(window.innerHeight)
       }
     }
 
@@ -64,7 +61,7 @@ const Skills = () => {
       ref={containerRef}
       className="relative w-full"
       style={{
-        height: `${(typeof window !== 'undefined' ? window.innerHeight : 800) + scrollDistance}px`
+        height: `${viewportHeight + scrollDistance}px`
       }}
     >
       

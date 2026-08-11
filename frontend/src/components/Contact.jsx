@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Check, Copy, ArrowUpRight, MessageSquare } from 'lucide-react'
@@ -37,15 +39,15 @@ const Contact = () => {
 
     emailjs
       .send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || (typeof import.meta !== 'undefined' && import.meta.env?.VITE_EMAILJS_SERVICE_ID),
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || (typeof import.meta !== 'undefined' && import.meta.env?.VITE_EMAILJS_TEMPLATE_ID),
         {
           name: formData.name,
           email: formData.email,
           message: formData.message,
           title: 'Portfolio Contact Form'
         },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || (typeof import.meta !== 'undefined' && import.meta.env?.VITE_EMAILJS_PUBLIC_KEY)
       )
       .then(
         () => {

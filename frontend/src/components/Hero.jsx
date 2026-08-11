@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-scroll'

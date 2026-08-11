@@ -1,16 +1,51 @@
-# React + Vite
+# Portfolio Frontend — Next.js (App Router)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend application for Arpan Pramanik's portfolio, built with **Next.js 16 (App Router)**, **React 19**, **Tailwind CSS v4**, and **Framer Motion**.
 
-Currently, two official plugins are available:
+## 🛠️ Tech Stack & Architecture
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Framework**: [Next.js (App Router)](https://nextjs.org/)
+- **UI Library**: React 19
+- **Styling**: Tailwind CSS v4 (`@tailwindcss/postcss`)
+- **Fonts**: `next/font/google` (`Syne`, `Outfit`, `Space Grotesk`, `Plus Jakarta Sans`, `JetBrains Mono`, `Noto Sans`)
+- **Animations**: Framer Motion 12
+- **Smooth Scroll**: Lenis
+- **Icons**: Lucide React
+- **Email Service**: EmailJS
 
-## React Compiler
+## 📁 Directory Structure
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```text
+frontend/
+├── app/
+│   ├── layout.jsx         # Root layout (fonts, metadata, JSON-LD)
+│   ├── page.jsx           # Home page entrypoint
+│   └── ClientAppShell.jsx # Main client application shell & theme provider
+├── public/                # Static assets (images, favicons, manifest)
+├── src/
+│   ├── components/        # UI section components (Hero, About, Projects, etc.)
+│   ├── contexts/          # React contexts (ThemeContext)
+│   ├── data/              # Portfolio data modules (projects, research, etc.)
+│   ├── hooks/             # Custom React hooks (useIsMobile)
+│   └── index.css          # Global CSS & Tailwind v4 theme variables
+├── next.config.mjs        # Next.js configuration
+├── postcss.config.mjs     # PostCSS configuration for Tailwind CSS v4
+└── package.json           # Dependencies and build scripts
+```
 
-## Expanding the ESLint configuration
+## 🚀 Available Scripts
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `npm run dev` — Starts the development server at `http://localhost:3000`
+- `npm run build` — Creates an optimized production build
+- `npm run start` — Runs the compiled production build
+- `npm run lint` — Runs Next.js ESLint checks
+
+## 🔑 Environment Variables
+
+Set the following in `.env`:
+
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+```

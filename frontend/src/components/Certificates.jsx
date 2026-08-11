@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Award, Calendar, Building, CheckCircle2, Eye, ExternalLink, X, ShieldCheck } from 'lucide-react'

@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect } from 'react'
 
 /**
@@ -5,19 +7,15 @@ import { useState, useEffect } from 'react'
  * Also exposes `prefersReducedMotion` so components can skip heavy animations.
  */
 const useIsMobile = (breakpoint = 768) => {
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== 'undefined' ? window.innerWidth <= breakpoint : false
-  )
-
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(
-    typeof window !== 'undefined'
-      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      : false
-  )
+  const [isMobile, setIsMobile] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
   useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${breakpoint}px)`)
     const motionMql = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+    setIsMobile(mql.matches)
+    setPrefersReducedMotion(motionMql.matches)
 
     const handleResize = (e) => setIsMobile(e.matches)
     const handleMotion = (e) => setPrefersReducedMotion(e.matches)

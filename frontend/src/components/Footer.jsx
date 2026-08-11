@@ -1,3 +1,5 @@
+'use client'
+
 import { Link } from 'react-scroll'
 import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react'
 import { personalInfo } from '../data/personalInfo'
