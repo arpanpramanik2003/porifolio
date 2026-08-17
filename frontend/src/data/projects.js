@@ -72,12 +72,12 @@ export const projectsData = [
   },
   {
     id: 3,
-    title: 'College Freshers Website',
+    title: 'ABHIGRAHA 2K25',
     category: 'Web Development',
     image: '/project-images/cfw.webp',
     featured: false,
-    description: 'Event management website with Express.js backend, dynamic galleries, sponsor management, and admin panel.',
-    fullDescription: 'Created a comprehensive college freshers event website with Express.js backend and React frontend. Implemented dynamic image galleries, event scheduling system, sponsor management sections, team member displays, contact forms with message handling, and administrative controls for complete content management.',
+    description: 'Official college freshers event platform for ABHIGRAHA 2K25 with Express.js backend, dynamic galleries, sponsor management, and admin panel.',
+    fullDescription: 'Comprehensive event management platform created for ABHIGRAHA 2K25 (Official College Freshers Fest) featuring an Express.js & Node.js backend with React frontend. Includes event scheduling system, dynamic photo galleries, sponsor showcase sections, team member displays, contact forms with backend message handling, and an administrative control panel for full content management.',
     tech: ['Express.js','Node.js', 'React', 'PostgreSQL', 'JWT', 'bycrypt', 'Tailwind CSS'],
     features: [
       'Event management system with scheduling',

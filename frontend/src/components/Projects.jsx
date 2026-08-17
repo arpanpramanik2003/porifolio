@@ -111,7 +111,7 @@ const Projects = () => {
         return 'lg:col-span-5'
       case 5: // NeuroVoice
         return 'lg:col-span-5'
-      case 3: // College Freshers Website
+      case 3: // ABHIGRAHA 2K25
         return 'lg:col-span-7'
       default:
         return 'lg:col-span-6'
