@@ -232,9 +232,25 @@ const Projects = () => {
               
               {/* Image Preview Banner (7 Cols) */}
               <div
-                className="lg:col-span-7 relative min-h-[320px] lg:min-h-[440px] bg-slate-900 border-b lg:border-b-0 lg:border-r overflow-hidden"
-                style={{ borderColor: 'var(--border)' }}
+                className="lg:col-span-7 relative min-h-[320px] lg:min-h-[440px] border-b lg:border-b-0 lg:border-r overflow-hidden group/img-card cursor-pointer"
+                style={{ borderColor: 'var(--border)', background: 'var(--bg-secondary)' }}
               >
+                {/* Resting State: Large Borderless Brand Logo (Disappears completely on hover) */}
+                <div className="absolute inset-0 flex items-center justify-center p-6 z-20 pointer-events-none transition-all duration-500 ease-out group-hover/img-card:opacity-0 group-hover/img-card:scale-90">
+                  {featuredProject.logo ? (
+                    <img
+                      src={featuredProject.logo}
+                      alt={`${featuredProject.title} logo`}
+                      className="max-w-[85%] max-h-[75%] h-auto w-auto object-contain filter drop-shadow-[0_15px_35px_rgba(0,0,0,0.95)]"
+                    />
+                  ) : (
+                    <div className="text-2xl font-mono font-bold text-white tracking-widest uppercase">
+                      {featuredProject.title}
+                    </div>
+                  )}
+                </div>
+
+                {/* Hover State: UI Screenshot smooth fade-in (100% clean view) */}
                 <img
                   src={featuredProject.image}
                   alt={featuredProject.title}
@@ -242,15 +258,15 @@ const Projects = () => {
                   height="500"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="w-full h-full object-cover transition-all duration-700 ease-out opacity-25 group-hover/img-card:opacity-100 group-hover/img-card:scale-105"
                   onError={(e) => {
                     e.target.onerror = null
                     e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect width='100%25' height='100%25' fill='%2318181b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23a1a1aa' font-family='sans-serif' font-size='28'%3EPaperLens AI%3C/text%3E%3C/svg%3E"
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none z-15 transition-opacity duration-500 group-hover/img-card:opacity-40" />
                 
-                <div className="absolute top-4 left-4 flex gap-2 font-mono text-xs z-20">
+                <div className="absolute top-4 left-4 flex gap-2 font-mono text-xs z-30 pointer-events-none">
                   <span className="px-3 py-1 rounded-full font-bold shadow-md bg-indigo-600 text-white flex items-center gap-1">
                     <Sparkles size={13} />
                     <span>FLAGSHIP PROJECT</span>
@@ -358,9 +374,25 @@ const Projects = () => {
                   
                   {/* Image Preview Banner */}
                   <div
-                    className="relative h-56 bg-slate-900 border-b overflow-hidden"
-                    style={{ borderColor: 'var(--border)' }}
+                    className="relative h-64 border-b overflow-hidden group/img-card cursor-pointer"
+                    style={{ borderColor: 'var(--border)', background: 'var(--bg-secondary)' }}
                   >
+                    {/* Resting State: Large Borderless Brand Logo (Disappears completely on hover) */}
+                    <div className="absolute inset-0 flex items-center justify-center p-5 z-20 pointer-events-none transition-all duration-500 ease-out group-hover/img-card:opacity-0 group-hover/img-card:scale-90">
+                      {project.logo ? (
+                        <img
+                          src={project.logo}
+                          alt={`${project.title} logo`}
+                          className="max-w-[85%] max-h-[75%] h-auto w-auto object-contain filter drop-shadow-[0_12px_28px_rgba(0,0,0,0.9)]"
+                        />
+                      ) : (
+                        <div className="text-lg font-mono font-bold text-white tracking-wider uppercase">
+                          {project.title}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Hover State: UI Screenshot smooth fade-in (100% clean view) */}
                     <img
                       src={project.image}
                       alt={project.title}
@@ -368,18 +400,18 @@ const Projects = () => {
                       height="350"
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="w-full h-full object-cover transition-all duration-700 ease-out opacity-25 group-hover/img-card:opacity-100 group-hover/img-card:scale-105"
                       onError={(e) => {
                         e.target.onerror = null
                         e.target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='350' viewBox='0 0 600 350'%3E%3Crect width='100%25' height='100%25' fill='%2318181b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23a1a1aa' font-family='sans-serif' font-size='20'%3E${encodeURIComponent(project.title)}%3C/text%3E%3C/svg%3E`
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
-                    <div className="absolute bottom-3 left-3 flex gap-2 font-mono text-[11px] z-20">
-                      <span className="px-2.5 py-0.5 rounded-full font-bold bg-black/60 text-white backdrop-blur-sm border border-white/10">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none z-15 transition-opacity duration-500 group-hover/img-card:opacity-40" />
+                    <div className="absolute bottom-3 left-3 flex gap-2 font-mono text-[11px] z-30 pointer-events-none">
+                      <span className="px-2.5 py-0.5 rounded-full font-bold bg-black/70 text-white backdrop-blur-sm border border-white/15">
                         {project.category}
                       </span>
-                      <span className="px-2.5 py-0.5 rounded-full font-bold bg-black/60 text-white backdrop-blur-sm border border-white/10">
+                      <span className="px-2.5 py-0.5 rounded-full font-bold bg-black/70 text-white backdrop-blur-sm border border-white/15">
                         {project.year}
                       </span>
                     </div>
@@ -480,13 +512,24 @@ const Projects = () => {
             >
               {/* Modal Top Header */}
               <div className="p-6 border-b flex items-center justify-between shrink-0" style={{ borderColor: 'var(--border)', background: 'var(--bg-secondary)' }}>
-                <div>
-                  <div className="font-mono text-xs uppercase" style={{ color: 'var(--accent)' }}>
-                    [PROJECT SPECIFICATION // {selectedProject.year}]
+                <div className="flex items-center gap-4">
+                  {selectedProject.logo && (
+                    <div className="w-12 h-12 rounded-xl p-2 shrink-0 flex items-center justify-center bg-black/50 border border-white/10 shadow-md">
+                      <img
+                        src={selectedProject.logo}
+                        alt={`${selectedProject.title} logo`}
+                        className="max-w-full max-h-full object-contain"
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <div className="font-mono text-xs uppercase" style={{ color: 'var(--accent)' }}>
+                      [PROJECT SPECIFICATION // {selectedProject.year}]
+                    </div>
+                    <h3 id="project-modal-title" className="font-display font-bold text-xl sm:text-2xl" style={{ color: 'var(--text-primary)' }}>
+                      {selectedProject.title}
+                    </h3>
                   </div>
-                  <h3 id="project-modal-title" className="font-display font-bold text-2xl" style={{ color: 'var(--text-primary)' }}>
-                    {selectedProject.title}
-                  </h3>
                 </div>
                 <button
                   onClick={() => setSelectedProject(null)}
