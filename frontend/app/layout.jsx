@@ -119,12 +119,22 @@ export const metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', type: 'image/x-icon' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
     ],
-    shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    shortcut: ['/favicon.ico'],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      {
+        rel: 'apple-touch-icon-precomposed',
+        url: '/apple-touch-icon.png',
+      },
+    ],
   },
   manifest: '/site.webmanifest',
 }
@@ -133,6 +143,15 @@ export default function RootLayout({ children }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': 'https://arpanpramanik.dev/#website',
+        url: 'https://arpanpramanik.dev',
+        name: 'Arpan Pramanik Portfolio',
+        publisher: {
+          '@id': 'https://arpanpramanik.dev/#person'
+        }
+      },
       {
         '@type': 'ProfilePage',
         '@id': 'https://arpanpramanik.dev/#profilepage',
@@ -148,6 +167,7 @@ export default function RootLayout({ children }) {
         name: 'Arpan Pramanik',
         url: 'https://arpanpramanik.dev',
         image: 'https://arpanpramanik.dev/profile.jpg',
+        logo: 'https://arpanpramanik.dev/logo.png',
         jobTitle: 'Full-Stack & AI/ML Developer',
         description: 'Full-Stack Developer specializing in AI/ML, Deep Learning, Computer Vision, React, and Next.js',
         sameAs: [
