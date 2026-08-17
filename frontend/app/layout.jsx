@@ -193,7 +193,7 @@ export default function RootLayout({ children }) {
   ].join(' ')
 
   return (
-    <html lang="en" className={fontVariables} suppressHydrationWarning>
+    <html lang="en" className={`${fontVariables} dark`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

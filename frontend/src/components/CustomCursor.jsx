@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { useTheme } from '../contexts/ThemeContext'
 
 /**
@@ -24,7 +24,7 @@ const CustomCursor = () => {
   const opacity = useRef(1)
   const targetOpacity = useRef(1)
   const rafId = useRef(null)
-  const isTouch = useRef(false)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
 
   const lerp = useCallback((a, b, n) => a + (b - a) * n, [])
 
@@ -35,7 +35,7 @@ const CustomCursor = () => {
       navigator.maxTouchPoints > 0 ||
       window.matchMedia('(pointer: coarse)').matches
     ) {
-      isTouch.current = true
+      setIsTouchDevice(true)
       return
     }
 
@@ -163,11 +163,7 @@ const CustomCursor = () => {
     }
   }, [lerp])
 
-  if (typeof window !== 'undefined' && (
-    'ontouchstart' in window ||
-    navigator.maxTouchPoints > 0 ||
-    window.matchMedia('(pointer: coarse)').matches
-  )) {
+  if (isTouchDevice) {
     return null
   }
 

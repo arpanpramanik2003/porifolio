@@ -13,20 +13,22 @@ export const useTheme = () => {
 }
 
 export const ThemeProvider = ({ children }) => {
-  // Initialize theme from localStorage or default to dark
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('theme')
-      if (savedTheme) {
-        return savedTheme === 'dark'
-      }
-    }
-    // Default to dark mode
-    return true
-  })
+  // Always default to dark mode for both SSR and initial client hydration pass
+  const [isDarkMode, setIsDarkMode] = useState(true)
+  const [mounted, setMounted] = useState(false)
 
-  // Update document class and localStorage when theme changes
+  // Sync theme from localStorage after initial client mount
   useEffect(() => {
+    setMounted(true)
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === 'dark')
+    }
+  }, [])
+
+  // Update document class and localStorage when theme changes (only after mounting)
+  useEffect(() => {
+    if (!mounted) return
     const root = window.document.documentElement
     if (isDarkMode) {
       root.classList.add('dark')
@@ -35,7 +37,7 @@ export const ThemeProvider = ({ children }) => {
       root.classList.remove('dark')
       localStorage.setItem('theme', 'light')
     }
-  }, [isDarkMode])
+  }, [isDarkMode, mounted])
 
   const toggleTheme = () => {
     setIsDarkMode(prev => !prev)
@@ -44,7 +46,8 @@ export const ThemeProvider = ({ children }) => {
   const value = {
     isDarkMode,
     toggleTheme,
-    theme: isDarkMode ? 'dark' : 'light'
+    theme: isDarkMode ? 'dark' : 'light',
+    mounted
   }
 
   return (
