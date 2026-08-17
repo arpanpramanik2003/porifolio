@@ -107,7 +107,7 @@ const Projects = () => {
     switch (id) {
       case 4: // FruitQ-GradeX
         return 'lg:col-span-7'
-      case 2: // SSH-V2
+      case 2: // CampusSphere
         return 'lg:col-span-5'
       case 5: // NeuroVoice
         return 'lg:col-span-5'
