@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://arpanpramanik.dev'
+  const baseUrl = 'https://www.arpanpramanik.dev'
   const lastModified = new Date()
 
   return [

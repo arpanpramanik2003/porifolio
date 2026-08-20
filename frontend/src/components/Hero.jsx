@@ -226,10 +226,15 @@ const Hero = ({ isIntroComplete = true }) => {
           </div>
         </motion.div>
 
+        {/* Static Accessible H1 for Search Engines (Bing, Google) & Screen Readers */}
+        <h1 id="hero-title" className="sr-only">
+          Arpan Pramanik — Full-Stack Developer &amp; AI/ML Engineer
+        </h1>
+
         {/* ════════════════════════════════════════════════════
-           MULTI-LANGUAGE NAME CYCLE & DROP-IN REVEAL HEADLINE
+           MULTI-LANGUAGE NAME CYCLE & DROP-IN REVEAL HEADLINE (Visual Layer)
            ════════════════════════════════════════════════════ */}
-        <div className="mt-2 sm:mt-4 mb-6 sm:mb-10 w-full flex justify-center items-center min-h-[120px] sm:min-h-[180px] overflow-hidden select-none">
+        <div aria-hidden="true" className="mt-2 sm:mt-4 mb-6 sm:mb-10 w-full flex justify-center items-center min-h-[120px] sm:min-h-[180px] overflow-hidden select-none">
           <AnimatePresence mode="wait">
             {!isFinalEnglish ? (
               /* Regional Language Cycle Step (Bengali, Hindi, Tamil, Telugu) */
@@ -241,18 +246,17 @@ const Hero = ({ isIntroComplete = true }) => {
                 transition={{ duration: 0.28, ease: 'easeOut' }}
                 className="text-center"
               >
-                <h1
+                <div
                   className="font-black text-3xl min-[380px]:text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]"
                   style={{ fontFamily: currentLangObj.fontFamily }}
                 >
                   {currentLangObj.text}
-                </h1>
+                </div>
               </motion.div>
             ) : (
               /* Final English Resting State: Drop-In Fall from Above + Scramble Lock */
-              <motion.h1
+              <motion.div
                 key="english-final"
-                id="hero-title"
                 initial={{ y: -50, opacity: 0, scale: 0.92, filter: 'blur(10px)' }}
                 animate={{ y: 0, opacity: 1, scale: 1, filter: 'blur(0px)' }}
                 transition={{
@@ -269,7 +273,7 @@ const Hero = ({ isIntroComplete = true }) => {
                 <span className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]">
                   <ScrambleText text="PRAMANIK" delay={200} />
                 </span>
-              </motion.h1>
+              </motion.div>
             )}
           </AnimatePresence>
         </div>

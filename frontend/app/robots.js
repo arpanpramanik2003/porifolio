@@ -4,6 +4,6 @@ export default function robots() {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://arpanpramanik.dev/sitemap.xml',
+    sitemap: 'https://www.arpanpramanik.dev/sitemap.xml',
   }
 }

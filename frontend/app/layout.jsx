@@ -70,9 +70,9 @@ const syne = Syne({
 })
 
 export const metadata = {
-  metadataBase: new URL('https://arpanpramanik.dev'),
-  title: 'Arpan Pramanik | Full-Stack & AI/ML Developer',
-  description: 'Official portfolio of Arpan Pramanik — Full-Stack & AI/ML Developer specializing in React, Next.js, Deep Learning, and Computer Vision solutions.',
+  metadataBase: new URL('https://www.arpanpramanik.dev'),
+  title: 'Arpan Pramanik | Full-Stack Developer & AI/ML Engineer',
+  description: 'Official portfolio of Arpan Pramanik — Full-Stack Developer & AI/ML Engineer specializing in Next.js, React, Deep Learning, and Computer Vision solutions.',
   keywords: [
     'Arpan Pramanik',
     'Full-Stack Developer',
@@ -90,32 +90,39 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   alternates: {
-    canonical: 'https://arpanpramanik.dev',
+    canonical: 'https://www.arpanpramanik.dev',
   },
   openGraph: {
     type: 'website',
-    url: 'https://arpanpramanik.dev',
-    title: 'Arpan Pramanik | Full-Stack & AI/ML Developer',
-    description: 'Official portfolio of Arpan Pramanik — Full-Stack & AI/ML Developer specializing in React, Next.js, Deep Learning, and Computer Vision solutions.',
+    url: 'https://www.arpanpramanik.dev',
+    title: 'Arpan Pramanik | Full-Stack Developer & AI/ML Engineer',
+    description: 'Official portfolio of Arpan Pramanik — Full-Stack Developer & AI/ML Engineer specializing in Next.js, React, Deep Learning, and Computer Vision solutions.',
     siteName: 'Arpan Pramanik Portfolio',
     images: [
       {
-        url: 'https://arpanpramanik.dev/profile.webp',
+        url: 'https://www.arpanpramanik.dev/profile.webp',
         width: 1200,
         height: 630,
-        alt: 'Arpan Pramanik - Full-Stack & AI/ML Developer Portfolio'
+        alt: 'Arpan Pramanik - Full-Stack Developer & AI/ML Engineer Portfolio'
       },
     ],
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    url: 'https://arpanpramanik.dev',
-    title: 'Arpan Pramanik | Full-Stack & AI/ML Developer',
-    description: 'Official portfolio of Arpan Pramanik — Full-Stack & AI/ML Developer specializing in React, Next.js, Deep Learning, and Computer Vision solutions.',
-    images: ['https://arpanpramanik.dev/profile.webp'],
+    url: 'https://www.arpanpramanik.dev',
+    title: 'Arpan Pramanik | Full-Stack Developer & AI/ML Engineer',
+    description: 'Official portfolio of Arpan Pramanik — Full-Stack Developer & AI/ML Engineer specializing in Next.js, React, Deep Learning, and Computer Vision solutions.',
+    images: ['https://www.arpanpramanik.dev/profile.webp'],
   },
   icons: {
     icon: [
@@ -147,30 +154,30 @@ export default function RootLayout({ children }) {
     '@graph': [
       {
         '@type': 'WebSite',
-        '@id': 'https://arpanpramanik.dev/#website',
-        url: 'https://arpanpramanik.dev',
+        '@id': 'https://www.arpanpramanik.dev/#website',
+        url: 'https://www.arpanpramanik.dev',
         name: 'Arpan Pramanik Portfolio',
         publisher: {
-          '@id': 'https://arpanpramanik.dev/#person'
+          '@id': 'https://www.arpanpramanik.dev/#person'
         }
       },
       {
         '@type': 'ProfilePage',
-        '@id': 'https://arpanpramanik.dev/#profilepage',
-        url: 'https://arpanpramanik.dev',
+        '@id': 'https://www.arpanpramanik.dev/#profilepage',
+        url: 'https://www.arpanpramanik.dev',
         name: 'Arpan Pramanik Portfolio',
         mainEntity: {
-          '@id': 'https://arpanpramanik.dev/#person'
+          '@id': 'https://www.arpanpramanik.dev/#person'
         }
       },
       {
         '@type': 'Person',
-        '@id': 'https://arpanpramanik.dev/#person',
+        '@id': 'https://www.arpanpramanik.dev/#person',
         name: 'Arpan Pramanik',
-        url: 'https://arpanpramanik.dev',
-        image: 'https://arpanpramanik.dev/profile.webp',
-        logo: 'https://arpanpramanik.dev/profile.webp',
-        jobTitle: 'Full-Stack & AI/ML Developer',
+        url: 'https://www.arpanpramanik.dev',
+        image: 'https://www.arpanpramanik.dev/profile.webp',
+        logo: 'https://www.arpanpramanik.dev/profile.webp',
+        jobTitle: 'Full-Stack Developer & AI/ML Engineer',
         description: 'Full-Stack Developer specializing in AI/ML, Deep Learning, Computer Vision, React, and Next.js',
         sameAs: [
           'https://github.com/arpanpramanik2003',
@@ -196,7 +203,7 @@ export default function RootLayout({ children }) {
         hasPart: {
           '@type': 'CreativeWork',
           name: 'Arpan Pramanik Resume',
-          url: 'https://arpanpramanik.dev/resume.pdf'
+          url: 'https://www.arpanpramanik.dev/resume.pdf'
         }
       }
     ]
