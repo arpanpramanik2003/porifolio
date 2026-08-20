@@ -234,7 +234,7 @@ const Hero = ({ isIntroComplete = true }) => {
         {/* ════════════════════════════════════════════════════
            MULTI-LANGUAGE NAME CYCLE & DROP-IN REVEAL HEADLINE (Visual Layer)
            ════════════════════════════════════════════════════ */}
-        <div aria-hidden="true" className="mt-2 sm:mt-4 mb-6 sm:mb-10 w-full flex justify-center items-center min-h-[120px] sm:min-h-[180px] overflow-hidden select-none">
+        <div aria-hidden="true" className="mt-2 sm:mt-4 mb-6 sm:mb-8 w-full max-w-full flex justify-center items-center min-h-[80px] sm:min-h-[100px] md:min-h-[120px] overflow-hidden select-none px-2">
           <AnimatePresence mode="wait">
             {!isFinalEnglish ? (
               /* Regional Language Cycle Step (Bengali, Hindi, Tamil, Telugu) */
@@ -244,10 +244,10 @@ const Hero = ({ isIntroComplete = true }) => {
                 animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, scale: 1.04, filter: 'blur(6px)' }}
                 transition={{ duration: 0.28, ease: 'easeOut' }}
-                className="text-center"
+                className="text-center w-full"
               >
                 <div
-                  className="font-black text-3xl min-[380px]:text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]"
+                  className="font-black text-2xl min-[380px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]"
                   style={{ fontFamily: currentLangObj.fontFamily }}
                 >
                   {currentLangObj.text}
@@ -265,12 +265,12 @@ const Hero = ({ isIntroComplete = true }) => {
                   damping: 15,
                   mass: 0.8
                 }}
-                className="font-display text-4xl min-[380px]:text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[9rem] font-black tracking-tighter leading-[0.95] uppercase text-center flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6"
+                className="font-display text-2xl min-[380px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight uppercase text-center flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 md:gap-4 max-w-full"
               >
-                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]">
+                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)] whitespace-nowrap">
                   <ScrambleText text="ARPAN" delay={50} />
                 </span>
-                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]">
+                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)] whitespace-nowrap">
                   <ScrambleText text="PRAMANIK" delay={200} />
                 </span>
               </motion.div>
