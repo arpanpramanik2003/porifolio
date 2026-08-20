@@ -18,6 +18,17 @@ const nextConfig = {
         destination: 'https://arpanpramanik.dev/:path*',
         permanent: true,
       },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.arpanpramanik.dev',
+          },
+        ],
+        destination: 'https://arpanpramanik.dev/:path*',
+        permanent: true,
+      },
     ];
   },
 };
