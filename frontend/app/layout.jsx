@@ -102,7 +102,7 @@ export const metadata = {
     siteName: 'Arpan Pramanik Portfolio',
     images: [
       {
-        url: 'https://arpanpramanik.dev/logo.png',
+        url: 'https://arpanpramanik.dev/profile.webp',
         width: 1200,
         height: 630,
         alt: 'Arpan Pramanik - Full-Stack & AI/ML Developer Portfolio'
@@ -115,7 +115,7 @@ export const metadata = {
     url: 'https://arpanpramanik.dev',
     title: 'Arpan Pramanik | Full-Stack & AI/ML Developer',
     description: 'Official portfolio of Arpan Pramanik — Full-Stack & AI/ML Developer specializing in React, Next.js, Deep Learning, and Computer Vision solutions.',
-    images: ['https://arpanpramanik.dev/logo.png'],
+    images: ['https://arpanpramanik.dev/profile.webp'],
   },
   icons: {
     icon: [
@@ -168,8 +168,8 @@ export default function RootLayout({ children }) {
         '@id': 'https://arpanpramanik.dev/#person',
         name: 'Arpan Pramanik',
         url: 'https://arpanpramanik.dev',
-        image: 'https://arpanpramanik.dev/profile.jpg',
-        logo: 'https://arpanpramanik.dev/logo.png',
+        image: 'https://arpanpramanik.dev/profile.webp',
+        logo: 'https://arpanpramanik.dev/profile.webp',
         jobTitle: 'Full-Stack & AI/ML Developer',
         description: 'Full-Stack Developer specializing in AI/ML, Deep Learning, Computer Vision, React, and Next.js',
         sameAs: [
