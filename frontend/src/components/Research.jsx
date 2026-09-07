@@ -180,9 +180,16 @@ const Research = () => {
                       >
                         {paper.category}
                       </span>
-                      {/* Preserved Green Status Signal */}
-                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-500 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-                        <CheckCircle2 size={11} />
+                      {/* Architectural Status Indicator */}
+                      <span
+                        className="inline-flex items-center gap-1.5 text-[10px] font-mono font-semibold tracking-wider uppercase px-2.5 py-0.5 rounded-full border"
+                        style={{
+                          background: 'var(--bg-secondary)',
+                          borderColor: 'var(--border)',
+                          color: 'var(--text-primary)'
+                        }}
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }} />
                         <span>{paper.conference}</span>
                       </span>
                     </div>
