@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Sun, Moon, ArrowUpRight } from 'lucide-react'
+import { Menu, X, Sun, Moon, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from '../contexts/ThemeContext'
+import { personalInfo } from '../data/personalInfo'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -85,15 +86,38 @@ const Navbar = () => {
               })}
             </nav>
 
-            {/* Right: Borderless Theme Toggle & Contact Button */}
-            <div className="hidden sm:flex items-center gap-3">
-              
+            {/* Right: Social Coordinates, Borderless Theme Toggle & Compact Contact Button */}
+            <div className="hidden sm:flex items-center gap-2">
+
+              {/* Social Channels (Left of Theme Toggle) */}
+              <div className="flex items-center gap-1 mr-1">
+                {[
+                  { icon: Github, href: personalInfo.social.github, label: 'GitHub' },
+                  { icon: Linkedin, href: personalInfo.social.linkedin, label: 'LinkedIn' },
+                  { icon: Mail, href: personalInfo.social.email, label: 'Email' }
+                ].map(({ icon: Icon, href, label }) => (
+                  <motion.a
+                    key={label}
+                    href={href}
+                    target={href.startsWith('mailto') ? undefined : '_blank'}
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    title={label}
+                    aria-label={label}
+                    className="w-8 h-8 rounded-lg flex items-center justify-center transition-all hover:bg-white/10 dark:hover:bg-white/10 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                  >
+                    <Icon size={16} />
+                  </motion.a>
+                ))}
+              </div>
+
               {/* Borderless Theme Switcher Button */}
               <button
                 onClick={toggleTheme}
                 aria-label={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
                 title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-                className="p-2.5 rounded-xl border-none flex items-center justify-center transition-colors hover:bg-white/10 dark:hover:bg-white/10 cursor-pointer"
+                className="w-8 h-8 rounded-lg border-none flex items-center justify-center transition-colors hover:bg-white/10 dark:hover:bg-white/10 cursor-pointer"
                 style={{ color: 'var(--text-primary)', background: 'transparent' }}
               >
                 <AnimatePresence mode="wait">
@@ -105,32 +129,32 @@ const Navbar = () => {
                       exit={{ rotate: 90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Sun size={18} />
+                      <Sun size={17} />
                     </motion.div>
                   ) : (
                     <motion.div
                       key="moon"
                       initial={{ rotate: 90, opacity: 0 }}
                       animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
+                      exit={{ rotate: -90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Moon size={18} />
+                      <Moon size={17} />
                     </motion.div>
                   )}
                 </AnimatePresence>
               </button>
 
-              {/* Borderless Contact Action Button */}
-              <Link href="/contact" className="cursor-pointer">
-                <button className="px-4.5 py-2 rounded-xl font-mono text-xs font-semibold flex items-center gap-1.5 border-none transition-all shadow-none hover:opacity-90 active:scale-95 cursor-pointer"
+              {/* Compact Contact Action Button */}
+              <Link href="/contact" className="cursor-pointer ml-1">
+                <button className="px-3.5 py-1.5 rounded-lg font-mono text-[11px] font-semibold flex items-center gap-1 border-none transition-all shadow-none hover:opacity-90 active:scale-95 cursor-pointer"
                   style={{
                     background: 'var(--text-primary)',
                     color: 'var(--bg-primary)'
                   }}
                 >
                   <span>CONTACT</span>
-                  <ArrowUpRight size={14} />
+                  <ArrowUpRight size={13} />
                 </button>
               </Link>
 
