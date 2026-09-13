@@ -43,9 +43,9 @@ const About = () => {
     },
     {
       num: '04',
-      title: 'Academic Excellence',
-      desc: 'Maintaining a 9.42 / 10 CGPA in B.Tech CSE (AI & ML) at The Neotia University while shipping 10+ production deployments.',
-      icon: GraduationCap
+      title: 'Autonomous AI Agents & Systems',
+      desc: 'Architecting multi-step agentic workflows with tool use, streaming citation tracking, and low-latency API orchestration.',
+      icon: Sparkles
     }
   ]
 
@@ -104,12 +104,11 @@ const About = () => {
               style={{ color: 'var(--text-secondary)' }}
             >
               <p>
-                I am a Computer Science Undergraduate specializing in AI/ML at{' '}
-                <strong className="font-semibold" style={{ color: 'var(--text-primary)' }}>The Neotia University</strong> (9.42 CGPA). My focus centers on building reliable web platforms, intelligent retrieval systems, and machine learning models that bridge scientific research with real-world utility.
+                I am an AI/ML Engineer and Full-Stack Developer specializing in building autonomous AI agents, intelligent retrieval systems (RAG), and production-grade web platforms. My focus centers on engineering scalable deep learning architectures and high-performance software that bridge scientific research with real-world utility.
               </p>
               <p>
                 From authoring{' '}
-                <strong className="font-semibold" style={{ color: 'var(--text-primary)' }}>PaperLens AI</strong> (an academic research co-pilot with hybrid FAISS+BM25 retrieval) to deploying full-stack web platforms and explainable deep learning pipelines, I emphasize clean architecture, high performance, and visual polish.
+                <strong className="font-semibold" style={{ color: 'var(--text-primary)' }}>PaperLens AI</strong> (an autonomous academic research co-pilot with hybrid FAISS+BM25 retrieval) to deploying distributed full-stack platforms and explainable deep learning pipelines, I emphasize clean architecture, high performance, and visual polish.
               </p>
             </motion.div>
 
@@ -275,12 +274,12 @@ const About = () => {
                 </div>
 
                 <div className="flex justify-between items-center py-1.5 border-b" style={{ borderColor: 'var(--border)' }}>
-                  <span style={{ color: 'var(--text-tertiary)' }}>ACADEMIC SCORE</span>
+                  <span style={{ color: 'var(--text-tertiary)' }}>CORE FOCUS</span>
                   <span
                     className="font-bold px-2.5 py-0.5 rounded border shadow-xs"
                     style={{ borderColor: 'var(--accent)', color: 'var(--accent)', background: 'var(--bg-secondary)' }}
                   >
-                    9.42 CGPA
+                    AI Agents & Full-Stack
                   </span>
                 </div>
 

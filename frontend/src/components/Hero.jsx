@@ -180,10 +180,10 @@ const Hero = ({ isIntroComplete = true }) => {
   }
 
   const stats = [
-    { label: 'Academic Standing', targetNum: 9.42, suffix: ' CGPA', subtext: 'The Neotia University' },
+    { label: 'AI & Full-Stack Systems', targetNum: 10, suffix: '+ Shipped', subtext: 'Production Grade' },
     { label: 'Engineering Projects', targetNum: 20, suffix: '+ Built', subtext: 'Full-Stack & ML' },
     { label: 'Work Experience', targetNum: 3, suffix: ' Roles', subtext: 'Internships' },
-    { label: 'Key Innovation', rawText: 'PaperLens AI', subtext: 'Research Co-Pilot' }
+    { label: 'Key Innovation', rawText: 'PaperLens AI', subtext: 'Autonomous Co-Pilot' }
   ]
 
   const currentLangObj = nameCycleData[cycleIndex]

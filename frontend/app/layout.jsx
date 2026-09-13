@@ -76,13 +76,14 @@ const syne = Syne({
 export const metadata = {
   metadataBase: new URL('https://arpanpramanik.tech'),
   title: 'Arpan Pramanik | AI/ML Engineer & Full-Stack Developer',
-  description: 'Official portfolio of Arpan Pramanik — AI/ML Engineer & Full-Stack Developer. Explore published IEEE/Springer research, deep learning systems, and web platforms.',
+  description: 'AI/ML Engineer & Full-Stack Developer specializing in autonomous AI agents, retrieval-augmented generation (RAG), deep learning systems, and full-stack platforms. Explore featured projects, IEEE/Springer publications, and engineering architecture.',
   keywords: [
     'Arpan Pramanik',
     'Arpan Pramanik AI Engineer',
     'Arpan Pramanik AI/ML Engineer',
     'Arpan Pramanik Software Engineer',
     'Arpan Pramanik Researcher',
+    'Arpan Pramanik AI Agents',
     'Arpan Pramanik projects',
     'Arpan Pramanik portfolio',
     'Arpan Pramanik machine learning',
@@ -93,6 +94,10 @@ export const metadata = {
     'Arpan Pramanik publications',
     'PaperLens AI',
     'FruitQ-GradeX',
+    'CampusSphere',
+    'AI Agents',
+    'Autonomous Agents',
+    'RAG',
     'Deep Learning',
     'Computer Vision',
     'Next.js',
@@ -121,7 +126,7 @@ export const metadata = {
     type: 'website',
     url: 'https://arpanpramanik.tech',
     title: 'Arpan Pramanik | AI/ML Engineer & Full-Stack Developer',
-    description: 'Official portfolio of Arpan Pramanik — AI/ML Engineer & Full-Stack Developer. Explore published IEEE/Springer research, deep learning systems, and web platforms.',
+    description: 'AI/ML Engineer & Full-Stack Developer specializing in autonomous AI agents, retrieval-augmented generation (RAG), deep learning systems, and full-stack platforms. Explore featured projects, IEEE/Springer publications, and engineering architecture.',
     siteName: 'Arpan Pramanik',
     images: [
       {
@@ -137,7 +142,7 @@ export const metadata = {
     card: 'summary_large_image',
     url: 'https://arpanpramanik.tech',
     title: 'Arpan Pramanik | AI/ML Engineer & Full-Stack Developer',
-    description: 'Official portfolio of Arpan Pramanik — AI/ML Engineer & Full-Stack Developer. Explore published IEEE/Springer research, deep learning systems, and web platforms.',
+    description: 'AI/ML Engineer & Full-Stack Developer specializing in autonomous AI agents, retrieval-augmented generation (RAG), deep learning systems, and full-stack platforms. Explore featured projects, IEEE/Springer publications, and engineering architecture.',
     images: ['https://arpanpramanik.tech/profile.webp'],
   },
   icons: {
@@ -197,7 +202,7 @@ export default function RootLayout({ children }) {
         image: 'https://arpanpramanik.tech/profile.webp',
         logo: 'https://arpanpramanik.tech/profile.webp',
         jobTitle: ['AI/ML Engineer', 'Full-Stack Developer', 'AI Researcher'],
-        description: 'AI/ML Engineer and Full-Stack Developer specializing in deep learning, computer vision, explainable AI, and Next.js platforms.',
+        description: 'AI/ML Engineer and Full-Stack Developer specializing in autonomous AI agents, retrieval-augmented generation (RAG), computer vision, and Next.js platforms.',
         sameAs: [
           'https://github.com/arpanpramanik2003',
           'https://www.linkedin.com/in/arpanpramanik2003/'
@@ -207,6 +212,7 @@ export default function RootLayout({ children }) {
           name: 'The Neotia University'
         },
         knowsAbout: [
+          'Autonomous AI Agents',
           'Artificial Intelligence',
           'Machine Learning',
           'Deep Learning',

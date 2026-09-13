@@ -1,8 +1,8 @@
 export const aboutData = {
   intro: [
-    "I'm a passionate Computer Science student specializing in AI/ML at The Neotia University, West Bengal. With hands-on experience in building production-grade web applications, I love solving real-world problems through code.",
-    "My expertise spans across full-stack development, machine learning, deep learning, computer vision, and cloud deployment. I've completed 10+ production deployments and actively work on academic research projects.",
-    "When I'm not coding, you'll find me playing badminton, exploring new technologies, or working on innovative ML projects that make a real-world impact."
+    "I'm an AI/ML Engineer and Full-Stack Developer specializing in building autonomous AI agents, retrieval-augmented generation (RAG) platforms, and scalable web architectures. With hands-on experience in building production-grade software, I solve complex engineering challenges through code.",
+    "My expertise spans across full-stack development, LLM orchestration, deep learning, computer vision, and cloud deployment. I've completed 10+ production deployments and actively author peer-reviewed academic research.",
+    "When I'm not coding, you'll find me exploring emerging AI architectures, contributing to open-source systems, or building autonomous tools that bridge scientific research with real-world impact."
   ],
   
   cards: [
@@ -14,7 +14,7 @@ export const aboutData = {
       title: 'Education',
       primary: 'B.Tech in CSE (AIML)',
       secondary: 'The Neotia University',
-      tertiary: 'CGPA: 9.42 / 10',
+      tertiary: 'Specialization: AI & ML Systems',
       duration: '2023 - 2027'
     },
     {
