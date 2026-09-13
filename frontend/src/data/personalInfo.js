@@ -15,7 +15,7 @@ export const personalInfo = {
   
   social: {
     github: 'https://github.com/arpanpramanik2003',
-    linkedin: 'https://www.linkedin.com/in/arpan-pramanik-6a409228a/',
+    linkedin: 'https://www.linkedin.com/in/arpanpramanik2003/',
     email: 'mailto:pramanikarpan089@gmail.com'
   },
   

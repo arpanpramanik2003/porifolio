@@ -47,7 +47,7 @@ export const projectsData = [
       'Stateless Clerk RSA-256 JWT authentication with custom sliding-window token bucket rate limiting'
     ],
     github: 'https://github.com/arpanpramanik2003/PaperLens-AI',
-    live: 'https://paperlens.arpanpramanik.dev/',
+    live: 'https://paperlens.arpanpramanik.tech/',
     status: 'Completed',
     year: '2026'
   },
@@ -91,7 +91,7 @@ export const projectsData = [
       'Enterprise Observability with OpenTelemetry distributed tracing, Prometheus metrics & Pino JSON logging'
     ],
     github: 'https://github.com/arpanpramanik2003/CampusSphere',
-    live: 'https://ssh.arpanpramanik.dev/',
+    live: 'https://ssh.arpanpramanik.tech/',
     status: 'Completed',
     year: '2026'
   },

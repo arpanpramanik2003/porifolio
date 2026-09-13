@@ -70,23 +70,35 @@ const syne = Syne({
 })
 
 export const metadata = {
-  metadataBase: new URL('https://www.arpanpramanik.dev'),
-  title: 'Arpan Pramanik | Full-Stack Developer & AI/ML Engineer',
-  description: 'Official portfolio of Arpan Pramanik — Full-Stack Developer & AI/ML Engineer specializing in Next.js, React, Deep Learning, and Computer Vision solutions.',
+  metadataBase: new URL('https://arpanpramanik.tech'),
+  title: 'Arpan Pramanik | AI/ML Engineer & Full-Stack Developer',
+  description: 'Official portfolio of Arpan Pramanik — AI/ML Engineer & Full-Stack Developer. Explore published IEEE/Springer research, deep learning systems, and web platforms.',
   keywords: [
     'Arpan Pramanik',
-    'Full-Stack Developer',
-    'AI/ML Engineer',
+    'Arpan Pramanik AI Engineer',
+    'Arpan Pramanik AI/ML Engineer',
+    'Arpan Pramanik Software Engineer',
+    'Arpan Pramanik Researcher',
+    'Arpan Pramanik projects',
+    'Arpan Pramanik portfolio',
+    'Arpan Pramanik machine learning',
+    'Arpan Pramanik artificial intelligence',
+    'Arpan Pramanik GitHub',
+    'Arpan Pramanik research',
+    'Arpan Pramanik papers',
+    'Arpan Pramanik publications',
+    'PaperLens AI',
+    'FruitQ-GradeX',
     'Deep Learning',
     'Computer Vision',
-    'Web Development',
-    'React',
     'Next.js',
+    'React',
     'Python',
-    'TensorFlow',
-    'Portfolio'
+    'FastAPI'
   ],
-  authors: [{ name: 'Arpan Pramanik' }],
+  authors: [{ name: 'Arpan Pramanik', url: 'https://arpanpramanik.tech' }],
+  creator: 'Arpan Pramanik',
+  publisher: 'Arpan Pramanik',
   robots: {
     index: true,
     follow: true,
@@ -99,30 +111,30 @@ export const metadata = {
     },
   },
   alternates: {
-    canonical: 'https://www.arpanpramanik.dev',
+    canonical: 'https://arpanpramanik.tech',
   },
   openGraph: {
     type: 'website',
-    url: 'https://www.arpanpramanik.dev',
-    title: 'Arpan Pramanik | Full-Stack Developer & AI/ML Engineer',
-    description: 'Official portfolio of Arpan Pramanik — Full-Stack Developer & AI/ML Engineer specializing in Next.js, React, Deep Learning, and Computer Vision solutions.',
-    siteName: 'Arpan Pramanik Portfolio',
+    url: 'https://arpanpramanik.tech',
+    title: 'Arpan Pramanik | AI/ML Engineer & Full-Stack Developer',
+    description: 'Official portfolio of Arpan Pramanik — AI/ML Engineer & Full-Stack Developer. Explore published IEEE/Springer research, deep learning systems, and web platforms.',
+    siteName: 'Arpan Pramanik',
     images: [
       {
-        url: 'https://www.arpanpramanik.dev/profile.webp',
+        url: 'https://arpanpramanik.tech/profile.webp',
         width: 1200,
         height: 630,
-        alt: 'Arpan Pramanik - Full-Stack Developer & AI/ML Engineer Portfolio'
+        alt: 'Arpan Pramanik - AI/ML Engineer & Full-Stack Developer Portfolio'
       },
     ],
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    url: 'https://www.arpanpramanik.dev',
-    title: 'Arpan Pramanik | Full-Stack Developer & AI/ML Engineer',
-    description: 'Official portfolio of Arpan Pramanik — Full-Stack Developer & AI/ML Engineer specializing in Next.js, React, Deep Learning, and Computer Vision solutions.',
-    images: ['https://www.arpanpramanik.dev/profile.webp'],
+    url: 'https://arpanpramanik.tech',
+    title: 'Arpan Pramanik | AI/ML Engineer & Full-Stack Developer',
+    description: 'Official portfolio of Arpan Pramanik — AI/ML Engineer & Full-Stack Developer. Explore published IEEE/Springer research, deep learning systems, and web platforms.',
+    images: ['https://arpanpramanik.tech/profile.webp'],
   },
   icons: {
     icon: [
@@ -154,31 +166,34 @@ export default function RootLayout({ children }) {
     '@graph': [
       {
         '@type': 'WebSite',
-        '@id': 'https://www.arpanpramanik.dev/#website',
-        url: 'https://www.arpanpramanik.dev',
-        name: 'Arpan Pramanik Portfolio',
+        '@id': 'https://arpanpramanik.tech/#website',
+        url: 'https://arpanpramanik.tech',
+        name: 'Arpan Pramanik',
+        alternateName: ['Arpan Pramanik Portfolio', 'Arpan Pramanik Tech'],
         publisher: {
-          '@id': 'https://www.arpanpramanik.dev/#person'
+          '@id': 'https://arpanpramanik.tech/#person'
         }
       },
       {
         '@type': 'ProfilePage',
-        '@id': 'https://www.arpanpramanik.dev/#profilepage',
-        url: 'https://www.arpanpramanik.dev',
-        name: 'Arpan Pramanik Portfolio',
+        '@id': 'https://arpanpramanik.tech/#profilepage',
+        url: 'https://arpanpramanik.tech',
+        name: 'Arpan Pramanik — Official Portfolio',
         mainEntity: {
-          '@id': 'https://www.arpanpramanik.dev/#person'
+          '@id': 'https://arpanpramanik.tech/#person'
         }
       },
       {
         '@type': 'Person',
-        '@id': 'https://www.arpanpramanik.dev/#person',
+        '@id': 'https://arpanpramanik.tech/#person',
         name: 'Arpan Pramanik',
-        url: 'https://www.arpanpramanik.dev',
-        image: 'https://www.arpanpramanik.dev/profile.webp',
-        logo: 'https://www.arpanpramanik.dev/profile.webp',
-        jobTitle: 'Full-Stack Developer & AI/ML Engineer',
-        description: 'Full-Stack Developer specializing in AI/ML, Deep Learning, Computer Vision, React, and Next.js',
+        givenName: 'Arpan',
+        familyName: 'Pramanik',
+        url: 'https://arpanpramanik.tech',
+        image: 'https://arpanpramanik.tech/profile.webp',
+        logo: 'https://arpanpramanik.tech/profile.webp',
+        jobTitle: ['AI/ML Engineer', 'Full-Stack Developer', 'AI Researcher'],
+        description: 'AI/ML Engineer and Full-Stack Developer specializing in deep learning, computer vision, explainable AI, and Next.js platforms.',
         sameAs: [
           'https://github.com/arpanpramanik2003',
           'https://www.linkedin.com/in/arpanpramanik2003/'
@@ -188,23 +203,63 @@ export default function RootLayout({ children }) {
           name: 'The Neotia University'
         },
         knowsAbout: [
-          'Full-Stack Development',
           'Artificial Intelligence',
           'Machine Learning',
           'Deep Learning',
           'Computer Vision',
+          'Explainable AI (Grad-CAM)',
+          'Retrieval-Augmented Generation (RAG)',
           'React.js',
           'Next.js',
           'Python',
+          'FastAPI',
           'TensorFlow',
+          'PyTorch',
           'Node.js',
+          'PostgreSQL',
           'Web Development'
         ],
         hasPart: {
           '@type': 'CreativeWork',
           name: 'Arpan Pramanik Resume',
-          url: 'https://www.arpanpramanik.dev/resume.pdf'
+          url: 'https://arpanpramanik.tech/resume.pdf'
         }
+      },
+      {
+        '@type': 'ScholarlyArticle',
+        '@id': 'https://doi.org/10.1109/ICRITO66076.2025.11241706',
+        headline: 'FruitQ-GradeX: Determining Fruit Quality and Grading with Explainable Deep Learning',
+        name: 'FruitQ-GradeX: Determining Fruit Quality and Grading with Explainable Deep Learning',
+        author: { '@id': 'https://arpanpramanik.tech/#person' },
+        publisher: { '@type': 'Organization', name: 'IEEE' },
+        sameAs: 'https://doi.org/10.1109/ICRITO66076.2025.11241706'
+      },
+      {
+        '@type': 'ScholarlyArticle',
+        '@id': 'https://doi.org/10.1007/978-3-032-21901-5_35',
+        headline: 'Hyperspectral Fruit and Vegetable Classification Using Convolutional Neural Networks with EfficientNetB3',
+        name: 'Hyperspectral Fruit and Vegetable Classification Using Convolutional Neural Networks with EfficientNetB3',
+        author: { '@id': 'https://arpanpramanik.tech/#person' },
+        publisher: { '@type': 'Organization', name: 'Springer' },
+        sameAs: 'https://doi.org/10.1007/978-3-032-21901-5_35'
+      },
+      {
+        '@type': 'ScholarlyArticle',
+        '@id': 'https://doi.org/10.1109/ICRITO66076.2025.11241535',
+        headline: 'Cropsense: Explainable Deep Learning Framework for Accurate Quality Detection in Solanaceous Crops',
+        name: 'Cropsense: Explainable Deep Learning Framework for Accurate Quality Detection in Solanaceous Crops',
+        author: { '@id': 'https://arpanpramanik.tech/#person' },
+        publisher: { '@type': 'Organization', name: 'IEEE' },
+        sameAs: 'https://doi.org/10.1109/ICRITO66076.2025.11241535'
+      },
+      {
+        '@type': 'ScholarlyArticle',
+        '@id': 'https://doi.org/10.1109/COMPUTINGCON64838.2025.11376762',
+        headline: 'An Explainable Deep Learning Approach for Quality Assessment in Solanaceous Crops',
+        name: 'An Explainable Deep Learning Approach for Quality Assessment in Solanaceous Crops',
+        author: { '@id': 'https://arpanpramanik.tech/#person' },
+        publisher: { '@type': 'Organization', name: 'IEEE' },
+        sameAs: 'https://doi.org/10.1109/COMPUTINGCON64838.2025.11376762'
       }
     ]
   }

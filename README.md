@@ -10,7 +10,7 @@
 
 **A modern, responsive, and animated portfolio website built with Next.js (App Router), showcasing expertise in Full-Stack Development and AI/ML**
 
-[🌐 Live Demo](https://arpanpramanik.dev) • [📧 Contact](mailto:pramanikarpan089@gmail.com) • [💼 LinkedIn](https://www.linkedin.com/in/arpanpramanik2003/)
+[🌐 Live Demo](https://arpanpramanik.tech) • [📧 Contact](mailto:pramanikarpan089@gmail.com) • [💼 LinkedIn](https://www.linkedin.com/in/arpanpramanik2003/)
 
 </div>
 
@@ -131,7 +131,7 @@ npm run start
 
 ## 🌐 Demo
 
-**Live Website:** [https://arpanpramanik.dev/](https://arpanpramanik.dev)
+**Live Website:** [https://arpanpramanik.tech/](https://arpanpramanik.tech)
 
 ---
 
