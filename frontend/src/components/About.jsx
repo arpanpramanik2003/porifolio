@@ -200,23 +200,35 @@ const About = () => {
               className="p-6 sm:p-7 rounded-2xl border card-arch relative overflow-hidden shadow-lg"
               style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}
             >
-              {/* Top Shimmer Header: Photo + Verified Badge */}
-              <div
-                className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-6 pb-6 border-b"
-                style={{ borderColor: 'var(--border)' }}
-              >
-                {/* Profile Photo Frame */}
+              {/* Profile Card Header */}
+              <div className="flex flex-col items-center text-center mb-6 pb-6 border-b" style={{ borderColor: 'var(--border)' }}>
+                {/* Verified Engineer Badge with Animated Light Sweep Shimmer */}
                 <div
-                  className="w-28 sm:w-32 aspect-[530/690] rounded-xl overflow-hidden border-2 shrink-0 card-arch shadow-xs relative group"
-                  style={{ borderColor: 'var(--accent)' }}
+                  className="relative inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border shadow-xs overflow-hidden mb-4"
+                  style={{ borderColor: 'var(--border)', color: 'var(--accent)', background: 'var(--bg-secondary)' }}
                 >
+                  {/* Light Sweep Shimmer Layer */}
+                  <motion.div
+                    initial={{ x: '-100%' }}
+                    animate={{ x: '200%' }}
+                    transition={{
+                      repeat: Infinity,
+                      repeatDelay: 3.5,
+                      duration: 1.5,
+                      ease: 'easeInOut'
+                    }}
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 dark:via-white/15 to-transparent pointer-events-none"
+                  />
+                  <ShieldCheck size={13} style={{ color: 'var(--accent)' }} />
+                  <span className="font-bold relative z-10">VERIFIED ENGINEER</span>
+                </div>
+
+                <div className="w-28 h-32 rounded-2xl overflow-hidden border-2 shadow-md relative group shrink-0 mb-4" style={{ borderColor: 'var(--accent)', background: 'var(--bg-secondary)' }}>
                   <img
                     src={personalInfo.profileImage}
-                    alt={`${personalInfo.name} - Full-Stack Developer & AI/ML Engineer`}
-                    width="530"
-                    height="690"
-                    fetchPriority="high"
-                    decoding="async"
+                    alt={personalInfo.name}
+                    width={112}
+                    height={128}
                     className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                     onError={(e) => {
                       e.target.onerror = null
@@ -226,40 +238,19 @@ const About = () => {
                 </div>
 
                 {/* ID Card Headline */}
-                <div className="space-y-2 flex-1 min-w-0">
-                  {/* Verified Engineer Badge with Animated Light Sweep Shimmer */}
+                <div className="space-y-1.5 w-full">
                   <div
-                    className="relative inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border shadow-xs overflow-hidden"
-                    style={{ borderColor: 'var(--border)', color: 'var(--accent)', background: 'var(--bg-secondary)' }}
-                  >
-                    {/* Light Sweep Shimmer Layer */}
-                    <motion.div
-                      initial={{ x: '-100%' }}
-                      animate={{ x: '200%' }}
-                      transition={{
-                        repeat: Infinity,
-                        repeatDelay: 3.5,
-                        duration: 1.5,
-                        ease: 'easeInOut'
-                      }}
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 dark:via-white/15 to-transparent pointer-events-none"
-                    />
-                    <ShieldCheck size={13} style={{ color: 'var(--accent)' }} />
-                    <span className="font-bold relative z-10">VERIFIED ENGINEER</span>
-                  </div>
-
-                  <h3
-                    className="font-display font-black text-2xl tracking-tight"
+                    className="font-display font-black text-xl sm:text-2xl tracking-tight"
                     style={{ color: 'var(--text-primary)' }}
                   >
                     {personalInfo.name}
-                  </h3>
-
-                  <div className="font-mono text-xs font-semibold" style={{ color: 'var(--accent)' }}>
-                    B.Tech CSE (AI & ML) • 2023–2027
                   </div>
 
-                  <div className="flex items-center gap-1.5 font-mono text-xs pt-0.5" style={{ color: 'var(--text-secondary)' }}>
+                  <div className="font-mono text-xs font-semibold" style={{ color: 'var(--accent)' }}>
+                    B.Tech CSE (AI &amp; ML) • 2023–2027
+                  </div>
+
+                  <div className="flex items-center justify-center gap-1.5 font-mono text-xs pt-0.5" style={{ color: 'var(--text-secondary)' }}>
                     <MapPin size={13} className="shrink-0" style={{ color: 'var(--accent)' }} />
                     <span>West Bengal, India</span>
                   </div>

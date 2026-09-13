@@ -1,7 +1,4 @@
-import About from '../../src/components/About'
-import Skills from '../../src/components/Skills'
-import Experience from '../../src/components/Experience'
-import Certificates from '../../src/components/Certificates'
+import AboutDossier from '../../src/components/AboutDossier'
 
 export const metadata = {
   title: 'About | Arpan Pramanik — Background, Stack & Experience',
@@ -19,10 +16,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className="pt-20">
-      <About />
-      <Skills />
-      <Experience />
-      <Certificates />
+      <AboutDossier />
     </div>
   )
 }
