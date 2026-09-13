@@ -41,7 +41,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Back-to-Top Button */}
-          <Link to="hero" smooth duration={500} className="cursor-pointer">
+          <Link to="hero" href="/#hero" smooth duration={500} className="cursor-pointer">
             <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border transition-colors card-arch"
               style={{ color: 'var(--text-secondary)' }}
             >

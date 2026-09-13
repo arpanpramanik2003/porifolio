@@ -103,14 +103,14 @@ const Research = () => {
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider mb-3" style={{ color: 'var(--accent)' }}>
             <span>[05]</span>
             <span className="w-8 h-px bg-[var(--accent)]" />
-            <span>SCIENTIFIC PUBLICATIONS & RESEARCH</span>
+            <span>PEER-REVIEWED PUBLICATIONS & SCIENTIFIC RESEARCH</span>
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <h2 id="research-heading" className="font-display text-xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug max-w-3xl"
               style={{ color: 'var(--text-primary)' }}
             >
-              CONFERENCE PAPERS & DEEP LEARNING RESEARCH.
+              CONFERENCE PAPERS, IEEE/SPRINGER PUBLICATIONS & AI RESEARCH.
             </h2>
 
             <div

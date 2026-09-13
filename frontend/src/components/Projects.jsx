@@ -194,14 +194,14 @@ const Projects = () => {
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider mb-3" style={{ color: 'var(--accent)' }}>
             <span>[04]</span>
             <span className="w-8 h-px bg-[var(--accent)]" />
-            <span>FEATURED ENGINEERING CASE STUDIES</span>
+            <span>FEATURED PROJECTS & ENGINEERING CASE STUDIES</span>
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <h2 id="projects-heading" className="font-display text-xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug max-w-3xl"
               style={{ color: 'var(--text-primary)' }}
             >
-              SELECTED PRODUCTION SYSTEMS & AI PLATFORMS.
+              PRODUCTION SYSTEMS, FULL-STACK APPS & AI PLATFORMS.
             </h2>
 
             <a

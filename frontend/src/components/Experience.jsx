@@ -141,7 +141,7 @@ const Experience = () => {
         >
           <span>[03]</span>
           <span className="w-8 h-px bg-[var(--accent)]" />
-          <span>INDUSTRIAL EXPERIENCE & ROLES LEDGER</span>
+          <span>WORK EXPERIENCE & ENGINEERING INTERNSHIPS</span>
         </div>
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -150,7 +150,7 @@ const Experience = () => {
             className="font-display text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight max-w-3xl leading-[1.1]"
             style={{ color: 'var(--text-primary)' }}
           >
-            PROFESSIONAL EXPERIENCE & INDUSTRIAL ROLES.
+            PROFESSIONAL EXPERIENCE & RESEARCH ROLES.
           </h2>
 
           <div

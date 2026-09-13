@@ -83,7 +83,7 @@ const Skills = () => {
               <h2 id="skills-heading" className="font-display text-lg sm:text-2xl lg:text-3xl font-black tracking-tight"
                 style={{ color: 'var(--text-primary)' }}
               >
-                TECHNICAL ECOSYSTEM.
+                TECHNICAL ECOSYSTEM & AI ENGINEERING STACK.
               </h2>
             </div>
 

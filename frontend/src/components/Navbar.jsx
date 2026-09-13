@@ -28,7 +28,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-16 sm:h-20">
 
             {/* Left: Brand Architectural Logo */}
-            <Link to="hero" smooth duration={500} className="cursor-pointer group">
+            <Link to="hero" href="/#hero" smooth duration={500} className="cursor-pointer group">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-xl overflow-hidden flex items-center justify-center border-none transition-transform group-hover:scale-105"
                   style={{ background: 'var(--bg-card)' }}
@@ -57,6 +57,7 @@ const Navbar = () => {
                   <Link
                     key={link.to}
                     to={link.to}
+                    href={`/#${link.to}`}
                     smooth
                     duration={500}
                     spy
@@ -115,7 +116,7 @@ const Navbar = () => {
               </button>
 
               {/* Borderless Contact Action Button */}
-              <Link to="contact" smooth duration={500} className="cursor-pointer">
+              <Link to="contact" href="/#contact" smooth duration={500} className="cursor-pointer">
                 <button className="px-4.5 py-2 rounded-xl font-mono text-xs font-semibold flex items-center gap-1.5 border-none transition-all shadow-none hover:opacity-90 active:scale-95"
                   style={{
                     background: 'var(--text-primary)',
@@ -177,6 +178,7 @@ const Navbar = () => {
                 <Link
                   key={link.to}
                   to={link.to}
+                  href={`/#${link.to}`}
                   smooth
                   duration={500}
                   offset={-70}
@@ -191,6 +193,7 @@ const Navbar = () => {
               <div className="pt-2">
                 <Link
                   to="contact"
+                  href="/#contact"
                   smooth
                   duration={500}
                   onClick={() => setIsOpen(false)}

@@ -226,57 +226,58 @@ const Hero = ({ isIntroComplete = true }) => {
           </div>
         </motion.div>
 
-        {/* Static Accessible H1 for Search Engines (Bing, Google) & Screen Readers */}
-        <h1 id="hero-title" className="sr-only">
-          Arpan Pramanik — Full-Stack Developer &amp; AI/ML Engineer
-        </h1>
-
-        {/* ════════════════════════════════════════════════════
-           MULTI-LANGUAGE NAME CYCLE & DROP-IN REVEAL HEADLINE (Visual Layer)
-           ════════════════════════════════════════════════════ */}
-        <div aria-hidden="true" className="mt-2 sm:mt-4 mb-6 sm:mb-8 w-full max-w-full flex justify-center items-center min-h-[80px] sm:min-h-[100px] md:min-h-[120px] overflow-hidden select-none px-2">
-          <AnimatePresence mode="wait">
-            {!isFinalEnglish ? (
-              /* Regional Language Cycle Step (Bengali, Hindi, Tamil, Telugu) */
-              <motion.div
-                key={currentLangObj.lang}
-                initial={{ opacity: 0, scale: 0.94, filter: 'blur(6px)' }}
-                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, scale: 1.04, filter: 'blur(6px)' }}
-                transition={{ duration: 0.28, ease: 'easeOut' }}
-                className="text-center w-full"
-              >
-                <div
-                  className="font-black text-2xl min-[380px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]"
-                  style={{ fontFamily: currentLangObj.fontFamily }}
+        {/* Semantic Accessible H1 Container */}
+        <h1
+          id="hero-title"
+          className="mt-2 sm:mt-4 mb-6 sm:mb-8 w-full max-w-full flex justify-center items-center min-h-[80px] sm:min-h-[100px] md:min-h-[120px] overflow-hidden px-2"
+        >
+          <span className="sr-only">
+            Arpan Pramanik — AI/ML Engineer &amp; Full-Stack Developer
+          </span>
+          <div aria-hidden="true" className="w-full flex justify-center items-center select-none">
+            <AnimatePresence mode="wait">
+              {!isFinalEnglish ? (
+                /* Regional Language Cycle Step (Bengali, Hindi, Tamil, Telugu) */
+                <motion.div
+                  key={currentLangObj.lang}
+                  initial={{ opacity: 0, scale: 0.94, filter: 'blur(6px)' }}
+                  animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, scale: 1.04, filter: 'blur(6px)' }}
+                  transition={{ duration: 0.28, ease: 'easeOut' }}
+                  className="text-center w-full"
                 >
-                  {currentLangObj.text}
-                </div>
-              </motion.div>
-            ) : (
-              /* Final English Resting State: Drop-In Fall from Above + Scramble Lock */
-              <motion.div
-                key="english-final"
-                initial={{ y: -50, opacity: 0, scale: 0.92, filter: 'blur(10px)' }}
-                animate={{ y: 0, opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 130,
-                  damping: 15,
-                  mass: 0.8
-                }}
-                className="font-display text-2xl min-[380px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight uppercase text-center flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 md:gap-4 max-w-full"
-              >
-                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)] whitespace-nowrap">
-                  <ScrambleText text="ARPAN" delay={50} />
-                </span>
-                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)] whitespace-nowrap">
-                  <ScrambleText text="PRAMANIK" delay={200} />
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+                  <div
+                    className="font-black text-2xl min-[380px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)]"
+                    style={{ fontFamily: currentLangObj.fontFamily }}
+                  >
+                    {currentLangObj.text}
+                  </div>
+                </motion.div>
+              ) : (
+                /* Final English Resting State: Drop-In Fall from Above + Scramble Lock */
+                <motion.div
+                  key="english-final"
+                  initial={{ y: -50, opacity: 0, scale: 0.92, filter: 'blur(10px)' }}
+                  animate={{ y: 0, opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 130,
+                    damping: 15,
+                    mass: 0.8
+                  }}
+                  className="font-display text-2xl min-[380px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight uppercase text-center flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 md:gap-4 max-w-full"
+                >
+                  <span className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)] whitespace-nowrap">
+                    <ScrambleText text="ARPAN" delay={50} />
+                  </span>
+                  <span className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--accent-secondary)] to-[var(--text-tertiary)] whitespace-nowrap">
+                    <ScrambleText text="PRAMANIK" delay={200} />
+                  </span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </h1>
 
         {/* ════════════════════════════════════════════════════
            SUB-COMPONENTS: Action Bar, NPX Command & Metrics Grid
@@ -289,7 +290,7 @@ const Hero = ({ isIntroComplete = true }) => {
         >
           {/* Action Bar: CTAs & Social Links */}
           <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center gap-4 mb-8 w-full">
-            <Link to="projects" smooth duration={500} className="cursor-pointer">
+            <Link to="projects" href="/#projects" smooth duration={500} className="cursor-pointer">
               <motion.button
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
@@ -416,7 +417,7 @@ const Hero = ({ isIntroComplete = true }) => {
         style={{ opacity: scrollCueOpacity, y: scrollCueY }}
         className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-none"
       >
-        <Link to="about" smooth duration={600} className="pointer-events-auto cursor-pointer">
+        <Link to="about" href="/#about" smooth duration={600} className="pointer-events-auto cursor-pointer">
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-[11px] font-mono tracking-wider uppercase backdrop-blur-md shadow-sm card-arch"

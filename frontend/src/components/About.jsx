@@ -72,7 +72,7 @@ const About = () => {
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider mb-3.5" style={{ color: 'var(--accent)' }}>
             <span>[01]</span>
             <span className="w-8 h-px bg-[var(--accent)]" />
-            <span>BACKGROUND & PHILOSOPHY</span>
+            <span>ABOUT ARPAN PRAMANIK • BACKGROUND & PHILOSOPHY</span>
           </div>
           
           <h2
@@ -80,7 +80,7 @@ const About = () => {
             className="font-display text-xl sm:text-3xl lg:text-5xl font-black tracking-tight max-w-4xl leading-[1.1]"
             style={{ color: 'var(--text-primary)' }}
           >
-            ENGINEERING WITH RIGOR, GROUNDED AI & INTENTIONAL DESIGN.
+            ENGINEERING WITH RIGOR: GROUNDED AI & PRODUCTION SYSTEMS.
           </h2>
         </motion.div>
 
