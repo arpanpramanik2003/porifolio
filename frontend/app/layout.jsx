@@ -23,6 +23,7 @@ const notoSansBengali = Noto_Sans_Bengali({
   subsets: ['bengali'],
   variable: '--font-bengali',
   display: 'swap',
+  preload: false,
 })
 
 const notoSansDevanagari = Noto_Sans_Devanagari({
@@ -30,6 +31,7 @@ const notoSansDevanagari = Noto_Sans_Devanagari({
   subsets: ['devanagari'],
   variable: '--font-devanagari',
   display: 'swap',
+  preload: false,
 })
 
 const notoSansTamil = Noto_Sans_Tamil({
@@ -37,6 +39,7 @@ const notoSansTamil = Noto_Sans_Tamil({
   subsets: ['tamil'],
   variable: '--font-tamil',
   display: 'swap',
+  preload: false,
 })
 
 const notoSansTelugu = Noto_Sans_Telugu({
@@ -44,6 +47,7 @@ const notoSansTelugu = Noto_Sans_Telugu({
   subsets: ['telugu'],
   variable: '--font-telugu',
   display: 'swap',
+  preload: false,
 })
 
 const outfit = Outfit({
