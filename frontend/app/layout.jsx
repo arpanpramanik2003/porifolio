@@ -1,5 +1,6 @@
 import '../src/index.css'
 import { Analytics } from '@vercel/analytics/next'
+import GlobalShell from './GlobalShell'
 import {
   JetBrains_Mono,
   Noto_Sans_Bengali,
@@ -295,7 +296,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body style={{ backgroundColor: '#000000', color: '#ffffff' }}>
-        {children}
+        <GlobalShell>
+          {children}
+        </GlobalShell>
         <Analytics />
       </body>
     </html>

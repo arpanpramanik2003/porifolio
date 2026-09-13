@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import { Link } from 'react-scroll'
+import Link from 'next/link'
 import { Github, Linkedin, Mail, Download, ArrowRight, Copy, Check, Terminal, ChevronDown, Sparkles } from 'lucide-react'
 import { personalInfo } from '../data/personalInfo'
 import BlueprintGridCanvas from './BlueprintGridCanvas'
@@ -290,11 +290,11 @@ const Hero = ({ isIntroComplete = true }) => {
         >
           {/* Action Bar: CTAs & Social Links */}
           <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center gap-4 mb-8 w-full">
-            <Link to="projects" href="/#projects" smooth duration={500} className="cursor-pointer">
+            <Link href="/projects" className="cursor-pointer">
               <motion.button
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-6 py-3.5 rounded-xl font-display font-semibold text-sm flex items-center gap-2.5 transition-all shadow-md group focus-outline"
+                className="px-6 py-3.5 rounded-xl font-display font-semibold text-sm flex items-center gap-2.5 transition-all shadow-md group focus-outline cursor-pointer"
                 style={{
                   background: 'var(--text-primary)',
                   color: 'var(--bg-primary)'
@@ -417,7 +417,7 @@ const Hero = ({ isIntroComplete = true }) => {
         style={{ opacity: scrollCueOpacity, y: scrollCueY }}
         className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-none"
       >
-        <Link to="about" href="/#about" smooth duration={600} className="pointer-events-auto cursor-pointer">
+        <Link href="/about" className="pointer-events-auto cursor-pointer">
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-[11px] font-mono tracking-wider uppercase backdrop-blur-md shadow-sm card-arch"
@@ -433,7 +433,7 @@ const Hero = ({ isIntroComplete = true }) => {
             >
               <ChevronDown size={14} style={{ color: 'var(--accent)' }} />
             </motion.span>
-            <span>SCROLL TO EXPLORE ARCHITECTURE</span>
+            <span>EXPLORE FULL ARCHITECTURE &amp; ABOUT →</span>
           </motion.div>
         </Link>
       </motion.div>

@@ -1,11 +1,15 @@
-'use client'
-
-import { Link } from 'react-scroll'
+import Link from 'next/link'
 import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react'
 import { personalInfo } from '../data/personalInfo'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
+
+  const scrollToTop = () => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
 
   return (
     <footer className="py-12 font-mono text-xs"
@@ -41,14 +45,15 @@ const Footer = () => {
           </div>
 
           {/* Quick Back-to-Top Button */}
-          <Link to="hero" href="/#hero" smooth duration={500} className="cursor-pointer">
-            <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border transition-colors card-arch"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              <span>BACK TO TOP</span>
-              <ArrowUp size={12} />
-            </button>
-          </Link>
+          <button
+            onClick={scrollToTop}
+            aria-label="Back to top"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border transition-colors card-arch cursor-pointer"
+            style={{ color: 'var(--text-secondary)' }}
+          >
+            <span>BACK TO TOP</span>
+            <ArrowUp size={12} />
+          </button>
 
         </div>
       </div>

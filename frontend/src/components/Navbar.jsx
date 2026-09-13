@@ -1,25 +1,29 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu, X, Sun, Moon, ArrowUpRight } from 'lucide-react'
-import { Link } from 'react-scroll'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from '../contexts/ThemeContext'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('hero')
+  const pathname = usePathname()
   const { isDarkMode, toggleTheme } = useTheme()
 
   const navLinks = [
-    { name: 'Home', to: 'hero' },
-    { name: 'About', to: 'about' },
-    { name: 'Skills', to: 'skills' },
-    { name: 'Experience', to: 'experience' },
-    { name: 'Projects', to: 'projects' },
-    { name: 'Research', to: 'research' },
-    { name: 'Contact', to: 'contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Research', href: '/research' },
+    { name: 'Contact', href: '/contact' },
   ]
+
+  const isLinkActive = (href) => {
+    if (href === '/') return pathname === '/'
+    return pathname.startsWith(href)
+  }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-transparent border-none">
@@ -28,7 +32,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-16 sm:h-20">
 
             {/* Left: Brand Architectural Logo */}
-            <Link to="hero" href="/#hero" smooth duration={500} className="cursor-pointer group">
+            <Link href="/" className="cursor-pointer group">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-xl overflow-hidden flex items-center justify-center border-none transition-transform group-hover:scale-105"
                   style={{ background: 'var(--bg-card)' }}
@@ -48,22 +52,16 @@ const Navbar = () => {
               </div>
             </Link>
 
-            {/* Center: Desktop Navigation (Bold, Larger Font, Clean Pure Black-White Active Notation, No Capsule / No Underline) */}
-            <nav className="hidden md:flex items-center space-x-2 font-display">
+            {/* Center: Desktop Navigation (Bold, Larger Font, Clean Pure Black-White Active Notation) */}
+            <nav className="hidden md:flex items-center space-x-3 font-display">
               {navLinks.map((link) => {
-                const isActive = activeSection === link.to
+                const isActive = isLinkActive(link.href)
 
                 return (
                   <Link
-                    key={link.to}
-                    to={link.to}
-                    href={`/#${link.to}`}
-                    smooth
-                    duration={500}
-                    spy
-                    offset={-80}
-                    onSetActive={() => setActiveSection(link.to)}
-                    className="px-3.5 py-2 cursor-pointer transition-colors group"
+                    key={link.href}
+                    href={link.href}
+                    className="px-3.5 py-2 cursor-pointer transition-all group relative"
                   >
                     <span
                       className="font-bold text-sm sm:text-base tracking-wide transition-colors group-hover:text-[var(--text-primary)]"
@@ -74,6 +72,14 @@ const Navbar = () => {
                     >
                       {link.name}
                     </span>
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeNavIndicator"
+                        className="absolute bottom-0 left-3.5 right-3.5 h-[2px] rounded-full"
+                        style={{ background: 'var(--text-primary)' }}
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
                   </Link>
                 )
               })}
@@ -87,7 +93,7 @@ const Navbar = () => {
                 onClick={toggleTheme}
                 aria-label={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
                 title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-                className="p-2.5 rounded-xl border-none flex items-center justify-center transition-colors hover:bg-white/10 dark:hover:bg-white/10"
+                className="p-2.5 rounded-xl border-none flex items-center justify-center transition-colors hover:bg-white/10 dark:hover:bg-white/10 cursor-pointer"
                 style={{ color: 'var(--text-primary)', background: 'transparent' }}
               >
                 <AnimatePresence mode="wait">
@@ -106,7 +112,7 @@ const Navbar = () => {
                       key="moon"
                       initial={{ rotate: 90, opacity: 0 }}
                       animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
+                      exit={{ rotate: 90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
                       <Moon size={18} />
@@ -116,8 +122,8 @@ const Navbar = () => {
               </button>
 
               {/* Borderless Contact Action Button */}
-              <Link to="contact" href="/#contact" smooth duration={500} className="cursor-pointer">
-                <button className="px-4.5 py-2 rounded-xl font-mono text-xs font-semibold flex items-center gap-1.5 border-none transition-all shadow-none hover:opacity-90 active:scale-95"
+              <Link href="/contact" className="cursor-pointer">
+                <button className="px-4.5 py-2 rounded-xl font-mono text-xs font-semibold flex items-center gap-1.5 border-none transition-all shadow-none hover:opacity-90 active:scale-95 cursor-pointer"
                   style={{
                     background: 'var(--text-primary)',
                     color: 'var(--bg-primary)'
@@ -176,12 +182,8 @@ const Navbar = () => {
             <div className="px-6 py-6 space-y-3 font-body text-sm">
               {navLinks.map((link) => (
                 <Link
-                  key={link.to}
-                  to={link.to}
-                  href={`/#${link.to}`}
-                  smooth
-                  duration={500}
-                  offset={-70}
+                  key={link.href}
+                  href={link.href}
                   onClick={() => setIsOpen(false)}
                   className="flex items-center justify-between py-2.5 border-b border-white/5"
                 >
@@ -192,13 +194,10 @@ const Navbar = () => {
 
               <div className="pt-2">
                 <Link
-                  to="contact"
-                  href="/#contact"
-                  smooth
-                  duration={500}
+                  href="/contact"
                   onClick={() => setIsOpen(false)}
                 >
-                  <button className="w-full py-3 rounded-xl font-display font-semibold text-xs flex items-center justify-center gap-2 border-none text-black bg-white"
+                  <button className="w-full py-3 rounded-xl font-display font-semibold text-xs flex items-center justify-center gap-2 border-none text-black bg-white cursor-pointer"
                   >
                     <span>INITIATE CONTACT</span>
                     <ArrowUpRight size={14} />
