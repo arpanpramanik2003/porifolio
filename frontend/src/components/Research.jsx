@@ -1,491 +1,602 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import { BookOpen, ExternalLink, Award, FileText, ArrowUpRight, CheckCircle2, X, Sparkles, ChevronDown, Github } from 'lucide-react'
+import { useState, useRef, useEffect, useMemo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { 
+  Award, 
+  ExternalLink, 
+  FileText, 
+  ArrowUpRight, 
+  Sparkles, 
+  Github, 
+  Copy, 
+  Check, 
+  X, 
+  BookOpen, 
+  Layers, 
+  Binary, 
+  ShieldCheck, 
+  Cpu, 
+  Terminal,
+  ChevronRight,
+  Bookmark
+} from 'lucide-react'
 import { researchData } from '../data/research'
 
-const Research = () => {
-  const [expandedId, setExpandedId] = useState(researchData[0]?.id || null)
-  const [selectedPaperModal, setSelectedPaperModal] = useState(null)
-  const sectionRef = useRef(null)
-  const modalRef = useRef(null)
+export default function Research() {
+  const [activeCategory, setActiveCategory] = useState('All')
+  const [selectedPaper, setSelectedPaper] = useState(null)
+  const [activeModalTab, setActiveModalTab] = useState('abstract') // 'abstract' | 'bibtex' | 'results'
+  const [copiedBibtexId, setCopiedBibtexId] = useState(null)
 
-  // Focus trapping & Escape key dismissal for modal
+  // Category list
+  const categories = [
+    { id: 'All', label: 'All Publications (04)' },
+    { id: 'Explainable AI & Grad-CAM', label: 'Explainable AI & Grad-CAM (02)' },
+    { id: 'Vision Transformers & ViTs', label: 'Vision Transformers & ViTs (01)' },
+    { id: 'Computer Vision', label: 'Computer Vision (01)' }
+  ]
+
+  // Filtered papers
+  const filteredPapers = useMemo(() => {
+    if (activeCategory === 'All') return researchData
+    return researchData.filter((p) => p.category === activeCategory)
+  }, [activeCategory])
+
+  // Copy BibTeX citation to clipboard
+  const handleCopyBibtex = (paper) => {
+    if (!paper.bibtex) return
+    navigator.clipboard.writeText(paper.bibtex)
+    setCopiedBibtexId(paper.id)
+    setTimeout(() => {
+      setCopiedBibtexId(null)
+    }, 2500)
+  }
+
+  // Lock body scroll and Escape key listener for modal
   useEffect(() => {
-    if (!selectedPaperModal) return
-
+    if (!selectedPaper) return
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        setSelectedPaperModal(null)
-      }
-      if (e.key === 'Tab' && modalRef.current) {
-        const focusables = modalRef.current.querySelectorAll(
-          'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
-        )
-        if (focusables.length === 0) return
-        const first = focusables[0]
-        const last = focusables[focusables.length - 1]
-
-        if (e.shiftKey) {
-          if (document.activeElement === first) {
-            e.preventDefault()
-            last.focus()
-          }
-        } else {
-          if (document.activeElement === last) {
-            e.preventDefault()
-            first.focus()
-          }
-        }
-      }
+      if (e.key === 'Escape') setSelectedPaper(null)
     }
-
-    const previousFocus = document.activeElement
     window.addEventListener('keydown', handleKeyDown)
+    const originalOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
-      if (previousFocus && previousFocus.focus) {
-        previousFocus.focus()
-      }
+      document.body.style.overflow = originalOverflow
     }
-  }, [selectedPaperModal])
-
-  // Scroll tracking for section header entrance
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start 90%', 'end start']
-  })
-
-  const headerY = useTransform(scrollYProgress, [0.05, 0.35], [35, 0])
-  const headerOpacity = useTransform(scrollYProgress, [0.05, 0.3], [0, 1])
-
-  const toggleExpand = (id) => {
-    setExpandedId(expandedId === id ? null : id)
-  }
-
-  // Animation variants
-  const contentVariants = {
-    collapsed: { height: 0, opacity: 0 },
-    expanded: {
-      height: 'auto',
-      opacity: 1,
-      transition: {
-        duration: 0.28,
-        ease: [0.16, 1, 0.3, 1],
-        staggerChildren: 0.05,
-        delayChildren: 0.04
-      }
-    }
-  }
-
-  const metricCellVariants = {
-    collapsed: { opacity: 0, y: 6 },
-    expanded: { opacity: 1, y: 0, transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] } }
-  }
+  }, [selectedPaper])
 
   return (
-    <section id="research" aria-labelledby="research-heading" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
-      {/* Subtle background ambient glow */}
-      <div
-        className="absolute top-1/3 right-1/4 w-[600px] h-[600px] pointer-events-none opacity-10 dark:opacity-5 blur-3xl rounded-full z-0"
-        style={{ background: 'radial-gradient(circle, var(--accent) 0%, transparent 70%)' }}
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* ASYMMETRIC SECTION HEADER */}
-        <motion.div
-          style={{ y: headerY, opacity: headerOpacity }}
-          className="mb-14 md:mb-20"
-        >
-          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider mb-3" style={{ color: 'var(--accent)' }}>
-            <span>[05]</span>
-            <span className="w-8 h-px bg-[var(--accent)]" />
-            <span>PEER-REVIEWED PUBLICATIONS & SCIENTIFIC RESEARCH</span>
-          </div>
-
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-            <h2 id="research-heading" className="font-display text-xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug max-w-3xl"
-              style={{ color: 'var(--text-primary)' }}
-            >
-              CONFERENCE PAPERS, IEEE/SPRINGER PUBLICATIONS & AI RESEARCH.
-            </h2>
-
-            <div
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border card-arch shrink-0 font-mono text-xs shadow-xs"
-              style={{ background: 'var(--bg-card)', borderColor: 'var(--border)', color: 'var(--text-secondary)' }}
-            >
-              <Award size={15} style={{ color: 'var(--accent)' }} />
-              <span>{researchData.length} Conference Papers (IEEE & Springer)</span>
+    <motion.div
+      initial={{ opacity: 0, y: 32 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+      className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-16 sm:space-y-24"
+    >
+      {/* ─────────────────────────────────────────────────────────────
+         SECTION HEADER & MONOCHROMATIC SCHOLARLY STAMP
+         ───────────────────────────────────────────────────────────── */}
+      <div>
+        {/* Monospace Header Stamp */}
+        <div className="relative mb-8 pb-4 border-b border-[var(--border)] overflow-hidden">
+          <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-xs text-[var(--text-tertiary)]">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
+              <span className="font-bold text-[var(--accent)]">[SYS_SCHOLARLY_ARCHIVES]</span>
+              <span>PEER-REVIEWED SCIENTIFIC PROCEEDINGS // ARPAN PRAMANIK</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span>INDEX: AP-RES-2026</span>
+              <span className="text-[var(--text-primary)] font-semibold">IEEE &amp; SPRINGER PROCEEDINGS</span>
             </div>
           </div>
-        </motion.div>
+          {/* Animated laser scanline sweep */}
+          <motion.div
+            initial={{ x: '-100%' }}
+            animate={{ x: '100%' }}
+            transition={{ duration: 1.6, ease: 'easeInOut', repeat: Infinity, repeatDelay: 4 }}
+            className="absolute bottom-0 left-0 w-1/3 h-[1.5px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-80"
+          />
+        </div>
 
-        {/* ─────────────────────────────────────────────────────────────
-           EXPANDABLE RESEARCH DOSSIER ROWS (Spec-Sheet List)
-           ───────────────────────────────────────────────────────────── */}
-        <div className="space-y-4">
-          {researchData.map((paper, idx) => {
-            const isExpanded = paper.id === expandedId
+        {/* Section Title & Description */}
+        <div className="space-y-6">
+          <div className="max-w-4xl space-y-3">
+            <h1 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--text-primary)] leading-tight">
+              PEER-REVIEWED CONFERENCE PAPERS &amp; AI RESEARCH.
+            </h1>
+            <p className="font-body text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+              Published scientific research focusing on Explainable Deep Learning (Grad-CAM), Multi-Task Convolutional Networks, and Parameter-Efficient Vision Transformers (ViTs) with registered global DOIs.
+            </p>
+          </div>
 
-            // Format primary metric preview string
-            const resultEntries = Object.entries(paper.results || {})
-            const primaryPreviewStr = resultEntries
-              .slice(0, 2)
-              .map(([key, val]) => `${key.replace(/([A-Z])/g, ' $1').toUpperCase()}: ${val}`)
-              .join('  |  ')
-
-            return (
+          {/* Scholarly Telemetry HUD Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2">
+            {[
+              { num: '04', label: 'Conference Papers', sub: 'Peer-Reviewed' },
+              { num: '03 + 01', label: 'IEEE & Springer', sub: 'Proceedings' },
+              { num: '04', label: 'Registered DOIs', sub: 'Permanent Resolvers' },
+              { num: '99.9%', label: 'Empirical Accuracy', sub: 'Peak Classification' }
+            ].map((stat, idx) => (
               <div
-                key={paper.id}
-                className={`rounded-2xl border transition-all duration-300 card-arch overflow-hidden ${
-                  isExpanded ? 'shadow-xl' : 'hover:border-[var(--border-hover)] shadow-xs'
-                }`}
-                style={{
-                  background: 'var(--bg-card)',
-                  borderColor: isExpanded ? 'var(--accent)' : 'var(--border)',
-                  borderLeftWidth: '4px',
-                  borderLeftColor: isExpanded ? 'var(--accent)' : 'var(--border)'
-                }}
+                key={idx}
+                className="p-4 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] card-arch shadow-2xs space-y-1"
               >
-                {/* Collapsed Row Header Trigger */}
+                <div className="font-display font-black text-2xl sm:text-3xl text-[var(--text-primary)] tracking-tight">
+                  {stat.num}
+                </div>
+                <div className="font-mono text-xs font-bold text-[var(--accent)]">
+                  {stat.label}
+                </div>
+                <div className="font-mono text-[10px] text-[var(--text-tertiary)]">
+                  {stat.sub}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Category Filter HUD (Full width with clean wrapping) */}
+          <div className="flex flex-wrap items-center gap-2 pt-2">
+            {categories.map((cat) => {
+              const isActive = activeCategory === cat.id
+              return (
                 <button
-                  type="button"
-                  aria-expanded={isExpanded}
-                  aria-controls={`paper-dossier-${paper.id}`}
-                  onClick={() => toggleExpand(paper.id)}
-                  className="w-full text-left p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 focus-outline cursor-pointer group"
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className="px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium transition-all cursor-pointer border shadow-2xs"
+                  style={{
+                    background: isActive ? 'var(--text-primary)' : 'var(--bg-card)',
+                    color: isActive ? 'var(--bg-primary)' : 'var(--text-secondary)',
+                    borderColor: isActive ? 'var(--text-primary)' : 'var(--border)'
+                  }}
                 >
-                  <div className="space-y-2 flex-1 min-w-0">
-                    
-                    {/* Spec Header Metadata */}
-                    <div className="flex flex-wrap items-center gap-3 font-mono text-xs">
-                      <span
-                        className="font-bold tracking-wider px-2 py-0.5 rounded border"
-                        style={{
-                          color: isExpanded ? 'var(--accent)' : 'var(--text-tertiary)',
-                          borderColor: isExpanded ? 'var(--accent)' : 'var(--border)'
-                        }}
-                      >
-                        DOSSIER // 0{idx + 1}
+                  {cat.label}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* ─────────────────────────────────────────────────────────────
+         RESEARCH PUBLICATION CARDS (SCIENTIFIC JOURNAL SPEC-SHEET)
+         ───────────────────────────────────────────────────────────── */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between text-xs font-mono text-[var(--text-tertiary)]">
+          <div className="flex items-center gap-2">
+            <Bookmark size={13} className="text-[var(--accent)]" />
+            <span className="font-bold text-[var(--text-primary)]">OFFICIAL SCIENTIFIC PROCEEDINGS</span>
+          </div>
+          <span>FILTERED: {filteredPapers.length} PAPERS</span>
+        </div>
+
+        {/* Stable Container to prevent layout shifting */}
+        <div className="min-h-[500px] space-y-6">
+          <AnimatePresence mode="popLayout">
+            {filteredPapers.map((paper, idx) => {
+              return (
+                <motion.div
+                  key={paper.id}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
+                  className="p-6 sm:p-8 rounded-3xl border border-[var(--border)] bg-[var(--bg-card)] card-arch shadow-lg hover:shadow-xl transition-all space-y-6 relative overflow-hidden group"
+                >
+                  {/* Subtle Corner Ambient Glow */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[var(--border)]/30 to-transparent pointer-events-none rounded-bl-full" />
+
+                  {/* Top Metadata Row: Venue + Publisher + Status + DOI Pill */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-bold px-2 py-0.5 rounded border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--accent)]">
+                        DOSSIER // 0{paper.id}
                       </span>
-                      <span className="font-semibold" style={{ color: 'var(--text-secondary)' }}>
-                        {paper.journal} ({paper.year})
+                      <span className="font-bold px-2.5 py-0.5 rounded-full border border-[var(--border)] bg-[var(--text-primary)] text-[var(--bg-primary)]">
+                        {paper.journal}
                       </span>
-                      <span
-                        className="px-2.5 py-0.5 rounded-full border text-[11px] card-arch"
-                        style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border)', color: 'var(--text-secondary)' }}
-                      >
-                        {paper.category}
+                      <span className="px-2.5 py-0.5 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-[11px]">
+                        {paper.publisher}
                       </span>
-                      {/* Architectural Status Indicator */}
-                      <span
-                        className="inline-flex items-center gap-1.5 text-[10px] font-mono font-semibold tracking-wider uppercase px-2.5 py-0.5 rounded-full border"
-                        style={{
-                          background: 'var(--bg-secondary)',
-                          borderColor: 'var(--border)',
-                          color: 'var(--text-primary)'
-                        }}
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }} />
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-bold text-[10px]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                         <span>{paper.conference}</span>
                       </span>
                     </div>
 
-                    {/* Paper Title */}
-                    <h3
-                      className="font-display font-bold text-lg sm:text-xl tracking-tight leading-snug group-hover:text-[var(--accent)] transition-colors"
-                      style={{ color: 'var(--text-primary)' }}
-                    >
-                      {paper.title}
-                    </h3>
-
-                    {/* Monospace Quick Metric Preview (Single Line) */}
-                    {!isExpanded && primaryPreviewStr && (
-                      <p className="font-mono text-xs truncate pt-1 opacity-80" style={{ color: 'var(--text-tertiary)' }}>
-                        {primaryPreviewStr}
-                      </p>
+                    {paper.doi && (
+                      <a
+                        href={paper.doiUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-[var(--accent)] hover:underline font-bold text-[11px]"
+                      >
+                        <span>DOI: {paper.doi}</span>
+                        <ArrowUpRight size={12} />
+                      </a>
                     )}
                   </div>
 
-                  {/* Expand Chevron Icon Indicator */}
-                  <div
-                    className={`w-9 h-9 rounded-xl border card-arch flex items-center justify-center shrink-0 transition-transform duration-300 ${
-                      isExpanded ? 'rotate-180' : 'rotate-0'
-                    }`}
-                    style={{ borderColor: 'var(--border)', color: 'var(--accent)' }}
-                  >
-                    <ChevronDown size={18} />
-                  </div>
-                </button>
+                  {/* Publication Title */}
+                  <h2 className="font-display font-black text-xl sm:text-2xl lg:text-3xl text-[var(--text-primary)] tracking-tight leading-snug">
+                    {paper.title}
+                  </h2>
 
-                {/* Expanded Dossier Content Panel */}
-                <AnimatePresence initial={false}>
-                  {isExpanded && (
-                    <motion.div
-                      id={`paper-dossier-${paper.id}`}
-                      variants={contentVariants}
-                      initial="collapsed"
-                      animate="expanded"
-                      exit="collapsed"
-                      className="overflow-hidden border-t"
-                      style={{ borderColor: 'var(--border)' }}
-                    >
-                      <div className="p-5 sm:p-8 space-y-6 font-body text-xs sm:text-sm">
-                        
-                        {/* Authors Ledger */}
-                        <div>
-                          <div className="font-mono text-[11px] uppercase tracking-widest mb-2 flex items-center gap-1.5" style={{ color: 'var(--text-tertiary)' }}>
-                            <FileText size={12} style={{ color: 'var(--accent)' }} />
-                            <span>AUTHOR SHIP & RESEARCHERS</span>
-                          </div>
-                          <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-                            {paper.authors.map((author, i) => {
-                              const isMe = author.includes('Arpan Pramanik')
-                              return (
-                                <span key={i} className="inline-flex items-center">
-                                  <span
-                                    className={`px-2.5 py-1 rounded-md border ${
-                                      isMe
-                                        ? 'font-bold border-[var(--accent)] bg-[var(--bg-secondary)]'
-                                        : 'border-transparent'
-                                    }`}
-                                    style={{
-                                      color: isMe ? 'var(--text-primary)' : 'var(--text-secondary)'
-                                    }}
-                                  >
-                                    {author}
-                                  </span>
-                                  {i < paper.authors.length - 1 && (
-                                    <span className="ml-1 text-[var(--text-tertiary)]">•</span>
-                                  )}
-                                </span>
-                              )
-                            })}
-                          </div>
-                        </div>
-
-                        {/* Abstract Summary */}
-                        <div>
-                          <div className="font-mono text-[11px] uppercase tracking-widest mb-2" style={{ color: 'var(--text-tertiary)' }}>
-                            // ABSTRACT SUMMARY
-                          </div>
-                          <p className="leading-relaxed text-justify sm:text-left" style={{ color: 'var(--text-secondary)' }}>
-                            {paper.abstract}
-                          </p>
-                        </div>
-
-                        {/* Terminal Spec-Sheet Metric Grid */}
-                        {paper.results && (
-                          <div>
-                            <div className="font-mono text-[11px] uppercase tracking-widest mb-3 flex items-center gap-1.5" style={{ color: 'var(--text-tertiary)' }}>
-                              <Sparkles size={12} style={{ color: 'var(--accent)' }} />
-                              <span>EMPIRICAL PERFORMANCE METRICS & SPECIFICATIONS</span>
-                            </div>
-
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 font-mono">
-                              {Object.entries(paper.results).map(([key, val], idx) => (
-                                <motion.div
-                                  key={key}
-                                  variants={metricCellVariants}
-                                  className="p-3.5 rounded-xl border card-arch space-y-1"
-                                  style={{
-                                    background: 'var(--bg-secondary)',
-                                    borderColor: 'var(--border)'
-                                  }}
-                                >
-                                  <div className="text-[10px] uppercase tracking-wider text-ellipsis overflow-hidden whitespace-nowrap" style={{ color: 'var(--text-tertiary)' }}>
-                                    {key.replace(/([A-Z])/g, ' $1')}
-                                  </div>
-                                  <div className="text-sm sm:text-base font-bold tracking-tight truncate" style={{ color: 'var(--text-primary)' }}>
-                                    {val}
-                                  </div>
-                                </motion.div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Methodology Overview */}
-                        {paper.methodology && (
-                          <div className="pt-2">
-                            <div className="font-mono text-[11px] uppercase tracking-widest mb-1.5" style={{ color: 'var(--text-tertiary)' }}>
-                              // MODEL ARCHITECTURE & PIPELINE
-                            </div>
-                            <p className="font-mono text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                              {paper.methodology}
-                            </p>
-                          </div>
-                        )}
-
-                        {/* Keywords Matrix */}
-                        {paper.keywords && (
-                          <div>
-                            <div className="font-mono text-[11px] uppercase tracking-widest mb-2" style={{ color: 'var(--text-tertiary)' }}>
-                              // INDEXING KEYWORDS
-                            </div>
-                            <div className="flex flex-wrap gap-1.5 font-mono text-[11px]">
-                              {paper.keywords.map((kw) => (
-                                <span
-                                  key={kw}
-                                  className="px-2.5 py-1 rounded-md border"
-                                  style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border)', color: 'var(--text-secondary)' }}
-                                >
-                                  {kw}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Action Footer Links */}
-                        <div className="pt-5 border-t flex flex-wrap items-center justify-between gap-4 font-mono text-xs" style={{ borderColor: 'var(--border)' }}>
-                          <div className="flex flex-wrap items-center gap-3">
-                            {paper.doi && (
-                              <a
-                                href={`https://doi.org/${paper.doi}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="px-4 py-2 rounded-xl font-bold border transition-colors shadow-xs flex items-center gap-1.5 focus-outline"
-                                style={{ background: 'var(--text-primary)', color: 'var(--bg-primary)' }}
-                              >
-                                <span>IEEE / Springer DOI</span>
-                                <ArrowUpRight size={13} />
-                              </a>
-                            )}
-
-                            {paper.github && (
-                              <a
-                                href={paper.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="px-4 py-2 rounded-xl border transition-colors card-arch flex items-center gap-1.5 focus-outline"
-                                style={{ color: 'var(--text-primary)' }}
-                              >
-                                <Github size={13} />
-                                <span>Code Repository</span>
-                              </a>
-                            )}
-                          </div>
-
-                          <button
-                            type="button"
-                            onClick={() => setSelectedPaperModal(paper)}
-                            className="inline-flex items-center gap-1.5 hover:underline focus-outline ml-auto"
-                            style={{ color: 'var(--text-tertiary)' }}
+                  {/* Author Ledger with Arpan Pramanik Highlighted */}
+                  <div className="space-y-1.5">
+                    <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-tertiary)] flex items-center gap-1.5">
+                      <FileText size={11} className="text-[var(--accent)]" />
+                      <span>AUTHORSHIP &amp; SCIENTIFIC INVESTIGATORS</span>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-1.5 font-mono text-xs">
+                      {paper.authors.map((author, i) => {
+                        const isMe = author.includes('Arpan Pramanik')
+                        return (
+                          <span
+                            key={i}
+                            className={`px-2.5 py-1 rounded-lg border text-xs transition-colors ${
+                              isMe
+                                ? 'border-[var(--accent)] font-bold text-[var(--text-primary)] bg-[var(--bg-secondary)] shadow-2xs'
+                                : 'border-transparent text-[var(--text-secondary)]'
+                            }`}
                           >
-                            <BookOpen size={13} />
-                            <span>Full Specification Dossier</span>
-                          </button>
-                        </div>
+                            {author}
+                          </span>
+                        )
+                      })}
+                    </div>
+                  </div>
 
+                  {/* Abstract Preview */}
+                  <p className="font-body text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed text-justify sm:text-left">
+                    {paper.abstract}
+                  </p>
+
+                  {/* Empirical Performance Metric Grid */}
+                  {paper.metrics && paper.metrics.length > 0 && (
+                    <div className="space-y-2">
+                      <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-tertiary)] flex items-center gap-1.5">
+                        <Sparkles size={11} className="text-[var(--accent)]" />
+                        <span>EMPIRICAL BENCHMARKS &amp; FINDINGS</span>
                       </div>
-                    </motion.div>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono text-xs">
+                        {paper.metrics.map((metric, i) => (
+                          <div
+                            key={i}
+                            className="p-3 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] space-y-0.5"
+                          >
+                            <div className="text-[10px] text-[var(--text-tertiary)] truncate">
+                              {metric.label}
+                            </div>
+                            <div className="font-bold text-sm sm:text-base text-[var(--text-primary)] truncate">
+                              {metric.val}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   )}
-                </AnimatePresence>
-              </div>
-            )
-          })}
+
+                  {/* Keywords & Methodology */}
+                  <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+                    <div className="flex flex-wrap gap-1 font-mono text-[11px]">
+                      {paper.keywords.slice(0, 5).map((kw) => (
+                        <span
+                          key={kw}
+                          className="px-2 py-0.5 rounded border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-tertiary)]"
+                        >
+                          {kw}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="font-mono text-xs text-[var(--text-tertiary)]">
+                      <span>Venue: {paper.fullConference}</span>
+                    </div>
+                  </div>
+
+                  {/* Action HUD Bar */}
+                  <div className="pt-5 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+                    <div className="flex flex-wrap items-center gap-3">
+                      {/* DOI Direct Link */}
+                      <a
+                        href={paper.doiUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 rounded-xl font-display font-semibold text-xs flex items-center gap-2 transition-all shadow-xs cursor-pointer"
+                        style={{
+                          background: 'var(--text-primary)',
+                          color: 'var(--bg-primary)'
+                        }}
+                      >
+                        <span>Official {paper.publisher} DOI</span>
+                        <ArrowUpRight size={13} />
+                      </a>
+
+                      {/* 1-Click BibTeX Citation Generator */}
+                      <button
+                        type="button"
+                        onClick={() => handleCopyBibtex(paper)}
+                        className="px-3.5 py-2 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer flex items-center gap-1.5 card-arch"
+                      >
+                        {copiedBibtexId === paper.id ? (
+                          <>
+                            <Check size={13} className="text-emerald-400" />
+                            <span className="text-emerald-400 font-bold">BibTeX Copied!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy size={13} />
+                            <span>Copy BibTeX</span>
+                          </>
+                        )}
+                      </button>
+
+                      {/* Code Repository if available */}
+                      {paper.github && (
+                        <a
+                          href={paper.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3.5 py-2 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer flex items-center gap-1.5 card-arch"
+                        >
+                          <Github size={13} />
+                          <span>Code Repository</span>
+                        </a>
+                      )}
+                    </div>
+
+                    {/* Deep Specification Dossier Trigger */}
+                    <button
+                      type="button"
+                      onClick={() => setSelectedPaper(paper)}
+                      className="inline-flex items-center gap-1.5 text-[var(--accent)] hover:underline font-semibold cursor-pointer ml-auto"
+                    >
+                      <BookOpen size={13} />
+                      <span>Full Paper Dossier</span>
+                    </button>
+                  </div>
+
+                </motion.div>
+              )
+            })}
+          </AnimatePresence>
         </div>
+      </section>
 
-      </div>
-
-      {/* Full Specification Dossier Modal */}
+      {/* ─────────────────────────────────────────────────────────────
+         INTERACTIVE SCIENTIFIC DOSSIER SPECIFICATION MODAL
+         ───────────────────────────────────────────────────────────── */}
       <AnimatePresence>
-        {selectedPaperModal && (
+        {selectedPaper && (
           <div
-            onClick={() => setSelectedPaperModal(null)}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 md:p-8 bg-black/85 backdrop-blur-md overflow-y-auto"
+            onClick={() => setSelectedPaper(null)}
           >
             <motion.div
-              ref={modalRef}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="paper-modal-title"
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.94 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
-              data-lenis-prevent="true"
-              className="rounded-3xl border max-w-3xl w-full max-h-[85vh] overflow-hidden flex flex-col shadow-2xl card-arch relative z-50"
-              style={{ background: 'var(--bg-card)' }}
+              className="relative w-full max-w-4xl max-h-[90vh] flex flex-col rounded-3xl border border-[var(--border)] bg-[var(--bg-card)] card-arch overflow-hidden shadow-2xl p-6 sm:p-8"
             >
-              <div className="p-6 border-b flex items-center justify-between shrink-0" style={{ borderColor: 'var(--border)', background: 'var(--bg-secondary)' }}>
-                <div>
-                  <div className="font-mono text-xs uppercase" style={{ color: 'var(--accent)' }}>
-                    [PAPER DOSSIER // {selectedPaperModal.journal}]
+              {/* Modal Top Header */}
+              <div className="flex items-start justify-between pb-5 mb-5 border-b border-[var(--border)] shrink-0">
+                <div className="pr-4 space-y-1">
+                  <div className="flex items-center gap-2 font-mono text-xs text-[var(--accent)] font-semibold uppercase">
+                    <ShieldCheck size={13} />
+                    <span>SCIENTIFIC PROCEEDINGS DOSSIER // {selectedPaper.publisher}</span>
                   </div>
-                  <h3 id="paper-modal-title" className="font-display font-bold text-xl leading-snug" style={{ color: 'var(--text-primary)' }}>
-                    {selectedPaperModal.title}
-                  </h3>
+                  <h2 className="font-display font-black text-xl sm:text-3xl text-[var(--text-primary)] tracking-tight">
+                    {selectedPaper.title}
+                  </h2>
+                  <p className="font-mono text-xs text-[var(--text-tertiary)]">
+                    {selectedPaper.fullConference} ({selectedPaper.year})
+                  </p>
                 </div>
+
                 <button
-                  onClick={() => setSelectedPaperModal(null)}
-                  aria-label="Close modal"
-                  className="p-2 rounded-xl border card-arch hover:bg-black/10 dark:hover:bg-white/10 transition-colors focus-outline"
-                  style={{ color: 'var(--text-tertiary)' }}
+                  type="button"
+                  onClick={() => setSelectedPaper(null)}
+                  className="p-2 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all cursor-pointer shadow-xs shrink-0"
+                  aria-label="Close research dossier"
                 >
                   <X size={18} />
                 </button>
               </div>
 
-              <div data-lenis-prevent="true" className="p-6 sm:p-8 overflow-y-auto flex-1 min-h-0 overscroll-contain space-y-6 font-body text-sm">
-                <div>
-                  <div className="font-mono text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--text-tertiary)' }}>
-                    METHODOLOGY & MODEL ARCHITECTURE
-                  </div>
-                  <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                    {selectedPaperModal.methodology}
-                  </p>
-                </div>
-
-                <div>
-                  <div className="font-mono text-xs uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>
-                    FULL ABSTRACT
-                  </div>
-                  <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                    {selectedPaperModal.abstract}
-                  </p>
-                </div>
-
-                {selectedPaperModal.results && (
-                  <div>
-                    <div className="font-mono text-xs uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>
-                      EXPERIMENTAL RESULTS SUMMARY
-                    </div>
-                    <div className="grid grid-cols-2 gap-3 font-mono text-xs">
-                      {Object.entries(selectedPaperModal.results).map(([k, v]) => (
-                        <div key={k} className="p-3 rounded-xl border card-arch" style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border)' }}>
-                          <div className="text-[10px] uppercase text-[var(--text-tertiary)] mb-0.5">{k}</div>
-                          <div className="font-bold text-[var(--text-primary)]">{v}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+              {/* Modal Navigation Tabs */}
+              <div className="flex flex-wrap gap-2 pb-4 mb-4 border-b border-[var(--border)] font-mono text-xs shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setActiveModalTab('abstract')}
+                  className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer border ${
+                    activeModalTab === 'abstract'
+                      ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] border-[var(--text-primary)] font-bold'
+                      : 'border-[var(--border)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)]'
+                  }`}
+                >
+                  📖 Full Abstract &amp; Architecture
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveModalTab('bibtex')}
+                  className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer border ${
+                    activeModalTab === 'bibtex'
+                      ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] border-[var(--text-primary)] font-bold'
+                      : 'border-[var(--border)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)]'
+                  }`}
+                >
+                  ⎘ BibTeX Citation Entry
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveModalTab('results')}
+                  className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer border ${
+                    activeModalTab === 'results'
+                      ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] border-[var(--text-primary)] font-bold'
+                      : 'border-[var(--border)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)]'
+                  }`}
+                >
+                  📊 Empirical Results &amp; Specifications
+                </button>
               </div>
 
-              <div className="p-6 border-t flex items-center justify-between font-mono text-xs" style={{ borderColor: 'var(--border)', background: 'var(--bg-secondary)' }}>
-                {selectedPaperModal.doi && (
+              {/* Scrollable Content Body */}
+              <div className="flex-1 overflow-y-auto space-y-6 pr-1 font-body text-sm">
+                
+                {/* TAB 1: ABSTRACT & METHODOLOGY */}
+                {activeModalTab === 'abstract' && (
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-2">
+                        Complete Research Abstract
+                      </h4>
+                      <p className="leading-relaxed text-[var(--text-secondary)] bg-[var(--bg-secondary)] p-4 rounded-xl border border-[var(--border)] text-justify sm:text-left">
+                        {selectedPaper.abstract}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-2">
+                        Model Architecture &amp; Methodology
+                      </h4>
+                      <p className="leading-relaxed text-[var(--text-secondary)]">
+                        {selectedPaper.methodology}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-2">
+                        Investigator Team
+                      </h4>
+                      <div className="flex flex-wrap gap-1.5 font-mono text-xs">
+                        {selectedPaper.authors.map((author, i) => (
+                          <span
+                            key={i}
+                            className={`px-2.5 py-1 rounded-md border ${
+                              author.includes('Arpan Pramanik')
+                                ? 'border-[var(--accent)] font-bold text-[var(--text-primary)] bg-[var(--bg-secondary)]'
+                                : 'border-[var(--border)] text-[var(--text-secondary)]'
+                            }`}
+                          >
+                            {author}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* TAB 2: BIBTEX CITATION */}
+                {activeModalTab === 'bibtex' && (
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between font-mono text-xs text-[var(--text-tertiary)]">
+                      <span>STANDARD BIBTEX ENTRY FOR LATEX / OVERLEAF</span>
+                      <button
+                        type="button"
+                        onClick={() => handleCopyBibtex(selectedPaper)}
+                        className="px-3 py-1 rounded-lg border border-[var(--border)] bg-[var(--bg-secondary)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all cursor-pointer flex items-center gap-1.5 font-bold"
+                      >
+                        {copiedBibtexId === selectedPaper.id ? (
+                          <>
+                            <Check size={12} className="text-emerald-400" />
+                            <span className="text-emerald-400">Copied to Clipboard!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy size={12} />
+                            <span>Copy Citation</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+
+                    <div className="p-5 rounded-2xl border border-zinc-800 bg-zinc-950 font-mono text-xs text-zinc-200 overflow-x-auto select-all leading-relaxed">
+                      <pre>{selectedPaper.bibtex}</pre>
+                    </div>
+                  </div>
+                )}
+
+                {/* TAB 3: RESULTS */}
+                {activeModalTab === 'results' && (
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-3">
+                        Empirical Metrics &amp; Benchmarks
+                      </h4>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono">
+                        {selectedPaper.metrics?.map((m, idx) => (
+                          <div
+                            key={idx}
+                            className="p-4 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)]"
+                          >
+                            <div className="text-[10px] uppercase text-[var(--text-tertiary)] mb-1">
+                              {m.label}
+                            </div>
+                            <div className="font-bold text-base sm:text-lg text-[var(--text-primary)]">
+                              {m.val}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-2">
+                        Indexing Keywords
+                      </h4>
+                      <div className="flex flex-wrap gap-1.5 font-mono text-xs">
+                        {selectedPaper.keywords.map((kw) => (
+                          <span
+                            key={kw}
+                            className="px-2.5 py-1 rounded-md border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-secondary)]"
+                          >
+                            {kw}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+              </div>
+
+              {/* Modal Footer Bar */}
+              <div className="mt-5 pt-4 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-3 shrink-0 font-mono text-xs">
+                <div className="flex items-center gap-3">
                   <a
-                    href={`https://doi.org/${selectedPaperModal.doi}`}
+                    href={selectedPaper.doiUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-xl font-bold border transition-colors shadow-sm focus-outline"
-                    style={{ background: 'var(--text-primary)', color: 'var(--bg-primary)' }}
+                    className="inline-flex items-center gap-1.5 font-semibold text-[var(--accent)] hover:underline"
                   >
-                    IEEE / SPRINGER DOI
+                    <span>Resolve DOI ({selectedPaper.doi})</span>
+                    <ArrowUpRight size={13} />
                   </a>
-                )}
+                  {selectedPaper.github && (
+                    <a
+                      href={selectedPaper.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    >
+                      <Github size={13} />
+                      <span>Repository</span>
+                    </a>
+                  )}
+                </div>
+
                 <button
-                  onClick={() => setSelectedPaperModal(null)}
-                  className="hover:underline ml-auto focus-outline"
-                  style={{ color: 'var(--text-tertiary)' }}
+                  type="button"
+                  onClick={() => setSelectedPaper(null)}
+                  className="px-4 py-2 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all cursor-pointer font-sans text-xs font-semibold"
                 >
-                  CLOSE
+                  Close Dossier
                 </button>
               </div>
 
@@ -494,8 +605,6 @@ const Research = () => {
         )}
       </AnimatePresence>
 
-    </section>
+    </motion.div>
   )
 }
-
-export default Research
