@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import { Github, Linkedin, Mail, Download, ArrowRight, Copy, Check, Terminal, ChevronDown, Sparkles } from 'lucide-react'
 import { personalInfo } from '../data/personalInfo'
+import { useIntro } from '../contexts/IntroContext'
 import BlueprintGridCanvas from './BlueprintGridCanvas'
 
 const glyphs = '01#*><%{}[]/@&$!~?'
@@ -167,18 +168,22 @@ const TiltMetricCard = ({ targetNum, suffix = '', label, subtext, rawText }) => 
 }
 
 const Hero = ({ isIntroComplete = true }) => {
+  const { hasSeenNameCycle, setHasSeenNameCycle } = useIntro()
   const [copiedCommand, setCopiedCommand] = useState(false)
   const [showToast, setShowToast] = useState(false)
   const [confettiParticles, setConfettiParticles] = useState([])
   const [pillFlipped, setPillFlipped] = useState(false)
-  const [cycleIndex, setCycleIndex] = useState(0)
+  
+  // If user already experienced the name cycle in this session/refresh, start immediately at English resting state
+  const [cycleIndex, setCycleIndex] = useState(() => (hasSeenNameCycle ? nameCycleData.length - 1 : 0))
   const heroRef = useRef(null)
 
-  // Manage Multi-Language Name Cycle Timer
+  // Manage Multi-Language Name Cycle Timer (only runs on initial open/refresh)
   useEffect(() => {
-    if (!isIntroComplete) return
+    if (!isIntroComplete || hasSeenNameCycle) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setCycleIndex(nameCycleData.length - 1)
+      setHasSeenNameCycle()
       return
     }
 
@@ -187,8 +192,11 @@ const Hero = ({ isIntroComplete = true }) => {
         setCycleIndex((prev) => prev + 1)
       }, 420)
       return () => clearTimeout(timer)
+    } else {
+      // Reached final English state — mark as seen so navigating away and returning won't replay it
+      setHasSeenNameCycle()
     }
-  }, [isIntroComplete, cycleIndex])
+  }, [isIntroComplete, cycleIndex, hasSeenNameCycle, setHasSeenNameCycle])
 
   // Scroll bindings for silky parallax
   const { scrollYProgress } = useScroll({

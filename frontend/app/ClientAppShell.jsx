@@ -20,27 +20,15 @@ import {
 } from 'lucide-react'
 import Hero from '../src/components/Hero'
 import IntroPreloader from '../src/components/IntroPreloader'
+import { useIntro } from '../src/contexts/IntroContext'
 import { projectsData } from '../src/data/projects'
 import { researchData } from '../src/data/research'
 
 export default function ClientAppShell() {
-  const [isIntroComplete, setIsIntroComplete] = useState(false)
-
-  // One-time session preloader logic
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const hasSeenIntro = sessionStorage.getItem('hasSeenIntro')
-      if (hasSeenIntro || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        setIsIntroComplete(true)
-      }
-    }
-  }, [])
+  const { hasSeenIntro, setHasSeenIntro } = useIntro()
 
   const handleIntroComplete = () => {
-    setIsIntroComplete(true)
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('hasSeenIntro', 'true')
-    }
+    setHasSeenIntro()
   }
 
   // Top 2 Flagship Projects
@@ -64,16 +52,16 @@ export default function ClientAppShell() {
 
   return (
     <>
-      {/* Fullscreen Root Preloader Overlay (Only on First Visit) */}
+      {/* Fullscreen Root Preloader Overlay (Only on First Visit / Page Refresh) */}
       <AnimatePresence mode="wait">
-        {!isIntroComplete && (
+        {!hasSeenIntro && (
           <IntroPreloader onComplete={handleIntroComplete} />
         )}
       </AnimatePresence>
 
       <div className="relative z-10 w-full overflow-hidden">
         {/* 1. Hero Section */}
-        <Hero isIntroComplete={isIntroComplete} />
+        <Hero isIntroComplete={hasSeenIntro} />
 
         {/* 2. Core Engineering Pillars Highlights */}
         <section className="py-16 md:py-24 border-t border-b border-[var(--border)] relative bg-[var(--bg-secondary)]/30">
