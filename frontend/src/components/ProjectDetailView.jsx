@@ -106,10 +106,17 @@ export default function ProjectDetailView({ project, prevProject, nextProject })
                 href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-xl font-display font-semibold text-xs sm:text-sm flex items-center gap-2 bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 transition-all shadow-md cursor-pointer"
+                className="px-5 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm flex items-center gap-2 transition-all shadow-md cursor-pointer hover:opacity-95 hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  backgroundColor: '#ffffff',
+                  color: '#000000',
+                  borderColor: '#ffffff'
+                }}
               >
-                <span>Launch Live System</span>
-                <ArrowUpRight size={15} />
+                <span className="font-bold text-black" style={{ color: '#000000' }}>
+                  Launch Live System
+                </span>
+                <ArrowUpRight size={15} className="text-black" style={{ color: '#000000' }} />
               </a>
             )}
 
@@ -233,11 +240,12 @@ export default function ProjectDetailView({ project, prevProject, nextProject })
             onClick={() => setActiveTab('benchmarks')}
             className={`px-4 py-2 rounded-xl transition-all cursor-pointer border flex items-center gap-2 ${
               activeTab === 'benchmarks'
-                ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] border-[var(--text-primary)] font-bold shadow-xs'
+                ? 'font-bold shadow-xs'
                 : 'border-[var(--border)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]'
             }`}
+            style={activeTab === 'benchmarks' ? { backgroundColor: '#ffffff', color: '#000000', borderColor: '#ffffff' } : {}}
           >
-            <Zap size={14} />
+            <Zap size={14} style={activeTab === 'benchmarks' ? { color: '#000000' } : {}} />
             <span>MEASURED BENCHMARKS &amp; GAINS ({project.benchmarks?.length || 0})</span>
           </button>
 
@@ -247,11 +255,12 @@ export default function ProjectDetailView({ project, prevProject, nextProject })
               onClick={() => setActiveTab('architecture')}
               className={`px-4 py-2 rounded-xl transition-all cursor-pointer border flex items-center gap-2 ${
                 activeTab === 'architecture'
-                  ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] border-[var(--text-primary)] font-bold shadow-xs'
+                  ? 'font-bold shadow-xs'
                   : 'border-[var(--border)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]'
               }`}
+              style={activeTab === 'architecture' ? { backgroundColor: '#ffffff', color: '#000000', borderColor: '#ffffff' } : {}}
             >
-              <Workflow size={14} />
+              <Workflow size={14} style={activeTab === 'architecture' ? { color: '#000000' } : {}} />
               <span>EXECUTION PIPELINE ({project.architecture.pipeline.length} STAGES)</span>
             </button>
           )}
@@ -262,11 +271,12 @@ export default function ProjectDetailView({ project, prevProject, nextProject })
               onClick={() => setActiveTab('capabilities')}
               className={`px-4 py-2 rounded-xl transition-all cursor-pointer border flex items-center gap-2 ${
                 activeTab === 'capabilities'
-                  ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] border-[var(--text-primary)] font-bold shadow-xs'
+                  ? 'font-bold shadow-xs'
                   : 'border-[var(--border)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]'
               }`}
+              style={activeTab === 'capabilities' ? { backgroundColor: '#ffffff', color: '#000000', borderColor: '#ffffff' } : {}}
             >
-              <Cpu size={14} />
+              <Cpu size={14} style={activeTab === 'capabilities' ? { color: '#000000' } : {}} />
               <span>CORE ENGINES &amp; MODULES ({project.capabilities.length})</span>
             </button>
           )}
