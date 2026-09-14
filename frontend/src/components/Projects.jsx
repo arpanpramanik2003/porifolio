@@ -116,12 +116,15 @@ const SpotlightCard = ({ children, className = '', style = {}, onClick }) => {
 // Visual Architecture Pipeline Flowchart Component
 const ArchitectureBlueprint = ({ architecture, title }) => {
   return (
-    <div className="w-full h-full p-5 sm:p-7 flex flex-col justify-between bg-zinc-950/90 text-zinc-100 font-mono select-none overflow-y-auto max-h-[440px]">
+    <div
+      data-lenis-prevent="true"
+      className="w-full h-full p-4 sm:p-6 flex flex-col justify-between bg-zinc-950 text-zinc-100 font-mono select-none overflow-y-auto max-h-[440px] overscroll-contain"
+    >
       {/* Header bar */}
       <div className="flex items-center justify-between pb-3 mb-4 border-b border-zinc-800 text-xs text-zinc-400">
         <div className="flex items-center gap-2">
-          <Workflow size={14} className="text-white" />
-          <span className="font-bold tracking-wider text-white">[DATAFLOW_PIPELINE]</span>
+          <Workflow size={14} className="text-zinc-300" />
+          <span className="font-bold tracking-wider text-zinc-200">[DATAFLOW_PIPELINE]</span>
         </div>
         <span className="text-[10px] text-zinc-500 uppercase">{title}</span>
       </div>
@@ -322,22 +325,28 @@ export default function Projects() {
               {/* Left Column: Visual Screen or Architecture Flow (7 cols) */}
               <div className="lg:col-span-7 relative min-h-[340px] lg:min-h-[460px] border-b lg:border-b-0 lg:border-r border-[var(--border)] overflow-hidden bg-zinc-950 flex flex-col">
                 
-                {/* Top Overlay: Dual-View Mode Switcher Pill */}
-                <div className="absolute top-4 left-4 right-4 z-40 flex items-center justify-between gap-2 pointer-events-none">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/20 bg-black/80 backdrop-blur-md text-white font-mono text-xs font-bold pointer-events-auto shadow-md">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>{featuredProject.category}</span>
+                {/* Top Architectural Control Bar (Cleanly integrated, zero collision) */}
+                <div className="w-full px-4 py-3 sm:px-5 border-b border-zinc-800 bg-zinc-950 flex flex-wrap items-center justify-between gap-2.5 z-30 shrink-0">
+                  {/* Category Specification Indicator */}
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                    <span className="font-mono text-xs font-semibold tracking-wider text-zinc-300 uppercase">
+                      {featuredProject.category}
+                    </span>
+                    <span className="hidden sm:inline font-mono text-[10px] text-zinc-500">
+                      // SYSTEM SPEC
+                    </span>
                   </div>
 
-                  {/* The Dual-View Mode Switcher */}
-                  <div className="inline-flex p-1 rounded-xl border border-white/20 bg-black/85 backdrop-blur-md font-mono text-xs pointer-events-auto shadow-lg">
+                  {/* Dual-View Mode Segmented Control (Engineered Monochromatic HUD) */}
+                  <div className="inline-flex items-center p-0.5 rounded-lg border border-zinc-800 bg-zinc-900 font-mono text-xs shadow-inner">
                     <button
                       type="button"
                       onClick={() => toggleCardView(featuredProject.id, 'ui')}
-                      className={`px-3 py-1 rounded-lg transition-all cursor-pointer font-semibold flex items-center gap-1.5 ${
+                      className={`px-3 py-1.5 rounded-md transition-all cursor-pointer font-medium flex items-center gap-1.5 text-xs ${
                         (cardViews[featuredProject.id] || 'ui') === 'ui'
-                          ? 'bg-white text-black shadow-xs'
-                          : 'text-zinc-300 hover:text-white'
+                          ? 'bg-zinc-800 text-white border border-zinc-700/80 shadow-xs'
+                          : 'text-zinc-400 hover:text-zinc-200'
                       }`}
                     >
                       <Layers size={13} />
@@ -346,10 +355,10 @@ export default function Projects() {
                     <button
                       type="button"
                       onClick={() => toggleCardView(featuredProject.id, 'arch')}
-                      className={`px-3 py-1 rounded-lg transition-all cursor-pointer font-semibold flex items-center gap-1.5 ${
+                      className={`px-3 py-1.5 rounded-md transition-all cursor-pointer font-medium flex items-center gap-1.5 text-xs ${
                         cardViews[featuredProject.id] === 'arch'
-                          ? 'bg-white text-black shadow-xs'
-                          : 'text-zinc-300 hover:text-white'
+                          ? 'bg-zinc-800 text-white border border-zinc-700/80 shadow-xs'
+                          : 'text-zinc-400 hover:text-zinc-200'
                       }`}
                     >
                       <Workflow size={13} />
@@ -523,19 +532,21 @@ export default function Projects() {
                         {/* Card Media Preview Header */}
                         <div className="relative h-64 border-b border-[var(--border)] overflow-hidden bg-zinc-950 flex flex-col">
                           
-                          {/* Top Controls Overlay */}
-                          <div className="absolute top-3.5 left-3.5 right-3.5 z-40 flex items-center justify-between gap-2 pointer-events-none">
-                            <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-white/20 bg-black/80 backdrop-blur-md text-white font-mono text-[10px] font-bold pointer-events-auto">
-                              <span>{project.category}</span>
-                            </div>
+                          {/* Top Controls Header Bar for Secondary Project */}
+                          <div className="w-full px-3.5 py-2.5 border-b border-zinc-800 bg-zinc-950 flex items-center justify-between gap-2 font-mono text-xs z-30 shrink-0">
+                            <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider truncate">
+                              {project.category}
+                            </span>
 
                             {/* Dual-View Switcher for Secondary Project */}
-                            <div className="inline-flex p-0.5 rounded-lg border border-white/20 bg-black/85 backdrop-blur-md font-mono text-[10px] pointer-events-auto shadow-sm">
+                            <div className="inline-flex items-center p-0.5 rounded-md border border-zinc-800 bg-zinc-900 text-[10px] shrink-0">
                               <button
                                 type="button"
                                 onClick={() => toggleCardView(project.id, 'ui')}
-                                className={`px-2 py-0.5 rounded transition-all cursor-pointer font-semibold ${
-                                  viewMode === 'ui' ? 'bg-white text-black' : 'text-zinc-400 hover:text-white'
+                                className={`px-2.5 py-1 rounded transition-all cursor-pointer font-medium ${
+                                  viewMode === 'ui'
+                                    ? 'bg-zinc-800 text-white border border-zinc-700 shadow-xs'
+                                    : 'text-zinc-400 hover:text-zinc-200'
                                 }`}
                               >
                                 UI
@@ -543,11 +554,13 @@ export default function Projects() {
                               <button
                                 type="button"
                                 onClick={() => toggleCardView(project.id, 'arch')}
-                                className={`px-2 py-0.5 rounded transition-all cursor-pointer font-semibold ${
-                                  viewMode === 'arch' ? 'bg-white text-black' : 'text-zinc-400 hover:text-white'
+                                className={`px-2.5 py-1 rounded transition-all cursor-pointer font-medium ${
+                                  viewMode === 'arch'
+                                    ? 'bg-zinc-800 text-white border border-zinc-700 shadow-xs'
+                                    : 'text-zinc-400 hover:text-zinc-200'
                                 }`}
                               >
-                                Architecture
+                                Blueprint
                               </button>
                             </div>
                           </div>

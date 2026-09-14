@@ -21,6 +21,8 @@ import {
   Database,
   CheckCircle2,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
   Briefcase
 } from 'lucide-react'
 import { personalInfo } from '../data/personalInfo'
@@ -30,9 +32,15 @@ import { certificatesData } from '../data/certificates'
 
 export default function AboutDossier() {
   const [activeCategory, setActiveCategory] = useState('all')
+  const [showAllSkills, setShowAllSkills] = useState(false)
   const [hoveredSkill, setHoveredSkill] = useState(null)
   const [selectedCert, setSelectedCert] = useState(null)
   const [activeRoleIndex, setActiveRoleIndex] = useState(0)
+
+  // Reset mobile skill limit when category changes
+  useEffect(() => {
+    setShowAllSkills(false)
+  }, [activeCategory])
 
   // Lock body scroll, pause Lenis, and handle Escape key when modal is open
   useEffect(() => {
@@ -315,7 +323,7 @@ export default function AboutDossier() {
         <div className="min-h-[220px] sm:min-h-[190px]">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
             <AnimatePresence mode="popLayout">
-              {filteredSkills.map((skill) => {
+              {filteredSkills.map((skill, index) => {
                 const isHovered = hoveredSkill?.name === skill.name
                 const isDimmed = hoveredSkill && !isHovered
 
@@ -329,7 +337,9 @@ export default function AboutDossier() {
                     onMouseEnter={() => setHoveredSkill(skill)}
                     onMouseLeave={() => setHoveredSkill(null)}
                     whileHover={{ y: -3, scale: 1.03 }}
-                    className="p-3.5 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] card-arch flex flex-col items-center text-center justify-center transition-all cursor-default relative group"
+                    className={`p-3.5 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] card-arch flex-col items-center text-center justify-center transition-all cursor-default relative group ${
+                      index >= 6 && !showAllSkills ? 'hidden sm:flex' : 'flex'
+                    }`}
                     style={{
                       borderColor: isHovered ? 'var(--accent)' : 'var(--border)'
                     }}
@@ -368,6 +378,29 @@ export default function AboutDossier() {
               })}
             </AnimatePresence>
           </div>
+
+          {/* Mobile "See More Stack" Expand / Collapse Action */}
+          {filteredSkills.length > 6 && (
+            <div className="mt-5 flex justify-center sm:hidden">
+              <button
+                type="button"
+                onClick={() => setShowAllSkills((prev) => !prev)}
+                className="px-4 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-primary)] font-mono text-xs font-semibold flex items-center gap-2 transition-all card-arch cursor-pointer shadow-xs active:scale-95"
+              >
+                {showAllSkills ? (
+                  <>
+                    <span>Show Less Stack</span>
+                    <ChevronUp size={14} />
+                  </>
+                ) : (
+                  <>
+                    <span>See More Stack (+{filteredSkills.length - 6})</span>
+                    <ChevronDown size={14} />
+                  </>
+                )}
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
