@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
   Mail,
   Phone,
@@ -57,7 +57,6 @@ const INQUIRY_PRESETS = [
 const Contact = () => {
   const formRef = useRef(null)
   const messageInputRef = useRef(null)
-  const sectionRef = useRef(null)
 
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
   const [activeField, setActiveField] = useState(null)
@@ -87,14 +86,6 @@ const Contact = () => {
     const timer = setInterval(updateTime, 1000)
     return () => clearInterval(timer)
   }, [])
-
-  // Scroll tracking for header entrance
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start 92%', 'end start']
-  })
-  const headerY = useTransform(scrollYProgress, [0.05, 0.38], [35, 0])
-  const headerOpacity = useTransform(scrollYProgress, [0.05, 0.35], [0, 1])
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -171,60 +162,70 @@ const Contact = () => {
   )}`
 
   return (
-    <section
+    <motion.div
       id="contact"
-      aria-labelledby="contact-heading"
-      ref={sectionRef}
-      className="py-16 md:py-24 relative overflow-hidden"
+      initial={{ opacity: 0, y: 32 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+      className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-10 sm:space-y-12 relative"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header with Telemetry Status */}
-        <motion.div
-          style={{ y: headerY, opacity: headerOpacity }}
-          className="mb-10 sm:mb-14"
-        >
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[var(--accent)]">
-              <span>[05]</span>
-              <span className="w-8 h-px bg-[var(--accent)]" />
-              <span>DIRECT DISPATCH & TELEMETRY</span>
+      {/* ─────────────────────────────────────────────────────────────
+         SECTION HEADER & MONOCHROMATIC STAMP
+         ───────────────────────────────────────────────────────────── */}
+      <div>
+        {/* Monospace Header Stamp */}
+        <div className="relative mb-8 pb-4 border-b border-[var(--border)] overflow-hidden">
+          <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-xs text-[var(--text-tertiary)]">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
+              <span className="font-bold text-[var(--accent)]">[SYS_COMMUNICATIONS]</span>
+              <span>DIRECT DISPATCH &amp; TELEMETRY CONSOLE</span>
             </div>
-
-            {/* Live Kolkata Time & Status HUD */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)] font-mono text-xs shadow-xs">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span className="text-[var(--text-tertiary)] hidden sm:inline">KOLKATA (IST):</span>
-              <span className="font-bold text-[var(--text-primary)]">{kolkataTime || '10:00:00'}</span>
-              <span className="text-[var(--text-tertiary)] hidden md:inline">| UTC+5:30</span>
-            </div>
-          </div>
-
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-            <div>
-              <h2
-                id="contact-heading"
-                className="font-display text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight"
-                style={{ color: 'var(--text-primary)' }}
-              >
-                INITIATE DIRECT COMMUNICATION.
-              </h2>
-              <p className="mt-2 font-mono text-xs sm:text-sm text-[var(--text-secondary)] max-w-2xl">
-                Open for full-time AI/ML & full-stack roles, research initiatives, and technical advisory.
-                All transmissions receive an expedited response within 24 hours.
-              </p>
-            </div>
-
-            {/* Availability Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] font-mono text-xs text-[var(--text-primary)] self-start lg:self-auto">
-              <Radio size={14} className="text-emerald-500 animate-pulse" />
-              <span>STATUS: AVAILABLE FOR NEW OPPORTUNITIES</span>
+            <div className="flex items-center gap-4">
+              {/* Live Kolkata Time & Status HUD */}
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-[var(--border)] bg-[var(--bg-card)] font-mono text-xs shadow-2xs">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
+                <span className="text-[var(--text-tertiary)] hidden sm:inline">KOLKATA (IST):</span>
+                <span className="font-bold text-[var(--text-primary)]">{kolkataTime || '10:00:00'}</span>
+                <span className="text-[var(--text-tertiary)] hidden md:inline">| UTC+5:30</span>
+              </div>
+              <span className="hidden sm:inline">INDEX: AP-COMM-2026</span>
             </div>
           </div>
-        </motion.div>
+          {/* Animated laser scanline sweep */}
+          <motion.div
+            initial={{ x: '-100%' }}
+            animate={{ x: '100%' }}
+            transition={{ duration: 1.6, ease: 'easeInOut', repeat: Infinity, repeatDelay: 4 }}
+            className="absolute bottom-0 left-0 w-1/3 h-[1.5px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-80"
+          />
+        </div>
+
+        {/* Section Title & Description */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+          <div className="max-w-4xl space-y-3">
+            <h1
+              id="contact-heading"
+              className="font-display text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--text-primary)] leading-tight"
+            >
+              INITIATE DIRECT COMMUNICATION.
+            </h1>
+            <p className="font-body text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed max-w-2xl">
+              Open for full-time AI/ML &amp; full-stack roles, research initiatives, and technical advisory.
+              All transmissions receive an expedited response within 24 hours.
+            </p>
+          </div>
+
+          {/* Availability Badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] font-mono text-xs text-[var(--text-primary)] self-start lg:self-auto shrink-0 shadow-2xs">
+            <Radio size={14} className="text-emerald-500 animate-pulse" />
+            <span>STATUS: AVAILABLE FOR NEW OPPORTUNITIES</span>
+          </div>
+        </div>
+      </div>
 
         {/* Smart Companion Bot Banner (NEXUS-01) */}
         <div className="mb-10">
@@ -553,8 +554,7 @@ const Contact = () => {
 
         </div>
 
-      </div>
-    </section>
+    </motion.div>
   )
 }
 
