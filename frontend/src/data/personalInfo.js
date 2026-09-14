@@ -16,6 +16,11 @@ export const personalInfo = {
   social: {
     github: 'https://github.com/arpanpramanik2003',
     linkedin: 'https://www.linkedin.com/in/arpanpramanik2003/',
+    scholar: 'https://scholar.google.com/citations?user=dlThrM8AAAAJ&hl=en',
+    researchgate: 'https://www.researchgate.net/profile/Arpan-Pramanik',
+    ieee: 'https://ieeexplore.ieee.org/author/242525564629028',
+    orcid: 'https://orcid.org/0009-0001-9433-7741',
+    huggingface: 'https://huggingface.co/arpanpramanik2003',
     email: 'mailto:pramanikarpan089@gmail.com'
   },
   

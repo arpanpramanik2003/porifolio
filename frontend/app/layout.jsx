@@ -77,7 +77,7 @@ const syne = Syne({
 export const metadata = {
   metadataBase: new URL('https://arpanpramanik.tech'),
   title: 'Arpan Pramanik | AI/ML Engineer & Full-Stack Developer',
-  description: 'AI/ML Engineer & Full-Stack Developer specializing in autonomous AI agents, retrieval-augmented generation (RAG), deep learning systems, and full-stack platforms. Explore featured projects, IEEE/Springer publications, and engineering architecture.',
+  description: 'Arpan Pramanik — AI/ML Engineer & Full-Stack Developer specializing in autonomous AI agents, RAG architectures, and published deep learning research.',
   keywords: [
     'Arpan Pramanik',
     'Arpan Pramanik AI Engineer',
@@ -127,7 +127,7 @@ export const metadata = {
     type: 'website',
     url: 'https://arpanpramanik.tech',
     title: 'Arpan Pramanik | AI/ML Engineer & Full-Stack Developer',
-    description: 'AI/ML Engineer & Full-Stack Developer specializing in autonomous AI agents, retrieval-augmented generation (RAG), deep learning systems, and full-stack platforms. Explore featured projects, IEEE/Springer publications, and engineering architecture.',
+    description: 'Arpan Pramanik — AI/ML Engineer & Full-Stack Developer specializing in autonomous AI agents, RAG architectures, and published deep learning research.',
     siteName: 'Arpan Pramanik',
     images: [
       {
@@ -143,7 +143,7 @@ export const metadata = {
     card: 'summary_large_image',
     url: 'https://arpanpramanik.tech',
     title: 'Arpan Pramanik | AI/ML Engineer & Full-Stack Developer',
-    description: 'AI/ML Engineer & Full-Stack Developer specializing in autonomous AI agents, retrieval-augmented generation (RAG), deep learning systems, and full-stack platforms. Explore featured projects, IEEE/Springer publications, and engineering architecture.',
+    description: 'Arpan Pramanik — AI/ML Engineer & Full-Stack Developer specializing in autonomous AI agents, RAG architectures, and published deep learning research.',
     images: ['https://arpanpramanik.tech/profile.webp'],
   },
   icons: {
@@ -204,13 +204,25 @@ export default function RootLayout({ children }) {
         logo: 'https://arpanpramanik.tech/profile.webp',
         jobTitle: ['AI/ML Engineer', 'Full-Stack Developer', 'AI Researcher'],
         description: 'AI/ML Engineer and Full-Stack Developer specializing in autonomous AI agents, retrieval-augmented generation (RAG), computer vision, and Next.js platforms.',
+        identifier: {
+          '@type': 'PropertyValue',
+          propertyID: 'ORCID',
+          value: '0009-0001-9433-7741',
+          url: 'https://orcid.org/0009-0001-9433-7741'
+        },
         sameAs: [
           'https://github.com/arpanpramanik2003',
-          'https://www.linkedin.com/in/arpanpramanik2003/'
+          'https://www.linkedin.com/in/arpanpramanik2003/',
+          'https://scholar.google.com/citations?user=dlThrM8AAAAJ&hl=en',
+          'https://www.researchgate.net/profile/Arpan-Pramanik',
+          'https://ieeexplore.ieee.org/author/242525564629028',
+          'https://orcid.org/0009-0001-9433-7741',
+          'https://huggingface.co/arpanpramanik2003'
         ],
         alumniOf: {
           '@type': 'CollegeOrUniversity',
-          name: 'The Neotia University'
+          name: 'The Neotia University',
+          sameAs: 'https://en.wikipedia.org/wiki/The_Neotia_University'
         },
         knowsAbout: [
           'Autonomous AI Agents',
@@ -241,7 +253,12 @@ export default function RootLayout({ children }) {
         '@id': 'https://doi.org/10.1109/ICRITO66076.2025.11241706',
         headline: 'FruitQ-GradeX: Determining Fruit Quality and Grading with Explainable Deep Learning',
         name: 'FruitQ-GradeX: Determining Fruit Quality and Grading with Explainable Deep Learning',
-        author: { '@id': 'https://arpanpramanik.tech/#person' },
+        author: {
+          '@type': 'Person',
+          '@id': 'https://arpanpramanik.tech/#person',
+          name: 'Arpan Pramanik',
+          sameAs: 'https://orcid.org/0009-0001-9433-7741'
+        },
         publisher: { '@type': 'Organization', name: 'IEEE' },
         sameAs: 'https://doi.org/10.1109/ICRITO66076.2025.11241706'
       },
@@ -250,7 +267,12 @@ export default function RootLayout({ children }) {
         '@id': 'https://doi.org/10.1007/978-3-032-21901-5_35',
         headline: 'Hyperspectral Fruit and Vegetable Classification Using Convolutional Neural Networks with EfficientNetB3',
         name: 'Hyperspectral Fruit and Vegetable Classification Using Convolutional Neural Networks with EfficientNetB3',
-        author: { '@id': 'https://arpanpramanik.tech/#person' },
+        author: {
+          '@type': 'Person',
+          '@id': 'https://arpanpramanik.tech/#person',
+          name: 'Arpan Pramanik',
+          sameAs: 'https://orcid.org/0009-0001-9433-7741'
+        },
         publisher: { '@type': 'Organization', name: 'Springer' },
         sameAs: 'https://doi.org/10.1007/978-3-032-21901-5_35'
       },
@@ -259,7 +281,12 @@ export default function RootLayout({ children }) {
         '@id': 'https://doi.org/10.1109/ICRITO66076.2025.11241535',
         headline: 'Cropsense: Explainable Deep Learning Framework for Accurate Quality Detection in Solanaceous Crops',
         name: 'Cropsense: Explainable Deep Learning Framework for Accurate Quality Detection in Solanaceous Crops',
-        author: { '@id': 'https://arpanpramanik.tech/#person' },
+        author: {
+          '@type': 'Person',
+          '@id': 'https://arpanpramanik.tech/#person',
+          name: 'Arpan Pramanik',
+          sameAs: 'https://orcid.org/0009-0001-9433-7741'
+        },
         publisher: { '@type': 'Organization', name: 'IEEE' },
         sameAs: 'https://doi.org/10.1109/ICRITO66076.2025.11241535'
       },
@@ -268,7 +295,12 @@ export default function RootLayout({ children }) {
         '@id': 'https://doi.org/10.1109/COMPUTINGCON64838.2025.11376762',
         headline: 'An Explainable Deep Learning Approach for Quality Assessment in Solanaceous Crops',
         name: 'An Explainable Deep Learning Approach for Quality Assessment in Solanaceous Crops',
-        author: { '@id': 'https://arpanpramanik.tech/#person' },
+        author: {
+          '@type': 'Person',
+          '@id': 'https://arpanpramanik.tech/#person',
+          name: 'Arpan Pramanik',
+          sameAs: 'https://orcid.org/0009-0001-9433-7741'
+        },
         publisher: { '@type': 'Organization', name: 'IEEE' },
         sameAs: 'https://doi.org/10.1109/COMPUTINGCON64838.2025.11376762'
       }

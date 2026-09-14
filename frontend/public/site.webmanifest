@@ -1,13 +1,13 @@
 {
-  "name": "Arpan Pramanik - Full-Stack Developer & AI/ML Enthusiast",
+  "name": "Arpan Pramanik — AI/ML Engineer & Full-Stack Developer",
   "short_name": "Arpan Pramanik",
-  "description": "Portfolio of Arpan Pramanik — Full-Stack Developer specializing in AI/ML, Deep Learning, and Web Development. Explore my projects, research papers, and experience.",
+  "description": "Portfolio of Arpan Pramanik — AI/ML Engineer & Full-Stack Developer specializing in autonomous AI agents, RAG architectures, and published deep learning research.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#07090e",
-  "theme_color": "#07090e",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "icons": [
     {
       "src": "/favicon-16x16.png",
