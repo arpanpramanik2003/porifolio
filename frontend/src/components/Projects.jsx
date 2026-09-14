@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 import { 
   Github, 
   Info, 
@@ -739,14 +740,24 @@ export default function Projects() {
                   </p>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => setSelectedProject(null)}
-                  className="p-2 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all cursor-pointer shadow-xs shrink-0"
-                  aria-label="Close project dossier"
-                >
-                  <X size={18} />
-                </button>
+                <div className="flex items-center gap-2 shrink-0">
+                  <Link
+                    href={`/projects/${selectedProject.slug}`}
+                    className="px-2.5 py-1.5 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-primary)] transition-all cursor-pointer shadow-xs inline-flex items-center gap-1.5 font-mono text-xs card-arch"
+                    title="Open Dedicated Full Page Case Study"
+                  >
+                    <ExternalLink size={13} />
+                    <span className="hidden sm:inline">Open Page</span>
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedProject(null)}
+                    className="p-2 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all cursor-pointer shadow-xs shrink-0"
+                    aria-label="Close project dossier"
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
               </div>
 
               {/* Modal Navigation Tabs */}

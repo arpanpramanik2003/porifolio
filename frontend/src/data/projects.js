@@ -1,6 +1,7 @@
 export const projectsData = [
   {
     id: 1,
+    slug: 'paperlens-ai',
     title: 'PaperLens AI',
     tagline: 'Autonomous AI Research Co-Pilot & Literature Engine',
     category: 'AI Agents & RAG',
@@ -92,6 +93,7 @@ export const projectsData = [
   },
   {
     id: 2,
+    slug: 'campussphere',
     title: 'CampusSphere',
     tagline: 'Enterprise Co-Curricular Governance, Credit Banking & NAAC Compliance',
     category: 'Enterprise Full-Stack',
@@ -180,6 +182,7 @@ export const projectsData = [
   },
   {
     id: 3,
+    slug: 'fruitq-gradex',
     title: 'FruitQ-GradeX: Fruit Quality Grading with Explainable AI',
     tagline: 'Dual-Head CNN for Fruit Classification & Quality Grading with Grad-CAM',
     category: 'Computer Vision',
@@ -253,6 +256,7 @@ export const projectsData = [
   },
   {
     id: 4,
+    slug: 'neurovoice',
     title: 'NeuroVoice: AI Desktop Voice Assistant',
     tagline: 'On-Device Speech Recognition & Task Automation Powered by Ollama',
     category: 'AI Agents & RAG',
@@ -318,6 +322,7 @@ export const projectsData = [
   },
   {
     id: 5,
+    slug: 'abhigraha-2k25',
     title: 'ABHIGRAHA 2K25: College Fest Platform',
     tagline: 'High-Capacity Event Scheduling, Media Hub & Sponsor Management System',
     category: 'Enterprise Full-Stack',
@@ -395,4 +400,13 @@ export const getAllProjects = () => {
 export const getProjectsByCategory = (category) => {
   if (category === 'All') return projectsData
   return projectsData.filter(project => project.category === category)
+};
+
+export const getProjectBySlug = (slug) => {
+  if (!slug) return null
+  return projectsData.find(project => project.slug === slug || String(project.id) === slug)
+};
+
+export const getAllProjectSlugs = () => {
+  return projectsData.map(project => ({ slug: project.slug }))
 };

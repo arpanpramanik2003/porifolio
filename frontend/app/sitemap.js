@@ -1,9 +1,11 @@
+import { projectsData } from '../src/data/projects'
+
 export default function sitemap() {
   const baseUrl = 'https://arpanpramanik.tech'
   // Stable release date prevents artificial churn on every second of build
   const lastDeployment = '2026-09-14T00:00:00.000Z'
 
-  return [
+  const coreRoutes = [
     {
       url: baseUrl,
       lastModified: lastDeployment,
@@ -41,4 +43,13 @@ export default function sitemap() {
       priority: 0.8,
     },
   ]
+
+  const projectRoutes = projectsData.map((project) => ({
+    url: `${baseUrl}/projects/${project.slug}`,
+    lastModified: lastDeployment,
+    changeFrequency: 'monthly',
+    priority: project.featured ? 0.85 : 0.8,
+  }))
+
+  return [...coreRoutes, ...projectRoutes]
 }
