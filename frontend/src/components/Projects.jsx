@@ -205,7 +205,7 @@ export default function Projects() {
     }, 2500)
   }
 
-  // Lock body scroll and Escape key listener for modal
+  // Lock body scroll, pause Lenis, and Escape key listener for modal
   useEffect(() => {
     if (!selectedProject) return
     const handleKeyDown = (e) => {
@@ -215,9 +215,16 @@ export default function Projects() {
     const originalOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
 
+    if (typeof window !== 'undefined' && window.lenis) {
+      window.lenis.stop()
+    }
+
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = originalOverflow
+      if (typeof window !== 'undefined' && window.lenis) {
+        window.lenis.start()
+      }
     }
   }, [selectedProject])
 
@@ -690,7 +697,8 @@ export default function Projects() {
       <AnimatePresence>
         {selectedProject && (
           <div
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 md:p-8 bg-black/85 backdrop-blur-md overflow-y-auto"
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 md:p-8 bg-black/85 backdrop-blur-md"
+            data-lenis-prevent="true"
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
@@ -699,7 +707,9 @@ export default function Projects() {
               exit={{ opacity: 0, scale: 0.94 }}
               transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl max-h-[90vh] flex flex-col rounded-3xl border border-[var(--border)] bg-[var(--bg-card)] card-arch overflow-hidden shadow-2xl p-6 sm:p-8"
+              onWheel={(e) => e.stopPropagation()}
+              data-lenis-prevent="true"
+              className="relative w-full max-w-4xl max-h-[88vh] flex flex-col rounded-3xl border border-[var(--border)] bg-[var(--bg-card)] overflow-hidden shadow-2xl p-6 sm:p-8"
             >
               {/* Modal Top Header */}
               <div className="flex items-start justify-between pb-5 mb-5 border-b border-[var(--border)] shrink-0">
@@ -764,7 +774,12 @@ export default function Projects() {
               </div>
 
               {/* Scrollable Content Body */}
-              <div className="flex-1 overflow-y-auto space-y-6 pr-1 font-body">
+              <div
+                data-lenis-prevent="true"
+                onWheel={(e) => e.stopPropagation()}
+                className="flex-1 overflow-y-auto min-h-0 space-y-6 pr-2 font-body overscroll-contain"
+                style={{ WebkitOverflowScrolling: 'touch' }}
+              >
                 
                 {/* TAB 1: BENCHMARKS */}
                 {activeModalTab === 'benchmarks' && (

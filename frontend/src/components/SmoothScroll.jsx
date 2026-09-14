@@ -26,6 +26,9 @@ const SmoothScroll = ({ children }) => {
     })
 
     lenisRef.current = lenis
+    if (typeof window !== 'undefined') {
+      window.lenis = lenis
+    }
 
     // RAF render loop
     function raf(time) {
@@ -38,6 +41,9 @@ const SmoothScroll = ({ children }) => {
     return () => {
       lenis.destroy()
       lenisRef.current = null
+      if (typeof window !== 'undefined' && window.lenis === lenis) {
+        window.lenis = null
+      }
     }
   }, [])
 

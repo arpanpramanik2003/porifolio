@@ -53,7 +53,7 @@ export default function Research() {
     }, 2500)
   }
 
-  // Lock body scroll and Escape key listener for modal
+  // Lock body scroll, pause Lenis, and Escape key listener for modal
   useEffect(() => {
     if (!selectedPaper) return
     const handleKeyDown = (e) => {
@@ -63,9 +63,16 @@ export default function Research() {
     const originalOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
 
+    if (typeof window !== 'undefined' && window.lenis) {
+      window.lenis.stop()
+    }
+
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = originalOverflow
+      if (typeof window !== 'undefined' && window.lenis) {
+        window.lenis.start()
+      }
     }
   }, [selectedPaper])
 
@@ -376,7 +383,8 @@ export default function Research() {
       <AnimatePresence>
         {selectedPaper && (
           <div
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-5 md:p-8 pt-16 sm:pt-20 pb-6 bg-black/85 backdrop-blur-md overflow-y-auto"
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-5 md:p-8 pt-16 sm:pt-20 pb-6 bg-black/85 backdrop-blur-md"
+            data-lenis-prevent="true"
             onClick={() => setSelectedPaper(null)}
           >
             <motion.div
@@ -385,7 +393,9 @@ export default function Research() {
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
               transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-3xl max-h-[86vh] flex flex-col rounded-2xl sm:rounded-3xl border border-[var(--border)] bg-[var(--bg-card)] card-arch shadow-2xl overflow-hidden"
+              onWheel={(e) => e.stopPropagation()}
+              data-lenis-prevent="true"
+              className="relative w-full max-w-3xl max-h-[86vh] flex flex-col rounded-2xl sm:rounded-3xl border border-[var(--border)] bg-[var(--bg-card)] shadow-2xl overflow-hidden"
             >
               {/* Modal Top Header */}
               <div className="p-5 sm:p-6 border-b border-[var(--border)] shrink-0 bg-[var(--bg-secondary)]/50">
@@ -461,7 +471,12 @@ export default function Research() {
               </div>
 
               {/* Modal Body: Single Smooth Scrollable Container */}
-              <div className="p-5 sm:p-6 overflow-y-auto flex-1 space-y-6 font-body text-xs sm:text-sm">
+              <div
+                data-lenis-prevent="true"
+                onWheel={(e) => e.stopPropagation()}
+                className="p-5 sm:p-6 overflow-y-auto flex-1 min-h-0 space-y-6 font-body text-xs sm:text-sm overscroll-contain"
+                style={{ WebkitOverflowScrolling: 'touch' }}
+              >
                 
                 {/* TAB 1: ABSTRACT & METHODOLOGY */}
                 {activeModalTab === 'abstract' && (
