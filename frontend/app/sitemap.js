@@ -1,41 +1,42 @@
 export default function sitemap() {
   const baseUrl = 'https://arpanpramanik.tech'
-  const lastModified = new Date()
+  // Stable release date prevents artificial churn on every second of build
+  const lastDeployment = '2026-09-14T00:00:00.000Z'
 
   return [
     {
       url: baseUrl,
-      lastModified,
+      lastModified: lastDeployment,
       changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
       url: `${baseUrl}/projects`,
-      lastModified,
+      lastModified: lastDeployment,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/research`,
-      lastModified,
+      lastModified: lastDeployment,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified,
+      lastModified: lastDeployment,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified,
+      lastModified: lastDeployment,
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${baseUrl}/resume.pdf`,
-      lastModified,
+      lastModified: lastDeployment,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
