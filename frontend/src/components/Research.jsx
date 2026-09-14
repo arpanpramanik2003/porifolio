@@ -89,15 +89,15 @@ export default function Research() {
       <div>
         {/* Monospace Header Stamp */}
         <div className="relative mb-8 pb-4 border-b border-[var(--border)] overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-xs text-[var(--text-tertiary)]">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
+          <div className="flex flex-wrap items-center justify-between gap-2.5 font-mono text-xs text-[var(--text-tertiary)]">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shrink-0" />
               <span className="font-bold text-[var(--accent)]">[SYS_SCHOLARLY_ARCHIVES]</span>
-              <span>PEER-REVIEWED SCIENTIFIC PROCEEDINGS // ARPAN PRAMANIK</span>
+              <span className="hidden md:inline text-zinc-500">// PEER-REVIEWED SCIENTIFIC PROCEEDINGS</span>
             </div>
-            <div className="flex items-center gap-4">
-              <span>INDEX: AP-RES-2026</span>
-              <span className="text-[var(--text-primary)] font-semibold">IEEE &amp; SPRINGER PROCEEDINGS</span>
+            <div className="flex items-center gap-3 text-[11px] sm:text-xs shrink-0">
+              <span className="hidden sm:inline">INDEX: AP-RES-2026</span>
+              <span className="text-[var(--text-primary)] font-semibold">IEEE &amp; SPRINGER</span>
             </div>
           </div>
           {/* Animated laser scanline sweep */}
@@ -112,10 +112,10 @@ export default function Research() {
         {/* Section Title & Description */}
         <div className="space-y-6">
           <div className="max-w-4xl space-y-3">
-            <h1 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--text-primary)] leading-tight">
+            <h1 className="font-display text-[1.35rem] leading-[1.2] xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-[var(--text-primary)] break-words">
               PEER-REVIEWED CONFERENCE PAPERS &amp; AI RESEARCH.
             </h1>
-            <p className="font-body text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+            <p className="font-body text-xs sm:text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
               Published scientific research focusing on Explainable Deep Learning (Grad-CAM), Multi-Task Convolutional Networks, and Parameter-Efficient Vision Transformers (ViTs) with registered global DOIs.
             </p>
           </div>
