@@ -170,7 +170,7 @@ const CustomCursor = () => {
   return (
     <div
       ref={dotRef}
-      className="fixed top-0 left-0 z-[9999] pointer-events-none rounded-full"
+      className="fixed top-0 left-0 z-[100000] pointer-events-none rounded-full"
       style={{
         width: '20px',
         height: '20px',

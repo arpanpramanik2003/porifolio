@@ -370,118 +370,134 @@ export default function Research() {
       {/* ─────────────────────────────────────────────────────────────
          INTERACTIVE SCIENTIFIC DOSSIER SPECIFICATION MODAL
          ───────────────────────────────────────────────────────────── */}
+      {/* ─────────────────────────────────────────────────────────────
+         INTERACTIVE SCIENTIFIC DOSSIER SPECIFICATION MODAL
+         ───────────────────────────────────────────────────────────── */}
       <AnimatePresence>
         {selectedPaper && (
           <div
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 md:p-8 bg-black/85 backdrop-blur-md overflow-y-auto"
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-5 md:p-8 pt-16 sm:pt-20 pb-6 bg-black/85 backdrop-blur-md overflow-y-auto"
             onClick={() => setSelectedPaper(null)}
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.94 }}
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
               transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl max-h-[90vh] flex flex-col rounded-3xl border border-[var(--border)] bg-[var(--bg-card)] card-arch overflow-hidden shadow-2xl p-6 sm:p-8"
+              className="relative w-full max-w-3xl max-h-[86vh] flex flex-col rounded-2xl sm:rounded-3xl border border-[var(--border)] bg-[var(--bg-card)] card-arch shadow-2xl overflow-hidden"
             >
               {/* Modal Top Header */}
-              <div className="flex items-start justify-between pb-5 mb-5 border-b border-[var(--border)] shrink-0">
-                <div className="pr-4 space-y-1">
-                  <div className="flex items-center gap-2 font-mono text-xs text-[var(--accent)] font-semibold uppercase">
-                    <ShieldCheck size={13} />
-                    <span>SCIENTIFIC PROCEEDINGS DOSSIER // {selectedPaper.publisher}</span>
+              <div className="p-5 sm:p-6 border-b border-[var(--border)] shrink-0 bg-[var(--bg-secondary)]/50">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="space-y-1.5 min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] sm:text-xs">
+                      <span className="font-bold px-2 py-0.5 rounded border border-[var(--border)] bg-[var(--bg-card)] text-[var(--accent)]">
+                        DOSSIER // 0{selectedPaper.id}
+                      </span>
+                      <span className="font-semibold text-[var(--accent)]">
+                        {selectedPaper.journal}
+                      </span>
+                      <span className="text-[var(--text-tertiary)]">• {selectedPaper.publisher}</span>
+                    </div>
+
+                    <h2 className="font-display font-bold text-base sm:text-lg lg:text-xl text-[var(--text-primary)] tracking-tight leading-snug">
+                      {selectedPaper.title}
+                    </h2>
+
+                    <p className="font-mono text-[11px] text-[var(--text-tertiary)] truncate">
+                      {selectedPaper.fullConference} ({selectedPaper.year})
+                    </p>
                   </div>
-                  <h2 className="font-display font-black text-xl sm:text-3xl text-[var(--text-primary)] tracking-tight">
-                    {selectedPaper.title}
-                  </h2>
-                  <p className="font-mono text-xs text-[var(--text-tertiary)]">
-                    {selectedPaper.fullConference} ({selectedPaper.year})
-                  </p>
+
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPaper(null)}
+                    className="p-2 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-primary)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all cursor-pointer shadow-xs shrink-0 flex items-center justify-center"
+                    aria-label="Close research dossier"
+                  >
+                    <X size={18} />
+                  </button>
                 </div>
-
-                <button
-                  type="button"
-                  onClick={() => setSelectedPaper(null)}
-                  className="p-2 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all cursor-pointer shadow-xs shrink-0"
-                  aria-label="Close research dossier"
-                >
-                  <X size={18} />
-                </button>
               </div>
 
-              {/* Modal Navigation Tabs */}
-              <div className="flex flex-wrap gap-2 pb-4 mb-4 border-b border-[var(--border)] font-mono text-xs shrink-0">
-                <button
-                  type="button"
-                  onClick={() => setActiveModalTab('abstract')}
-                  className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer border ${
-                    activeModalTab === 'abstract'
-                      ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] border-[var(--text-primary)] font-bold'
-                      : 'border-[var(--border)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)]'
-                  }`}
-                >
-                  📖 Full Abstract &amp; Architecture
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveModalTab('bibtex')}
-                  className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer border ${
-                    activeModalTab === 'bibtex'
-                      ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] border-[var(--text-primary)] font-bold'
-                      : 'border-[var(--border)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)]'
-                  }`}
-                >
-                  ⎘ BibTeX Citation Entry
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveModalTab('results')}
-                  className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer border ${
-                    activeModalTab === 'results'
-                      ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] border-[var(--text-primary)] font-bold'
-                      : 'border-[var(--border)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)]'
-                  }`}
-                >
-                  📊 Empirical Results &amp; Specifications
-                </button>
+              {/* Modal Navigation Segmented Control */}
+              <div className="px-5 sm:px-6 pt-3 pb-3 border-b border-[var(--border)] shrink-0 bg-[var(--bg-card)]">
+                <div className="inline-flex p-1 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] font-mono text-xs w-full sm:w-auto flex-wrap sm:flex-nowrap gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setActiveModalTab('abstract')}
+                    className={`flex-1 sm:flex-none px-3.5 py-1.5 rounded-lg transition-all cursor-pointer font-medium text-center ${
+                      activeModalTab === 'abstract'
+                        ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] font-bold shadow-xs'
+                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                    }`}
+                  >
+                    Abstract &amp; Pipeline
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveModalTab('bibtex')}
+                    className={`flex-1 sm:flex-none px-3.5 py-1.5 rounded-lg transition-all cursor-pointer font-medium text-center ${
+                      activeModalTab === 'bibtex'
+                        ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] font-bold shadow-xs'
+                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                    }`}
+                  >
+                    BibTeX Citation
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveModalTab('results')}
+                    className={`flex-1 sm:flex-none px-3.5 py-1.5 rounded-lg transition-all cursor-pointer font-medium text-center ${
+                      activeModalTab === 'results'
+                        ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] font-bold shadow-xs'
+                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                    }`}
+                  >
+                    Empirical Metrics
+                  </button>
+                </div>
               </div>
 
-              {/* Scrollable Content Body */}
-              <div className="flex-1 overflow-y-auto space-y-6 pr-1 font-body text-sm">
+              {/* Modal Body: Single Smooth Scrollable Container */}
+              <div className="p-5 sm:p-6 overflow-y-auto flex-1 space-y-6 font-body text-xs sm:text-sm">
                 
                 {/* TAB 1: ABSTRACT & METHODOLOGY */}
                 {activeModalTab === 'abstract' && (
-                  <div className="space-y-6">
+                  <div className="space-y-5">
                     <div>
-                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-2">
-                        Complete Research Abstract
-                      </h4>
-                      <p className="leading-relaxed text-[var(--text-secondary)] bg-[var(--bg-secondary)] p-4 rounded-xl border border-[var(--border)] text-justify sm:text-left">
+                      <div className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-2 flex items-center gap-1.5">
+                        <FileText size={12} className="text-[var(--accent)]" />
+                        <span>RESEARCH ABSTRACT</span>
+                      </div>
+                      <p className="leading-relaxed text-[var(--text-secondary)] text-justify sm:text-left">
                         {selectedPaper.abstract}
                       </p>
                     </div>
 
-                    <div>
-                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-2">
-                        Model Architecture &amp; Methodology
-                      </h4>
+                    <div className="pt-3 border-t border-[var(--border)]">
+                      <div className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-2 flex items-center gap-1.5">
+                        <Cpu size={12} className="text-[var(--accent)]" />
+                        <span>MODEL ARCHITECTURE &amp; METHODOLOGY</span>
+                      </div>
                       <p className="leading-relaxed text-[var(--text-secondary)]">
                         {selectedPaper.methodology}
                       </p>
                     </div>
 
-                    <div>
-                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-2">
-                        Investigator Team
-                      </h4>
+                    <div className="pt-3 border-t border-[var(--border)]">
+                      <div className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-2">
+                        INVESTIGATOR TEAM
+                      </div>
                       <div className="flex flex-wrap gap-1.5 font-mono text-xs">
                         {selectedPaper.authors.map((author, i) => (
                           <span
                             key={i}
                             className={`px-2.5 py-1 rounded-md border ${
                               author.includes('Arpan Pramanik')
-                                ? 'border-[var(--accent)] font-bold text-[var(--text-primary)] bg-[var(--bg-secondary)]'
-                                : 'border-[var(--border)] text-[var(--text-secondary)]'
+                                ? 'border-[var(--accent)] font-bold text-[var(--text-primary)] bg-[var(--bg-secondary)] shadow-2xs'
+                                : 'border-[var(--border)] text-[var(--text-secondary)] bg-[var(--bg-secondary)]/50'
                             }`}
                           >
                             {author}
@@ -500,23 +516,23 @@ export default function Research() {
                       <button
                         type="button"
                         onClick={() => handleCopyBibtex(selectedPaper)}
-                        className="px-3 py-1 rounded-lg border border-[var(--border)] bg-[var(--bg-secondary)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all cursor-pointer flex items-center gap-1.5 font-bold"
+                        className="px-3 py-1.5 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all cursor-pointer flex items-center gap-1.5 font-bold"
                       >
                         {copiedBibtexId === selectedPaper.id ? (
                           <>
-                            <Check size={12} className="text-emerald-400" />
+                            <Check size={13} className="text-emerald-400" />
                             <span className="text-emerald-400">Copied to Clipboard!</span>
                           </>
                         ) : (
                           <>
-                            <Copy size={12} />
+                            <Copy size={13} />
                             <span>Copy Citation</span>
                           </>
                         )}
                       </button>
                     </div>
 
-                    <div className="p-5 rounded-2xl border border-zinc-800 bg-zinc-950 font-mono text-xs text-zinc-200 overflow-x-auto select-all leading-relaxed">
+                    <div className="p-4 sm:p-5 rounded-2xl border border-zinc-800 bg-zinc-950 font-mono text-xs text-zinc-200 overflow-x-auto select-all leading-relaxed shadow-inner">
                       <pre>{selectedPaper.bibtex}</pre>
                     </div>
                   </div>
@@ -524,21 +540,21 @@ export default function Research() {
 
                 {/* TAB 3: RESULTS */}
                 {activeModalTab === 'results' && (
-                  <div className="space-y-6">
+                  <div className="space-y-5">
                     <div>
-                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-3">
-                        Empirical Metrics &amp; Benchmarks
-                      </h4>
+                      <div className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-3">
+                        EMPIRICAL PERFORMANCE BENCHMARKS
+                      </div>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono">
                         {selectedPaper.metrics?.map((m, idx) => (
                           <div
                             key={idx}
-                            className="p-4 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)]"
+                            className="p-3.5 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] space-y-1"
                           >
-                            <div className="text-[10px] uppercase text-[var(--text-tertiary)] mb-1">
+                            <div className="text-[10px] uppercase text-[var(--text-tertiary)] truncate">
                               {m.label}
                             </div>
-                            <div className="font-bold text-base sm:text-lg text-[var(--text-primary)]">
+                            <div className="font-bold text-base sm:text-lg text-[var(--text-primary)] truncate">
                               {m.val}
                             </div>
                           </div>
@@ -546,10 +562,10 @@ export default function Research() {
                       </div>
                     </div>
 
-                    <div>
-                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-2">
-                        Indexing Keywords
-                      </h4>
+                    <div className="pt-3 border-t border-[var(--border)]">
+                      <div className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] mb-2">
+                        INDEXING KEYWORDS
+                      </div>
                       <div className="flex flex-wrap gap-1.5 font-mono text-xs">
                         {selectedPaper.keywords.map((kw) => (
                           <span
@@ -567,23 +583,28 @@ export default function Research() {
               </div>
 
               {/* Modal Footer Bar */}
-              <div className="mt-5 pt-4 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-3 shrink-0 font-mono text-xs">
-                <div className="flex items-center gap-3">
+              <div className="p-4 sm:p-5 border-t border-[var(--border)] bg-[var(--bg-secondary)]/50 flex flex-wrap items-center justify-between gap-3 shrink-0 font-mono text-xs">
+                <div className="flex flex-wrap items-center gap-2.5">
                   <a
                     href={selectedPaper.doiUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 font-semibold text-[var(--accent)] hover:underline"
+                    className="px-3.5 py-2 rounded-xl font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
+                    style={{
+                      background: 'var(--text-primary)',
+                      color: 'var(--bg-primary)'
+                    }}
                   >
-                    <span>Resolve DOI ({selectedPaper.doi})</span>
+                    <span>Official {selectedPaper.publisher} DOI</span>
                     <ArrowUpRight size={13} />
                   </a>
+
                   {selectedPaper.github && (
                     <a
                       href={selectedPaper.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                      className="px-3.5 py-2 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all flex items-center gap-1.5 cursor-pointer card-arch"
                     >
                       <Github size={13} />
                       <span>Repository</span>
@@ -594,7 +615,7 @@ export default function Research() {
                 <button
                   type="button"
                   onClick={() => setSelectedPaper(null)}
-                  className="px-4 py-2 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all cursor-pointer font-sans text-xs font-semibold"
+                  className="px-4 py-2 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer font-sans text-xs font-semibold ml-auto card-arch"
                 >
                   Close Dossier
                 </button>

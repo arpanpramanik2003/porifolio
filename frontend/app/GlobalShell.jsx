@@ -18,19 +18,19 @@ export default function GlobalShell({ children }) {
           {/* Fixed background architectural texture */}
           <StaticBackground />
 
-          {/* Smooth custom cursor overlay */}
-          <CustomCursor />
-
           {/* Global Header Navigation */}
           <Navbar />
 
           {/* Page-Specific Content */}
-          <div className="relative z-10">
+          <main className="relative">
             {children}
-          </div>
+          </main>
 
           {/* Global Footer */}
           <Footer />
+
+          {/* Smooth custom cursor overlay (rendered last for top-most z-order) */}
+          <CustomCursor />
         </div>
       </SmoothScroll>
     </ThemeProvider>
