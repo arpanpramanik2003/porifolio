@@ -34,7 +34,7 @@ export default function AboutDossier() {
   const [selectedCert, setSelectedCert] = useState(null)
   const [activeRoleIndex, setActiveRoleIndex] = useState(0)
 
-  // Lock body scroll and handle Escape key when modal is open
+  // Lock body scroll, pause Lenis, and handle Escape key when modal is open
   useEffect(() => {
     if (!selectedCert) return
     const handleKeyDown = (e) => {
@@ -44,9 +44,16 @@ export default function AboutDossier() {
     const originalOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
 
+    if (typeof window !== 'undefined' && window.lenis) {
+      window.lenis.stop()
+    }
+
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = originalOverflow
+      if (typeof window !== 'undefined' && window.lenis) {
+        window.lenis.start()
+      }
     }
   }, [selectedCert])
 
@@ -529,7 +536,8 @@ export default function AboutDossier() {
       <AnimatePresence>
         {selectedCert && (
           <div 
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 md:p-8 bg-black/85 backdrop-blur-md overflow-y-auto"
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 md:p-8 bg-black/85 backdrop-blur-md"
+            data-lenis-prevent="true"
             onClick={() => setSelectedCert(null)}
           >
             <motion.div
@@ -538,7 +546,9 @@ export default function AboutDossier() {
               exit={{ opacity: 0, scale: 0.94 }}
               transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-2xl max-h-[88vh] flex flex-col rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] card-arch overflow-hidden shadow-2xl p-5 sm:p-6"
+              onWheel={(e) => e.stopPropagation()}
+              data-lenis-prevent="true"
+              className="relative w-full max-w-2xl max-h-[88vh] flex flex-col rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] overflow-hidden shadow-2xl p-5 sm:p-6"
             >
               {/* Modal Header */}
               <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--border)] shrink-0">
