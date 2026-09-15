@@ -76,6 +76,7 @@ const syne = Syne({
 
 export const metadata = {
   metadataBase: new URL('https://arpanpramanik.tech'),
+  applicationName: 'Arpan Pramanik',
   title: 'Arpan Pramanik | AI/ML Engineer & Full-Stack Developer',
   description: 'Arpan Pramanik — AI/ML Engineer & Full-Stack Developer specializing in autonomous AI agents, RAG architectures, and published deep learning research.',
   keywords: [
@@ -177,9 +178,9 @@ export default function RootLayout({ children }) {
       {
         '@type': 'WebSite',
         '@id': 'https://arpanpramanik.tech/#website',
-        url: 'https://arpanpramanik.tech',
+        url: 'https://arpanpramanik.tech/',
         name: 'Arpan Pramanik',
-        alternateName: ['Arpan Pramanik Portfolio', 'Arpan Pramanik Tech'],
+        alternateName: ['Arpan Pramanik Portfolio', 'Arpan Pramanik Tech', 'arpanpramanik.tech'],
         publisher: {
           '@id': 'https://arpanpramanik.tech/#person'
         }
