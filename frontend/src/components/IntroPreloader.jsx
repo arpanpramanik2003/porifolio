@@ -1,44 +1,19 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion } from 'framer-motion'
-import { Terminal } from 'lucide-react'
+import { Terminal, CornerDownRight } from 'lucide-react'
 
-const codeSnippets = [
-  { text: 'print("Arpan Pramanik")', lang: 'Python', comment: '# Python 3.12' },
-  { text: 'console.log("Arpan Pramanik");', lang: 'JavaScript', comment: '// ES2026' },
-  { text: 'std::cout << "Arpan Pramanik";', lang: 'C++', comment: '// ISO C++20' },
-  { text: 'System.out.println("Arpan Pramanik");', lang: 'Java', comment: '// OpenJDK 21' }
-]
-
-const glyphs = '01#*><{}[]/@&$!~?=+'
-const particleChars = ['0', '1', '{', '}', '<', '>', '/', '*', '#', '&']
-
-const generateParticles = (count) =>
-  Array.from({ length: count }, (_, i) => ({
-    char: particleChars[i % particleChars.length],
-    left: `${(i * 7.3 + 13) % 100}%`,
-    duration: 5 + (i % 4) * 2,
-    delay: (i * 0.8) % 5,
-    fontSize: 10 + (i % 3) * 2
-  }))
-
-const IntroPreloader = ({ onComplete }) => {
-  const [stepIndex, setStepIndex] = useState(0)
-  const [charStates, setCharStates] = useState([])
+export default function IntroPreloader({ onComplete }) {
+  const [progress, setProgress] = useState(0)
   const [isFinished, setIsFinished] = useState(false)
+  const [nameRevealed, setNameRevealed] = useState(false)
   const rafRef = useRef(null)
   const timerRef = useRef(null)
-  const particles = useMemo(() => generateParticles(14), [])
-
-  useEffect(() => {
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current)
-      if (timerRef.current) clearTimeout(timerRef.current)
-    }
-  }, [])
 
   const handleSkip = useCallback(() => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    if (timerRef.current) clearTimeout(timerRef.current)
     onComplete()
   }, [onComplete])
 
@@ -51,204 +26,180 @@ const IntroPreloader = ({ onComplete }) => {
   }, [handleSkip])
 
   useEffect(() => {
+    // Respect user motion preferences
     if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       onComplete()
       return
     }
 
-    if (stepIndex < codeSnippets.length) {
-      const targetText = codeSnippets[stepIndex].text
-      const totalChars = targetText.length
-      const scrambleWindow = Math.min(5, totalChars)
-      let lockedCount = 0
-      let lastFrameTime = 0
+    const startTime = performance.now()
+    const duration = 650 // fast 650ms progress ticker
 
-      // Balanced frame interval for optimal readability (24ms -> 14ms)
-      const getFrameInterval = () => {
-        const progress = lockedCount / totalChars
-        return 24 - progress * 10
+    const updateTicker = (currentTime) => {
+      const elapsed = currentTime - startTime
+      const rawProgress = Math.min(elapsed / duration, 1)
+
+      // Quartic ease-out for a snappy deceleration
+      const easedProgress = 1 - Math.pow(1 - rawProgress, 4)
+      const currentPercent = Math.round(easedProgress * 100)
+
+      setProgress(currentPercent)
+
+      if (rawProgress >= 0.65 && !nameRevealed) {
+        setNameRevealed(true)
       }
 
-      const animate = (timestamp) => {
-        if (!lastFrameTime) lastFrameTime = timestamp
-        const elapsed = timestamp - lastFrameTime
+      if (rawProgress < 1) {
+        rafRef.current = requestAnimationFrame(updateTicker)
+      } else {
+        setProgress(100)
+        setNameRevealed(true)
+        setIsFinished(true)
 
-        if (elapsed >= getFrameInterval()) {
-          lastFrameTime = timestamp
-
-          if (lockedCount <= totalChars) {
-            const states = []
-            for (let i = 0; i < totalChars; i++) {
-              if (i < lockedCount) {
-                states.push({ char: targetText[i], locked: true })
-              } else if (i < lockedCount + scrambleWindow) {
-                states.push({
-                  char: glyphs[Math.floor(Math.random() * glyphs.length)],
-                  locked: false
-                })
-              }
-            }
-            setCharStates(states)
-            lockedCount++
-          } else {
-            // Balanced pause (160ms) for pleasant pacing between languages
-            timerRef.current = setTimeout(() => {
-              setStepIndex((prev) => prev + 1)
-            }, 160)
-            return
-          }
-        }
-
-        rafRef.current = requestAnimationFrame(animate)
-      }
-
-      rafRef.current = requestAnimationFrame(animate)
-
-      return () => {
-        if (rafRef.current) cancelAnimationFrame(rafRef.current)
-        if (timerRef.current) clearTimeout(timerRef.current)
-      }
-    } else if (stepIndex === codeSnippets.length) {
-      setIsFinished(true)
-
-      // Hold success state (750ms) so user can comfortably view completion before upward slide
-      timerRef.current = setTimeout(() => {
-        onComplete()
-      }, 750)
-
-      return () => {
-        if (timerRef.current) clearTimeout(timerRef.current)
+        // Hold completed state briefly (~450ms) then trigger smooth curtain exit
+        timerRef.current = setTimeout(() => {
+          onComplete()
+        }, 450)
       }
     }
-  }, [stepIndex, onComplete])
+
+    rafRef.current = requestAnimationFrame(updateTicker)
+
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
+  }, [onComplete, nameRevealed])
 
   return (
     <motion.div
       key="intro-preloader"
       id="intro-preloader"
       role="dialog"
-      aria-label="Compiling identity intro sequence"
+      aria-label="Editorial identity initialization sequence"
       initial={{ y: 0, opacity: 1 }}
       exit={{ y: '-100%', opacity: 1 }}
       transition={{ duration: 0.65, ease: [0.76, 0, 0.24, 1] }}
-      className="intro-root"
+      className="intro-mono-root"
     >
-      {/* ── Background Layers ── */}
-      <div className="intro-grid" aria-hidden="true" />
-      <div className="intro-scanline" aria-hidden="true" />
-      <div className="intro-vignette" aria-hidden="true" />
+      {/* ── Precision Engineering Background Grid ── */}
+      <div className="intro-mono-grid" aria-hidden="true" />
+      <div className="intro-mono-vignette" aria-hidden="true" />
 
-      {/* ── Floating Particles ── */}
-      <div className="intro-particles" aria-hidden="true">
-        {particles.map((p, i) => (
-          <span
-            key={i}
-            className="intro-particle"
-            style={{
-              left: p.left,
-              animationDuration: `${p.duration}s`,
-              animationDelay: `${p.delay}s`,
-              fontSize: `${p.fontSize}px`
-            }}
-          >
-            {p.char}
-          </span>
-        ))}
-      </div>
-
-      {/* ── Top Bar ── */}
-      <div className="intro-topbar">
-        <div className="intro-topbar-left">
-          <Terminal size={14} className="intro-topbar-icon" />
-          <span>COMPILING IDENTITY v2.6</span>
+      {/* ── Top Bar: System Coordinates & Instant Skip ── */}
+      <div className="intro-mono-topbar">
+        <div className="flex items-center gap-2.5 font-mono text-[11px] tracking-wider text-zinc-400">
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+          <span className="text-zinc-100 font-bold">AP//SYS.INIT</span>
+          <span className="text-zinc-600">•</span>
+          <span className="hidden sm:inline text-zinc-500">ENGINEERING & RESEARCH ARCHIVE</span>
         </div>
-        <button onClick={handleSkip} className="intro-skip">
-          [ESC / Skip Intro]
+
+        <button
+          onClick={handleSkip}
+          className="intro-mono-skip font-mono text-[11px] tracking-wider text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-600 bg-zinc-950/80 px-3 py-1.5 rounded-lg transition-all cursor-pointer"
+          title="Skip intro animation"
+        >
+          [ESC / SKIP]
         </button>
       </div>
 
-      {/* ── Center Stage ── */}
-      <div className="intro-stage">
-        {/* Status Row */}
-        <div className="intro-status-row">
-          <span>TARGET: ARPAN PRAMANIK</span>
-          <span>
-            {isFinished
-              ? 'STATUS: ONLINE [0.00ms]'
-              : `STEP 0${Math.min(stepIndex + 1, 4)} / 04`}
-          </span>
-        </div>
+      {/* ── Center Architectural Stage ── */}
+      <div className="intro-mono-stage">
+        {/* Frame with Corner Crosshairs */}
+        <div className="intro-mono-frame">
+          {/* Corner Registration Marks */}
+          <span className="intro-crosshair top-left">+</span>
+          <span className="intro-crosshair top-right">+</span>
+          <span className="intro-crosshair bottom-left">+</span>
+          <span className="intro-crosshair bottom-right">+</span>
 
-        {/* Terminal Box */}
-        <div className={`intro-terminal${isFinished ? ' is-finished' : ''}`}>
-          {/* Leading Edge */}
-          <div className="intro-edge" />
-
-          {/* Header */}
-          <div className="intro-terminal-header">
-            <span className="intro-lang-tag">
-              {isFinished ? 'EXECUTION_COMPLETE' : codeSnippets[stepIndex]?.lang}
+          {/* Subheader Strip */}
+          <div className="flex items-center justify-between font-mono text-[10px] sm:text-xs text-zinc-500 border-b border-zinc-900 pb-3 tracking-widest uppercase">
+            <span className="flex items-center gap-1.5">
+              <Terminal size={12} className="text-zinc-400" />
+              <span>IDENTITY INDEX</span>
             </span>
-            <span className="intro-comment-tag">
-              {isFinished ? '// ZERO_ERRORS' : codeSnippets[stepIndex]?.comment}
+            <span className="font-semibold text-zinc-300">
+              {isFinished ? 'STATUS: ONLINE [0.00ms]' : `COMPILING: ${String(progress).padStart(3, '0')}%`}
             </span>
           </div>
 
-          {/* Code Display */}
-          <div className="intro-code-display">
-            {isFinished ? (
-              <div className="intro-success-wrapper">
-                <span className="intro-pulse-dot" />
-                <span className="intro-success-tag">SYSTEM_READY</span>
-                <span className="intro-success-divider">//</span>
-                <span className="intro-success-name">ARPAN PRAMANIK</span>
-              </div>
-            ) : (
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <span className="intro-prompt">$ </span>
-                <span>
-                  {charStates.map((s, i) => (
-                    <span
-                      key={i}
-                      className={
-                        s.locked ? 'intro-char-locked' : 'intro-char-scramble'
-                      }
-                    >
-                      {s.char}
-                    </span>
-                  ))}
-                </span>
-                <span className="intro-cursor" />
-              </div>
-            )}
-          </div>
-        </div>
+          {/* Main Monogram & Typographic Identity */}
+          <div className="py-6 sm:py-8 space-y-4">
+            {/* Identity Reveal with Mask Slide */}
+            <div className="overflow-hidden">
+              <motion.h1
+                initial={{ y: '100%', opacity: 0 }}
+                animate={{ y: nameRevealed ? '0%' : '100%', opacity: nameRevealed ? 1 : 0 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="font-display text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-none uppercase select-none"
+              >
+                ARPAN PRAMANIK
+              </motion.h1>
+            </div>
 
-        {/* Segment Progress */}
-        <div className="intro-segments">
-          {codeSnippets.map((_, i) => (
-            <div key={i} className="intro-segment">
-              <div
-                className={`intro-segment-fill${
-                  isFinished
-                    ? ' complete'
-                    : i <= stepIndex
-                    ? ' active'
-                    : ''
-                }`}
+            {/* Subtitle Spec & Domain */}
+            <div className="overflow-hidden">
+              <motion.div
+                initial={{ y: '100%', opacity: 0 }}
+                animate={{ y: nameRevealed ? '0%' : '100%', opacity: nameRevealed ? 1 : 0 }}
+                transition={{ duration: 0.45, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-wrap items-center gap-2 font-mono text-xs sm:text-sm text-zinc-400"
+              >
+                <CornerDownRight size={13} className="text-zinc-500 shrink-0" />
+                <span className="font-semibold text-zinc-200">AI/ML ENGINEER</span>
+                <span className="text-zinc-600">//</span>
+                <span className="text-zinc-400">RESEARCHER</span>
+                <span className="text-zinc-600">//</span>
+                <span className="text-zinc-500 hidden sm:inline">FULL-STACK</span>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* High-Contrast Monochromatic Progress Hairline */}
+          <div className="space-y-2 pt-2">
+            <div className="w-full h-[2px] bg-zinc-900 rounded-full overflow-hidden relative">
+              <motion.div
+                className="h-full bg-white"
+                style={{ width: `${progress}%` }}
+                transition={{ ease: 'linear' }}
               />
             </div>
-          ))}
+
+            <div className="flex items-center justify-between font-mono text-[10px] text-zinc-500 tracking-wider">
+              <span>INITIALIZING WEIGHTS</span>
+              <span className="text-zinc-300 font-bold">{progress}%</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* ── Bottom Footer ── */}
-      <div className="intro-footer">
-        <span>FULL-STACK & AI ARCHITECT</span>
-        <span>PRESS ESC TO BYPASS</span>
+      {/* ── Bottom Strip: Equalizer & Telemetry ── */}
+      <div className="intro-mono-footer">
+        <div className="flex items-center gap-1.5">
+          {/* Silent Equalizer Bars */}
+          {[12, 18, 10, 16].map((h, i) => (
+            <span
+              key={i}
+              className={`w-[2px] bg-zinc-400 transition-all duration-300 ${
+                isFinished ? 'h-[2px] bg-zinc-600' : 'animate-pulse'
+              }`}
+              style={{
+                height: isFinished ? '2px' : `${h}px`,
+                animationDelay: `${i * 0.15}s`
+              }}
+            />
+          ))}
+          <span className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase ml-2">
+            NEURAL PIPELINE {isFinished ? 'LOCKED' : 'CALIBRATING'}
+          </span>
+        </div>
+
+        <div className="font-mono text-[10px] tracking-widest text-zinc-600 uppercase">
+          PRESS ESC TO BYPASS
+        </div>
       </div>
     </motion.div>
   )
 }
-
-export default IntroPreloader
