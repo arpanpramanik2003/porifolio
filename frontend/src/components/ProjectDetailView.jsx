@@ -106,17 +106,17 @@ export default function ProjectDetailView({ project, prevProject, nextProject })
                 href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm flex items-center gap-2 transition-all shadow-md cursor-pointer hover:opacity-95 hover:scale-[1.02] active:scale-[0.98]"
+                className="px-5 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm flex items-center gap-2 transition-all shadow-md cursor-pointer hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] border"
                 style={{
-                  backgroundColor: '#ffffff',
-                  color: '#000000',
-                  borderColor: '#ffffff'
+                  backgroundColor: 'var(--text-primary)',
+                  color: 'var(--bg-primary)',
+                  borderColor: 'var(--text-primary)'
                 }}
               >
-                <span className="font-bold text-black" style={{ color: '#000000' }}>
+                <span className="font-bold">
                   Launch Live System
                 </span>
-                <ArrowUpRight size={15} className="text-black" style={{ color: '#000000' }} />
+                <ArrowUpRight size={15} />
               </a>
             )}
 
@@ -147,27 +147,27 @@ export default function ProjectDetailView({ project, prevProject, nextProject })
 
           {/* Terminal Quick Clone Snippet */}
           {project.quickClone && (
-            <div className="p-3.5 sm:p-4 rounded-xl border border-zinc-800 bg-zinc-950 font-mono text-xs text-zinc-100 flex items-center justify-between gap-3 shadow-inner">
+            <div className="p-3.5 sm:p-4 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] font-mono text-xs text-[var(--text-primary)] flex items-center justify-between gap-3 shadow-xs transition-colors">
               <div className="flex items-center gap-2 min-w-0 truncate">
-                <Terminal size={14} className="text-zinc-500 shrink-0" />
-                <span className="text-zinc-500 select-none">$</span>
-                <span className="truncate text-zinc-300 select-all">{project.quickClone}</span>
+                <Terminal size={14} className="text-[var(--text-tertiary)] shrink-0" />
+                <span className="text-[var(--text-tertiary)] select-none font-bold">$</span>
+                <span className="truncate text-[var(--text-secondary)] select-all font-medium">{project.quickClone}</span>
               </div>
               <button
                 type="button"
                 onClick={handleCopyClone}
-                className="px-3 py-1.5 rounded-lg border border-zinc-700 bg-zinc-900 hover:bg-zinc-800 text-xs text-white shrink-0 flex items-center gap-1.5 cursor-pointer transition-all active:scale-95"
+                className="px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] text-xs text-[var(--text-primary)] shrink-0 flex items-center gap-1.5 cursor-pointer transition-all active:scale-95 shadow-xs"
                 title="Copy clone command"
               >
                 {copiedClone ? (
                   <>
-                    <Check size={13} className="text-emerald-400" />
-                    <span className="text-[11px] text-emerald-400 font-bold">COPIED</span>
+                    <Check size={13} className="text-emerald-500 dark:text-emerald-400" />
+                    <span className="text-[11px] text-emerald-500 dark:text-emerald-400 font-bold">COPIED</span>
                   </>
                 ) : (
                   <>
-                    <Copy size={13} className="text-zinc-400" />
-                    <span className="text-[11px] font-medium">COPY</span>
+                    <Copy size={13} className="text-[var(--text-tertiary)]" />
+                    <span className="text-[11px] font-semibold text-[var(--text-secondary)]">COPY</span>
                   </>
                 )}
               </button>
@@ -243,9 +243,9 @@ export default function ProjectDetailView({ project, prevProject, nextProject })
                 ? 'font-bold shadow-xs'
                 : 'border-[var(--border)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]'
             }`}
-            style={activeTab === 'benchmarks' ? { backgroundColor: '#ffffff', color: '#000000', borderColor: '#ffffff' } : {}}
+            style={activeTab === 'benchmarks' ? { backgroundColor: 'var(--text-primary)', color: 'var(--bg-primary)', borderColor: 'var(--text-primary)' } : {}}
           >
-            <Zap size={14} style={activeTab === 'benchmarks' ? { color: '#000000' } : {}} />
+            <Zap size={14} />
             <span>MEASURED BENCHMARKS &amp; GAINS ({project.benchmarks?.length || 0})</span>
           </button>
 
@@ -258,9 +258,9 @@ export default function ProjectDetailView({ project, prevProject, nextProject })
                   ? 'font-bold shadow-xs'
                   : 'border-[var(--border)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]'
               }`}
-              style={activeTab === 'architecture' ? { backgroundColor: '#ffffff', color: '#000000', borderColor: '#ffffff' } : {}}
+              style={activeTab === 'architecture' ? { backgroundColor: 'var(--text-primary)', color: 'var(--bg-primary)', borderColor: 'var(--text-primary)' } : {}}
             >
-              <Workflow size={14} style={activeTab === 'architecture' ? { color: '#000000' } : {}} />
+              <Workflow size={14} />
               <span>EXECUTION PIPELINE ({project.architecture.pipeline.length} STAGES)</span>
             </button>
           )}
@@ -274,9 +274,9 @@ export default function ProjectDetailView({ project, prevProject, nextProject })
                   ? 'font-bold shadow-xs'
                   : 'border-[var(--border)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]'
               }`}
-              style={activeTab === 'capabilities' ? { backgroundColor: '#ffffff', color: '#000000', borderColor: '#ffffff' } : {}}
+              style={activeTab === 'capabilities' ? { backgroundColor: 'var(--text-primary)', color: 'var(--bg-primary)', borderColor: 'var(--text-primary)' } : {}}
             >
-              <Cpu size={14} style={activeTab === 'capabilities' ? { color: '#000000' } : {}} />
+              <Cpu size={14} />
               <span>CORE ENGINES &amp; MODULES ({project.capabilities.length})</span>
             </button>
           )}
