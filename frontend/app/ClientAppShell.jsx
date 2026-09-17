@@ -73,7 +73,7 @@ export default function ClientAppShell() {
                   <span className="w-6 h-px bg-[var(--accent)]" />
                   <span>CORE PILLARS</span>
                 </div>
-                <h2 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl tracking-tight text-[var(--text-primary)]">
+                <h2 className="font-display font-black text-xl sm:text-3xl lg:text-4xl tracking-tight text-[var(--text-primary)] leading-tight break-words">
                   ENGINEERED WITH RIGOR.
                 </h2>
               </div>
@@ -136,7 +136,7 @@ export default function ClientAppShell() {
                   <span className="w-6 h-px bg-[var(--accent)]" />
                   <span>PRODUCTION SYSTEMS</span>
                 </div>
-                <h2 className="font-display font-black text-2xl sm:text-3xl lg:text-5xl tracking-tight text-[var(--text-primary)]">
+                <h2 className="font-display font-black text-xl sm:text-3xl lg:text-5xl tracking-tight text-[var(--text-primary)] leading-tight break-words">
                   FLAGSHIP ARCHITECTURES.
                 </h2>
               </div>
@@ -252,7 +252,7 @@ export default function ClientAppShell() {
                   <span className="w-6 h-px bg-[var(--accent)]" />
                   <span>PUBLICATIONS &amp; PAPERS</span>
                 </div>
-                <h2 className="font-display font-black text-2xl sm:text-3xl lg:text-5xl tracking-tight text-[var(--text-primary)]">
+                <h2 className="font-display font-black text-xl sm:text-3xl lg:text-5xl tracking-tight text-[var(--text-primary)] leading-tight break-words">
                   ACADEMIC RESEARCH.
                 </h2>
               </div>
@@ -337,7 +337,7 @@ export default function ClientAppShell() {
               <Terminal size={13} />
               <span>COLLABORATION TELEMETRY</span>
             </div>
-            <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl tracking-tight text-[var(--text-primary)] mb-6">
+            <h2 className="font-display font-black text-xl sm:text-3xl md:text-5xl tracking-tight text-[var(--text-primary)] mb-6 leading-tight break-words">
               LET&apos;S ENGINEER SOMETHING EXCEPTIONAL.
             </h2>
             <p className="font-body text-sm sm:text-base text-[var(--text-secondary)] max-w-xl mx-auto mb-8">

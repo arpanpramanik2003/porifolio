@@ -209,7 +209,7 @@ const Contact = () => {
           <div className="max-w-4xl space-y-3">
             <h1
               id="contact-heading"
-              className="font-display text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--text-primary)] leading-tight"
+              className="font-display text-[1.35rem] xs:text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--text-primary)] leading-tight break-words"
             >
               INITIATE DIRECT COMMUNICATION.
             </h1>

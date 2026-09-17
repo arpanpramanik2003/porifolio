@@ -86,7 +86,7 @@ export default function ProjectDetailView({ project, prevProject, nextProject })
               <span>{project.year}</span>
             </div>
 
-            <h1 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--text-primary)] leading-tight">
+            <h1 className="font-display text-[1.35rem] xs:text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--text-primary)] leading-tight break-words">
               {project.title}
             </h1>
 

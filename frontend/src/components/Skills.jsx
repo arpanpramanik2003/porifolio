@@ -80,10 +80,10 @@ const Skills = () => {
                 <span className="w-8 h-px bg-[var(--accent)]" />
                 <span>ENGINEERING TOOLKIT & PRODUCTION STACK</span>
               </div>
-              <h2 id="skills-heading" className="font-display text-lg sm:text-2xl lg:text-3xl font-black tracking-tight"
+              <h2 id="skills-heading" className="font-display text-lg sm:text-2xl lg:text-3xl font-black tracking-tight break-words"
                 style={{ color: 'var(--text-primary)' }}
               >
-                TECHNICAL ECOSYSTEM & AI ENGINEERING STACK.
+                TECHNICAL ECOSYSTEM &amp; AI ENGINEERING STACK.
               </h2>
             </div>
 

@@ -147,10 +147,10 @@ const Experience = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <h2
             id="experience-heading"
-            className="font-display text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight max-w-3xl leading-[1.1]"
+            className="font-display text-[1.35rem] xs:text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight max-w-3xl leading-[1.2] break-words"
             style={{ color: 'var(--text-primary)' }}
           >
-            PROFESSIONAL EXPERIENCE & RESEARCH ROLES.
+            PROFESSIONAL EXPERIENCE &amp; RESEARCH ROLES.
           </h2>
 
           <div

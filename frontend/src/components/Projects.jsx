@@ -276,7 +276,7 @@ export default function Projects() {
         {/* Section Title & Description */}
         <div className="space-y-6">
           <div className="max-w-4xl space-y-3">
-            <h1 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--text-primary)] leading-tight">
+            <h1 className="font-display text-[1.3rem] xs:text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--text-primary)] leading-[1.2] break-words">
               AUTONOMOUS AI AGENTS &amp; FULL-STACK SYSTEMS.
             </h1>
             <p className="font-body text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">

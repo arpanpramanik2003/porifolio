@@ -215,7 +215,7 @@ export default function AboutDossier() {
             
             {/* Editorial Bio */}
             <div className="space-y-4 font-body text-base sm:text-lg leading-relaxed text-[var(--text-secondary)]">
-              <h2 className="font-display font-black text-2xl sm:text-3xl text-[var(--text-primary)] tracking-tight">
+              <h2 className="font-display font-black text-[1.35rem] sm:text-2xl lg:text-3xl text-[var(--text-primary)] tracking-tight leading-snug break-words">
                 ENGINEERING WITH RIGOR: AI AGENTS, RAG &amp; PRODUCTION PLATFORMS.
               </h2>
               <p>
@@ -282,7 +282,7 @@ export default function AboutDossier() {
               <span className="w-6 h-px bg-[var(--accent)]" />
               <span>AUTHENTIC TOOL ECOSYSTEM</span>
             </div>
-            <h2 className="font-display font-black text-2xl sm:text-3xl text-[var(--text-primary)] tracking-tight">
+            <h2 className="font-display font-black text-[1.35rem] sm:text-2xl lg:text-3xl text-[var(--text-primary)] tracking-tight leading-snug break-words">
               TECHNICAL ECOSYSTEM &amp; CAPABILITIES.
             </h2>
           </div>
@@ -418,7 +418,7 @@ export default function AboutDossier() {
                 <span className="w-6 h-px bg-[var(--accent)]" />
                 <span>EXPERIENCE &amp; INTERNSHIPS</span>
               </div>
-              <h2 className="font-display font-black text-2xl sm:text-3xl text-[var(--text-primary)] tracking-tight">
+              <h2 className="font-display font-black text-[1.35rem] sm:text-2xl lg:text-3xl text-[var(--text-primary)] tracking-tight leading-snug break-words">
                 PROFESSIONAL ROLES.
               </h2>
             </div>
@@ -529,7 +529,7 @@ export default function AboutDossier() {
                 <span className="w-6 h-px bg-[var(--accent)]" />
                 <span>CREDENTIALS &amp; CERTIFICATIONS</span>
               </div>
-              <h2 className="font-display font-black text-2xl sm:text-3xl text-[var(--text-primary)] tracking-tight">
+              <h2 className="font-display font-black text-[1.35rem] sm:text-2xl lg:text-3xl text-[var(--text-primary)] tracking-tight leading-snug break-words">
                 ACCREDITATION.
               </h2>
             </div>

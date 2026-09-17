@@ -90,10 +90,10 @@ const Certificates = () => {
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-            <h2 id="certificates-heading" className="font-display text-xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug max-w-3xl"
+            <h2 id="certificates-heading" className="font-display text-[1.35rem] sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug max-w-3xl break-words"
               style={{ color: 'var(--text-primary)' }}
             >
-              VERIFIED ACADEMIC & TECHNICAL CREDENTIALS.
+              VERIFIED ACADEMIC &amp; TECHNICAL CREDENTIALS.
             </h2>
 
             <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border font-mono text-xs card-arch shadow-xs"

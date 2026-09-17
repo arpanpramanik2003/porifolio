@@ -77,10 +77,10 @@ const About = () => {
           
           <h2
             id="about-heading"
-            className="font-display text-xl sm:text-3xl lg:text-5xl font-black tracking-tight max-w-4xl leading-[1.1]"
+            className="font-display text-[1.35rem] sm:text-3xl lg:text-5xl font-black tracking-tight max-w-4xl leading-[1.2] break-words"
             style={{ color: 'var(--text-primary)' }}
           >
-            ENGINEERING WITH RIGOR: GROUNDED AI & PRODUCTION SYSTEMS.
+            ENGINEERING WITH RIGOR: GROUNDED AI &amp; PRODUCTION SYSTEMS.
           </h2>
         </motion.div>
 
