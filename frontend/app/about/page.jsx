@@ -35,6 +35,7 @@ export default function AboutPage() {
 
   return (
     <div className="pt-20">
+      <link rel="preload" as="image" href="/profile.webp" type="image/webp" fetchPriority="high" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}

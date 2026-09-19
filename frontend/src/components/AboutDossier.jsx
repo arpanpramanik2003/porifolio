@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import { 
   Download, 
   MapPin, 
@@ -146,12 +147,16 @@ export default function AboutDossier() {
                 <div className="flex flex-col items-center text-center pb-6 mb-6 border-b border-[var(--border)]">
                   {/* Profile Portrait Frame */}
                   <div className="relative mb-4">
-                    <div className="w-28 h-32 rounded-2xl overflow-hidden border-2 border-[var(--accent)] shadow-md relative group bg-zinc-950">
-                      <img
+                    <div className="w-28 h-32 rounded-2xl overflow-hidden border-2 border-[var(--accent)] shadow-md relative group bg-[var(--bg-secondary)] flex items-center justify-center">
+                      <Image
                         src="/profile.webp"
                         alt="Arpan Pramanik"
                         width={112}
                         height={128}
+                        priority
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="sync"
                         className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
