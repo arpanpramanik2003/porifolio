@@ -32,7 +32,7 @@ export async function generateMetadata({ params }) {
       title: `${project.title} | Arpan Pramanik — Full-Stack & AI Systems`,
       description: project.description,
       url: pageUrl,
-      siteName: 'Arpan Pramanik Portfolio',
+      siteName: 'Arpan Pramanik',
       images: [
         {
           url: imageUrl,

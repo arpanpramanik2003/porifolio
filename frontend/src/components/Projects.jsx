@@ -417,7 +417,9 @@ export default function Projects() {
                   </div>
 
                   <h2 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-[var(--text-primary)] tracking-tight mb-3">
-                    {featuredProject.title}
+                    <Link href={`/projects/${featuredProject.slug}`} className="hover:text-[var(--accent)] transition-colors">
+                      {featuredProject.title}
+                    </Link>
                   </h2>
 
                   <p className="font-body text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
@@ -484,13 +486,21 @@ export default function Projects() {
                     </a>
                   )}
 
+                  <Link
+                    href={`/projects/${featuredProject.slug}`}
+                    className="px-3.5 py-2.5 rounded-xl font-mono text-xs flex items-center gap-1.5 border border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all ml-auto cursor-pointer card-arch"
+                  >
+                    <span>Full Case Study</span>
+                    <ArrowRight size={13} />
+                  </Link>
+
                   <button
                     type="button"
                     onClick={() => setSelectedProject(featuredProject)}
-                    className="px-3.5 py-2.5 rounded-xl font-mono text-xs flex items-center gap-1.5 border border-[var(--border)] text-[var(--accent)] hover:border-[var(--accent)] transition-all ml-auto cursor-pointer card-arch"
+                    className="px-3 py-2.5 rounded-xl font-mono text-xs flex items-center gap-1.5 border border-[var(--border)] text-[var(--accent)] hover:border-[var(--accent)] transition-all cursor-pointer card-arch"
                   >
                     <Info size={13} />
-                    <span>Deep Dossier</span>
+                    <span>Quick Spec</span>
                   </button>
                 </div>
 
@@ -618,7 +628,9 @@ export default function Projects() {
                             </div>
 
                             <h3 className="font-display font-bold text-lg sm:text-xl text-[var(--text-primary)] tracking-tight mb-2">
-                              {project.title}
+                              <Link href={`/projects/${project.slug}`} className="hover:text-[var(--accent)] transition-colors">
+                                {project.title}
+                              </Link>
                             </h3>
 
                             <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed mb-4">
@@ -684,14 +696,25 @@ export default function Projects() {
                               )}
                             </div>
 
-                            <button
-                              type="button"
-                              onClick={() => setSelectedProject(project)}
-                              className="inline-flex items-center gap-1 text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors cursor-pointer"
-                            >
-                              <Info size={12} />
-                              <span>Deep Dossier</span>
-                            </button>
+                            <div className="flex items-center gap-2.5">
+                              <Link
+                                href={`/projects/${project.slug}`}
+                                className="inline-flex items-center gap-1 font-semibold text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+                              >
+                                <span>Case Study</span>
+                                <ArrowRight size={12} />
+                              </Link>
+
+                              <button
+                                type="button"
+                                onClick={() => setSelectedProject(project)}
+                                className="inline-flex items-center gap-1 text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors cursor-pointer"
+                                title="Quick Specification Preview"
+                              >
+                                <Info size={12} />
+                                <span>Spec</span>
+                              </button>
+                            </div>
                           </div>
 
                         </div>

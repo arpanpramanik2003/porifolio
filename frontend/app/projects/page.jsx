@@ -44,7 +44,8 @@ export default function ProjectsPage() {
             name: 'PaperLens AI',
             applicationCategory: 'DeveloperApplication',
             operatingSystem: 'Cloud / Web',
-            url: 'https://paperlens.arpanpramanik.tech/',
+            url: 'https://arpanpramanik.tech/projects/paperlens-ai',
+            sameAs: 'https://paperlens.arpanpramanik.tech/',
             codeRepository: 'https://github.com/arpanpramanik2003/PaperLens-AI',
             description: 'Autonomous full-stack AI research platform for literature analysis, experiment planning, problem ideation, and benchmark discovery featuring a dual-pipeline RAG architecture.',
             author: { '@id': 'https://arpanpramanik.tech/#person' }
@@ -55,7 +56,8 @@ export default function ProjectsPage() {
             name: 'CampusSphere',
             applicationCategory: 'EnterpriseApplication',
             operatingSystem: 'Cloud / Web',
-            url: 'https://ssh.arpanpramanik.tech/',
+            url: 'https://arpanpramanik.tech/projects/campussphere',
+            sameAs: 'https://ssh.arpanpramanik.tech/',
             codeRepository: 'https://github.com/arpanpramanik2003/CampusSphere',
             description: 'Enterprise co-curricular activity verification, credit banking, and NAAC/NIRF accreditation compliance management system for higher education.',
             author: { '@id': 'https://arpanpramanik.tech/#person' }
@@ -66,7 +68,8 @@ export default function ProjectsPage() {
             name: 'FruitQ-GradeX',
             applicationCategory: 'ComputerVisionApplication',
             operatingSystem: 'Web / Streamlit',
-            url: 'https://fruitq-quality-classifier.streamlit.app/',
+            url: 'https://arpanpramanik.tech/projects/fruitq-gradex',
+            sameAs: 'https://fruitq-quality-classifier.streamlit.app/',
             codeRepository: 'https://github.com/arpanpramanik2003/FruitQ-GradeX',
             description: 'Deep learning system for simultaneous fruit classification and quality grading using custom multi-headed CNN with Grad-CAM explainable AI heatmaps.',
             author: { '@id': 'https://arpanpramanik.tech/#person' }
@@ -77,6 +80,7 @@ export default function ProjectsPage() {
             name: 'NeuroVoice',
             applicationCategory: 'VoiceAssistant',
             operatingSystem: 'Desktop / Cross-Platform',
+            url: 'https://arpanpramanik.tech/projects/neurovoice',
             codeRepository: 'https://github.com/arpanpramanik2003/NeuraVoice',
             description: 'On-device AI voice assistant with Ollama LLM integration for natural conversations, context memory, and OS task automation.',
             author: { '@id': 'https://arpanpramanik.tech/#person' }
@@ -87,7 +91,8 @@ export default function ProjectsPage() {
             name: 'ABHIGRAHA 2K25',
             applicationCategory: 'EventPlatform',
             operatingSystem: 'Web',
-            url: 'https://abhigraha2k25.vercel.app/',
+            url: 'https://arpanpramanik.tech/projects/abhigraha-2k25',
+            sameAs: 'https://abhigraha2k25.vercel.app/',
             codeRepository: 'https://github.com/arpanpramanik2003/freshers-website',
             description: 'High-capacity event scheduling, media gallery hub, and sponsor management system with role-based admin console.',
             author: { '@id': 'https://arpanpramanik.tech/#person' }
