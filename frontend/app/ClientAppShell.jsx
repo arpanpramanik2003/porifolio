@@ -79,10 +79,17 @@ export default function ClientAppShell() {
               </div>
               <Link 
                 href="/about" 
-                className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-[var(--accent)] hover:underline cursor-pointer group"
+                className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)] font-mono text-xs font-semibold text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer group card-arch"
               >
+                <img 
+                  src="/profile-square.webp" 
+                  alt="Arpan Pramanik" 
+                  width={24} 
+                  height={24} 
+                  className="w-6 h-6 rounded-full object-cover border border-[var(--border)]"
+                />
                 <span>Read Background &amp; Dossier</span>
-                <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                <ArrowRight size={14} className="transition-transform group-hover:translate-x-1 text-[var(--accent)]" />
               </Link>
             </div>
 

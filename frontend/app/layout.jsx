@@ -125,27 +125,35 @@ export const metadata = {
     canonical: 'https://arpanpramanik.tech',
   },
   openGraph: {
-    type: 'website',
+    type: 'profile',
     url: 'https://arpanpramanik.tech',
     title: 'Arpan Pramanik | AI/ML Engineer & Full-Stack Developer',
     description: 'Arpan Pramanik — AI/ML Engineer & Full-Stack Developer specializing in autonomous AI agents, RAG architectures, and published deep learning research.',
     siteName: 'Arpan Pramanik',
     images: [
       {
-        url: 'https://arpanpramanik.tech/profile.webp',
+        url: 'https://arpanpramanik.tech/profile-square.png',
+        width: 800,
+        height: 800,
+        type: 'image/png',
+        alt: 'Arpan Pramanik — AI/ML Engineer & Full-Stack Developer'
+      },
+      {
+        url: 'https://arpanpramanik.tech/profile-banner.png',
         width: 1200,
         height: 630,
-        alt: 'Arpan Pramanik - AI/ML Engineer & Full-Stack Developer Portfolio'
+        type: 'image/png',
+        alt: 'Arpan Pramanik — AI/ML Engineer & Full-Stack Developer Portfolio'
       },
     ],
     locale: 'en_US',
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     url: 'https://arpanpramanik.tech',
     title: 'Arpan Pramanik | AI/ML Engineer & Full-Stack Developer',
     description: 'Arpan Pramanik — AI/ML Engineer & Full-Stack Developer specializing in autonomous AI agents, RAG architectures, and published deep learning research.',
-    images: ['https://arpanpramanik.tech/profile.webp'],
+    images: ['https://arpanpramanik.tech/profile-square.png'],
   },
   icons: {
     icon: [
@@ -190,6 +198,15 @@ export default function RootLayout({ children }) {
         '@id': 'https://arpanpramanik.tech/#profilepage',
         url: 'https://arpanpramanik.tech',
         name: 'Arpan Pramanik — Official Portfolio',
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          '@id': 'https://arpanpramanik.tech/#personImage',
+          url: 'https://arpanpramanik.tech/profile-square.png',
+          contentUrl: 'https://arpanpramanik.tech/profile-square.png',
+          caption: 'Arpan Pramanik — AI/ML Engineer & Full-Stack Developer',
+          width: 800,
+          height: 800
+        },
         mainEntity: {
           '@id': 'https://arpanpramanik.tech/#person'
         }
@@ -201,8 +218,15 @@ export default function RootLayout({ children }) {
         givenName: 'Arpan',
         familyName: 'Pramanik',
         url: 'https://arpanpramanik.tech',
-        image: 'https://arpanpramanik.tech/profile.webp',
-        logo: 'https://arpanpramanik.tech/profile.webp',
+        image: {
+          '@type': 'ImageObject',
+          '@id': 'https://arpanpramanik.tech/#personImage',
+          url: 'https://arpanpramanik.tech/profile-square.png',
+          contentUrl: 'https://arpanpramanik.tech/profile-square.png',
+          caption: 'Arpan Pramanik',
+          width: 800,
+          height: 800
+        },
         jobTitle: ['AI/ML Engineer', 'Full-Stack Developer', 'AI Researcher'],
         description: 'AI/ML Engineer and Full-Stack Developer specializing in autonomous AI agents, retrieval-augmented generation (RAG), computer vision, and Next.js platforms.',
         identifier: {
