@@ -269,15 +269,45 @@ html.dark .card-arch:hover {
   background-clip: text;
 }
 
-/* Hero name outline effect */
-.hero-name-outline {
+/* Hero name cinematic outline hover effect */
+.hero-name-wrapper {
+  cursor: pointer;
+  user-select: none;
+}
+
+.hero-name-letter {
+  display: inline-block;
+  color: var(--text-primary);
+  -webkit-text-fill-color: var(--text-primary);
+  -webkit-text-stroke: 0px transparent;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              -webkit-text-fill-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              -webkit-text-stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              text-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: color, -webkit-text-fill-color, -webkit-text-stroke, transform;
+}
+
+/* Whole name transforms into sleek hollow outline on hover */
+.hero-name-wrapper:hover .hero-name-letter {
   color: transparent;
-  -webkit-text-stroke: 2px var(--accent);
-  letter-spacing: 0.02em;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px var(--text-primary);
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.14);
+}
+
+/* Specific hovered letter micro-elevation with crisp accent stroke */
+.hero-name-wrapper .hero-name-letter:hover {
+  -webkit-text-stroke: 1.8px var(--accent);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+  transform: translateY(-4px) scale(1.04);
 }
 
 @media (max-width: 640px) {
-  .hero-name-outline {
+  .hero-name-wrapper:hover .hero-name-letter {
+    -webkit-text-stroke: 1.2px var(--text-primary);
+  }
+  .hero-name-wrapper .hero-name-letter:hover {
     -webkit-text-stroke: 1.5px var(--accent);
   }
 }

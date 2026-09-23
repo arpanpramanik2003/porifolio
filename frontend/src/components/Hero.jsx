@@ -8,8 +8,6 @@ import { personalInfo } from '../data/personalInfo'
 import { useIntro } from '../contexts/IntroContext'
 import BlueprintGridCanvas from './BlueprintGridCanvas'
 
-const glyphs = '01#*><%{}[]/@&$!~?'
-
 const nameCycleData = [
   { text: 'অর্পন প্রামানিক', lang: 'Bengali', fontFamily: "'Noto Sans Bengali', sans-serif" },
   { text: 'अर्पन प्रामाणिक', lang: 'Hindi', fontFamily: "'Noto Sans Devanagari', sans-serif" },
@@ -18,52 +16,25 @@ const nameCycleData = [
   { text: 'ARPAN PRAMANIK', lang: 'English', isFinal: true }
 ]
 
-// Tactile mechanical split-flap letter with hover micro-scramble
-const InteractiveLetter = ({ char, isFinalEnglish }) => {
-  const [displayChar, setDisplayChar] = useState(char)
-  const isHoveredRef = useRef(false)
-
-  const scramble = useCallback(() => {
-    if (char === ' ' || isHoveredRef.current) return
-    isHoveredRef.current = true
-    let iteration = 0
-    const interval = setInterval(() => {
-      setDisplayChar(glyphs[Math.floor(Math.random() * glyphs.length)])
-      iteration++
-      if (iteration >= 3) {
-        clearInterval(interval)
-        setDisplayChar(char)
-        isHoveredRef.current = false
-      }
-    }, 40)
-  }, [char])
-
-  useEffect(() => {
-    setDisplayChar(char)
-  }, [char])
-
+// Cinematic interactive letter with smooth outline stroke transition
+const InteractiveLetter = ({ char }) => {
   if (char === ' ') {
     return <span className="inline-block w-3 sm:w-6">&nbsp;</span>
   }
 
   return (
-    <motion.span
-      onMouseEnter={isFinalEnglish ? scramble : undefined}
-      whileHover={isFinalEnglish ? { y: -4, scale: 1.06 } : undefined}
-      transition={{ type: 'spring', stiffness: 450, damping: 18 }}
-      className="inline-block cursor-default select-none tracking-tight"
-    >
-      {displayChar}
-    </motion.span>
+    <span className="hero-name-letter inline-block tracking-tight select-none">
+      {char}
+    </span>
   )
 }
 
-// Full interactive word composed of interactive mechanical letters
-const InteractiveWord = ({ text, isFinalEnglish }) => {
+// Full interactive word composed of cinematic outline letters
+const InteractiveWord = ({ text }) => {
   return (
     <span className="inline-flex items-center">
       {text.split('').map((c, i) => (
-        <InteractiveLetter key={i} char={c} isFinalEnglish={isFinalEnglish} />
+        <InteractiveLetter key={i} char={c} />
       ))}
     </span>
   )
@@ -358,14 +329,14 @@ const Hero = ({ isIntroComplete = true }) => {
                     damping: 16,
                     mass: 0.8
                   }}
-                  className="font-display font-black tracking-tight leading-none uppercase text-center flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 md:gap-4 max-w-full text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] via-[var(--text-primary)] to-[var(--text-tertiary)]"
+                  className="hero-name-wrapper font-display font-black tracking-tight leading-none uppercase text-center flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 md:gap-4 max-w-full"
                   style={{
                     fontSize: 'clamp(2.2rem, 5.2vw, 4.75rem)',
                     letterSpacing: '-0.03em'
                   }}
                 >
-                  <InteractiveWord text="ARPAN" isFinalEnglish={true} />
-                  <InteractiveWord text="PRAMANIK" isFinalEnglish={true} />
+                  <InteractiveWord text="ARPAN" />
+                  <InteractiveWord text="PRAMANIK" />
                 </motion.div>
               )}
             </AnimatePresence>
