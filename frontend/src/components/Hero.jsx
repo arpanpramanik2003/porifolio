@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link'
-import { Github, Linkedin, Mail, Download, ArrowRight, Copy, Check, Terminal, ChevronDown, Sparkles } from 'lucide-react'
+import { Github, Linkedin, Mail, Download, ArrowRight, Copy, Check, Terminal, ChevronDown, Sparkles, Brain, Layers, Cpu } from 'lucide-react'
 import { personalInfo } from '../data/personalInfo'
 import { useIntro } from '../contexts/IntroContext'
 import BlueprintGridCanvas from './BlueprintGridCanvas'
@@ -172,7 +172,6 @@ const Hero = ({ isIntroComplete = true }) => {
   const [copiedCommand, setCopiedCommand] = useState(false)
   const [showToast, setShowToast] = useState(false)
   const [confettiParticles, setConfettiParticles] = useState([])
-  const [pillFlipped, setPillFlipped] = useState(false)
   
   // If user already experienced the name cycle in this session/refresh, start immediately at English resting state
   const [cycleIndex, setCycleIndex] = useState(() => (hasSeenNameCycle ? nameCycleData.length - 1 : 0))
@@ -295,33 +294,29 @@ const Hero = ({ isIntroComplete = true }) => {
         style={{ y: heroY, scale: heroScale, opacity: heroOpacity }}
         className="relative z-10 w-full max-w-5xl mx-auto text-center flex flex-col items-center justify-center my-auto"
       >
-        {/* 1. Whimsical 3D Flippable Telemetry Pill */}
+        {/* 1. Executive Status Pill (Clean Glassmorphism with Live Emerald Pulse) */}
         <motion.div
-          initial={{ opacity: 0, y: -15, filter: 'blur(6px)' }}
+          initial={{ opacity: 0, y: -12, filter: 'blur(6px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 0.6, delay: 0.05 }}
-          className="mb-3 sm:mb-4"
+          transition={{ duration: 0.5, delay: 0.05 }}
+          className="mb-4 sm:mb-5"
         >
-          <button
-            onClick={() => setPillFlipped((p) => !p)}
-            title="Click to flip telemetry coordinates"
-            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border text-[10px] sm:text-[11px] font-mono tracking-widest uppercase shadow-xs card-arch cursor-pointer transition-all hover:scale-105"
-            style={{
-              borderColor: 'var(--border)',
-              background: 'var(--bg-card)',
-              color: 'var(--text-secondary)'
-            }}
+          <div
+            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)]/80 backdrop-blur-xl shadow-xs transition-all duration-300 hover:border-[var(--accent)] select-none cursor-default card-arch"
           >
+            {/* Live Status Pulse Indicator */}
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.7)]" />
             </span>
-            <span className="font-semibold">
-              {!pillFlipped
-                ? 'SYSTEM LIVE • FULL-STACK & AI ARCHITECT'
-                : '📍 22.8° N, 88.3° E • OPEN FOR COLLABORATION'}
+            <span className="text-[11px] sm:text-xs font-medium text-[var(--text-secondary)] tracking-wide">
+              Available for Opportunities
             </span>
-          </button>
+            <span className="text-[var(--text-tertiary)] opacity-40 font-mono text-xs">•</span>
+            <span className="text-[11px] sm:text-xs font-semibold text-[var(--text-primary)] tracking-wide">
+              AI/ML &amp; Full-Stack
+            </span>
+          </div>
         </motion.div>
 
         {/* 2. Semantic Accessible Giant H1 Container (Calibrated for all desktop viewports) */}
@@ -377,18 +372,29 @@ const Hero = ({ isIntroComplete = true }) => {
           </div>
         </h1>
 
-        {/* 3. Telegraphic Engineering Sub-Lead (Monospace / Zero Wall-of-Text) */}
+        {/* 3. Refined Capability Capsule Chips */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mb-5 font-mono text-[11px] sm:text-xs tracking-wider text-[var(--text-secondary)] uppercase flex flex-wrap items-center justify-center gap-2 sm:gap-3"
+          transition={{ duration: 0.5, delay: 0.28 }}
+          className="mb-6 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-2xl mx-auto"
         >
-          <span className="font-semibold text-[var(--text-primary)]">Autonomous AI Agents</span>
-          <span className="text-[var(--accent)]">•</span>
-          <span className="font-semibold text-[var(--text-primary)]">Grounded RAG</span>
-          <span className="text-[var(--accent)]">•</span>
-          <span className="font-semibold text-[var(--text-primary)]">High-Scale Web Systems</span>
+          {[
+            { icon: Brain, label: 'Autonomous AI Agents' },
+            { icon: Layers, label: 'Grounded RAG' },
+            { icon: Cpu, label: 'High-Scale Systems' }
+          ].map((item, idx) => {
+            const Icon = item.icon
+            return (
+              <div
+                key={idx}
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)]/70 backdrop-blur-md text-[11px] sm:text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] hover:bg-[var(--bg-secondary)] transition-all duration-200 card-arch cursor-default select-none shadow-xs group"
+              >
+                <Icon size={13} className="text-[var(--accent)] group-hover:scale-110 transition-transform duration-200 shrink-0" />
+                <span className="tracking-tight font-body">{item.label}</span>
+              </div>
+            )
+          })}
         </motion.div>
 
         {/* 4. Action Deck: Elastic CTA, Binary Confetti Command & Social Coordinates */}
