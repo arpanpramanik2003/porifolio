@@ -160,8 +160,6 @@ export const metadata = {
       { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
       { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
       { url: '/favicon.ico', sizes: 'any' },
-      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
     ],
@@ -189,6 +187,8 @@ export default function RootLayout({ children }) {
         url: 'https://arpanpramanik.tech/',
         name: 'Arpan Pramanik',
         alternateName: ['Arpan Pramanik Portfolio', 'Arpan Pramanik Tech', 'arpanpramanik.tech'],
+        image: 'https://arpanpramanik.tech/profile-square.png',
+        thumbnailUrl: 'https://arpanpramanik.tech/profile-square.png',
         publisher: {
           '@id': 'https://arpanpramanik.tech/#person'
         }
@@ -198,6 +198,8 @@ export default function RootLayout({ children }) {
         '@id': 'https://arpanpramanik.tech/#profilepage',
         url: 'https://arpanpramanik.tech',
         name: 'Arpan Pramanik — Official Portfolio',
+        image: 'https://arpanpramanik.tech/profile-square.png',
+        thumbnailUrl: 'https://arpanpramanik.tech/profile-square.png',
         primaryImageOfPage: {
           '@type': 'ImageObject',
           '@id': 'https://arpanpramanik.tech/#personImage',
@@ -347,6 +349,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${fontVariables} dark`} suppressHydrationWarning>
       <head>
+        <meta name="thumbnail" content="https://arpanpramanik.tech/profile-square.png" />
+        <link rel="image_src" href="https://arpanpramanik.tech/profile-square.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

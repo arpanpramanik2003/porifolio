@@ -82,10 +82,11 @@ export default function ClientAppShell() {
                 className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)] font-mono text-xs font-semibold text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer group card-arch"
               >
                 <img 
-                  src="/profile-square.webp" 
+                  src="/profile-square.png" 
                   alt="Arpan Pramanik" 
-                  width={24} 
-                  height={24} 
+                  itemProp="image"
+                  width={32} 
+                  height={32} 
                   className="w-6 h-6 rounded-full object-cover border border-[var(--border)]"
                 />
                 <span>Read Background &amp; Dossier</span>

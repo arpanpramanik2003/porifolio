@@ -3,7 +3,7 @@ import { projectsData } from '../src/data/projects'
 export default function sitemap() {
   const baseUrl = 'https://arpanpramanik.tech'
   // Stable release date prevents artificial churn on every second of build
-  const lastDeployment = '2026-09-14T00:00:00.000Z'
+  const lastDeployment = '2026-10-05T00:00:00.000Z'
 
   const coreRoutes = [
     {
