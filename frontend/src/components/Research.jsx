@@ -208,8 +208,8 @@ export default function Research() {
                       <span className="px-2.5 py-0.5 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-[11px]">
                         {paper.publisher}
                       </span>
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-bold text-[10px]">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-primary)] font-bold text-[10px]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)] animate-pulse" />
                         <span>{paper.conference}</span>
                       </span>
                     </div>
