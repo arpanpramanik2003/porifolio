@@ -175,13 +175,20 @@ export default function Projects() {
   // Per-card Dual-View mode state: { [projectId]: 'ui' | 'arch' }
   const [cardViews, setCardViews] = useState({})
 
-  // Category list
-  const categories = [
-    { id: 'All', label: 'All Systems (05)' },
-    { id: 'AI Agents & RAG', label: 'AI Agents & RAG (02)' },
-    { id: 'Enterprise Full-Stack', label: 'Enterprise Full-Stack (02)' },
-    { id: 'Computer Vision', label: 'Computer Vision (01)' }
-  ]
+  // Category list with dynamic counts
+  const categories = useMemo(() => {
+    const counts = projectsData.reduce((acc, p) => {
+      acc[p.category] = (acc[p.category] || 0) + 1
+      return acc
+    }, {})
+    const pad = (n) => String(n).padStart(2, '0')
+    return [
+      { id: 'All', label: `All Systems (${pad(projectsData.length)})` },
+      { id: 'AI Agents & RAG', label: `AI Agents & RAG (${pad(counts['AI Agents & RAG'] || 0)})` },
+      { id: 'Enterprise Full-Stack', label: `Enterprise Full-Stack (${pad(counts['Enterprise Full-Stack'] || 0)})` },
+      { id: 'Computer Vision', label: `Computer Vision (${pad(counts['Computer Vision'] || 0)})` }
+    ]
+  }, [])
 
   // Filtered projects
   const filteredProjects = useMemo(() => {

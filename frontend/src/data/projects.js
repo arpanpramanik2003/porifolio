@@ -93,6 +93,98 @@ export const projectsData = [
   },
   {
     id: 2,
+    slug: 'jaldrishti-ai',
+    title: 'JalDrishti (जलदृष्टि)',
+    tagline: 'AI-Powered Precision Agronomy & Hydrological Irrigation Engine',
+    category: 'AI Agents & RAG',
+    image: '/project-images/jaldrishti.webp',
+    logo: '/project-logo/jaldrishti-logo.webp',
+    featured: true,
+    year: '2026',
+    status: 'Audited Engine',
+    github: 'https://github.com/arpanpramanik2003/JalDrishti-AI',
+    live: null,
+    docs: 'https://github.com/arpanpramanik2003/JalDrishti-AI/blob/main/documentation/README.md',
+    quickClone: 'git clone https://github.com/arpanpramanik2003/JalDrishti-AI.git',
+    description: 'Climate-smart precision agronomy and irrigation advisory platform engineered for Indian smallholders combining FAO-56 Penman-Monteith physics, root-zone depletion tracking, and Groq-native multilingual AI.',
+    fullDescription: 'JalDrishti (जलदृष्टि) is a climate-smart agronomy and precision irrigation advisory platform engineered specifically for Indian smallholder agriculture. It combines FAO-56 Penman-Monteith Evapotranspiration modeling, persistent daily root-zone water balance tracking, ISRIC SoilGrids pedotransfer physics, real-time Open-Meteo satellite meteorology, and a 100% Groq-native multilingual AI assistant (JalSathi AI). Operating without physical in-situ sensors, JalDrishti provides smallholders with scientific decision support to optimize water usage, eliminate diesel and electricity pump waste, mitigate microclimate disease outbreaks, and track verified cumulative financial savings (ROI). Following an audited 6-phase engineering overhaul in September 2026, the platform features a 9-table PostgreSQL schema, asynchronous Redis caching, a 44-test Pytest suite, and a cross-platform Flutter client.',
+    benchmarks: [
+      {
+        metric: 'FAO-56 Hydrology Engine',
+        gain: '0 Sensor Hardware Cost',
+        desc: 'Calculates ETo via Stefan-Boltzmann net radiation and logarithmic 10m-to-2m wind reduction without in-situ soil probes.'
+      },
+      {
+        metric: 'Smart Rain Hold Savings',
+        gain: '₹150–₹500 Saved/Run',
+        desc: 'Suppresses irrigation runs when forecast precipitation (≥3mm/24h or ≥5mm/48h) is detected, preventing waterlogging.'
+      },
+      {
+        metric: 'Multilingual Voice RAG',
+        gain: 'Sub-150ms Translation',
+        desc: 'Groq-native translation converts Bengali and Hindi farmer queries into agronomic terms for dense ChromaDB retrieval.'
+      },
+      {
+        metric: 'Anti-Hallucination Guardrails',
+        gain: '45+ Chemical Scanners',
+        desc: 'Strict ICAR Package of Practices grounding with automatic KVK fallback replacing ungrounded agrochemical advice.'
+      },
+      {
+        metric: 'Local CPU Inference',
+        gain: '~120MB Peak RAM',
+        desc: 'Sentence-Transformers all-MiniLM-L6-v2 running on-device for memory-efficient semantic search.'
+      },
+      {
+        metric: 'Automated Regression Suite',
+        gain: '44/44 Passing Tests',
+        desc: 'Pytest test suite covering hydrology math, soil depletion state persistence, security contracts, and API routes.'
+      }
+    ],
+    architecture: {
+      summary: 'Decoupled Microservice Topology with Asynchronous FastAPI, Supabase PostgreSQL, Redis Cache, and Groq-Native RAG Cascade',
+      pipeline: [
+        { step: '01', name: 'Flutter Mobile Client', detail: 'Cross-platform app (Flutter 3.24+ / Dart) with 6 ChangeNotifiers, Hive offline cache, and multilingual voice I/O.' },
+        { step: '02', name: 'FastAPI REST Gateway', detail: 'Async ASGI router handling 24 endpoints with JWT authentication and Pydantic v2 validation.' },
+        { step: '03', name: 'FAO-56 Hydrology Engine', detail: 'Computes ETo, dynamic crop phenology Kc(t), and persistent root-zone depletion (SoilDepletionState).' },
+        { step: '04', name: 'Meteorology & Soil Feeds', detail: 'Open-Meteo satellite weather API paired with ISRIC SoilGrids REST pedotransfer clay/sand fractions.' },
+        { step: '05', name: 'Redis Caching Layer', detail: 'Asynchronous Redis Cloud client caching 3h weather forecasts, 30d soil profiles, and revoked JWT tokens.' },
+        { step: '06', name: 'JalSathi AI Voice RAG', detail: '3-tier cascade: primary Groq (gpt-oss-20b) → fast Groq (compound-mini) → zero-LLM local ICAR fallback.' }
+      ]
+    },
+    capabilities: [
+      { name: 'FAO-56 Irrigation Engine', desc: 'Calculates reference evapotranspiration (ETo), 4-stage dynamic crop coefficients Kc(t), and converts water deficit into exact pump runtime (hours/minutes).' },
+      { name: 'Smart Rain Hold Guard', desc: 'Multi-temporal forecast evaluation (≥3mm in 24h, ≥5mm in 48h) that automatically suppresses irrigation to prevent waterlogging and nutrient leaching.' },
+      { name: 'Financial & Environmental ROI', desc: 'Idempotent calendar-gated accounting tracking cumulative liters saved, pump hours avoided, money saved (₹ INR), and CO2 mitigated (kg).' },
+      { name: 'Pest & Disease Early Warning', desc: 'Microclimate pathogen proliferation models predicting Paddy Blast/Blight, Potato Late Blight, Wheat Yellow Rust, and Maize Fall Armyworm.' },
+      { name: 'JalSathi Multilingual Voice AI', desc: 'Groq-native conversational voice assistant supporting Bengali (bn-IN), Hindi (hi-IN), and English with STT and native TTS playback.' },
+      { name: 'Offline-First Mobile Architecture', desc: 'Flutter mobile client with Hive local database persistence, 5-tab analytics dashboard, and push notifications via Firebase FCM v1.' }
+    ],
+    tech: [
+      'Python 3.11',
+      'FastAPI',
+      'Flutter',
+      'Dart',
+      'Groq Cloud API',
+      'ChromaDB',
+      'Sentence-Transformers',
+      'PostgreSQL',
+      'SQLAlchemy',
+      'Redis (asyncio)',
+      'Open-Meteo API',
+      'ISRIC SoilGrids',
+      'Firebase FCM',
+      'Pytest'
+    ],
+    highlights: [
+      'Rigorous FAO-56 Penman-Monteith Evapotranspiration and root-zone water balance modeling without physical sensors',
+      'Smart Rain Hold protection saving ₹150–₹500 in fuel/power per avoided irrigation run',
+      'JalSathi AI: 100% Groq-native multilingual RAG voice copilot with Bengali and Hindi speech support',
+      'Weather-driven pest & disease early warning system with ICAR-grounded IPM chemical and biological recommendations',
+      'Audited 9-table PostgreSQL relational schema with persistent SoilDepletionState and 44/44 passing Pytest suite'
+    ]
+  },
+  {
+    id: 3,
     slug: 'campussphere',
     title: 'CampusSphere',
     tagline: 'Enterprise Co-Curricular Governance, Credit Banking & NAAC Compliance',
@@ -181,7 +273,7 @@ export const projectsData = [
     ]
   },
   {
-    id: 3,
+    id: 4,
     slug: 'fruitq-gradex',
     title: 'FruitQ-GradeX: Fruit Quality Grading with Explainable AI',
     tagline: 'Dual-Head CNN for Fruit Classification & Quality Grading with Grad-CAM',
@@ -255,7 +347,7 @@ export const projectsData = [
     ]
   },
   {
-    id: 4,
+    id: 5,
     slug: 'neurovoice',
     title: 'NeuroVoice: AI Desktop Voice Assistant',
     tagline: 'On-Device Speech Recognition & Task Automation Powered by Ollama',
@@ -321,7 +413,7 @@ export const projectsData = [
     ]
   },
   {
-    id: 5,
+    id: 6,
     slug: 'abhigraha-2k25',
     title: 'ABHIGRAHA 2K25: College Fest Platform',
     tagline: 'High-Capacity Event Scheduling, Media Hub & Sponsor Management System',
