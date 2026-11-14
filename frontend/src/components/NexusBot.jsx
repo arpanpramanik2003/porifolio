@@ -184,8 +184,8 @@ export default function NexusBot({ activeField = null, status = '', onInjectPres
           {/* Antenna with Radar Ping */}
           <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex flex-col items-center">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--text-tertiary)] opacity-60" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--text-primary)]" />
             </span>
             <div className="w-[2px] h-2 bg-[var(--border)]" />
           </div>
@@ -193,7 +193,7 @@ export default function NexusBot({ activeField = null, status = '', onInjectPres
           {/* Top Chassis HUD Bar */}
           <div className="w-full flex items-center justify-between px-1 text-[8px] font-mono text-[var(--text-tertiary)]">
             <span className="flex items-center gap-0.5">
-              <Activity size={9} className="text-emerald-500 animate-pulse" />
+              <Activity size={9} className="text-[var(--text-primary)] animate-pulse" />
               <span>NEXUS</span>
             </span>
             <span className="tracking-tighter">01</span>
@@ -296,7 +296,7 @@ export default function NexusBot({ activeField = null, status = '', onInjectPres
       {/* Mini Ping Pulse */}
       <div className="hidden lg:flex flex-col items-end text-[10px] font-mono text-[var(--text-tertiary)] border-l pl-3 border-[var(--border)]">
         <span className="flex items-center gap-1">
-          <Wifi size={11} className="text-emerald-500" />
+          <Wifi size={11} className="text-[var(--text-primary)]" />
           <span>60 FPS</span>
         </span>
         <span className="text-[9px] text-[var(--text-tertiary)]">CURSOR-LOCKED</span>

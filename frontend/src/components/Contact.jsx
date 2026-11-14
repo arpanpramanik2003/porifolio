@@ -184,10 +184,7 @@ const Contact = () => {
             <div className="flex items-center gap-4">
               {/* Live Kolkata Time & Status HUD */}
               <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-[var(--border)] bg-[var(--bg-card)] font-mono text-xs shadow-2xs">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                </span>
+                <Clock size={12} className="text-[var(--text-tertiary)] shrink-0" />
                 <span className="text-[var(--text-tertiary)] hidden sm:inline">KOLKATA (IST):</span>
                 <span className="font-bold text-[var(--text-primary)]">{kolkataTime || '10:00:00'}</span>
                 <span className="text-[var(--text-tertiary)] hidden md:inline">| UTC+5:30</span>
@@ -221,7 +218,7 @@ const Contact = () => {
 
           {/* Availability Badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] font-mono text-xs text-[var(--text-primary)] self-start lg:self-auto shrink-0 shadow-2xs">
-            <Radio size={14} className="text-emerald-500 animate-pulse" />
+            <Radio size={14} className="text-[var(--text-primary)] animate-pulse" />
             <span>STATUS: AVAILABLE FOR NEW OPPORTUNITIES</span>
           </div>
         </div>
@@ -248,7 +245,7 @@ const Contact = () => {
                 <span className="font-mono text-xs uppercase tracking-wider text-[var(--text-tertiary)]">
                   DIRECT EMAIL DISPATCH
                 </span>
-                <span className="font-mono text-[10px] px-2 py-0.5 rounded border border-emerald-500/30 text-emerald-500 bg-emerald-500/5 font-semibold">
+                <span className="font-mono text-[10px] px-2 py-0.5 rounded border border-[var(--border)] text-[var(--text-primary)] bg-[var(--bg-secondary)] font-semibold">
                   PRIMARY
                 </span>
               </div>
@@ -262,8 +259,8 @@ const Contact = () => {
                 >
                   {copiedEmail ? (
                     <>
-                      <Check size={14} className="text-emerald-500" />
-                      <span className="text-[10px] text-emerald-500 font-mono">COPIED</span>
+                      <Check size={14} className="text-[var(--text-primary)]" />
+                      <span className="text-[10px] text-[var(--text-primary)] font-mono font-semibold">COPIED</span>
                     </>
                   ) : (
                     <>
@@ -288,9 +285,9 @@ const Contact = () => {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-2.5 px-3 rounded-xl font-display font-semibold text-xs flex items-center justify-center gap-1.5 border transition-all card-arch bg-[var(--bg-secondary)] text-[var(--text-primary)] border-[var(--border)] hover:border-emerald-500"
+                  className="py-2.5 px-3 rounded-xl font-display font-semibold text-xs flex items-center justify-center gap-1.5 border transition-all card-arch bg-[var(--bg-secondary)] text-[var(--text-primary)] border-[var(--border)] hover:border-[var(--text-primary)]"
                 >
-                  <MessageSquare size={14} className="text-emerald-500" />
+                  <MessageSquare size={14} className="text-[var(--text-primary)]" />
                   <span>WhatsApp</span>
                   <ArrowUpRight size={13} className="text-[var(--text-tertiary)]" />
                 </a>
@@ -327,7 +324,7 @@ const Contact = () => {
                   <Clock size={13} />
                   <span>SLA RESPONSE TIME</span>
                 </span>
-                <span className="font-bold px-2 py-0.5 rounded border border-emerald-500/30 text-emerald-500 bg-emerald-500/10">
+                <span className="font-bold px-2 py-0.5 rounded border border-[var(--border)] text-[var(--text-primary)] bg-[var(--bg-secondary)] font-mono">
                   &lt; 24 HOURS
                 </span>
               </div>
@@ -504,8 +501,8 @@ const Contact = () => {
                 {/* Status Indicator Feedback */}
                 <div aria-live="polite" role="status">
                   {status === 'success' && (
-                    <div className="p-3 rounded-xl border font-mono text-xs border-emerald-500/40 text-emerald-500 bg-emerald-500/10 flex items-center gap-2">
-                      <Check size={15} />
+                    <div className="p-3 rounded-xl border font-mono text-xs border-[var(--border-hover)] text-[var(--text-primary)] bg-[var(--bg-secondary)] flex items-center gap-2">
+                      <Check size={15} className="text-[var(--text-primary)]" />
                       <span>Message transmitted successfully! Arpan has received your telemetry.</span>
                     </div>
                   )}
