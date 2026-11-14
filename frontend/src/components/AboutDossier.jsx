@@ -220,13 +220,13 @@ export default function AboutDossier() {
             
             {/* Editorial Bio */}
             <div className="space-y-4 font-body text-base sm:text-lg leading-relaxed text-[var(--text-secondary)]">
-              <h2 className="font-display font-black text-[1.35rem] sm:text-2xl lg:text-3xl text-[var(--text-primary)] tracking-tight leading-snug break-words">
+              <h2 className="font-display font-black text-[1.35rem] sm:text-2xl lg:text-3xl text-[var(--text-primary)] tracking-tight leading-snug break-words text-left">
                 ENGINEERING WITH RIGOR: AI AGENTS, RAG &amp; PRODUCTION PLATFORMS.
               </h2>
-              <p>
+              <p className="text-justify">
                 I am an AI/ML Engineer and Full-Stack Developer specializing in building autonomous AI agents, intelligent retrieval systems (RAG), and production-grade web platforms. My focus centers on engineering scalable deep learning architectures and high-performance software that bridge scientific research with real-world utility.
               </p>
-              <p>
+              <p className="text-justify">
                 From authoring <strong className="font-semibold text-[var(--text-primary)]">PaperLens AI</strong> (an autonomous academic research co-pilot with hybrid FAISS+BM25 retrieval) to deploying distributed enterprise platforms like <strong className="font-semibold text-[var(--text-primary)]">CampusSphere</strong> and explainable deep learning pipelines, I emphasize clean architecture, deterministic latencies, and visual polish.
               </p>
             </div>

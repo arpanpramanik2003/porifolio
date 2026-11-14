@@ -100,7 +100,7 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-5 font-body text-base sm:text-lg leading-relaxed text-justify sm:text-left"
+              className="space-y-5 font-body text-base sm:text-lg leading-relaxed text-justify"
               style={{ color: 'var(--text-secondary)' }}
             >
               <p>
