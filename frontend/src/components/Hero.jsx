@@ -272,8 +272,9 @@ const Hero = ({ isIntroComplete = true }) => {
           transition={{ duration: 0.5, delay: 0.05 }}
           className="mb-4 sm:mb-5"
         >
+          {/* Desktop Pill (Preserved 100% for Laptops & Desktops) */}
           <div
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)]/80 backdrop-blur-xl shadow-xs transition-all duration-300 hover:border-[var(--accent)] select-none cursor-default card-arch"
+            className="hidden sm:inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)]/80 backdrop-blur-xl shadow-xs transition-all duration-300 hover:border-[var(--accent)] select-none cursor-default card-arch"
           >
             {/* Live Status Pulse Indicator */}
             <span className="relative flex h-2 w-2">
@@ -287,6 +288,33 @@ const Hero = ({ isIntroComplete = true }) => {
             <span className="text-[11px] sm:text-xs font-semibold text-[var(--text-primary)] tracking-wide">
               AI/ML &amp; Full-Stack
             </span>
+          </div>
+
+          {/* Mobile Redesign: Option A — Segmented Precision Micro-Badge */}
+          <div
+            className="sm:hidden inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--bg-card)]/90 backdrop-blur-xl p-1 select-none cursor-default shadow-xs transition-all duration-300 hover:border-[var(--accent)]"
+          >
+            {/* Left Segment: Status Beacon */}
+            <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[var(--bg-secondary)]/70">
+              <span className="relative flex h-1.5 w-1.5 shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.8)]" />
+              </span>
+              <span className="text-[10px] font-medium text-[var(--text-secondary)] tracking-tight whitespace-nowrap">
+                <span className="hidden min-[380px]:inline">Available for Opportunities</span>
+                <span className="min-[380px]:hidden">Available for Roles</span>
+              </span>
+            </div>
+
+            {/* Hairline Divider */}
+            <span className="w-px h-3 bg-[var(--border)] mx-1 shrink-0" aria-hidden="true" />
+
+            {/* Right Segment: Engineering Specialty */}
+            <div className="px-2 py-0.5">
+              <span className="text-[9.5px] font-mono font-semibold tracking-wider text-[var(--text-primary)] uppercase whitespace-nowrap">
+                AI/ML &amp; Full-Stack
+              </span>
+            </div>
           </div>
         </motion.div>
 
